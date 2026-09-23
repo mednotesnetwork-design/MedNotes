@@ -1,0 +1,302 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,500;0,600;0,700;1,400&display=swap');
+
+@import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background:          hsl(var(--background));
+  --color-foreground:          hsl(var(--foreground));
+  --color-border:              hsl(var(--border));
+  --color-input:               hsl(var(--input));
+  --color-ring:                hsl(var(--primary));
+  --color-card:                hsl(var(--card));
+  --color-card-foreground:     hsl(var(--card-foreground));
+  --color-popover:             hsl(var(--card));
+  --color-popover-foreground:  hsl(var(--card-foreground));
+  --color-primary:             hsl(var(--primary));
+  --color-primary-foreground:  hsl(var(--primary-foreground));
+  --color-secondary:           hsl(var(--secondary));
+  --color-secondary-foreground:hsl(var(--secondary-foreground));
+  --color-muted:               hsl(var(--muted));
+  --color-muted-foreground:    hsl(var(--muted-foreground));
+  --color-accent:              hsl(var(--accent));
+  --color-accent-foreground:   hsl(var(--accent-foreground));
+  --color-destructive:         hsl(var(--destructive));
+  --color-destructive-foreground:hsl(var(--destructive-foreground));
+  --font-sans:   'Inter', system-ui, sans-serif;
+  --font-serif:  'Lora', Georgia, serif;
+  --font-arabic: 'Cairo', sans-serif;
+  --radius: var(--radius-base);
+}
+
+:root {
+  --primary:            130 32% 44%;
+  --primary-foreground: 0 0% 100%;
+  --secondary:          25 78% 86%;
+  --secondary-foreground: 130 42% 22%;
+  --background:         43 38% 97%;
+  --card:               0 0% 100%;
+  --card-foreground:    130 45% 14%;
+  --popover:            0 0% 100%;
+  --popover-foreground: 130 45% 14%;
+  --foreground:         130 42% 14%;
+  --border:             36 28% 88%;
+  --input:              36 28% 88%;
+  --muted:              36 22% 93%;
+  --muted-foreground:   130 12% 46%;
+  --accent:             25 78% 86%;
+  --accent-foreground:  130 42% 22%;
+  --destructive:        0 82% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --radius-base: 0.75rem;
+  --radius-lg:   1.25rem;
+  --radius: var(--radius-base);
+}
+
+/* ─── Base ───────────────────────────────────────── */
+@layer base {
+  * { @apply border-border; }
+
+  body {
+    @apply text-foreground;
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Warm ambient glow — fixed so blobs don't scroll */
+    background-color: hsl(43, 38%, 97%);
+    background-image:
+      radial-gradient(ellipse at  8% 16%, hsla( 25, 82%, 86%, 0.58) 0%, transparent 50%),
+      radial-gradient(ellipse at 92% 82%, hsla(130, 42%, 78%, 0.52) 0%, transparent 52%),
+      radial-gradient(ellipse at 78% 10%, hsla(348, 52%, 84%, 0.44) 0%, transparent 50%),
+      radial-gradient(ellipse at 22% 90%, hsla( 50, 80%, 84%, 0.40) 0%, transparent 48%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 { font-weight: 700; letter-spacing: -0.01em; }
+}
+
+/* ─── Glassmorphism ──────────────────────────────── */
+.glass {
+  background: rgba(255,255,255,0.58);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,0.80);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.90);
+}
+
+.glass-strong {
+  background: rgba(255,255,255,0.76);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,255,255,0.88);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.07), inset 0 1px 0 rgba(255,255,255,0.95);
+}
+
+.glass-panel {
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.82);
+  box-shadow: 0 6px 28px rgba(0,0,0,0.07);
+  border-radius: 1.25rem;
+  overflow: hidden;
+}
+
+/* ─── Card hover lift ────────────────────────────── */
+.card-hover {
+  transition: transform 0.20s ease, box-shadow 0.20s ease;
+}
+.card-hover:hover {
+  transform: translateY(-6px) scale(1.013);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.11), 0 4px 12px rgba(0,0,0,0.06);
+}
+
+/* ─── Pinterest card palette ─────────────────────── */
+.bg-card-peach  { background: linear-gradient(140deg,hsla( 25,82%,87%,0.72) 0%,hsla( 10,68%,90%,0.52) 100%); }
+.bg-card-sage   { background: linear-gradient(140deg,hsla(130,42%,84%,0.70) 0%,hsla(150,38%,82%,0.50) 100%); }
+.bg-card-rose   { background: linear-gradient(140deg,hsla(348,52%,86%,0.72) 0%,hsla(  0,60%,90%,0.52) 100%); }
+.bg-card-yellow { background: linear-gradient(140deg,hsla( 50,80%,88%,0.72) 0%,hsla( 36,72%,86%,0.52) 100%); }
+.bg-card-mint   { background: linear-gradient(140deg,hsla(170,45%,84%,0.70) 0%,hsla(150,40%,82%,0.50) 100%); }
+
+/* ─── Arabic / RTL ───────────────────────────────── */
+html[dir="rtl"] body, html.font-arabic body {
+  font-family: 'Cairo', sans-serif;
+  letter-spacing: 0; word-spacing: 0.04em;
+}
+html[dir="rtl"] h1,html[dir="rtl"] h2,html[dir="rtl"] h3,html[dir="rtl"] h4 {
+  font-family: 'Cairo', sans-serif; line-height: 1.5;
+}
+html[dir="rtl"] p,html[dir="rtl"] span,html[dir="rtl"] label,
+html[dir="rtl"] button,html[dir="rtl"] a {
+  font-family: 'Cairo', sans-serif; line-height: 1.8;
+}
+html[dir="rtl"] .ltr-only { display: none; }
+html[dir="ltr"] .rtl-only { display: none; }
+html[dir="rtl"] .flip-rtl { transform: scaleX(-1); }
+html[dir="rtl"] [data-radix-scroll-area-viewport] { direction: rtl; }
+html[dir="rtl"] [data-radix-select-content] { direction: rtl; text-align: right; }
+
+body { transition: font-family 0.15s ease; }
+.font-serif { font-family: 'Lora', Georgia, serif; }
+
+/* ═══════════════════════════════════════════════════
+   RANK / LEVEL AVATAR SYSTEM
+   ═══════════════════════════════════════════════════ */
+
+/* Soft pulsing glow halo behind the ring */
+@keyframes mdn-glow-pulse {
+  0%, 100% { opacity: 0.55; transform: scale(1);    }
+  50%       { opacity: 1.00; transform: scale(1.12); }
+}
+
+/* Slow continuous ring rotation for L4/L5 */
+@keyframes mdn-ring-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Reverse spin keeps avatar text upright */
+@keyframes mdn-ring-spin-r {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+
+/* Sparkle dots – pop in, hang, fade out */
+@keyframes mdn-sparkle {
+  0%   { transform: scale(0) rotate(0deg);   opacity: 0; }
+  30%  { transform: scale(1.3) rotate(90deg); opacity: 1; }
+  70%  { transform: scale(1) rotate(180deg); opacity: 1; }
+  100% { transform: scale(0) rotate(270deg); opacity: 0; }
+}
+
+/* Crown micro-bounce */
+@keyframes mdn-crown-bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0) rotate(-5deg); }
+  50%       { transform: translateX(-50%) translateY(-2px) rotate(4deg); }
+}
+
+/* Fire particle float-up */
+@keyframes mdn-fire-rise {
+  0%   { transform: translateY(0) scale(1);    opacity: 0.9; }
+  60%  { transform: translateY(-10px) scale(1.2); opacity: 0.7; }
+  100% { transform: translateY(-18px) scale(0.5); opacity: 0; }
+}
+
+/* XP gain float-up and fade */
+@keyframes mdn-xp-rise {
+  0%   { transform: translateY(0) scale(1);    opacity: 1; }
+  60%  { transform: translateY(-24px) scale(1.05); opacity: 1; }
+  100% { transform: translateY(-42px) scale(0.9);  opacity: 0; }
+}
+
+/* Silver shimmer sweep */
+@keyframes mdn-shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+/* Elite rainbow border (L5 slow sweep) */
+@keyframes mdn-rainbow {
+  0%   { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+/* Progression bar fill */
+@keyframes mdn-bar-fill {
+  from { width: 0%; }
+  to   { width: var(--bar-pct); }
+}
+
+/* Level-up flash */
+@keyframes mdn-levelup-flash {
+  0%   { box-shadow: 0 0  0px 0px rgba(255,190,11,0); }
+  30%  { box-shadow: 0 0 32px 8px rgba(255,190,11,0.8); }
+  100% { box-shadow: 0 0  0px 0px rgba(255,190,11,0); }
+}
+
+/* ── Utility classes for ring system ─────────────────── */
+
+/* Glow halos per level */
+.mdn-halo-2 { animation: mdn-glow-pulse 2.8s ease-in-out infinite; }
+.mdn-halo-3 { animation: mdn-glow-pulse 2.4s ease-in-out infinite; }
+.mdn-halo-4 { animation: mdn-glow-pulse 2.0s ease-in-out infinite; }
+.mdn-halo-5 { animation: mdn-glow-pulse 1.6s ease-in-out infinite; }
+
+/* Spinning ring wrapper */
+.mdn-ring-spin     { animation: mdn-ring-spin   3.5s linear infinite; }
+.mdn-ring-spin-rev { animation: mdn-ring-spin-r 3.5s linear infinite; }
+.mdn-ring-spin-5   { animation: mdn-ring-spin   2.5s linear infinite; }
+.mdn-ring-spin-5r  { animation: mdn-ring-spin-r 2.5s linear infinite; }
+
+/* Sparkle animation utility */
+.mdn-sparkle { animation: mdn-sparkle 2.4s ease-in-out infinite; }
+
+/* Crown bounce */
+.mdn-crown { animation: mdn-crown-bounce 3s ease-in-out infinite; }
+
+/* Silver shimmer border */
+.mdn-silver-shimmer {
+  background: linear-gradient(90deg,
+    #d0d0d0 0%, #f8f8f8 20%, #b8b8b8 40%, #f0f0f0 60%, #c8c8c8 80%, #d0d0d0 100%);
+  background-size: 200% 100%;
+  animation: mdn-shimmer 2.2s linear infinite;
+}
+
+/* XP gain floater */
+.mdn-xp-float { animation: mdn-xp-rise 1.6s cubic-bezier(0.22,1,0.36,1) forwards; }
+
+/* Progress bar */
+.mdn-progress-bar {
+  animation: mdn-bar-fill 1.2s cubic-bezier(0.34,1.56,0.64,1) forwards;
+}
+
+/* Fire particle */
+.mdn-fire-particle { animation: mdn-fire-rise 1.4s ease-out infinite; }
+
+/* Rank frame hover glow */
+.mdn-rank-hover:hover {
+  filter: brightness(1.06);
+  transition: filter 0.2s ease;
+}
+
+/* ═══════════════════════════════════════════════════
+   HONOR BOARD PREMIUM EFFECTS
+   ═══════════════════════════════════════════════════ */
+
+/* Pulsing ambient glow behind metallic frames */
+@keyframes mdn-honor-breathe {
+  0%, 100% { opacity: 0.55; transform: scale(1.00); }
+  50%       { opacity: 1.00; transform: scale(1.14); }
+}
+
+/* Light particles float upward and dissolve */
+@keyframes mdn-honor-particle-rise {
+  0%   { transform: translateY(0px)   scale(1.0); opacity: 0.80; }
+  60%  { transform: translateY(-11px) scale(0.7); opacity: 0.40; }
+  100% { transform: translateY(-22px) scale(0.2); opacity: 0.00; }
+}
+
+.mdn-gold-breathe   { animation: mdn-honor-breathe 2.2s ease-in-out infinite; }
+.mdn-silver-breathe { animation: mdn-honor-breathe 2.8s ease-in-out infinite; }
+.mdn-bronze-breathe { animation: mdn-honor-breathe 2.5s ease-in-out infinite; }
+.mdn-honor-particle { animation: mdn-honor-particle-rise 2.6s ease-out infinite; }
+
+/* Honor card — smooth hover lift, no rotation */
+.mdn-honor-card {
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+.mdn-honor-card:hover {
+  transform: translateY(-3px);
+}
+
+/* Contributors row hover */
+.mdn-contrib-row {
+  transition: background 0.16s ease, transform 0.16s ease;
+}
+.mdn-contrib-row:hover {
+  transform: translateX(-1px);
+}

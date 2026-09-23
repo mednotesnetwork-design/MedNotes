@@ -1,0 +1,2 @@
+import {Link,useLocation} from 'wouter';
+export function StudyNav(){const [location]=useLocation();return <nav className="study-nav" aria-label="MedNote study modules"><Link href="/">MedNote</Link>{[['/research','Research Mentor'],['/anatomy','Upper Limb 3D'],['/lectures','Interactive Lectures']].map(([href,label])=><Link key={href} href={href} aria-current={location===href?'page':undefined}>{label}</Link>)}</nav>;}

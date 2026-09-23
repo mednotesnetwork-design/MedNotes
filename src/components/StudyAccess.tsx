@@ -1,0 +1,2 @@
+import {useState} from 'react';
+export function StudyAccess(){const [value,setValue]=useState(()=>sessionStorage.getItem('mednote-study-invite')||'');return <details className="study-access"><summary>رمز دعوة التجربة</summary><label>رمز الدعوة — وليس مفتاح Gemini<input type="password" autoComplete="off" value={value} onChange={e=>{setValue(e.target.value);sessionStorage.setItem('mednote-study-invite',e.target.value.trim());}}/></label></details>;}
