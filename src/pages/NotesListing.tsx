@@ -62,7 +62,7 @@ export function NotesListing() {
 
       {/* Header */}
       <div className="mb-7 text-center space-y-1.5">
-        <h1 className="text-3xl font-extrabold tracking-tight">استعرض الملاحظات</h1>
+        <h1 className="text-3xl font-semibold tracking-tight">استعرض الملاحظات</h1>
         <p className="text-muted-foreground text-sm">
           ملاحظات من طلاب الطب في كل مكان — شارك وتعلّم
         </p>
@@ -80,7 +80,7 @@ export function NotesListing() {
             onChange={(e) => setSearch(e.target.value)}
             placeholder="ابحث عن ملاحظة..."
             dir="rtl"
-            className="h-11 pr-11 rounded-full bg-white border-border/50 focus-visible:ring-primary/30"
+            className="h-11 pr-11 rounded-full bg-card border-border/50 focus-visible:ring-primary/30"
           />
         </div>
       </div>
@@ -96,7 +96,7 @@ export function NotesListing() {
               className={`px-4 py-1.5 rounded-full text-sm font-bold transition-all whitespace-nowrap border ${
                 category === cat.value
                   ? "bg-primary text-primary-foreground border-primary shadow-sm"
-                  : "bg-white border-border/60 text-muted-foreground hover:border-primary/40 hover:text-primary"
+                  : "bg-card border-border/60 text-muted-foreground hover:border-primary/40 hover:text-primary"
               }`}
             >
               {cat.label}
@@ -104,7 +104,7 @@ export function NotesListing() {
           ))}
         </div>
 
-        <div className="flex gap-1 bg-white border border-border/50 rounded-full p-1 mr-auto rtl:mr-0 rtl:ml-auto">
+        <div className="flex gap-1 bg-card border border-border/50 rounded-full p-1 mr-auto rtl:mr-0 rtl:ml-auto">
           <button
             onClick={() => setSortBy("recent")}
             className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold transition-all ${

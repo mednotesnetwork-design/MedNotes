@@ -30,52 +30,52 @@ const TYPE_PILLS = [
   {
     key: "all",
     label: "الكل",
-    activeBg: "linear-gradient(135deg,hsl(130 42% 50%),hsl(130 35% 40%))",
-    activeColor: "white",
-    activeShadow: "0 3px 12px rgba(78,138,89,0.30)",
-    passiveBg: "rgba(134,201,141,0.14)",
-    passiveColor: "hsl(130 38% 36%)",
-    passiveBorder: "rgba(134,201,141,0.30)",
+    activeBg: "var(--mn-selection)",
+    activeColor: "var(--mn-mint)",
+    activeShadow: "none",
+    passiveBg: "var(--mn-surface)",
+    passiveColor: "#8dd3b3",
+    passiveBorder: "var(--mn-border)",
   },
   {
     key: "summaries",
     label: "ملخصات",
-    activeBg: "linear-gradient(135deg,hsl(130 42% 50%),hsl(130 35% 40%))",
-    activeColor: "white",
-    activeShadow: "0 3px 12px rgba(78,138,89,0.30)",
-    passiveBg: "rgba(134,201,141,0.14)",
-    passiveColor: "hsl(130 38% 36%)",
-    passiveBorder: "rgba(134,201,141,0.30)",
+    activeBg: "var(--mn-selection)",
+    activeColor: "var(--mn-mint)",
+    activeShadow: "none",
+    passiveBg: "var(--mn-surface)",
+    passiveColor: "#8dd3b3",
+    passiveBorder: "var(--mn-border)",
   },
   {
     key: "transcriptions",
     label: "تفريغات",
-    activeBg: "linear-gradient(135deg,hsl(338 58% 62%),hsl(338 52% 52%))",
-    activeColor: "white",
-    activeShadow: "0 3px 12px rgba(220,96,136,0.28)",
-    passiveBg: "rgba(248,160,196,0.16)",
-    passiveColor: "hsl(338 50% 42%)",
-    passiveBorder: "rgba(248,160,196,0.32)",
+    activeBg: "var(--mn-selection)",
+    activeColor: "var(--mn-mint)",
+    activeShadow: "none",
+    passiveBg: "var(--mn-surface)",
+    passiveColor: "#d7aeb3",
+    passiveBorder: "var(--mn-border)",
   },
   {
     key: "explanations",
     label: "شروحات",
-    activeBg: "linear-gradient(135deg,hsl(25 80% 58%),hsl(25 72% 48%))",
-    activeColor: "white",
-    activeShadow: "0 3px 12px rgba(234,140,60,0.28)",
-    passiveBg: "rgba(253,186,116,0.18)",
-    passiveColor: "hsl(25 68% 38%)",
-    passiveBorder: "rgba(253,186,116,0.34)",
+    activeBg: "var(--mn-selection)",
+    activeColor: "var(--mn-mint)",
+    activeShadow: "none",
+    passiveBg: "var(--mn-surface)",
+    passiveColor: "#e6cfb7",
+    passiveBorder: "var(--mn-border)",
   },
   {
     key: "questions",
     label: "أسئلة",
-    activeBg: "linear-gradient(135deg,hsl(262 52% 62%),hsl(262 46% 52%))",
-    activeColor: "white",
-    activeShadow: "0 3px 12px rgba(124,58,237,0.22)",
-    passiveBg: "rgba(196,181,253,0.20)",
-    passiveColor: "hsl(262 44% 42%)",
-    passiveBorder: "rgba(196,181,253,0.38)",
+    activeBg: "var(--mn-selection)",
+    activeColor: "var(--mn-mint)",
+    activeShadow: "none",
+    passiveBg: "var(--mn-surface)",
+    passiveColor: "#8dd3b3",
+    passiveBorder: "var(--mn-border)",
   },
 ];
 
@@ -83,26 +83,26 @@ const YEARS = ["١", "٢", "٣", "٤", "٥", "٦"];
 
 // ── Author avatar gradients ───────────────────────────────────
 const AUTHOR_GRADS = [
-  "linear-gradient(135deg,#86C98D,#4A9A55)",
-  "linear-gradient(135deg,#F9B8CC,#DC6088)",
-  "linear-gradient(135deg,#93C5FD,#3B82F6)",
-  "linear-gradient(135deg,#FCD34D,#F59E0B)",
-  "linear-gradient(135deg,#A5F3C4,#10B981)",
-  "linear-gradient(135deg,#C4B5FD,#7C3AED)",
+  "var(--mn-surface-raised)",
+  "var(--mn-surface-raised)",
+  "var(--mn-surface-raised)",
+  "var(--mn-surface-raised)",
+  "var(--mn-surface-raised)",
+  "var(--mn-surface-raised)",
 ];
 
 // ── Popular categories ────────────────────────────────────────
 const CATEGORIES = [
-  { label: "القلب",    color: "bg-red-100/80    text-red-700"     },
-  { label: "التشريح",  color: "bg-violet-100/80 text-violet-700"  },
-  { label: "الكيمياء", color: "bg-amber-100/80  text-amber-700"   },
-  { label: "الأمراض",  color: "bg-blue-100/80   text-blue-700"    },
-  { label: "الأدوية",  color: "bg-emerald-100/80 text-emerald-700"},
-  { label: "الجراحة",  color: "bg-pink-100/80   text-pink-700"    },
-  { label: "الأطفال",  color: "bg-cyan-100/80   text-cyan-700"    },
-  { label: "النساء",   color: "bg-rose-100/80   text-rose-700"    },
-  { label: "الأعصاب",  color: "bg-indigo-100/80 text-indigo-700"  },
-  { label: "المجتمع",  color: "bg-teal-100/80   text-teal-700"    },
+  { label: "القلب",    color: "bg-secondary    text-primary"     },
+  { label: "التشريح",  color: "bg-secondary text-primary"  },
+  { label: "الكيمياء", color: "bg-secondary  text-primary"   },
+  { label: "الأمراض",  color: "bg-secondary   text-primary"    },
+  { label: "الأدوية",  color: "bg-secondary text-primary"},
+  { label: "الجراحة",  color: "bg-secondary   text-primary"    },
+  { label: "الأطفال",  color: "bg-secondary   text-primary"    },
+  { label: "النساء",   color: "bg-secondary   text-primary"    },
+  { label: "الأعصاب",  color: "bg-secondary text-primary"  },
+  { label: "المجتمع",  color: "bg-secondary   text-primary"    },
 ];
 
 // ── Honor Board constants ─────────────────────────────────────
@@ -112,13 +112,13 @@ const HIGH_RANKS = new Set(["gold", "diamond", "elite"]);
 const PODIUM_META = [
   /* ── #1 Polished Gold Crown ── */
   {
-    ringBg:     "linear-gradient(145deg,#4A2C00 0%,#9A6200 10%,#D4A017 20%,#FFE168 32%,#FFF8B8 38%,#F5C518 46%,#D4900A 56%,#FFD44C 66%,#C89000 76%,#9A6200 86%,#4A2C00 100%)",
-    avatarBg:   "linear-gradient(145deg,#C18900,#F5C842,#D4A017,#FFE168)",
+    ringBg:     "var(--mn-surface-raised)",
+    avatarBg:   "var(--mn-surface-raised)",
     glowLayers: "0 0 0 1.5px rgba(255,210,0,0.40),0 0 18px rgba(255,180,0,0.52),0 0 38px rgba(240,150,0,0.26),0 8px 28px rgba(0,0,0,0.24)",
     haloColor:  "rgba(255,195,0,0.28)",
-    cardBg:     "linear-gradient(135deg,rgba(255,248,200,0.60) 0%,rgba(255,235,140,0.28) 100%)",
+    cardBg:     "var(--mn-surface-raised)",
     cardBorder: "rgba(240,195,20,0.32)",
-    barBg:      "linear-gradient(90deg,#C4900A,#FFD700,#F5C518)",
+    barBg:      "var(--mn-surface-raised)",
     barGlow:    "0 0 8px rgba(255,195,0,0.55),0 0 18px rgba(255,160,0,0.28)",
     icon:       "👑",
     rankLabel:  "#1",
@@ -131,13 +131,13 @@ const PODIUM_META = [
   },
   /* ── #2 Polished Silver Crystal ── */
   {
-    ringBg:     "linear-gradient(145deg,#2A3840 0%,#607080 12%,#98B0C4 22%,#D4E6F4 34%,#EEF6FC 40%,#9ABCCE 50%,#506070 60%,#A8C0CC 70%,#D0E2EC 80%,#607080 90%,#2A3840 100%)",
-    avatarBg:   "linear-gradient(145deg,#506878,#A8C4D6,#6888A0,#C4D8E8)",
+    ringBg:     "var(--mn-surface-raised)",
+    avatarBg:   "var(--mn-surface-raised)",
     glowLayers: "0 0 0 1.5px rgba(170,205,230,0.38),0 0 14px rgba(140,160,180,0.48),0 0 28px rgba(90,130,170,0.20),0 6px 22px rgba(0,0,0,0.18)",
     haloColor:  "rgba(140,165,185,0.22)",
-    cardBg:     "linear-gradient(135deg,rgba(220,238,252,0.52) 0%,rgba(195,215,232,0.24) 100%)",
+    cardBg:     "var(--mn-surface-raised)",
     cardBorder: "rgba(140,165,185,0.28)",
-    barBg:      "linear-gradient(90deg,#607080,#A8C0D4,#9AB6C8)",
+    barBg:      "var(--mn-surface-raised)",
     barGlow:    "0 0 6px rgba(140,165,185,0.50),0 0 14px rgba(90,130,165,0.24)",
     icon:       "✦",
     rankLabel:  "#2",
@@ -150,13 +150,13 @@ const PODIUM_META = [
   },
   /* ── #3 Polished Bronze Flame ── */
   {
-    ringBg:     "linear-gradient(145deg,#341500 0%,#804800 12%,#BC7228 22%,#E8964A 34%,#F5BA78 40%,#D28832 50%,#905200 60%,#CA8438 70%,#E8A448 80%,#825000 90%,#341500 100%)",
-    avatarBg:   "linear-gradient(145deg,#824E00,#D0882C,#9C5E1A,#E4A044)",
+    ringBg:     "var(--mn-surface-raised)",
+    avatarBg:   "var(--mn-surface-raised)",
     glowLayers: "0 0 0 1.5px rgba(195,118,38,0.38),0 0 14px rgba(188,108,36,0.46),0 0 28px rgba(155,78,18,0.20),0 6px 22px rgba(0,0,0,0.22)",
     haloColor:  "rgba(195,108,28,0.20)",
-    cardBg:     "linear-gradient(135deg,rgba(244,210,160,0.44) 0%,rgba(228,178,118,0.22) 100%)",
+    cardBg:     "var(--mn-surface-raised)",
     cardBorder: "rgba(196,128,48,0.26)",
-    barBg:      "linear-gradient(90deg,#905200,#CD7F32,#D08830)",
+    barBg:      "var(--mn-surface-raised)",
     barGlow:    "0 0 6px rgba(196,118,40,0.50),0 0 14px rgba(155,78,20,0.24)",
     icon:       "🔥",
     rankLabel:  "#3",
@@ -181,11 +181,11 @@ function RightPanel({
   return (
     <div
       style={{
-        background:           "rgba(255,255,255,0.65)",
+        background: "var(--mn-surface)",
         backdropFilter:       "blur(20px)",
         WebkitBackdropFilter: "blur(20px)",
-        border:               "1px solid rgba(255,255,255,0.82)",
-        boxShadow:            "0 6px 28px rgba(0,0,0,0.07)",
+        border:               "1px solid var(--mn-border)",
+        boxShadow: "none",
         borderRadius:         "1.25rem",
         overflow:             "hidden",
       }}
@@ -294,7 +294,7 @@ function HonorBoardContent({
           {/* Name */}
           <p style={{
             fontSize: 13, fontWeight: 800,
-            color: "hsl(130 44% 15%)", textAlign: "center", lineHeight: 1.2,
+            color: "#e6cfb7", textAlign: "center", lineHeight: 1.2,
             marginTop: 2,
           }} dir="rtl">{entry.authorName}</p>
 
@@ -317,7 +317,7 @@ function HonorBoardContent({
           {/* Progress bar */}
           <div style={{
             width: "100%", height: 3,
-            background: "rgba(0,0,0,0.07)", borderRadius: 99,
+            background: "var(--mn-surface)", borderRadius: 99,
           }}>
             <div style={{
               height: "100%", width: `${pct}%`, borderRadius: 99,
@@ -380,7 +380,7 @@ function HonorBoardContent({
 
           <p style={{
             fontSize: 11, fontWeight: 800,
-            color: "hsl(130 44% 15%)", textAlign: "center",
+            color: "#e6cfb7", textAlign: "center",
             lineHeight: 1.2, width: "100%",
             overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
           }} dir="rtl">{entry.authorName}</p>
@@ -396,7 +396,7 @@ function HonorBoardContent({
           {/* Progress bar */}
           <div style={{
             width: "100%", height: 2.5,
-            background: "rgba(0,0,0,0.07)", borderRadius: 99,
+            background: "var(--mn-surface)", borderRadius: 99,
           }}>
             <div style={{
               height: "100%", width: `${pct}%`, borderRadius: 99,
@@ -421,7 +421,7 @@ function HonorBoardContent({
           </div>
         </div>
       ) : honorees.length === 0 ? (
-        <p style={{ textAlign: "center", fontSize: 11, padding: "20px 0", color: "hsl(130 14% 58%)" }} dir="rtl">
+        <p style={{ textAlign: "center", fontSize: 11, padding: "20px 0", color: "#a0b8b3" }} dir="rtl">
           لا يوجد مساهمون بمرتبة عالية بعد
         </p>
       ) : (
@@ -443,9 +443,9 @@ function HonorBoardContent({
             display: "flex", alignItems: "center", justifyContent: "center",
             gap: 6, padding: "8px 0",
             borderRadius: 99,
-            background: "linear-gradient(135deg,rgba(78,138,89,0.11),rgba(58,108,68,0.07))",
+            background: "var(--mn-surface-raised)",
             border: "1px solid rgba(78,138,89,0.16)",
-            color: "hsl(130 38% 34%)",
+            color: "#8dd3b3",
             fontSize: 11, fontWeight: 700,
             cursor: "pointer",
             transition: "opacity 0.18s ease",
@@ -481,19 +481,19 @@ function TrendingPanelContent({
             <Link key={note.id} href={`/notes/${note.id}`}>
               <div
                 className={`${bgClasses[i % bgClasses.length]} px-3 py-2.5 rounded-xl cursor-pointer hover:scale-[1.02] transition-transform`}
-                style={{ border: "1px solid rgba(255,255,255,0.65)" }}
+                style={{ border: "1px solid var(--mn-border)" }}
               >
-                <p className="text-xs font-semibold line-clamp-1 mb-1" style={{ color: "hsl(130 42% 18%)" }}>
+                <p className="text-xs font-semibold line-clamp-1 mb-1" style={{ color: "#e6cfb7" }}>
                   {note.title}
                 </p>
-                <div className="flex items-center gap-2 text-[10px]" style={{ color: "hsl(130 14% 48%)" }}>
+                <div className="flex items-center gap-2 text-[10px]" style={{ color: "#a0b8b3" }}>
                   <span className="flex items-center gap-0.5 text-rose-500 font-semibold">
                     <Heart size={10} fill="currentColor" /> {note.upvotes}
                   </span>
                   <span className="flex items-center gap-0.5 text-primary font-semibold">
                     <Download size={10} /> {note.downloads}
                   </span>
-                  <span className="flex items-center gap-0.5 font-semibold" style={{ color: "hsl(220 70% 52%)" }}>
+                  <span className="flex items-center gap-0.5 font-semibold" style={{ color: "#8dd3b3" }}>
                     <Bookmark size={10} /> {note.saves}
                   </span>
                 </div>
@@ -522,16 +522,16 @@ function FilterPill({
       style={{
         height:               "48px",
         minWidth:             "72px",
-        background:           active ? "rgba(255,255,255,0.92)" : "rgba(255,255,255,0.65)",
+        background:           active ? "var(--mn-border)" : "var(--mn-border)",
         backdropFilter:       "blur(20px)",
         WebkitBackdropFilter: "blur(20px)",
         border:               active
           ? `1.5px solid ${accentColor}50`
-          : "1px solid rgba(255,255,255,0.82)",
-        borderRadius:         "9999px",
+          : "1px solid var(--mn-border)",
+        borderRadius:         "7px",
         boxShadow:            active
-          ? `0 4px 18px ${accentColor}22, inset 0 1px 0 rgba(255,255,255,1)`
-          : "0 2px 8px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.88)",
+          ? `0 4px 18px ${accentColor}22, inset 0 1px 0 var(--mn-border)`
+          : "0 2px 8px rgba(0,0,0,0.06), inset 0 1px 0 var(--mn-border)",
         cursor:               "pointer",
         overflow:             "hidden",
       }}
@@ -540,7 +540,7 @@ function FilterPill({
       <span
         className="text-[11px] font-bold whitespace-nowrap leading-tight"
         dir="rtl"
-        style={{ color: active ? "hsl(130 42% 18%)" : "hsl(130 14% 48%)" }}
+        style={{ color: active ? "#e6cfb7" : "#a0b8b3" }}
       >
         {label}
       </span>
@@ -552,6 +552,7 @@ function FilterPill({
       )}
       {/* Invisible native select covers entire pill */}
       <select
+        aria-label={label}
         value={value}
         onChange={e => onChange(e.target.value)}
         dir="rtl"
@@ -649,42 +650,24 @@ export function Home() {
         <LeftSidebar />
 
         {/* ── CENTER CONTENT ───────────────────────────────── */}
-        <main className="flex-1 min-w-0 flex flex-col gap-3">
+        <section aria-label="المحتوى الدراسي" className="flex-1 min-w-0 flex flex-col gap-3">
 
-          {/* ── Hero — compact centered brand block ── */}
-          <div className="flex flex-col items-center pt-5 pb-3 gap-1.5">
-            <div className="flex items-center gap-2.5">
-              <AppLogo size={40} />
-              <h1
-                className="font-serif font-extrabold text-3xl leading-none"
-                style={{ color: "hsl(130 45% 16%)" }}
-              >
-                MedNotes
-              </h1>
-            </div>
-            <p
-              className="text-sm font-semibold"
-              style={{ color: "hsl(130 33% 42%)" }}
-              dir="rtl"
-            >
-              تعلّم، شارك، واترك أثرًا 🌿
-            </p>
-          </div>
+          <div className="pt-5 pb-3"><h2 className="text-xl font-medium text-foreground" dir="rtl">المحتوى الدراسي</h2></div>
 
           {/* Search bar */}
           <form onSubmit={handleSearch}>
             <div
               className="flex items-center gap-2 px-4 py-2"
               style={{
-                background:           "rgba(255,255,255,0.72)",
+                background: "var(--mn-surface)",
                 backdropFilter:       "blur(24px)",
                 WebkitBackdropFilter: "blur(24px)",
-                border:               "1px solid rgba(255,255,255,0.88)",
-                boxShadow:            "0 6px 28px rgba(0,0,0,0.06)",
-                borderRadius:         "9999px",
+                border:               "1px solid var(--mn-border)",
+                boxShadow: "none",
+                borderRadius:         "7px",
               }}
             >
-              <Search size={16} style={{ color: "hsl(130 18% 58%)" }} className="shrink-0" />
+              <Search size={16} style={{ color: "#a0b8b3" }} className="shrink-0" />
               <Input
                 value={query}
                 onChange={e => setQuery(e.target.value)}
@@ -695,7 +678,7 @@ export function Home() {
               <button
                 type="submit"
                 className="h-8 px-5 rounded-full text-sm font-semibold text-white shrink-0"
-                style={{ background: "linear-gradient(135deg, hsl(130 42% 50%), hsl(130 35% 40%))" }}
+                style={{ background: "var(--mn-surface-raised)" }}
               >
                 {t("home.hero.searchBtn")}
               </button>
@@ -710,7 +693,7 @@ export function Home() {
               icon="🏛️"
               value={filterUni}
               onChange={setFilterUni}
-              accentColor="hsl(130,48%,52%)"
+              accentColor="#8dd3b3"
             >
               {universities?.map(u => (
                 <option key={u.id} value={String(u.id)}>
@@ -724,7 +707,7 @@ export function Home() {
               icon="📚"
               value={filterModule}
               onChange={setFilterModule}
-              accentColor="hsl(25,78%,54%)"
+              accentColor="#e6cfb7"
             >
               {modules?.map(m => (
                 <option key={m.id} value={String(m.id)}>
@@ -738,7 +721,7 @@ export function Home() {
               icon="🔬"
               value={filterModule}
               onChange={setFilterModule}
-              accentColor="hsl(200,60%,52%)"
+              accentColor="#8dd3b3"
             >
               {modules?.map(m => (
                 <option key={m.id} value={String(m.id)}>
@@ -752,7 +735,7 @@ export function Home() {
               icon="📅"
               value={filterYear}
               onChange={setFilterYear}
-              accentColor="hsl(280,48%,58%)"
+              accentColor="#8dd3b3"
             >
               {YEARS.map((yr, i) => (
                 <option key={yr} value={String(i + 1)}>السنة {yr}</option>
@@ -766,7 +749,7 @@ export function Home() {
               <button
                 onClick={() => { setFilterUni(""); setFilterModule(""); setFilterYear(""); }}
                 className="text-[11px] font-bold px-3 py-1 rounded-full transition-all hover:opacity-80"
-                style={{ background: "rgba(220,96,136,0.10)", color: "hsl(338 52% 52%)" }}
+                style={{ background: "var(--mn-surface)", color: "#d7aeb3" }}
                 dir="rtl"
               >
                 مسح الفلاتر ✕
@@ -796,7 +779,7 @@ export function Home() {
                     background: pill.passiveBg,
                     color:      pill.passiveColor,
                     border:     `1.5px solid ${pill.passiveBorder}`,
-                    boxShadow:  "0 1px 4px rgba(0,0,0,0.05)",
+                    boxShadow: "none",
                   }}
                 >
                   {pill.label}
@@ -808,7 +791,7 @@ export function Home() {
           {/* Result count */}
           <p
             className="text-xs font-semibold px-1"
-            style={{ color: "hsl(130 14% 54%)" }}
+            style={{ color: "#a0b8b3" }}
             dir="rtl"
           >
             {notesLoading ? "…" : `${filtered?.length ?? 0} ملاحظة`}
@@ -851,9 +834,9 @@ export function Home() {
             <div
               className="text-center py-14 rounded-[1.25rem]"
               style={{
-                background: "rgba(255,255,255,0.58)",
-                border:     "1px solid rgba(255,255,255,0.80)",
-                color:      "hsl(130 12% 50%)",
+                background: "var(--mn-surface)",
+                border:     "1px solid var(--mn-border)",
+                color:      "#a0b8b3",
               }}
             >
               <p className="text-base font-semibold mb-1">{t("notes.empty.title")}</p>
@@ -865,31 +848,31 @@ export function Home() {
           <div className="md:hidden flex flex-col gap-4 mt-2">
             {/* لوحة الشرف */}
             <RightPanel
-              gradient="linear-gradient(135deg,hsla(50,82%,86%,0.90),hsla(25,80%,84%,0.80))"
-              icon={<Trophy size={15} className="text-amber-600" />}
+              gradient="var(--mn-surface-raised)"
+              icon={<Trophy size={15} className="text-primary" />}
               title="لوحة الشرف"
             >
               <HonorBoardContent lbLoading={lbLoading} leaderboard={leaderboard} />
             </RightPanel>
             {/* الأكثر تداولاً */}
             <RightPanel
-              gradient="linear-gradient(135deg,hsla(130,42%,84%,0.90),hsla(170,42%,82%,0.80))"
-              icon={<TrendingUp size={15} className="text-emerald-700" />}
+              gradient="var(--mn-surface-raised)"
+              icon={<TrendingUp size={15} className="text-primary" />}
               title="الأكثر تداولاً"
             >
               <TrendingPanelContent trendingLoading={trendingLoading} trendingNotes={trendingNotes} topNotes={topNotes} />
             </RightPanel>
           </div>
 
-        </main>
+        </section>
 
         {/* ── RIGHT SIDEBAR (tablet/desktop only) ──────────── */}
         <aside className="hidden md:flex flex-col gap-4 w-[200px] lg:w-[268px] shrink-0 sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto" style={{ scrollbarWidth: "none" }}>
 
           {/* 1 ─ لوحة الشرف */}
           <RightPanel
-            gradient="linear-gradient(135deg,hsla(50,82%,86%,0.90),hsla(25,80%,84%,0.80))"
-            icon={<Trophy size={15} className="text-amber-600" />}
+            gradient="var(--mn-surface-raised)"
+            icon={<Trophy size={15} className="text-primary" />}
             title="لوحة الشرف"
           >
             <HonorBoardContent lbLoading={lbLoading} leaderboard={leaderboard} />
@@ -897,8 +880,8 @@ export function Home() {
 
           {/* 2 ─ الأكثر تداولاً */}
           <RightPanel
-            gradient="linear-gradient(135deg,hsla(130,42%,84%,0.90),hsla(170,42%,82%,0.80))"
-            icon={<TrendingUp size={15} className="text-emerald-700" />}
+            gradient="var(--mn-surface-raised)"
+            icon={<TrendingUp size={15} className="text-primary" />}
             title="الأكثر تداولاً"
           >
             <TrendingPanelContent

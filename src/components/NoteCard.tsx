@@ -22,20 +22,20 @@ const CARD_INFO_BG = [
 ] as const;
 
 const FILE_BADGE: Record<string, string> = {
-  "ملخصات":  "bg-emerald-100/80 text-emerald-700",
-  "تفريغات": "bg-blue-100/80   text-blue-700",
-  "شروحات":  "bg-amber-100/80  text-amber-700",
-  "أسئلة":   "bg-rose-100/80   text-rose-700",
+  "ملخصات":  "bg-secondary text-primary",
+  "تفريغات": "bg-secondary   text-primary",
+  "شروحات":  "bg-secondary  text-primary",
+  "أسئلة":   "bg-secondary   text-primary",
 };
 
 /* pseudo-random heights for gradient placeholder blocks */
 const PH_H = [158, 202, 178, 238, 167, 220, 193, 248, 174, 212];
 
 const CAT_GRAD: Record<string, string> = {
-  "ملخصات":  "135deg, hsla(130,42%,80%,0.70), hsla(160,40%,87%,0.65)",
-  "تفريغات": "135deg, hsla(35, 82%,80%,0.70), hsla(48, 85%,88%,0.65)",
-  "شروحات":  "135deg, hsla(212,60%,80%,0.70), hsla(228,62%,88%,0.65)",
-  "أسئلة":   "135deg, hsla(348,58%,80%,0.70), hsla(328,54%,87%,0.65)",
+  "ملخصات":  "135deg, #193334, #193334",
+  "تفريغات": "135deg, #193334, #193334",
+  "شروحات":  "135deg, #193334, #193334",
+  "أسئلة":   "135deg, #193334, #193334",
 };
 
 /* ── helpers ──────────────────────────────────────────────────── */
@@ -50,7 +50,7 @@ function detectFmt(fileName: string | null | undefined): FileFmt {
 }
 
 function gradOf(noteType: string): string {
-  return CAT_GRAD[noteType] ?? "135deg, hsla(280,35%,82%,0.65), hsla(300,38%,89%,0.60)";
+  return CAT_GRAD[noteType] ?? "135deg, #193334, #193334";
 }
 
 function toSingular(noteType: string | null | undefined): string {
@@ -77,7 +77,7 @@ function GradientBlock({
       style={{ height: h, background: `linear-gradient(${gradOf(noteType)})` }}
     >
       <span
-        className="font-black select-none"
+        className="font-semibold select-none"
         style={{ fontSize: 54, opacity: 0.09, lineHeight: 1 }}
       >
         {noteType?.charAt(0) ?? "م"}
@@ -199,7 +199,7 @@ export function NoteCard({
 }: NoteCardProps) {
   const infoBg   = CARD_INFO_BG[colorIndex % CARD_INFO_BG.length];
   const ft       = fileType?.trim() ?? "";
-  const badgeCls = FILE_BADGE[ft] ?? "bg-gray-100/70 text-gray-500";
+  const badgeCls = FILE_BADGE[ft] ?? "bg-secondary text-muted-foreground";
 
   const [savedLocally, setSavedLocally] = useState(() => getSavedNoteIds().includes(id));
   const [saveCount, setSaveCount]       = useState(saves);
@@ -211,7 +211,7 @@ export function NoteCard({
 
   return (
     <Link href={`/notes/${id}`} className="block group">
-      <article className="rounded-[1.1rem] overflow-hidden bg-white shadow-sm group-hover:shadow-md group-hover:-translate-y-0.5 transition-all duration-200">
+      <article className="rounded-[1.1rem] overflow-hidden bg-card shadow-sm group-hover:shadow-md group-hover:-translate-y-0.5 transition-all duration-200">
 
         {/* ── preview (top, variable height) ────────────────────── */}
         <NotePreview
@@ -234,7 +234,7 @@ export function NoteCard({
           {/* title */}
           <h3
             className="font-bold leading-snug line-clamp-2 mb-1"
-            style={{ fontSize: "0.82rem", color: "hsl(130 42% 12%)" }}
+            style={{ fontSize: "0.82rem", color: "#e6cfb7" }}
             dir="rtl"
           >
             {title}
@@ -251,7 +251,7 @@ export function NoteCard({
             )}
             <p
               className="truncate"
-              style={{ fontSize: "0.70rem", color: "hsl(130 18% 50%)" }}
+              style={{ fontSize: "0.70rem", color: "#a0b8b3" }}
             >
               {authorName ?? "مجهول"}
             </p>
@@ -261,7 +261,7 @@ export function NoteCard({
           <div
             className="flex items-center gap-2.5 pt-1.5"
             style={{
-              borderTop: "1px solid rgba(255,255,255,0.55)",
+              borderTop: "1px solid var(--mn-border)",
               fontSize: "0.70rem",
             }}
           >
@@ -270,13 +270,13 @@ export function NoteCard({
             </span>
             <span
               className="flex items-center gap-1 font-semibold"
-              style={{ color: "hsl(145 45% 40%)" }}
+              style={{ color: "#8dd3b3" }}
             >
               <Download size={10} /> {downloads}
             </span>
             <button
               className="flex items-center gap-1 font-semibold ml-auto transition-colors"
-              style={{ color: savedLocally ? "hsl(220 70% 52%)" : "hsl(130 14% 60%)" }}
+              style={{ color: savedLocally ? "#8dd3b3" : "#a0b8b3" }}
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();

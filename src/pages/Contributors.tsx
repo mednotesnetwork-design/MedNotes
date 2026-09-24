@@ -27,33 +27,33 @@ const SORT_OPTIONS: { key: SortKey; label: string; icon: string }[] = [
 const TOP3_CARD = [
   {
     medalEmoji:  "🥇",
-    cardBg:      "linear-gradient(135deg,rgba(255,250,210,0.78) 0%,rgba(255,240,160,0.36) 100%)",
+    cardBg:      "var(--mn-surface-raised)",
     cardBorder:  "rgba(240,195,20,0.30)",
-    barBg:       "linear-gradient(90deg,#C4900A,#FFD700,#F5C518)",
+    barBg:       "var(--mn-surface-raised)",
     barGlow:     "0 0 7px rgba(255,195,0,0.55),0 0 16px rgba(255,160,0,0.26)",
-    badgeBg:     "linear-gradient(145deg,#8B6200,#D4A820,#FFE168,#D4A820,#8B6200)",
+    badgeBg:     "var(--mn-surface-raised)",
     badgeShadow: "0 2px 8px rgba(255,185,0,0.48)",
     textColor:   "#7A4E00",
     pad:         4,
   },
   {
     medalEmoji:  "🥈",
-    cardBg:      "linear-gradient(135deg,rgba(224,240,254,0.68) 0%,rgba(198,218,238,0.30) 100%)",
+    cardBg:      "var(--mn-surface-raised)",
     cardBorder:  "rgba(140,165,185,0.26)",
-    barBg:       "linear-gradient(90deg,#607080,#A8C0D4,#9AB6C8)",
+    barBg:       "var(--mn-surface-raised)",
     barGlow:     "0 0 6px rgba(140,165,185,0.48),0 0 12px rgba(90,130,165,0.22)",
-    badgeBg:     "linear-gradient(145deg,#344A58,#8BA4B8,#D8EAF4,#8BA4B8,#344A58)",
+    badgeBg:     "var(--mn-surface-raised)",
     badgeShadow: "0 2px 8px rgba(130,165,195,0.45)",
     textColor:   "#344858",
     pad:         3.5,
   },
   {
     medalEmoji:  "🥉",
-    cardBg:      "linear-gradient(135deg,rgba(248,215,165,0.60) 0%,rgba(234,186,128,0.28) 100%)",
+    cardBg:      "var(--mn-surface-raised)",
     cardBorder:  "rgba(196,128,48,0.24)",
-    barBg:       "linear-gradient(90deg,#905200,#CD7F32,#D08830)",
+    barBg:       "var(--mn-surface-raised)",
     barGlow:     "0 0 6px rgba(196,118,40,0.48),0 0 12px rgba(155,78,20,0.22)",
-    badgeBg:     "linear-gradient(145deg,#3C1800,#8C5018,#E8964A,#8C5018,#3C1800)",
+    badgeBg:     "var(--mn-surface-raised)",
     badgeShadow: "0 2px 8px rgba(195,118,38,0.44)",
     textColor:   "#563000",
     pad:         3.5,
@@ -89,7 +89,7 @@ function MedalBadge({ pos }: { pos: 0|1|2 }) {
       background: t.badgeBg, boxShadow: t.badgeShadow,
       display: "flex", alignItems: "center", justifyContent: "center",
       fontSize: 18, flexShrink: 0,
-      border: "1.5px solid rgba(255,255,255,0.35)",
+      border: "1.5px solid var(--mn-border)",
     }}>
       {t.medalEmoji}
     </div>
@@ -101,10 +101,10 @@ function NumBadge({ n }: { n: number }) {
   return (
     <div style={{
       width: 28, height: 28, borderRadius: "50%",
-      background: "rgba(78,138,89,0.09)",
+      background: "var(--mn-surface)",
       border: "1px solid rgba(78,138,89,0.16)",
       display: "flex", alignItems: "center", justifyContent: "center",
-      fontSize: 10, fontWeight: 800, color: "hsl(130 30% 44%)", flexShrink: 0,
+      fontSize: 10, fontWeight: 800, color: "#8dd3b3", flexShrink: 0,
     }}>
       {n}
     </div>
@@ -158,24 +158,24 @@ export function Contributors() {
       {/* ══ HEADER ═════════════════════════════════════════════ */}
       <div style={{
         position: "relative", overflow: "hidden",
-        background: "linear-gradient(135deg,rgba(255,250,215,0.78) 0%,rgba(255,242,190,0.55) 50%,rgba(255,255,255,0.70) 100%)",
+        background: "var(--mn-surface-raised)",
         border: "1px solid rgba(240,195,30,0.24)", borderRadius: 22,
         padding: "22px 20px 18px", marginBottom: 18,
         backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",
-        boxShadow: "0 4px 28px rgba(0,0,0,0.06),inset 0 1px 0 rgba(255,255,255,0.85)",
+        boxShadow: "none",
       }}>
-        <div style={{ position:"absolute",top:-40,right:-30,width:140,height:140,background:"radial-gradient(circle,rgba(255,200,0,0.16),transparent 70%)",borderRadius:"50%",pointerEvents:"none" }} />
-        <div style={{ position:"absolute",bottom:-30,left:-20,width:100,height:100,background:"radial-gradient(circle,rgba(255,160,0,0.12),transparent 70%)",borderRadius:"50%",pointerEvents:"none" }} />
+        <div style={{ position:"absolute",top:-40,right:-30,width:140,height:140,background:"var(--mn-surface-raised)",borderRadius:"50%",pointerEvents:"none" }} />
+        <div style={{ position:"absolute",bottom:-30,left:-20,width:100,height:100,background:"var(--mn-surface-raised)",borderRadius:"50%",pointerEvents:"none" }} />
 
         <div style={{ position:"relative",display:"flex",alignItems:"flex-start",justifyContent:"space-between" }} dir="rtl">
           <div>
             <div style={{ display:"flex",alignItems:"center",gap:10,marginBottom:4 }}>
               <span style={{ fontSize:28,filter:"drop-shadow(0 0 10px rgba(255,195,0,0.55)) drop-shadow(0 2px 6px rgba(0,0,0,0.20))" }}>🏆</span>
-              <h1 style={{ fontSize:22,fontWeight:900,color:"hsl(130 45% 14%)",letterSpacing:"-0.02em",lineHeight:1 }}>
+              <h1 style={{ fontSize:22,fontWeight:900,color:"#e6cfb7",letterSpacing:"-0.02em",lineHeight:1 }}>
                 قائمة المتميزين
               </h1>
             </div>
-            <p style={{ fontSize:12,color:"hsl(130 22% 50%)",fontWeight:500,marginRight:38 }}>
+            <p style={{ fontSize:12,color:"#a0b8b3",fontWeight:500,marginRight:38 }}>
               أبطال منصة MedNotes — المتميزون في العطاء والمشاركة
             </p>
           </div>
@@ -184,8 +184,8 @@ export function Contributors() {
               <button style={{
                 width:32,height:32,borderRadius:"50%",
                 display:"flex",alignItems:"center",justifyContent:"center",
-                background:"rgba(78,138,89,0.10)",border:"1px solid rgba(78,138,89,0.16)",
-                color:"hsl(130 38% 38%)",cursor:"pointer",
+                background: "var(--mn-surface)",border:"1px solid rgba(78,138,89,0.16)",
+                color:"#8dd3b3",cursor:"pointer",
               }}>
                 <ArrowRight size={15} />
               </button>
@@ -193,7 +193,7 @@ export function Contributors() {
             {!isLoading && (
               <span style={{
                 fontSize:11,fontWeight:700,padding:"4px 12px",borderRadius:99,
-                background:"rgba(78,138,89,0.12)",color:"hsl(130 38% 36%)",
+                background: "var(--mn-surface)",color:"#8dd3b3",
                 border:"1px solid rgba(78,138,89,0.14)",whiteSpace:"nowrap",
               }}>
                 {filtered.length} مساهم
@@ -208,19 +208,19 @@ export function Contributors() {
         <div style={{
           display:"flex",alignItems:"center",gap:8,flex:"1 1 180px",minWidth:160,
           padding:"0 14px",height:40,
-          background:"rgba(255,255,255,0.80)",backdropFilter:"blur(18px)",
-          border:"1px solid rgba(255,255,255,0.90)",
-          boxShadow:"0 2px 12px rgba(0,0,0,0.05)",borderRadius:99,
+          background: "var(--mn-surface)",backdropFilter:"blur(18px)",
+          border:"1px solid var(--mn-border)",
+          boxShadow: "none",borderRadius:99,
         }}>
-          <Search size={14} style={{ color:"hsl(130 18% 58%)",flexShrink:0 }} />
+          <Search size={14} style={{ color:"#a0b8b3",flexShrink:0 }} />
           <input
             value={search} onChange={(e) => setSearch(e.target.value)}
             placeholder="ابحث باسم المساهم…" dir="rtl"
-            style={{ flex:1,background:"transparent",border:"none",outline:"none",fontSize:13,color:"hsl(130 40% 20%)" }}
+            style={{ flex:1,background:"transparent",border:"none",outline:"none",fontSize:13,color:"#e6cfb7" }}
           />
           {search && (
             <button onClick={() => setSearch("")}
-              style={{ color:"hsl(130 18% 60%)",fontSize:12,lineHeight:1,background:"none",border:"none",cursor:"pointer" }}>
+              style={{ color:"#a0b8b3",fontSize:12,lineHeight:1,background:"none",border:"none",cursor:"pointer" }}>
               ✕
             </button>
           )}
@@ -228,17 +228,17 @@ export function Contributors() {
 
         <div style={{
           display:"flex",alignItems:"center",gap:2,padding:4,
-          background:"rgba(255,255,255,0.80)",backdropFilter:"blur(18px)",
-          border:"1px solid rgba(255,255,255,0.90)",
-          boxShadow:"0 2px 12px rgba(0,0,0,0.05)",borderRadius:99,flexShrink:0,
+          background: "var(--mn-surface)",backdropFilter:"blur(18px)",
+          border:"1px solid var(--mn-border)",
+          boxShadow: "none",borderRadius:99,flexShrink:0,
         }}>
           {SORT_OPTIONS.map((opt) => (
             <button key={opt.key} onClick={() => setSortKey(opt.key)} style={{
               fontSize:11,fontWeight:700,padding:"5px 11px",borderRadius:99,
               border:"none",cursor:"pointer",whiteSpace:"nowrap",transition:"all 0.18s ease",
               ...(sortKey === opt.key
-                ? { background:"linear-gradient(135deg,#4E8A59,#3B6E44)",color:"#fff",boxShadow:"0 2px 8px rgba(60,100,68,0.30)" }
-                : { background:"transparent",color:"hsl(130 25% 48%)" }),
+                ? { background:"var(--mn-surface-raised)",color:"#fff",boxShadow: "none" }
+                : { background:"transparent",color:"#8dd3b3" }),
             }}>
               {opt.icon} {opt.label}
             </button>
@@ -248,10 +248,10 @@ export function Contributors() {
 
       {/* ══ LEADERBOARD LIST ════════════════════════════════════ */}
       <div style={{
-        background:"rgba(255,255,255,0.72)",
+        background: "var(--mn-surface)",
         backdropFilter:"blur(22px)",WebkitBackdropFilter:"blur(22px)",
-        border:"1px solid rgba(255,255,255,0.88)",
-        boxShadow:"0 8px 36px rgba(0,0,0,0.07),inset 0 1px 0 rgba(255,255,255,0.95)",
+        border:"1px solid var(--mn-border)",
+        boxShadow: "none",
         borderRadius:22,overflow:"visible",
       }}>
         {isLoading ? (
@@ -260,7 +260,7 @@ export function Contributors() {
             <RowSkeleton /><RowSkeleton /><RowSkeleton />
           </>
         ) : filtered.length === 0 ? (
-          <div style={{ textAlign:"center",padding:"48px 20px",fontSize:13,color:"hsl(130 14% 54%)",fontWeight:500 }} dir="rtl">
+          <div style={{ textAlign:"center",padding:"48px 20px",fontSize:13,color:"#a0b8b3",fontWeight:500 }} dir="rtl">
             <div style={{ fontSize:32,marginBottom:10 }}>🔍</div>
             لا يوجد مساهمون بهذا الاسم
           </div>
@@ -325,7 +325,7 @@ export function Contributors() {
                 <div style={{ display:"flex",alignItems:"center",gap:6,marginBottom:3 }} dir="rtl">
                   <p style={{
                     fontSize: isTop3 ? 14 : 13, fontWeight:800,
-                    color:"hsl(130 42% 15%)",
+                    color:"#e6cfb7",
                     overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",lineHeight:1.2,
                   }}>
                     {entry.authorName}
@@ -345,7 +345,7 @@ export function Contributors() {
                 )}
 
                 {/* Progress bar */}
-                <div style={{ height: isTop3 ? 3 : 2.5, background:"rgba(0,0,0,0.06)", borderRadius:99, marginTop: bestTitle ? 0 : 2 }}>
+                <div style={{ height: isTop3 ? 3 : 2.5, background: "var(--mn-surface)", borderRadius:99, marginTop: bestTitle ? 0 : 2 }}>
                   <div style={{
                     height:"100%", width:`${pct}%`, borderRadius:99,
                     background: isTop3 ? (t3?.barBg ?? barColor) : barColor,
@@ -357,7 +357,7 @@ export function Contributors() {
                 {/* Points toward next rank */}
                 {nextPts && (
                   <p style={{
-                    fontSize:9,fontWeight:500,color:"hsl(130 14% 60%)",
+                    fontSize:9,fontWeight:500,color:"#a0b8b3",
                     marginTop:3, direction:"rtl",
                   }}>
                     {entry.points.toLocaleString()} / {nextPts.toLocaleString()} نقطة
@@ -369,12 +369,12 @@ export function Contributors() {
               <div style={{ textAlign:"right",flexShrink:0,minWidth: isTop3 ? 52 : 46 }} dir="rtl">
                 <p style={{
                   fontSize: isTop3 ? 15 : 12, fontWeight:900,
-                  color: isTop3 ? (t3?.textColor ?? "hsl(130 40% 20%)") : "hsl(130 40% 22%)",
+                  color: isTop3 ? (t3?.textColor ?? "#e6cfb7") : "#e6cfb7",
                   letterSpacing:"-0.03em",lineHeight:1,
                 }}>
                   {entry.points.toLocaleString()}
                 </p>
-                <p style={{ fontSize:9,fontWeight:500,color:"hsl(130 14% 56%)",marginTop:2 }}>نقطة</p>
+                <p style={{ fontSize:9,fontWeight:500,color:"#a0b8b3",marginTop:2 }}>نقطة</p>
               </div>
             </div>
           );
@@ -384,13 +384,13 @@ export function Contributors() {
       {/* ══ RANK LEGEND ════════════════════════════════════════ */}
       <div style={{
         marginTop:20, padding:"16px 18px",
-        background:"rgba(255,255,255,0.60)",
+        background: "var(--mn-surface)",
         backdropFilter:"blur(16px)",WebkitBackdropFilter:"blur(16px)",
-        border:"1px solid rgba(255,255,255,0.85)",
-        boxShadow:"0 4px 18px rgba(0,0,0,0.05)",
+        border:"1px solid var(--mn-border)",
+        boxShadow: "none",
         borderRadius:18,
       }}>
-        <p style={{ fontSize:11,fontWeight:700,color:"hsl(130 30% 40%)",marginBottom:10 }} dir="rtl">
+        <p style={{ fontSize:11,fontWeight:700,color:"#8dd3b3",marginBottom:10 }} dir="rtl">
           🏅 إطارات الرانك — تعتمد على النقاط والنشاط
         </p>
         <div style={{ display:"flex",flexWrap:"wrap",gap:6 }} dir="rtl">
@@ -400,12 +400,12 @@ export function Contributors() {
               <div key={r} style={{
                 display:"flex",alignItems:"center",gap:5,
                 padding:"4px 10px",borderRadius:99,
-                background:"rgba(0,0,0,0.03)",
+                background: "var(--mn-surface)",
                 border:"1px solid rgba(0,0,0,0.07)",
               }}>
                 <span style={{ fontSize:12 }}>{meta.icon}</span>
-                <span style={{ fontSize:10,fontWeight:700,color:"hsl(130 35% 30%)" }}>{meta.labelAr}</span>
-                <span style={{ fontSize:9,color:"hsl(130 15% 60%)",fontWeight:500 }}>
+                <span style={{ fontSize:10,fontWeight:700,color:"#8dd3b3" }}>{meta.labelAr}</span>
+                <span style={{ fontSize:9,color:"#a0b8b3",fontWeight:500 }}>
                   {meta.maxPts === null
                     ? `${meta.minPts.toLocaleString()}+`
                     : meta.minPts === 0 && meta.maxPts === 0
@@ -416,7 +416,7 @@ export function Contributors() {
             );
           })}
         </div>
-        <p style={{ fontSize:10,fontWeight:500,color:"hsl(130 14% 58%)",marginTop:10 }} dir="rtl">
+        <p style={{ fontSize:10,fontWeight:500,color:"#a0b8b3",marginTop:10 }} dir="rtl">
           🔥 هالة اللهب = دخل لوحة المتميزين (بغض النظر عن الرانك)
         </p>
       </div>

@@ -29,16 +29,16 @@ const COMMUNITY_NAV = [
 ];
 
 const SECTION_COLORS = [
-  { from: "hsla(130,42%,84%,0.55)", to: "hsla(130,32%,78%,0.35)" },
-  { from: "hsla(25,82%,87%,0.55)",  to: "hsla(25,72%,82%,0.35)" },
-  { from: "hsla(170,45%,84%,0.55)", to: "hsla(150,38%,80%,0.35)" },
+  { from: "#193334", to: "#193334" },
+  { from: "#193334",  to: "#193334" },
+  { from: "#193334", to: "#193334" },
 ];
 
 function SectionLabel({ label, color }: { label: string; color: string }) {
   return (
     <p
-      className="text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full w-fit mt-4 mb-1"
-      style={{ background: color, color: "hsl(130 32% 28%)" }}
+      className="text-[10px] font-semibold uppercase tracking-widest px-3 py-1 rounded-full w-fit mt-4 mb-1"
+      style={{ background: color, color: "#e6cfb7" }}
     >
       {label}
     </p>
@@ -56,19 +56,19 @@ function NavItem({
   const isActive = active || rootActive;
 
   return (
-    <Link href={href}>
+    <Link href={href} aria-current={isActive ? "page" : undefined}>
       <div
         className="flex items-center gap-3 px-3 py-2.5 cursor-pointer transition-all group"
         style={
           isActive
             ? {
-                background:   "linear-gradient(135deg, #FCA3AD, #FA7370)",
-                borderRadius: "9999px",
-                boxShadow:    "0 4px 16px rgba(250,115,112,0.28)",
+                background:   "var(--mn-surface-raised)",
+                borderRadius: "7px",
+                boxShadow: "none",
                 border:       "1px solid transparent",
               }
             : {
-                borderRadius: "9999px",
+                borderRadius: "7px",
                 border:       "1px solid transparent",
               }
         }
@@ -76,11 +76,11 @@ function NavItem({
         <Icon
           size={16}
           className="shrink-0 transition-colors"
-          style={{ color: isActive ? "white" : "hsl(130 14% 52%)" }}
+          style={{ color: isActive ? "white" : "#a0b8b3" }}
         />
         <span
           className="text-sm font-medium transition-colors"
-          style={{ color: isActive ? "white" : "hsl(130 14% 42%)" }}
+          style={{ color: isActive ? "white" : "#a0b8b3" }}
           dir="rtl"
         >
           {label}
@@ -95,12 +95,12 @@ export function LeftSidebar() {
     <aside
       className="hidden md:flex flex-col w-44 lg:w-60 shrink-0 sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto"
       style={{
-        background: "rgba(255,255,255,0.60)",
+        background: "var(--mn-surface)",
         backdropFilter: "blur(20px)",
         WebkitBackdropFilter: "blur(20px)",
-        border: "1px solid rgba(255,255,255,0.82)",
-        boxShadow: "0 6px 32px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.92)",
-        borderRadius: "1.25rem",
+        border: "1px solid var(--mn-border)",
+        boxShadow: "none",
+        borderRadius: "7px",
         padding: "1rem 0.75rem",
         gap: "0",
       }}
@@ -110,14 +110,14 @@ export function LeftSidebar() {
         <AppLogo size={28} />
         <div>
           <span
-            className="font-serif font-bold text-sm block"
-            style={{ color: "hsl(130 45% 16%)" }}
+            className="font-sans font-bold text-sm block"
+            style={{ color: "#e6cfb7" }}
           >
             MedNotes
           </span>
           <span
             className="text-[9px] font-medium block leading-tight"
-            style={{ color: "hsl(130 30% 44%)" }}
+            style={{ color: "#8dd3b3" }}
             dir="rtl"
           >
             تعلّم، شارك، واترك أثرًا 🌿
@@ -126,7 +126,7 @@ export function LeftSidebar() {
       </Link>
 
       {/* Thin divider */}
-      <div className="mx-2 mb-3 h-px" style={{ background: "rgba(255,255,255,0.70)" }} />
+      <div className="mx-2 mb-3 h-px" style={{ background: "var(--mn-surface)" }} />
 
       {/* Main nav */}
       <div className="flex flex-col gap-0.5">
@@ -160,8 +160,8 @@ export function LeftSidebar() {
           <button
             className="w-full py-2.5 rounded-xl text-sm font-bold text-white flex items-center justify-center gap-2 transition-all hover:opacity-90 hover:shadow-md"
             style={{
-              background: "linear-gradient(135deg, hsl(130 42% 50%), hsl(130 35% 40%))",
-              boxShadow: "0 4px 16px rgba(78,138,89,0.30)",
+              background: "var(--mn-surface-raised)",
+              boxShadow: "none",
             }}
           >
             <Upload size={14} />
@@ -174,15 +174,15 @@ export function LeftSidebar() {
       <div
         className="mt-3 px-3 py-3 rounded-xl flex items-center gap-2.5"
         style={{
-          background: "linear-gradient(135deg, hsla(50,80%,88%,0.65), hsla(25,78%,86%,0.50))",
-          border: "1px solid rgba(255,255,255,0.70)",
+          background: "var(--mn-surface-raised)",
+          border: "1px solid var(--mn-border)",
         }}
       >
         <RankFrame name="ط" rank="silver" size={44} />
         <div className="min-w-0 flex-1">
           <p
             className="text-xs font-bold truncate leading-tight"
-            style={{ color: "hsl(130 40% 20%)" }}
+            style={{ color: "#e6cfb7" }}
             dir="rtl"
           >
             طالب طب

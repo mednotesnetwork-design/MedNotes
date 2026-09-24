@@ -27,14 +27,14 @@ export function Modules() {
   return (
     <div className="container mx-auto px-4 py-16 max-w-7xl">
       <div className="max-w-3xl mx-auto text-center mb-16">
-        <h1 className="text-5xl font-extrabold tracking-tight mb-6 text-foreground">
+        <h1 className="text-5xl font-semibold tracking-tight mb-6 text-foreground">
           {t("modules.title")}
         </h1>
         <p className="text-xl text-muted-foreground mb-10 font-medium">
           {t("modules.subtitle")}
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 bg-white p-3 rounded-3xl shadow-lg border border-border/50">
+        <div className="flex flex-col sm:flex-row gap-4 bg-card p-3 rounded-3xl shadow-lg border border-border/50">
           <div className="relative flex-1">
             <div className="absolute left-5 top-1/2 -translate-y-1/2 text-muted-foreground rtl:right-5 rtl:left-auto">
               <Search size={20} className="flip-rtl" />
@@ -74,7 +74,7 @@ export function Modules() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredModules?.map(mod => (
             <Link key={mod.id} href={`/notes?moduleId=${mod.id}`} className="block">
-              <Card className="h-full border border-border bg-white hover:-translate-y-1 hover:shadow-xl hover:border-primary/30 transition-all duration-300 relative group overflow-hidden">
+              <Card className="h-full border border-border bg-card hover:-translate-y-1 hover:shadow-xl hover:border-primary/30 transition-all duration-300 relative group overflow-hidden">
                 <div className="absolute top-0 left-0 rtl:right-0 rtl:left-auto w-1.5 h-full bg-primary/20 group-hover:bg-primary transition-colors duration-300" />
                 <CardContent className="p-7 flex flex-col h-full pl-8 rtl:pr-8 rtl:pl-7">
                   <div className="flex justify-between items-start mb-4">
@@ -84,11 +84,11 @@ export function Modules() {
                         {mod.code}
                       </Badge>
                     )}
-                    <span className="text-xs text-muted-foreground font-extrabold bg-muted/50 px-3 py-1 rounded-full ml-auto rtl:mr-auto rtl:ml-0">
+                    <span className="text-xs text-muted-foreground font-semibold bg-muted/50 px-3 py-1 rounded-full ml-auto rtl:mr-auto rtl:ml-0">
                       {t("modules.notes", { count: mod.noteCount })}
                     </span>
                   </div>
-                  <h3 className="font-extrabold text-xl line-clamp-2 mb-2 leading-snug text-foreground">{mod.name}</h3>
+                  <h3 className="font-semibold text-xl line-clamp-2 mb-2 leading-snug text-foreground">{mod.name}</h3>
                   <p className="text-sm font-semibold text-muted-foreground mb-4 line-clamp-1">{mod.universityName}</p>
 
                   {mod.description && (
@@ -104,9 +104,9 @@ export function Modules() {
       )}
 
       {filteredModules?.length === 0 && !isLoading && (
-        <div className="text-center py-32 bg-white rounded-3xl border border-border border-dashed shadow-sm">
+        <div className="text-center py-32 bg-card rounded-3xl border border-border border-dashed shadow-sm">
           <Library className="mx-auto h-16 w-16 text-muted-foreground/30 mb-6" />
-          <h3 className="text-2xl font-extrabold mb-3">{t("modules.notFound.title")}</h3>
+          <h3 className="text-2xl font-semibold mb-3">{t("modules.notFound.title")}</h3>
           <p className="text-muted-foreground font-medium text-lg">{t("modules.notFound.desc")}</p>
         </div>
       )}

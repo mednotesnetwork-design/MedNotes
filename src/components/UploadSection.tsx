@@ -17,7 +17,7 @@ export function UploadSection() {
               <Upload size={12} />
               {t("upload.ctaTag") ?? "Contribute"}
             </div>
-            <h2 className="text-2xl md:text-3xl font-extrabold text-foreground mb-3 leading-tight">
+            <h2 className="text-2xl md:text-3xl font-semibold text-foreground mb-3 leading-tight">
               {t("upload.ctaHeading") ?? "Share your notes with fellow students"}
             </h2>
             <p className="text-muted-foreground text-base leading-relaxed max-w-md">

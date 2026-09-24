@@ -22,11 +22,11 @@ export function ComingSoon() {
       <div
         className="w-full max-w-sm flex flex-col items-center text-center gap-5 p-8"
         style={{
-          background:           "rgba(255,255,255,0.68)",
+          background: "var(--mn-surface)",
           backdropFilter:       "blur(28px)",
           WebkitBackdropFilter: "blur(28px)",
-          border:               "1px solid rgba(255,255,255,0.88)",
-          boxShadow:            "0 16px 48px rgba(252,163,173,0.14), 0 4px 16px rgba(0,0,0,0.06)",
+          border:               "1px solid var(--mn-border)",
+          boxShadow: "none",
           borderRadius:         "1.75rem",
         }}
       >
@@ -34,8 +34,8 @@ export function ComingSoon() {
         <div
           className="w-20 h-20 rounded-[1.5rem] flex items-center justify-center"
           style={{
-            background: "linear-gradient(135deg, #FCA3AD, #FA7370)",
-            boxShadow:  "0 8px 28px rgba(250,115,112,0.32)",
+            background: "var(--mn-surface-raised)",
+            boxShadow: "none",
           }}
         >
           <Construction size={34} color="white" strokeWidth={1.6} />
@@ -44,14 +44,14 @@ export function ComingSoon() {
         {/* Section title */}
         <div>
           <p
-            className="text-xs font-extrabold uppercase tracking-widest mb-1"
-            style={{ color: "hsl(338 52% 66%)" }}
+            className="text-xs font-semibold uppercase tracking-widest mb-1"
+            style={{ color: "#d7aeb3" }}
           >
             قيد التجهيز
           </p>
           <h1
-            className="font-serif font-extrabold text-2xl leading-snug"
-            style={{ color: "hsl(130 45% 16%)" }}
+            className="font-sans font-semibold text-2xl leading-snug"
+            style={{ color: "#e6cfb7" }}
             dir="rtl"
           >
             {label}
@@ -61,7 +61,7 @@ export function ComingSoon() {
         {/* Body message */}
         <p
           className="text-sm font-medium leading-relaxed"
-          style={{ color: "hsl(130 14% 44%)" }}
+          style={{ color: "#a0b8b3" }}
           dir="rtl"
         >
           هذا القسم قيد التجهيز وسيتم ربطه بالمحتوى قريبًا.
@@ -71,8 +71,8 @@ export function ComingSoon() {
         <div className="flex items-center gap-2 pt-1">
           <AppLogo size={22} />
           <span
-            className="font-serif font-bold text-sm"
-            style={{ color: "hsl(130 38% 32%)" }}
+            className="font-sans font-bold text-sm"
+            style={{ color: "#8dd3b3" }}
           >
             MedNotes
           </span>

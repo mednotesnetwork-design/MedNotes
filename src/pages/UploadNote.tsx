@@ -143,10 +143,10 @@ export function UploadNote() {
 
   const buttonLabel = () => {
     if (uploadStage === "uploading") return (
-      <><div className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" /> جاري رفع الملف...</>
+      <><div className="w-4 h-4 border-2 border-border/40 border-t-white rounded-full animate-spin" /> جاري رفع الملف...</>
     );
     if (uploadStage === "saving") return (
-      <><div className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" /> جارٍ الحفظ...</>
+      <><div className="w-4 h-4 border-2 border-border/40 border-t-white rounded-full animate-spin" /> جارٍ الحفظ...</>
     );
     return <><Upload size={18} /> {t("upload.submit")}</>;
   };
@@ -355,7 +355,7 @@ export function UploadNote() {
                 <div className="space-y-1.5">
                   <label
                     className="text-sm font-medium leading-none"
-                    style={{ color: "hsl(130 42% 14%)" }}
+                    style={{ color: "#e6cfb7" }}
                   >
                     {t("upload.fileUpload")}
                     <span className="ml-2 text-xs font-normal text-muted-foreground">(الحد الأقصى: 50 ميجابايت)</span>
@@ -373,13 +373,13 @@ export function UploadNote() {
                     <div
                       className="flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer hover:opacity-90 transition-opacity"
                       style={{
-                        background: "linear-gradient(135deg,hsla(130,42%,84%,0.55),hsla(50,80%,88%,0.50))",
-                        border: "1px solid rgba(255,255,255,0.75)",
+                        background: "var(--mn-surface-raised)",
+                        border: "1px solid var(--mn-border)",
                       }}
                       onClick={() => !isLoading && fileInputRef.current?.click()}
                     >
-                      <CheckCircle2 size={18} className="text-emerald-600 shrink-0" />
-                      <span className="flex-1 text-sm font-medium truncate" style={{ color: "hsl(130 40% 18%)" }}>
+                      <CheckCircle2 size={18} className="text-primary shrink-0" />
+                      <span className="flex-1 text-sm font-medium truncate" style={{ color: "#e6cfb7" }}>
                         {selectedFile.name}
                       </span>
                       {fileFormat && (
@@ -387,12 +387,12 @@ export function UploadNote() {
                           {fileFormat}
                         </Badge>
                       )}
-                      <span className="text-xs shrink-0" style={{ color: "hsl(130 14% 50%)" }}>
+                      <span className="text-xs shrink-0" style={{ color: "#a0b8b3" }}>
                         {(selectedFile.size / 1024 / 1024).toFixed(1)} MB
                       </span>
                       <button
                         type="button"
-                        className="shrink-0 text-rose-400 hover:text-rose-600 transition-colors"
+                        className="shrink-0 text-rose-400 hover:text-primary transition-colors"
                         disabled={isLoading}
                         onClick={(e) => {
                           e.stopPropagation();
@@ -417,11 +417,11 @@ export function UploadNote() {
                       className="w-full flex flex-col items-center justify-center gap-2 px-4 py-7 rounded-xl border-2 border-dashed transition-all"
                       style={{
                         background: isDragging
-                          ? "linear-gradient(135deg,hsla(130,42%,88%,0.70),hsla(50,80%,90%,0.65))"
-                          : "linear-gradient(135deg,hsla(50,78%,92%,0.55),hsla(25,76%,92%,0.45))",
+                          ? "var(--mn-surface-raised)"
+                          : "var(--mn-surface-raised)",
                         borderColor: isDragging
-                          ? "hsl(130,42%,52%)"
-                          : "hsla(130,32%,60%,0.35)",
+                          ? "#8dd3b3"
+                          : "#8dd3b3",
                         transform: isDragging ? "scale(1.01)" : "scale(1)",
                       }}
                     >
@@ -431,10 +431,10 @@ export function UploadNote() {
                       >
                         <Paperclip size={18} className="text-primary" />
                       </div>
-                      <span className="text-sm font-semibold" style={{ color: "hsl(130 38% 28%)" }}>
+                      <span className="text-sm font-semibold" style={{ color: "#e6cfb7" }}>
                         {isDragging ? "أفلت الملف هنا" : t("upload.fileUploadPlaceholder")}
                       </span>
-                      <span className="text-xs" style={{ color: "hsl(130 12% 50%)" }}>
+                      <span className="text-xs" style={{ color: "#a0b8b3" }}>
                         PDF · DOCX · PPTX · صور — حتى 50 ميجابايت
                       </span>
                     </button>
@@ -443,7 +443,7 @@ export function UploadNote() {
                   {/* Upload progress bar */}
                   {uploadStage === "uploading" && (
                     <div className="space-y-1.5 pt-1">
-                      <div className="flex justify-between text-xs font-medium" style={{ color: "hsl(130 38% 28%)" }}>
+                      <div className="flex justify-between text-xs font-medium" style={{ color: "#e6cfb7" }}>
                         <span>جاري رفع الملف...</span>
                         <span>{progress}%</span>
                       </div>
@@ -452,7 +452,7 @@ export function UploadNote() {
                           className="h-full rounded-full transition-all duration-500"
                           style={{
                             width: `${progress}%`,
-                            background: "linear-gradient(90deg, hsl(130,42%,46%), hsl(90,60%,52%))",
+                            background: "var(--mn-surface-raised)",
                           }}
                         />
                       </div>

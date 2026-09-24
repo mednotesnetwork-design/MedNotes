@@ -1,7 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,500;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "./atlas-theme.css";
 @plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
@@ -27,101 +28,46 @@
   --color-destructive:         hsl(var(--destructive));
   --color-destructive-foreground:hsl(var(--destructive-foreground));
   --font-sans:   'Inter', system-ui, sans-serif;
-  --font-serif:  'Lora', Georgia, serif;
+  --font-serif:  var(--mn-font);
   --font-arabic: 'Cairo', sans-serif;
   --radius: var(--radius-base);
 }
 
+
 :root {
-  --primary:            130 32% 44%;
-  --primary-foreground: 0 0% 100%;
-  --secondary:          25 78% 86%;
-  --secondary-foreground: 130 42% 22%;
-  --background:         43 38% 97%;
-  --card:               0 0% 100%;
-  --card-foreground:    130 45% 14%;
-  --popover:            0 0% 100%;
-  --popover-foreground: 130 45% 14%;
-  --foreground:         130 42% 14%;
-  --border:             36 28% 88%;
-  --input:              36 28% 88%;
-  --muted:              36 22% 93%;
-  --muted-foreground:   130 12% 46%;
-  --accent:             25 78% 86%;
-  --accent-foreground:  130 42% 22%;
-  --destructive:        0 82% 60%;
-  --destructive-foreground: 0 0% 100%;
-  --radius-base: 0.75rem;
-  --radius-lg:   1.25rem;
-  --radius: var(--radius-base);
+  --primary: var(--mn-mint-hsl); --primary-foreground: var(--mn-background-hsl);
+  --secondary: var(--mn-surface-raised-hsl); --secondary-foreground: var(--mn-text-hsl);
+  --background: var(--mn-background-hsl); --card: var(--mn-surface-hsl); --card-foreground: var(--mn-text-hsl);
+  --popover: var(--mn-surface-raised-hsl); --popover-foreground: var(--mn-text-hsl);
+  --foreground: var(--mn-text-hsl); --border: var(--mn-border-hsl); --input: var(--mn-border-strong-hsl);
+  --muted: var(--mn-surface-raised-hsl); --muted-foreground: var(--mn-muted-hsl);
+  --accent: var(--mn-selection-hsl); --accent-foreground: var(--mn-mint-hsl);
+  --destructive: var(--mn-rose-hsl); --destructive-foreground: var(--mn-background-hsl);
+  --radius-base: 7px; --radius-lg: 9px; --radius: var(--radius-base);
 }
 
-/* ─── Base ───────────────────────────────────────── */
+
+/* Shared atlas surfaces, without the former pastel/glass treatment. */
 @layer base {
   * { @apply border-border; }
-
-  body {
-    @apply text-foreground;
-    font-family: 'Inter', system-ui, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    /* Warm ambient glow — fixed so blobs don't scroll */
-    background-color: hsl(43, 38%, 97%);
-    background-image:
-      radial-gradient(ellipse at  8% 16%, hsla( 25, 82%, 86%, 0.58) 0%, transparent 50%),
-      radial-gradient(ellipse at 92% 82%, hsla(130, 42%, 78%, 0.52) 0%, transparent 52%),
-      radial-gradient(ellipse at 78% 10%, hsla(348, 52%, 84%, 0.44) 0%, transparent 50%),
-      radial-gradient(ellipse at 22% 90%, hsla( 50, 80%, 84%, 0.40) 0%, transparent 48%);
-    background-attachment: fixed;
-    min-height: 100vh;
-  }
-
-  h1, h2, h3, h4, h5, h6 { font-weight: 700; letter-spacing: -0.01em; }
+  html { background:var(--mn-background); scroll-padding-top:20px; }
+  body { margin:0; background:var(--mn-background); color:var(--mn-text); font-family:var(--mn-font); font-size:16px; -webkit-font-smoothing:antialiased; min-height:100dvh; }
+  h1,h2,h3,h4,h5,h6 { font-weight:500; letter-spacing:-.01em; color:var(--mn-sand); }
+  button,a,input,select,textarea { -webkit-tap-highlight-color:transparent; }
+  input,select,textarea { color-scheme:dark; }
+  ::selection { background:var(--mn-selection);color:var(--mn-text); }
+  ::-webkit-scrollbar { width:5px;height:5px; }
+  ::-webkit-scrollbar-thumb { background:var(--mn-border-strong);border-radius:8px; }
 }
-
-/* ─── Glassmorphism ──────────────────────────────── */
-.glass {
-  background: rgba(255,255,255,0.58);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(255,255,255,0.80);
-  box-shadow: 0 4px 24px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.90);
-}
-
-.glass-strong {
-  background: rgba(255,255,255,0.76);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255,255,255,0.88);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.07), inset 0 1px 0 rgba(255,255,255,0.95);
-}
-
-.glass-panel {
-  background: rgba(255,255,255,0.65);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,0.82);
-  box-shadow: 0 6px 28px rgba(0,0,0,0.07);
-  border-radius: 1.25rem;
-  overflow: hidden;
-}
-
-/* ─── Card hover lift ────────────────────────────── */
-.card-hover {
-  transition: transform 0.20s ease, box-shadow 0.20s ease;
-}
-.card-hover:hover {
-  transform: translateY(-6px) scale(1.013);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.11), 0 4px 12px rgba(0,0,0,0.06);
-}
-
-/* ─── Pinterest card palette ─────────────────────── */
-.bg-card-peach  { background: linear-gradient(140deg,hsla( 25,82%,87%,0.72) 0%,hsla( 10,68%,90%,0.52) 100%); }
-.bg-card-sage   { background: linear-gradient(140deg,hsla(130,42%,84%,0.70) 0%,hsla(150,38%,82%,0.50) 100%); }
-.bg-card-rose   { background: linear-gradient(140deg,hsla(348,52%,86%,0.72) 0%,hsla(  0,60%,90%,0.52) 100%); }
-.bg-card-yellow { background: linear-gradient(140deg,hsla( 50,80%,88%,0.72) 0%,hsla( 36,72%,86%,0.52) 100%); }
-.bg-card-mint   { background: linear-gradient(140deg,hsla(170,45%,84%,0.70) 0%,hsla(150,40%,82%,0.50) 100%); }
-
+.glass,.glass-strong,.glass-panel { background:var(--mn-surface);border:1px solid var(--mn-border);box-shadow:none; }
+.glass-panel { border-radius:var(--mn-radius);overflow:hidden; }
+.card-hover { transition:border-color .16s,background .16s; }
+.card-hover:hover { border-color:var(--mn-border-strong);background:var(--mn-surface-raised); }
+.bg-card-peach,.bg-card-sage,.bg-card-rose,.bg-card-yellow,.bg-card-mint { background:var(--mn-surface-raised); }
+.community-shell :is(h1,h2,h3,h4) { font-weight:500; }
+.community-shell :is(button,input,select,a).rounded-full { border-radius:var(--mn-radius); }
+.community-shell :is(.rounded-2xl,.rounded-3xl) { border-radius:9px; }
+.community-shell :is(.shadow-lg,.shadow-xl,.shadow-inner) { box-shadow:none; }
 /* ─── Arabic / RTL ───────────────────────────────── */
 html[dir="rtl"] body, html.font-arabic body {
   font-family: 'Cairo', sans-serif;
@@ -141,7 +87,7 @@ html[dir="rtl"] [data-radix-scroll-area-viewport] { direction: rtl; }
 html[dir="rtl"] [data-radix-select-content] { direction: rtl; text-align: right; }
 
 body { transition: font-family 0.15s ease; }
-.font-serif { font-family: 'Lora', Georgia, serif; }
+.font-serif { font-family: var(--mn-font); }
 
 /* ═══════════════════════════════════════════════════
    RANK / LEVEL AVATAR SYSTEM

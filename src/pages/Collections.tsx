@@ -46,15 +46,15 @@ export function Collections() {
             <div className="flex items-center gap-3">
               <div
                 className="w-10 h-10 rounded-xl flex items-center justify-center"
-                style={{ background: "linear-gradient(135deg, #86C98D, #4A9A55)" }}
+                style={{ background: "var(--mn-surface-raised)" }}
               >
                 <Library size={20} className="text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-extrabold" style={{ color: "hsl(130 42% 14%)" }}>
+                <h1 className="text-xl font-semibold" style={{ color: "#e6cfb7" }}>
                   مجموعاتي
                 </h1>
-                <p className="text-xs" style={{ color: "hsl(130 18% 52%)" }}>
+                <p className="text-xs" style={{ color: "#a0b8b3" }}>
                   {collections.length} مجموعة
                 </p>
               </div>
@@ -73,13 +73,13 @@ export function Collections() {
             <div
               className="mb-6 p-4 rounded-2xl"
               style={{
-                background: "rgba(255,255,255,0.75)",
+                background: "var(--mn-surface)",
                 backdropFilter: "blur(16px)",
-                border: "1px solid rgba(255,255,255,0.85)",
-                boxShadow: "0 4px 20px rgba(0,0,0,0.06)",
+                border: "1px solid var(--mn-border)",
+                boxShadow: "none",
               }}
             >
-              <p className="text-sm font-bold mb-3" dir="rtl" style={{ color: "hsl(130 42% 18%)" }}>
+              <p className="text-sm font-bold mb-3" dir="rtl" style={{ color: "#e6cfb7" }}>
                 اختر اسمًا للمجموعة
               </p>
               {/* Presets */}
@@ -90,9 +90,9 @@ export function Collections() {
                     onClick={() => handleCreate(p)}
                     className="px-3 py-1.5 rounded-full text-sm font-bold transition-all hover:scale-105"
                     style={{
-                      background: "linear-gradient(135deg, hsla(130,42%,80%,0.60), hsla(160,40%,85%,0.50))",
-                      color: "hsl(130 42% 22%)",
-                      border: "1px solid rgba(255,255,255,0.80)",
+                      background: "var(--mn-surface-raised)",
+                      color: "#e6cfb7",
+                      border: "1px solid var(--mn-border)",
                     }}
                   >
                     {p}
@@ -124,14 +124,14 @@ export function Collections() {
             <div className="py-24 flex flex-col items-center gap-4 text-center">
               <div
                 className="w-18 h-18 rounded-2xl flex items-center justify-center"
-                style={{ background: "hsla(130,42%,84%,0.45)" }}
+                style={{ background: "var(--mn-surface)" }}
               >
-                <FolderOpen size={36} style={{ color: "hsl(130 38% 50%)" }} />
+                <FolderOpen size={36} style={{ color: "#8dd3b3" }} />
               </div>
-              <h3 className="text-lg font-bold" style={{ color: "hsl(130 42% 18%)" }}>
+              <h3 className="text-lg font-bold" style={{ color: "#e6cfb7" }}>
                 لا توجد مجموعات بعد
               </h3>
-              <p className="text-sm" style={{ color: "hsl(130 18% 52%)" }}>
+              <p className="text-sm" style={{ color: "#a0b8b3" }}>
                 أنشئ مجموعاتك لتنظيم ملاحظاتك المفضلة
               </p>
               <Button className="rounded-full px-8 mt-1" onClick={() => setCreating(true)}>
@@ -148,42 +148,42 @@ export function Collections() {
                   key={col.id}
                   className="group rounded-2xl overflow-hidden"
                   style={{
-                    background: "rgba(255,255,255,0.72)",
+                    background: "var(--mn-surface)",
                     backdropFilter: "blur(16px)",
-                    border: "1px solid rgba(255,255,255,0.85)",
-                    boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
+                    border: "1px solid var(--mn-border)",
+                    boxShadow: "none",
                   }}
                 >
                   {/* Gradient header */}
                   <div
                     className="h-20 flex items-center justify-center"
                     style={{
-                      background: "linear-gradient(135deg, hsla(130,42%,80%,0.55), hsla(25,78%,84%,0.45))",
+                      background: "var(--mn-surface-raised)",
                     }}
                   >
-                    <BookOpen size={28} style={{ color: "hsl(130 42% 32%)", opacity: 0.7 }} />
+                    <BookOpen size={28} style={{ color: "#8dd3b3", opacity: 0.7 }} />
                   </div>
                   {/* Info */}
                   <div className="p-4" dir="rtl">
                     <div className="flex items-start justify-between">
                       <div>
-                        <h3 className="font-bold text-base mb-0.5" style={{ color: "hsl(130 42% 16%)" }}>
+                        <h3 className="font-bold text-base mb-0.5" style={{ color: "#e6cfb7" }}>
                           {col.name}
                         </h3>
-                        <p className="text-xs" style={{ color: "hsl(130 18% 52%)" }}>
+                        <p className="text-xs" style={{ color: "#a0b8b3" }}>
                           {col.noteIds.length} ملاحظة
                         </p>
                       </div>
                       <button
                         onClick={() => handleDelete(col.id)}
-                        className="opacity-0 group-hover:opacity-100 p-1.5 rounded-full transition-all hover:bg-red-50"
+                        className="opacity-0 group-hover:opacity-100 p-1.5 rounded-full transition-all hover:bg-secondary"
                       >
                         <Trash2 size={13} className="text-red-400" />
                       </button>
                     </div>
                     {col.noteIds.length === 0 ? (
                       <p className="text-xs mt-3 text-center py-3 rounded-xl"
-                        style={{ background: "hsla(130,20%,92%,0.55)", color: "hsl(130 18% 56%)" }}>
+                        style={{ background: "var(--mn-surface)", color: "#a0b8b3" }}>
                         لم تُضف ملاحظات بعد
                       </p>
                     ) : (

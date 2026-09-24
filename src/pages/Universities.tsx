@@ -27,7 +27,7 @@ export function Universities() {
   return (
     <div className="container mx-auto px-4 py-16 max-w-7xl">
       <div className="max-w-2xl mx-auto text-center mb-16">
-        <h1 className="text-5xl font-extrabold tracking-tight mb-6 text-foreground">
+        <h1 className="text-5xl font-semibold tracking-tight mb-6 text-foreground">
           {t("universities.title")}
         </h1>
         <p className="text-xl text-muted-foreground mb-10 font-medium">
@@ -41,7 +41,7 @@ export function Universities() {
             value={search}
             onChange={e => setSearch(e.target.value)}
             placeholder={t("universities.searchPlaceholder")}
-            className="h-16 pl-14 rtl:pl-4 rtl:pr-14 rounded-full text-lg bg-white border-none focus-visible:ring-4 focus-visible:ring-primary/20 shadow-inner"
+            className="h-16 pl-14 rtl:pl-4 rtl:pr-14 rounded-full text-lg bg-card border-none focus-visible:ring-4 focus-visible:ring-primary/20 shadow-inner"
           />
         </div>
       </div>
@@ -59,7 +59,7 @@ export function Universities() {
             <div className="mb-12">
               <div className="flex items-center gap-2 mb-5">
                 <Star size={18} className="text-amber-500 fill-amber-500" />
-                <span className="text-sm font-bold uppercase tracking-widest text-amber-600">{t("universities.featured")}</span>
+                <span className="text-sm font-bold uppercase tracking-widest text-primary">{t("universities.featured")}</span>
               </div>
               <Link href={`/notes?universityId=${featuredUni.id}`}>
                 <Card className="border-2 border-primary/30 bg-gradient-to-br from-primary/5 via-white to-secondary/5 overflow-hidden hover:-translate-y-1 hover:shadow-2xl hover:border-primary/60 transition-all duration-300 group cursor-pointer">
@@ -69,7 +69,7 @@ export function Universities() {
                       {featuredUni.logoUrl ? (
                         <img src={featuredUni.logoUrl} alt={featuredUni.name} className="w-20 h-20 object-contain rounded-full mix-blend-multiply" />
                       ) : (
-                        <span className="text-5xl font-black">{featuredUni.name.charAt(0)}</span>
+                        <span className="text-5xl font-semibold">{featuredUni.name.charAt(0)}</span>
                       )}
                     </div>
                     <div className="flex-1 text-center md:text-start rtl:md:text-end">
@@ -78,7 +78,7 @@ export function Universities() {
                           {t("universities.featuredBadge")}
                         </Badge>
                       </div>
-                      <h2 className="text-3xl font-extrabold text-foreground mb-1">{isRTL && featuredUni.nameAr ? featuredUni.nameAr : featuredUni.name}</h2>
+                      <h2 className="text-3xl font-semibold text-foreground mb-1">{isRTL && featuredUni.nameAr ? featuredUni.nameAr : featuredUni.name}</h2>
                       {isRTL ? (
                         <p className="text-base text-muted-foreground font-medium mb-1">{featuredUni.name}</p>
                       ) : featuredUni.nameAr ? (
@@ -105,17 +105,17 @@ export function Universities() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {otherUnis?.map(uni => (
               <Link key={uni.id} href={`/notes?universityId=${uni.id}`}>
-                <Card className="h-full border-border bg-white overflow-hidden hover:-translate-y-2 hover:shadow-xl hover:border-primary/40 transition-all duration-300 group cursor-pointer">
+                <Card className="h-full border-border bg-card overflow-hidden hover:-translate-y-2 hover:shadow-xl hover:border-primary/40 transition-all duration-300 group cursor-pointer">
                   <div className="h-1.5 w-full bg-gradient-to-r from-primary to-secondary opacity-70 group-hover:opacity-100 transition-opacity"></div>
                   <CardContent className="p-6 flex flex-col h-full items-center text-center">
                     <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center mb-5 text-primary group-hover:scale-110 transition-transform duration-300 shadow-inner border border-primary/5">
                       {uni.logoUrl ? (
                         <img src={uni.logoUrl} alt={uni.name} className="w-14 h-14 object-contain rounded-full mix-blend-multiply" />
                       ) : (
-                        <span className="text-3xl font-black">{uni.name.charAt(0)}</span>
+                        <span className="text-3xl font-semibold">{uni.name.charAt(0)}</span>
                       )}
                     </div>
-                    <h3 className="font-extrabold text-base line-clamp-2 leading-snug mb-1 text-foreground">
+                    <h3 className="font-semibold text-base line-clamp-2 leading-snug mb-1 text-foreground">
                       {isRTL && uni.nameAr ? uni.nameAr : uni.name}
                     </h3>
                     {isRTL && uni.name && (
@@ -139,9 +139,9 @@ export function Universities() {
       )}
 
       {filteredUnis?.length === 0 && !isLoading && (
-        <div className="text-center py-32 bg-white rounded-3xl border border-border border-dashed shadow-sm">
+        <div className="text-center py-32 bg-card rounded-3xl border border-border border-dashed shadow-sm">
           <GraduationCap className="mx-auto h-16 w-16 text-muted-foreground/30 mb-6" />
-          <h3 className="text-2xl font-extrabold mb-3">{t("universities.notFound.title")}</h3>
+          <h3 className="text-2xl font-semibold mb-3">{t("universities.notFound.title")}</h3>
           <p className="text-muted-foreground font-medium text-lg">{t("universities.notFound.desc")}</p>
         </div>
       )}

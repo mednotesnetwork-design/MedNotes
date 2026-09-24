@@ -16,8 +16,8 @@ export function Footer() {
     <footer
       className="border-t mt-8"
       style={{
-        borderColor: "rgba(255,255,255,0.60)",
-        background: "rgba(255,255,255,0.45)",
+        borderColor: "var(--mn-border)",
+        background: "var(--mn-surface)",
         backdropFilter: "blur(20px)",
         WebkitBackdropFilter: "blur(20px)",
       }}
@@ -31,14 +31,14 @@ export function Footer() {
               <AppLogo size={30} />
               <div>
                 <span
-                  className="font-serif font-bold text-base block"
-                  style={{ color: "hsl(130 45% 16%)" }}
+                  className="font-sans font-bold text-base block"
+                  style={{ color: "#e6cfb7" }}
                 >
                   {t("nav.brand")}
                 </span>
                 <span
                   className="text-[10px] font-medium block"
-                  style={{ color: "hsl(130 30% 44%)" }}
+                  style={{ color: "#8dd3b3" }}
                   dir="rtl"
                 >
                   تعلّم، شارك، واترك أثرًا 🌿
@@ -47,7 +47,7 @@ export function Footer() {
             </Link>
             <p
               className="text-sm leading-relaxed max-w-xs"
-              style={{ color: "hsl(130 12% 48%)" }}
+              style={{ color: "#a0b8b3" }}
             >
               {t("footer.tagline")}
             </p>
@@ -57,7 +57,7 @@ export function Footer() {
           <div>
             <h4
               className="text-xs font-bold uppercase tracking-wider mb-4"
-              style={{ color: "hsl(130 20% 44%)" }}
+              style={{ color: "#a0b8b3" }}
             >
               {t("footer.links")}
             </h4>
@@ -67,7 +67,7 @@ export function Footer() {
                   <Link
                     href={link.href}
                     className="text-sm transition-colors hover:text-primary"
-                    style={{ color: "hsl(130 12% 48%)" }}
+                    style={{ color: "#a0b8b3" }}
                   >
                     {t(link.key)}
                   </Link>
@@ -80,20 +80,20 @@ export function Footer() {
           <div>
             <h4
               className="text-xs font-bold uppercase tracking-wider mb-3"
-              style={{ color: "hsl(130 20% 44%)" }}
+              style={{ color: "#a0b8b3" }}
             >
               {t("footer.contribute")}
             </h4>
             <p
               className="text-sm mb-4 leading-relaxed"
-              style={{ color: "hsl(130 12% 48%)" }}
+              style={{ color: "#a0b8b3" }}
             >
               {t("footer.contributeDesc")}
             </p>
             <Link href="/upload">
               <button
                 className="px-5 py-2.5 rounded-full text-sm font-semibold text-white transition-all hover:opacity-90"
-                style={{ background: "linear-gradient(135deg,hsl(130 38% 50%),hsl(130 32% 40%))" }}
+                style={{ background: "var(--mn-surface-raised)" }}
               >
                 {t("footer.uploadCta")}
               </button>
@@ -104,7 +104,7 @@ export function Footer() {
 
         <div
           className="mt-8 pt-6 border-t text-center text-sm"
-          style={{ borderColor: "rgba(255,255,255,0.55)", color: "hsl(130 12% 52%)" }}
+          style={{ borderColor: "var(--mn-border)", color: "#a0b8b3" }}
         >
           {t("footer.copyright", { year: new Date().getFullYear() })}
         </div>

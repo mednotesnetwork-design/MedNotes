@@ -18,7 +18,7 @@ export function ModuleCard({ id, name, code, universityName, subjectCount, noteC
 
   return (
     <Link href={`/notes?moduleId=${id}`}>
-      <div className="group flex flex-col bg-white border border-border rounded-xl p-5 card-hover h-full relative overflow-hidden">
+      <div className="group flex flex-col bg-card border border-border rounded-xl p-5 card-hover h-full relative overflow-hidden">
         {/* Left accent bar */}
         <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-primary/20 group-hover:bg-primary group-hover:w-[3px] transition-all duration-200 rtl:left-auto rtl:right-0" />
 
@@ -67,7 +67,7 @@ export function SubjectCard({ id, name, moduleName, noteCount }: SubjectCardProp
 
   return (
     <Link href={`/notes?subjectId=${id}`}>
-      <div className="group flex flex-col bg-white border border-border rounded-lg p-4 card-hover h-full relative overflow-hidden">
+      <div className="group flex flex-col bg-card border border-border rounded-lg p-4 card-hover h-full relative overflow-hidden">
         {/* Left accent */}
         <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-primary/25 group-hover:bg-primary group-hover:w-[3px] transition-all duration-200 rtl:left-auto rtl:right-0" />
 

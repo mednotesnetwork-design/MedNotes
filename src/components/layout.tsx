@@ -1,20 +1,26 @@
-import React from "react";
-import {Link,useLocation} from "wouter";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
+import type { ReactNode } from 'react';
+import { Link, useLocation } from 'wouter';
+import { BookOpen, ScanLine, Microscope, ArrowUpLeft } from 'lucide-react';
+import { Header } from './Header';
+import { Footer } from './Footer';
 import { StudyNav } from './StudyNav';
-
-export function Layout({ children }: { children: React.ReactNode }) {
-  const [location]=useLocation();
-  return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
-      <StudyNav />
-      {location==='/'&&<section className="study-page" dir="rtl"><h1>مساحة الدراسة</h1><div className="module-cards"><Link href="/lectures"><strong>المحاضرة التفاعلية</strong><p>افتحي PDF أو ابدئي رحلة العصب الكعبري: شرح، أسئلة، واستكشاف 3D.</p></Link><Link href="/anatomy"><strong>أطلس الطرف العلوي</strong><p>ابحثي عن تركيب، اعزليه، واستكشفي علاقاته ومعالمه وارتباطاته السريرية.</p></Link><Link href="/research"><strong>Research Mentor</strong><p>ناقشي مشروعك واحفظي السؤال والتصميم والقرارات. تجربة V1.</p></Link></div><p className="study-note">مساحة الدراسة متاحة هنا. خدمات رفع الملاحظات المجتمعية والمزامنة والحسابات لا تزال غير موصولة في هذه النسخة.</p></section>}
-      <main className="flex-1">
-        {children}
-      </main>
-      <Footer />
-    </div>
-  );
+const modules = [
+  {href:'/lectures', Icon:BookOpen, label:'المحاضرات التفاعلية', meta:'LECTURES', text:'شريحتك الأصلية، شرحها، وأسئلة تختبر فهمك.'},
+  {href:'/anatomy', Icon:ScanLine, label:'أطلس الطرف العلوي', meta:'ANATOMY', text:'استكشفي التراكيب والعلاقات التشريحية في 3D.'},
+  {href:'/research', Icon:Microscope, label:'Research Mentor', meta:'RESEARCH', text:'ناقشي السؤال والتصميم، واحتفظي بقرارات بحثك.'},
+];
+export function Layout({ children }: { children: ReactNode }) {
+  const [location] = useLocation();
+  const isStudy = ['/anatomy','/lectures','/research'].includes(location);
+  return <div className={'mednote-shell '+(isStudy?'study-shell':'community-shell')}>
+    <a className="mednote-skip-link" href="#main-content">انتقلي إلى المحتوى</a>
+    <Header/><StudyNav/>
+    {location==='/'&&<section className="study-page study-home" dir="rtl" aria-labelledby="study-heading">
+      <div className="study-title"><div><span className="mednote-eyebrow">MEDNOTE WORKSPACE</span><h1 id="study-heading">مساحة الدراسة</h1></div><span className="study-home-caption">تعلّمي · استكشفي · ابحثي</span></div>
+      <div className="module-cards">{modules.map(({href,Icon,label,meta,text})=><Link key={href} href={href}><div className="module-card-top"><Icon size={24} strokeWidth={1.5}/><span>{meta}</span><ArrowUpLeft size={17}/></div><h2>{label}</h2><p>{text}</p><span className="module-open">افتحي المساحة <ArrowUpLeft size={14}/></span></Link>)}</div>
+      <p className="study-note">خدمات المجتمع والمزامنة والحسابات لم تُوصَل بعد في هذه النسخة.</p>
+    </section>}
+    <main id="main-content" className="mednote-main">{children}</main>
+    {!isStudy&&<Footer/>}
+  </div>;
 }

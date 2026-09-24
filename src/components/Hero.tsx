@@ -42,8 +42,8 @@ export function Hero({ onSearch, activeFilter, onFilter, stats, statsLoading }: 
 
         {/* Title */}
         <h1
-          className="font-serif font-bold text-4xl md:text-5xl mt-4 mb-1.5 leading-tight"
-          style={{ color: "hsl(130 45% 16%)" }}
+          className="font-sans font-bold text-4xl md:text-5xl mt-4 mb-1.5 leading-tight"
+          style={{ color: "#e6cfb7" }}
         >
           {t("nav.brand")}
         </h1>
@@ -51,7 +51,7 @@ export function Hero({ onSearch, activeFilter, onFilter, stats, statsLoading }: 
         {/* Arabic slogan */}
         <p
           className="text-base font-semibold mb-1"
-          style={{ color: "hsl(130 28% 42%)" }}
+          style={{ color: "#8dd3b3" }}
           dir="rtl"
         >
           تعلّم، شارك، واترك أثرًا 🌿
@@ -59,7 +59,7 @@ export function Hero({ onSearch, activeFilter, onFilter, stats, statsLoading }: 
 
         {/* English subline */}
         {!isRTL && (
-          <p className="text-sm mb-6" style={{ color: "hsl(130 12% 50%)" }}>
+          <p className="text-sm mb-6" style={{ color: "#a0b8b3" }}>
             {t("home.hero.subline")}
           </p>
         )}
@@ -80,10 +80,10 @@ export function Hero({ onSearch, activeFilter, onFilter, stats, statsLoading }: 
               <div
                 key={s.l}
                 className="glass px-4 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5"
-                style={{ color: "hsl(130 35% 30%)" }}
+                style={{ color: "#8dd3b3" }}
               >
-                <span className="font-extrabold text-sm">{s.v}</span>
-                <span style={{ color: "hsl(130 12% 50%)" }}>{s.l}</span>
+                <span className="font-semibold text-sm">{s.v}</span>
+                <span style={{ color: "#a0b8b3" }}>{s.l}</span>
               </div>
             ))}
           </div>
@@ -103,7 +103,7 @@ export function Hero({ onSearch, activeFilter, onFilter, stats, statsLoading }: 
             <Button
               type="submit"
               className="h-8 px-5 rounded-xl text-sm font-semibold text-white shrink-0 border-0"
-              style={{ background: "linear-gradient(135deg,hsl(130 38% 50%),hsl(130 32% 40%))" }}
+              style={{ background: "var(--mn-surface-raised)" }}
             >
               {t("home.hero.searchBtn")}
             </Button>
@@ -120,14 +120,14 @@ export function Hero({ onSearch, activeFilter, onFilter, stats, statsLoading }: 
               style={
                 activeFilter === chip.key
                   ? {
-                      background: "linear-gradient(135deg,hsl(130 38% 50%),hsl(130 32% 40%))",
+                      background: "var(--mn-surface-raised)",
                       color: "white",
-                      boxShadow: "0 2px 8px rgba(78,138,89,0.28)",
+                      boxShadow: "none",
                     }
                   : {
-                      background: "rgba(255,255,255,0.58)",
-                      border: "1px solid rgba(255,255,255,0.80)",
-                      color: "hsl(130 20% 44%)",
+                      background: "var(--mn-surface)",
+                      border: "1px solid var(--mn-border)",
+                      color: "#a0b8b3",
                     }
               }
             >
