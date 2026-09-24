@@ -38,3 +38,13 @@ not evidence of scientific improvement.
 Deployment remains blocked: GitHub installations returned empty and Vercel deploy returned
 Tool deploy_to_vercel not found. Required account capability: authorize repository write
 access for mednotesnetwork-design/MedNotes via GitHub integration; provider keys are not needed.
+
+## Slide-first study update — 2026-09-24
+
+Lecture Explainer now centers the original PDF/text slide with text selection, a pointer-drawn image crop, Explain, per-slide follow-up conversations, and optional Quiz/Visual/3D/notes tabs. Existing saved lectures migrate without clearing IndexedDB. Image requests send only the current slide or selected crop; the whole PDF stays local. The original authored sample remains labeled as such.
+
+Browser invitation entry was removed. The MedNote preview API now forwards Vercel's signed runtime workload identity to the existing Research Mentor service. `services/research-mentor/` holds the existing service deployment source, plus JWT validation restricted to MedNote's project, team and preview environment. Provider configuration and frozen V1 engine modules remain unchanged. The evaluator endpoint retains its original policy. No secrets are committed.
+
+Release dependency: deploy `services/research-mentor/` to EXISTING project `prj_sTnkTHAM39XMr4dNXrrEn7u07qsQ` with its existing environment, and verify MedNote receives `x-vercel-oidc-token` at runtime. No new project, provider setup or client key is required. Without this backend release, direct AI requests will fail honestly; a successful frontend build does not prove AI activation. The connected deployment operation currently returns Tool not found, and browser deployment is blocked by sign-in. The environment-variable page was not opened after automatic approval rejected possible secret exposure.
+
+Verified locally: TypeScript, production build, Python compile; 8 tests cover signed identity, wrong project/environment/audience/expiry/signature rejection, image attachment to generation/review, source quote checks, no invitation forwarding, and cross-origin rejection. No live Gemini inference or browser end-to-end pass is claimed for this update.

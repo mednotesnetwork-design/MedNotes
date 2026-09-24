@@ -1,5 +1,5 @@
-"""Same-origin MedNote boundary; forwards a student's invitation, never a provider key."""
-import json
+"""Same-origin MedNote preview boundary. Uses Vercel workload identity, no invitation UI."""
+import json,os
 from http.server import BaseHTTPRequestHandler
 from urllib.request import Request,build_opener,HTTPRedirectHandler
 from urllib.error import HTTPError
@@ -13,19 +13,21 @@ class StudyProxy(BaseHTTPRequestHandler):
     def do_POST(self):
         origin=self.headers.get('Origin')
         if origin and urlparse(origin).netloc!=self.headers.get('Host'):return self.reply(403,{'error':'FORBIDDEN'})
-        auth=self.headers.get('Authorization','')
-        if not auth.startswith('Bearer ') or len(auth)>300:return self.reply(401,{'error':'INVITE_REQUIRED'})
+        if self.headers.get('Sec-Fetch-Site')=='cross-site':return self.reply(403,{'error':'FORBIDDEN'})
+        identity=self.headers.get('x-vercel-oidc-token','')
+        if os.environ.get('VERCEL_ENV')!='preview' or not identity:return self.reply(503,{'error':'PREVIEW_IDENTITY_UNAVAILABLE'})
         try:
             n=int(self.headers.get('Content-Length','0'))
-            if not 0<n<=100000 or self.headers.get('Content-Type','').split(';')[0]!='application/json':return self.reply(400,{'error':'INVALID_REQUEST'})
-            body=self.rfile.read(n);json.loads(body)
-            request=Request('https://research-mentor-nine.vercel.app/api/'+self.upstream,data=body,headers={'Authorization':auth,'Content-Type':'application/json'},method='POST')
-            with build_opener(NoRedirect()).open(request,timeout=275) as response:
-                data=json.loads(response.read(1000000));return self.reply(200,data)
+            if n>3000000:return self.reply(413,{'error':'REQUEST_TOO_LARGE'})
+            if n<=0 or self.headers.get('Content-Type','').split(';')[0]!='application/json':return self.reply(400,{'error':'INVALID_REQUEST'})
+            body=self.rfile.read(n)
+            if not isinstance(json.loads(body),dict):return self.reply(400,{'error':'INVALID_REQUEST'})
+            request=Request('https://research-mentor-nine.vercel.app/api/'+self.upstream,data=body,headers={'X-MedNote-Identity':identity,'Content-Type':'application/json'},method='POST')
+            with build_opener(NoRedirect()).open(request,timeout=275) as response:return self.reply(200,json.loads(response.read(1000000)))
         except HTTPError as e:
             try:data=json.loads(e.read(10000))
             except Exception:data={'error':'SERVICE_UNAVAILABLE'}
-            return self.reply(e.code if e.code in (400,401,403,410,422,429,502,503,504) else 502,data)
+            return self.reply(e.code if e.code in (400,401,403,410,413,422,429,502,503,504) else 502,data)
         except (ValueError,TypeError):return self.reply(400,{'error':'INVALID_REQUEST'})
         except Exception:return self.reply(503,{'error':'SERVICE_UNAVAILABLE'})
     def do_GET(self):self.reply(405,{'error':'METHOD_NOT_ALLOWED'})
