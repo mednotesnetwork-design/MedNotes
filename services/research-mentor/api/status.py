@@ -7,9 +7,8 @@ class handler(BaseHTTPRequestHandler):
         body = json.dumps({
             'project': 'Research Mentor',
             'secret_configured': bool(os.environ.get('GEMINI_API_KEY', '').strip()),
-            'connection_verified': False,
-            'scientific_baseline': 'pending',
-            'student_service': 'not_activated',
+            'provider_health': 'not_checked_by_this_endpoint',
+            'student_service': 'mednote_preview_identity',
         }).encode()
         self.send_response(200)
         self.send_header('Content-Type', 'application/json')

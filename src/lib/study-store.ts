@@ -6,7 +6,7 @@ export async function studyRequest(route:string,body:unknown,signal?:AbortSignal
  const response=await fetch(import.meta.env.BASE_URL+'api/'+route,{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify(body),signal});
  const data=await response.json().catch(()=>({error:'SERVICE_UNAVAILABLE'}));
  if(!response.ok){
-  const message=response.status===429?'الخدمة مشغولة الآن. حاولي بعد قليل.':data.error==='LECTURE_REVIEW_FAILED'?'لم يجتز الشرح مراجعة مطابقته للسلايد. جرّبي تحديد مقطع أصغر.':response.status===413?'الجزء المحدد كبير. اختاري مساحة أصغر من السلايد.':'تعذر الاتصال بخدمة AI الآن. سلايدك وسؤالك محفوظان؛ حاولي مجددًا.';
+  const message=data.error==='PROVIDER_BUSY'?'Gemini غير متاح مؤقتًا بعد محاولات تلقائية. محتواك وسؤالك محفوظان على هذا الجهاز؛ حاولي بعد قليل.':response.status===429?'الخدمة مشغولة الآن. حاولي بعد قليل.':data.error==='LECTURE_REVIEW_FAILED'?'لم يجتز الشرح مراجعة مطابقته للسلايد. جرّبي تحديد مقطع أصغر.':response.status===413?'الجزء المحدد كبير. اختاري مساحة أصغر من السلايد.':'تعذر الاتصال بخدمة AI الآن. محتواك وسؤالك محفوظان؛ حاولي مجددًا.';
   throw new Error(message);
  }
  return data;
