@@ -26,6 +26,7 @@ class CloudflareTransport:
         self.attempts += 1
         require(self.attempts <= 8, 'Call budget exceeded', 'USAGE_LIMIT', 429)
         if not request.get_header('X-goog-api-key'):request.remove_header('X-goog-api-key')
+        request.add_header('User-Agent', 'MedNote/1.0 (server-side study client)')
         request.add_header('cf-aig-authorization', 'Bearer ' + self.token)
         request.add_header('cf-aig-max-attempts', '2')
         request.add_header('cf-aig-retry-delay', '700')
@@ -46,7 +47,10 @@ class CloudflareTransport:
             status = error.code
             diagnostics = {}
             try:
-                body = json.loads(error.read(16384))
+                raw = error.read(16384).decode('utf-8', errors='replace')
+                diagnostics['edge_codes'] = re.findall(r'error code:\s*(\d{4})', raw.lower())[:4]
+                diagnostics['html_response'] = '<html' in raw.lower() or '<!doctype html' in raw.lower()
+                body = json.loads(raw)
                 entries = body.get('errors', []) if isinstance(body, dict) else []
                 if isinstance(body, dict) and isinstance(body.get('error'), dict):entries = [body['error']]
                 codes = [entry.get('code') for entry in entries if isinstance(entry, dict)]

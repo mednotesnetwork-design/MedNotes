@@ -82,6 +82,7 @@ class CloudflareTests(unittest.TestCase):
             self.assertEqual(req.get_header('X-goog-api-key'),'test-only-key')
             self.assertEqual(req.get_header('Cf-aig-authorization'),'Bearer test-only-token')
             self.assertEqual(req.get_header('Cf-aig-max-attempts'),'2')
+            self.assertEqual(req.get_header('User-agent'),'MedNote/1.0 (server-side study client)')
             self.assertNotIn('Authorization',req.headers)
             body=json.loads(req.data)
             self.assertIn('troponin',body['contents'][0]['parts'][0]['text'])
