@@ -25,6 +25,7 @@ class CloudflareTransport:
         require(remaining > 5, 'Study deadline reached', 'STUDY_TIMEOUT', 504)
         self.attempts += 1
         require(self.attempts <= 8, 'Call budget exceeded', 'USAGE_LIMIT', 429)
+        if not request.get_header('X-goog-api-key'):request.remove_header('X-goog-api-key')
         request.add_header('cf-aig-authorization', 'Bearer ' + self.token)
         request.add_header('cf-aig-max-attempts', '2')
         request.add_header('cf-aig-retry-delay', '700')
@@ -65,7 +66,9 @@ def cloudflare_provider(deadline, request_id, module):
             bool(token) and not any(c.isspace() for c in token),
             'Cloudflare configuration missing or invalid', 'STUDY_CONFIGURATION_REQUIRED', 503)
     provider = Provider(Path('/nonexistent-research-mentor-config/inference.json'))
-    require(provider.available, 'Gemini key missing', 'STUDY_CONFIGURATION_REQUIRED', 503)
+    # Reuse Gemini key stored in Cloudflare Provider Keys when no local key exists.
+    # Cloudflare gateway must have byok_only enabled; no Unified Billing fallback.
+    if not provider.available:provider.config={'api_key':''}
     model = os.environ.get('MEDNOTE_GEMINI_MODEL', DEFAULT_MODEL).strip()
     require(bool(re.fullmatch(r'gemini-[a-zA-Z0-9.-]+', model)), 'Invalid model', 'STUDY_CONFIGURATION_REQUIRED', 503)
     provider.config.update(endpoint=f'https://gateway.ai.cloudflare.com/v1/{account}/{gateway}/google-ai-studio/v1beta/models/{model}:generateContent',

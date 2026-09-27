@@ -1,5 +1,5 @@
 {
-  "id": "mednote-private",
+  "id": "mednote-ai",
   "authentication": true,
   "byok_only": true,
   "cache_invalidate_on_update": true,

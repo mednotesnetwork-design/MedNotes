@@ -7,6 +7,7 @@ import jwt
 from cryptography.hazmat.primitives.asymmetric import rsa
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'services/research-mentor'))
+sys.path.insert(0,str(ROOT))
 import mednote_access
 
 def load(name,path):
@@ -56,13 +57,9 @@ class ProxyTests(unittest.TestCase):
         h=object.__new__(proxy.StudyProxy);h.headers=headers;h.rfile=BytesIO(body);h.reply=lambda status,data:(status,data);return h
     def test_no_browser_invitation_is_required(self):
         h=self.fake({'Host':'preview.vercel.app','Origin':'https://preview.vercel.app','x-vercel-oidc-token':'workload','Content-Length':'2','Content-Type':'application/json'})
-        class Response:
-            def __enter__(self):return self
-            def __exit__(self,*args):pass
-            def read(self,*args):return b'{"answer":"ok"}'
-        with patch.dict(proxy.os.environ,{'VERCEL_ENV':'preview'}),patch.object(proxy,'build_opener') as opener:
-            opener.return_value.open.return_value=Response();self.assertEqual(h.do_POST()[0],200)
-            request=opener.return_value.open.call_args.args[0];self.assertEqual(request.get_header('X-mednote-identity'),'workload');self.assertIsNone(request.get_header('Authorization'))
+        with patch.dict(proxy.os.environ,{'VERCEL_ENV':'preview'}),patch.object(proxy,'execute_study',return_value={'answer':'ok'}) as execute:
+            self.assertEqual(h.do_POST()[0],200)
+            execute.assert_called_once_with('student',{})
     def test_rejects_cross_origin_and_unidentified_runtime(self):
         self.assertEqual(self.fake({'Host':'preview.vercel.app','Origin':'https://other.example'}).do_POST()[0],403)
         with patch.dict(proxy.os.environ,{'VERCEL_ENV':'preview'}):self.assertEqual(self.fake({}).do_POST()[0],503)
@@ -89,6 +86,18 @@ class CloudflareTests(unittest.TestCase):
             body=json.loads(req.data)
             self.assertIn('troponin',body['contents'][0]['parts'][0]['text'])
             self.assertEqual(body['generationConfig']['thinkingConfig']['thinkingLevel'],'LOW')
+    def test_stored_provider_key_requires_only_gateway_token(self):
+        import study_routing
+        from io import BytesIO
+        response={'candidates':[{'finishReason':'STOP','content':{'parts':[{'text':'{"answer":"ok"}'}]}}]}
+        env=self.env();del env['GEMINI_API_KEY']
+        with patch.dict('os.environ',env,clear=True),patch.object(study_routing,'build_opener') as op:
+            op.return_value.open.return_value=BytesIO(json.dumps(response).encode())
+            p=study_routing.cloudflare_provider(time.monotonic()+240,'test','lecture')
+            self.assertEqual(p.complete('Return JSON',{}),{'answer':'ok'})
+            req=op.return_value.open.call_args.args[0]
+            self.assertIsNone(req.get_header('X-goog-api-key'))
+            self.assertEqual(req.get_header('Cf-aig-authorization'),'Bearer test-only-token')
     def test_missing_gateway_fails_closed_without_direct_or_fallback_call(self):
         import study_routing
         with patch.dict('os.environ',{'GEMINI_API_KEY':'test-only-key'},clear=True),self.assertRaises(lecture.MentorError) as error:

@@ -1,12 +1,12 @@
 # MedNote study route — source of truth (2026-09-27)
 
-Existing MedNote Vercel preview → existing Research Mentor Vercel backend →
+Existing MedNote Vercel preview + Python API →
 Cloudflare AI Gateway provider-native endpoint → Gemini. Same app and domains.
 No Vercel AI Gateway, OpenAI or Claude request path is enabled.
 
-## Server environment (existing `research-mentor` Vercel project)
+## Server environment (existing `med-notes` Vercel project)
 
-- `GEMINI_API_KEY`: reuse the existing secret, never copy it into the client.
+- `GEMINI_API_KEY`: optional when already stored in Cloudflare Provider Keys; reuse that key, never copy it into the client.
 - `CLOUDFLARE_ACCOUNT_ID`: account owning the gateway.
 - `CLOUDFLARE_AI_GATEWAY_ID`: gateway slug.
 - `CLOUDFLARE_AI_GATEWAY_TOKEN`: encrypted, scoped gateway-run credential.
@@ -14,9 +14,8 @@ No Vercel AI Gateway, OpenAI or Claude request path is enabled.
 
 Cloudflare authentication is required. Missing configuration fails closed with
 `STUDY_CONFIGURATION_REQUIRED`; there is no implicit direct or paid fallback.
-Do not deploy this backend over the working deployment before these settings are
-available and tested. The frontend proxy still calls the existing backend alias.
-The old deployed backend is not automatically updated by a frontend Git push.
+Both study APIs invoke the existing reviewed engines inside MedNote. The independent
+legacy Research deployment is preserved and is not part of this request path.
 
 ## Gateway settings required before activation
 
@@ -50,12 +49,11 @@ or names are needed by the client. Arbitrary remote image URLs are not accepted.
 ## Deployment and verification gate
 
 1. Configure the existing gateway and server variables above.
-2. Deploy `services/research-mentor` to existing project
-   `prj_sTnkTHAM39XMr4dNXrrEn7u07qsQ`, preserving its existing Gemini secret.
+2. Deploy the integrated study branch to existing `med-notes` preview project.
 3. Exercise Research and Lecture through the existing protected MedNote preview.
 4. Test a PDF/text selection, image-region selection, follow-up, Quiz and Visual.
 5. Verify `lecture_input` records full image and nonzero selection length, then
-   `study_completed` route `cloudflare-gemini`; inspect both projects' 4xx/5xx.
+   `study_completed` route `cloudflare-gemini`; inspect MedNote runtime 4xx/5xx.
 6. Only claim completion after responses appear in the interface. Local mocks
    validate the contract but are not evidence of live inference.
 
