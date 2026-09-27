@@ -31,7 +31,7 @@ class handler(BaseHTTPRequestHandler):
             require(state['student_level'] in ('beginner','medical_student','advanced_student','researcher'),'Invalid level')
             history=data.get('conversation',[]);require(isinstance(history,list) and len(history)<=12,'Invalid history')
             require(all(isinstance(t,dict) and set(t)=={'role','content'} and t['role'] in ('user','assistant') and isinstance(t['content'],str) and len(t['content'])<=24000 for t in history),'Invalid history')
-            response=run_study(self.headers,lambda p:Engine(p).answer(text,deepcopy(state),deepcopy(history),mode=mode,papers=[]),allow_failover=trusted)
+            response=run_study(self.headers,lambda p:Engine(p).answer(text,deepcopy(state),deepcopy(history),mode=mode,papers=[]),module='research')
             response.update(experimental=True,baseline='REAL-ENGINE BASELINE V1',evaluation_record=False)
             return self.reply(200,response)
         except MentorError as e:return self.reply(e.status,{'error':e.code})

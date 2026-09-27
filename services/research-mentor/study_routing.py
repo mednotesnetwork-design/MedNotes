@@ -1,67 +1,94 @@
-"""Preview study failover. Restart the entire reviewed workflow on a fresh provider."""
-import json, os, socket, time, re
+"""Private study provider boundary. Gemini via Cloudflare only; no automatic fallback."""
+import json
+import os
+import re
+import socket
+import time
+import uuid
 from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.request import build_opener
 from v1server.provider import Provider, NoRedirect
 from v1server.contracts import MentorError, require
+from study_limits import admit_study
 
-GATEWAY='https://ai-gateway.vercel.sh/v1'
-FALLBACK_MODEL='openai/gpt-5-mini'
+DEFAULT_MODEL = 'gemini-3.1-flash-lite'
 
-class StudyTransport:
-    def __init__(self, inner, deadline, gateway=False):
-        self.inner,self.deadline,self.gateway=inner,deadline,gateway
+class CloudflareTransport:
+    """Gateway owns retries; the application never multiplies attempts."""
+    def __init__(self, inner, deadline, token, request_id, module):
+        self.inner, self.deadline, self.token = inner, deadline, token
+        self.request_id, self.module, self.attempts = request_id, module, 0
+
     def open(self, request, **kwargs):
-        remaining=self.deadline-time.monotonic()
-        require(remaining>1,'Request deadline reached','PROVIDER_BUSY',503)
-        kwargs['timeout']=min(35 if self.gateway else 15,remaining)
-        try:return self.inner.open(request,**kwargs)
+        remaining = self.deadline - time.monotonic()
+        require(remaining > 5, 'Study deadline reached', 'STUDY_TIMEOUT', 504)
+        self.attempts += 1
+        require(self.attempts <= 8, 'Call budget exceeded', 'USAGE_LIMIT', 429)
+        request.add_header('cf-aig-authorization', 'Bearer ' + self.token)
+        request.add_header('cf-aig-max-attempts', '2')
+        request.add_header('cf-aig-retry-delay', '700')
+        request.add_header('cf-aig-backoff', 'exponential')
+        request.add_header('cf-aig-request-timeout', str(int(min(25000, (remaining - 2) * 500))))
+        request.add_header('cf-aig-skip-cache', 'true')
+        # No student text, identifiers, keys or slide data in metadata/runtime logs.
+        request.add_header('cf-aig-metadata', json.dumps({'request_id': self.request_id, 'module': self.module}))
+        kwargs['timeout'] = min(58, remaining)
+        start = time.monotonic()
+        try:
+            response = self.inner.open(request, **kwargs)
+            print(json.dumps({'event': 'study_provider_call', 'request_id': self.request_id,
+                              'module': self.module, 'status': 200, 'call': self.attempts,
+                              'latency_ms': round((time.monotonic()-start)*1000)}), flush=True)
+            return response
         except HTTPError as error:
-            status=error.code
-            # Log only a machine-readable error type, never upstream message/body.
-            error_type='unknown'
-            try:
-                detail=json.loads(error.read(10000)).get('error',{})
-                value=detail.get('type',detail.get('code','unknown')) if isinstance(detail,dict) else 'unknown'
-                if isinstance(value,str) and re.fullmatch(r'[A-Za-z0-9_-]{1,80}',value):error_type=value
-            except (ValueError,TypeError,AttributeError):pass
-            finally:error.close()
-            print(json.dumps({'event':'study_provider_error','provider':'gateway' if self.gateway else 'gemini','status':status,'error_type':error_type}),flush=True)
-            if self.gateway and status==403 and error_type=='customer_verification_required':raise MentorError('GATEWAY_VERIFICATION_REQUIRED','Gateway account verification required',503)
-            if self.gateway and status==402:raise MentorError('GATEWAY_CREDITS_REQUIRED','Gateway balance unavailable',402)
-            if self.gateway and status in (401,403):raise MentorError('GATEWAY_ACCESS_REQUIRED','Gateway access unavailable',503)
-            if status in (408,429,500,502,503,504):raise MentorError('PROVIDER_BUSY','Temporary provider error',503)
-            raise
-        except (URLError,TimeoutError,socket.timeout):
-            raise MentorError('PROVIDER_BUSY','Provider connection timed out',503)
+            status = error.code
+            error.close()
+            print(json.dumps({'event': 'study_provider_error', 'request_id': self.request_id,
+                              'module': self.module, 'status': status, 'call': self.attempts}), flush=True)
+            if status == 429: raise MentorError('USAGE_LIMIT', 'Rate limit reached', 429)
+            if status in (408, 504): raise MentorError('STUDY_TIMEOUT', 'Provider timeout', 504)
+            if status in (401, 403): raise MentorError('STUDY_CONFIGURATION_REQUIRED', 'Server authentication failed', 503)
+            if status in (500, 502, 503): raise MentorError('PROVIDER_BUSY', 'Provider temporarily unavailable', 503)
+            raise MentorError('PROVIDER_FAILURE', 'Provider rejected the request', 502)
+        except (URLError, TimeoutError, socket.timeout):
+            print(json.dumps({'event': 'study_provider_timeout', 'request_id': self.request_id, 'module': self.module}), flush=True)
+            raise MentorError('STUDY_TIMEOUT', 'Provider connection timeout', 504)
 
-def gateway_provider(headers,deadline):
-    # This deployment's runtime identity, never the caller-supplied workload token.
-    token=os.environ.get('AI_GATEWAY_API_KEY','').strip() or headers.get('x-vercel-oidc-token','') or os.environ.get('VERCEL_OIDC_TOKEN','').strip()
-    require(bool(token),'Gateway identity unavailable','GATEWAY_ACCESS_REQUIRED',503)
-    opener=StudyTransport(build_opener(NoRedirect()),deadline,gateway=True)
-    # Let the inference endpoint decide eligibility. Free credits activate on the
-    # first generation; a credits preflight can incorrectly reject new teams.
-    # No billing, purchase, or auto-top-up endpoint is called here.
-    provider=Provider.__new__(Provider)
-    provider.config={'endpoint':GATEWAY+'/chat/completions','model':FALLBACK_MODEL,'api_key':token,'protocol':'chat-completions-json','sampling_parameters':{'max_completion_tokens':8192,'reasoning_effort':'medium'}}
-    provider.calls=[];provider.opener=opener
+
+def cloudflare_provider(deadline, request_id, module):
+    account = os.environ.get('CLOUDFLARE_ACCOUNT_ID', '').strip()
+    gateway = os.environ.get('CLOUDFLARE_AI_GATEWAY_ID', '').strip()
+    token = os.environ.get('CLOUDFLARE_AI_GATEWAY_TOKEN', '').strip()
+    require(bool(re.fullmatch(r'[a-fA-F0-9]{32}', account)) and
+            bool(re.fullmatch(r'[a-zA-Z0-9_-]{1,64}', gateway)) and
+            bool(token) and not any(c.isspace() for c in token),
+            'Cloudflare configuration missing or invalid', 'STUDY_CONFIGURATION_REQUIRED', 503)
+    provider = Provider(Path('/nonexistent-research-mentor-config/inference.json'))
+    require(provider.available, 'Gemini key missing', 'STUDY_CONFIGURATION_REQUIRED', 503)
+    model = os.environ.get('MEDNOTE_GEMINI_MODEL', DEFAULT_MODEL).strip()
+    require(bool(re.fullmatch(r'gemini-[a-zA-Z0-9.-]+', model)), 'Invalid model', 'STUDY_CONFIGURATION_REQUIRED', 503)
+    provider.config.update(endpoint=f'https://gateway.ai.cloudflare.com/v1/{account}/{gateway}/google-ai-studio/v1beta/models/{model}:generateContent',
+                           model=model, protocol='gemini-generate-content',
+                           sampling_parameters={'max_completion_tokens': 6144, 'reasoning_effort': 'low'})
+    provider.opener = CloudflareTransport(build_opener(NoRedirect()), deadline, token, request_id, module)
     return provider
 
-def run_study(headers,execute,*,allow_failover=True,primary_factory=None,fallback_factory=gateway_provider):
-    deadline=time.monotonic()+240
-    primary=(primary_factory or (lambda:Provider(Path('/nonexistent-research-mentor-config/inference.json'))))()
-    require(primary.available,'Primary provider not configured','PROVIDER_UNAVAILABLE',503)
-    primary.opener=StudyTransport(primary.opener,deadline)
+
+def run_study(headers, execute, *, module='research', provider_factory=None):
+    """Provider factory is the extension point for future routing; none is enabled."""
+    request_id = uuid.uuid4().hex
+    started = time.monotonic()
     try:
-        result=execute(primary);used=primary;fallback=False
+        provider = (provider_factory or cloudflare_provider)(started+240, request_id, module)
+        with admit_study():
+            result = execute(provider)
+        print(json.dumps({'event': 'study_completed', 'request_id': request_id, 'module': module,
+                          'route': 'cloudflare-gemini', 'model': provider.config['model'],
+                          'calls': len(provider.calls), 'latency_ms': round((time.monotonic()-started)*1000)}), flush=True)
+        result['request_id'] = request_id
+        return result
     except MentorError as error:
-        # Never retry validation, unsafe output, or scientific rejection on another model.
-        if not allow_failover or error.code!='PROVIDER_BUSY':raise
-        print(json.dumps({'event':'study_failover','from':'gemini','to':FALLBACK_MODEL}),flush=True)
-        used=fallback_factory(headers,deadline)
-        result=execute(used);fallback=True
-    result['provider_routing']={'failover_used':fallback,'model':used.config['model']}
-    print(json.dumps({'event':'study_completed','model':used.config['model'],'failover_used':fallback,'calls':len(used.calls)}),flush=True)
-    return result
+        print(json.dumps({'event': 'study_failed', 'request_id': request_id, 'module': module,
+                          'code': error.code, 'status': error.status}), flush=True)
+        raise

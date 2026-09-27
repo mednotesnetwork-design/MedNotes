@@ -68,55 +68,87 @@ class ProxyTests(unittest.TestCase):
         with patch.dict(proxy.os.environ,{'VERCEL_ENV':'preview'}):self.assertEqual(self.fake({}).do_POST()[0],503)
 
 
-class FailoverTests(unittest.TestCase):
-    def provider(self):return SimpleNamespace(available=True,opener=None,config={'model':'test'},calls=[])
-    def test_transient_restarts_workflow_with_fresh_provider(self):
-        from study_routing import run_study
-        primary=self.provider();alternate=self.provider();seen=[]
-        def execute(p):
-            seen.append(p)
-            if p is primary:raise lecture.MentorError('PROVIDER_BUSY','busy',503)
-            return {'answer':'reviewed'}
-        result=run_study({},execute,primary_factory=lambda:primary,fallback_factory=lambda h,d:alternate)
-        self.assertEqual(seen,[primary,alternate]);self.assertTrue(result['provider_routing']['failover_used'])
-    def test_never_falls_back_after_scientific_or_json_rejection(self):
-        from study_routing import run_study
-        for code in ('LECTURE_REVIEW_FAILED','SCIENTIFIC_REVIEW_FAILED','PROVIDER_FAILURE'):
-            def execute(p):raise lecture.MentorError(code,'rejected',422)
-            with self.assertRaises(lecture.MentorError):
-                run_study({},execute,primary_factory=self.provider,fallback_factory=lambda h,d:self.fail('must not route'))
-    def test_caller_token_is_not_used_for_gateway_auth(self):
-        from study_routing import gateway_provider
-        with patch.dict('os.environ',{},clear=True),self.assertRaises(lecture.MentorError) as error:
-            gateway_provider({'X-MedNote-Identity':'caller-token'},time.monotonic()+30)
-        self.assertEqual(error.exception.code,'GATEWAY_ACCESS_REQUIRED')
-    def test_first_inference_does_not_require_a_preexisting_credit_balance(self):
+class CloudflareTests(unittest.TestCase):
+    def env(self):
+        return {'GEMINI_API_KEY':'test-only-key','CLOUDFLARE_ACCOUNT_ID':'a'*32,
+                'CLOUDFLARE_AI_GATEWAY_ID':'mednote','CLOUDFLARE_AI_GATEWAY_TOKEN':'test-only-token'}
+    def test_native_request_routes_only_via_cloudflare(self):
         import study_routing
         from io import BytesIO
-        response={'choices':[{'finish_reason':'stop','message':{'content':'{"answer":"live"}'}}]}
-        with patch.dict('os.environ',{},clear=True),patch.object(study_routing,'build_opener') as op:
+        response={'candidates':[{'finishReason':'STOP','content':{'parts':[{'text':'{"answer":"ok"}'}]}}]}
+        with patch.dict('os.environ',self.env(),clear=True),patch.object(study_routing,'build_opener') as op:
             op.return_value.open.return_value=BytesIO(json.dumps(response).encode())
-            provider=study_routing.gateway_provider({'x-vercel-oidc-token':'runtime-token'},time.monotonic()+30)
-            op.return_value.open.assert_not_called()
-            self.assertEqual(provider.complete('Return JSON',{'question':'test'}),{'answer':'live'})
-            self.assertTrue(op.return_value.open.call_args.args[0].full_url.endswith('/chat/completions'))
-    def test_actual_gateway_payment_rejection_stops_without_retry(self):
+            p=study_routing.cloudflare_provider(time.monotonic()+240,'test','lecture')
+            self.assertEqual(p.complete('Return JSON',{'selected_text':'troponin','current_slide':'Calcium binds troponin'}),{'answer':'ok'})
+            req=op.return_value.open.call_args.args[0]
+            self.assertTrue(req.full_url.startswith('https://gateway.ai.cloudflare.com/'))
+            self.assertEqual(req.get_header('X-goog-api-key'),'test-only-key')
+            self.assertEqual(req.get_header('Cf-aig-authorization'),'Bearer test-only-token')
+            self.assertEqual(req.get_header('Cf-aig-max-attempts'),'2')
+            self.assertNotIn('Authorization',req.headers)
+            body=json.loads(req.data)
+            self.assertIn('troponin',body['contents'][0]['parts'][0]['text'])
+            self.assertEqual(body['generationConfig']['thinkingConfig']['thinkingLevel'],'LOW')
+    def test_missing_gateway_fails_closed_without_direct_or_fallback_call(self):
+        import study_routing
+        with patch.dict('os.environ',{'GEMINI_API_KEY':'test-only-key'},clear=True),self.assertRaises(lecture.MentorError) as error:
+            study_routing.cloudflare_provider(time.monotonic()+240,'test','lecture')
+        self.assertEqual(error.exception.code,'STUDY_CONFIGURATION_REQUIRED')
+    def test_gateway_status_mapping_and_no_application_retry(self):
         import study_routing
         from urllib.error import HTTPError
         from urllib.request import Request
         from io import BytesIO
-        inner=SimpleNamespace(open=lambda *a,**k: (_ for _ in ()).throw(HTTPError(study_routing.GATEWAY,402,'Payment required',{},BytesIO(b'{}'))))
-        with self.assertRaises(lecture.MentorError) as error:
-            study_routing.StudyTransport(inner,time.monotonic()+30,gateway=True).open(Request(study_routing.GATEWAY))
-        self.assertEqual(error.exception.code,'GATEWAY_CREDITS_REQUIRED')
-    def test_image_is_sent_to_gateway_generation_and_review(self):
-        captured=[]
-        class Inner:
-            def open(self,r,**kwargs):captured.append(json.loads(r.data))
+        from unittest.mock import Mock
+        for status,code in [(429,'USAGE_LIMIT'),(403,'STUDY_CONFIGURATION_REQUIRED'),(504,'STUDY_TIMEOUT'),(503,'PROVIDER_BUSY')]:
+            inner=Mock();inner.open.side_effect=HTTPError('https://gateway.ai.cloudflare.com',status,'error',{},BytesIO(b'private provider body'))
+            transport=study_routing.CloudflareTransport(inner,time.monotonic()+240,'token','test','lecture')
+            with self.assertRaises(lecture.MentorError) as error:transport.open(Request('https://gateway.ai.cloudflare.com'))
+            self.assertEqual(error.exception.code,code);self.assertEqual(inner.open.call_count,1)
+
+class LectureRepairTests(unittest.TestCase):
+    def lesson(self):return dict(explanation='Calcium binds troponin.',high_yield=[],terms=[],clarifications=[],mechanism=[],questions=[],source_quotes=['Calcium'])
+    def test_selected_text_context_and_full_image_survive_repair(self):
+        import lecture_workflow
+        from unittest.mock import Mock
+        bad=self.lesson();bad['source_quotes']=['fabricated quote']
+        p=SimpleNamespace(opener=object(),complete=Mock(side_effect=[bad,self.lesson(),{'passed':True,'issues':[]}]))
+        original=p.opener
+        explain=lecture_workflow.prepare_lecture({'slide':'Calcium binds troponin.','selection':'troponin','image':'data:image/jpeg;base64,/9j/','detail_image':'data:image/jpeg;base64,/9j/','region':True,'region_bounds':{'x':0,'y':0,'w':.5,'h':.5}})
+        self.assertEqual(explain(p)['lesson']['explanation'],'Calcium binds troponin.')
+        self.assertEqual(p.complete.call_count,3);self.assertIs(p.opener,original)
+        payload=p.complete.call_args_list[0].args[1]
+        self.assertEqual(payload['current_slide'],'Calcium binds troponin.')
+        self.assertEqual(payload['selected_text'],'troponin')
+        self.assertTrue(payload['has_full_slide_image']);self.assertTrue(payload['has_detail_image'])
+    def test_reviewer_rejection_never_publishes_and_repair_is_bounded(self):
+        import lecture_workflow
+        from unittest.mock import Mock
+        p=SimpleNamespace(opener=None,complete=Mock(side_effect=[self.lesson(),{'passed':False,'issues':['unsupported detail']},self.lesson(),{'passed':False,'issues':['still unsupported']}]))
+        with self.assertRaises(lecture.MentorError) as error:lecture_workflow.prepare_lecture({'slide':'Calcium binds troponin.'})(p)
+        self.assertEqual(error.exception.code,'LECTURE_REVIEW_FAILED');self.assertEqual(p.complete.call_count,4)
+    def test_unrelated_selection_and_invalid_image_rejected_before_inference(self):
+        import lecture_workflow
+        for data in [{'slide':'Calcium','selection':'unrelated'},{'slide':'Calcium','image':'data:image/jpeg;base64,invalid'}]:
+            with self.assertRaises(lecture.MentorError):lecture_workflow.prepare_lecture(data)
+    def test_full_and_detail_binary_images_attached_in_order(self):
         from urllib.request import Request
-        t=lecture.SlideTransport(Inner(),'data:image/jpeg;base64,/9j/')
-        for phase in ('generation','review'):
-            t.open(Request('https://example.com',data=json.dumps({'messages':[{'role':'user','content':phase}]}).encode()))
-        self.assertTrue(all(x['messages'][0]['content'][1]['image_url']['url']=='data:image/jpeg;base64,/9j/' for x in captured))
+        import lecture_workflow
+        captured=[]
+        inner=SimpleNamespace(open=lambda r,**kw:captured.append(json.loads(r.data)))
+        t=lecture_workflow.SlideTransport(inner,'data:image/jpeg;base64,/9j/','data:image/jpeg;base64,/9j/YQ==')
+        t.open(Request('https://example.com',data=json.dumps({'contents':[{'parts':[{'text':'context'}]}]}).encode()))
+        parts=captured[0]['contents'][0]['parts']
+        self.assertEqual(parts[1]['inlineData']['data'],'/9j/');self.assertEqual(parts[2]['inlineData']['data'],'/9j/YQ==')
+
+class LimitTests(unittest.TestCase):
+    def test_guard_releases_concurrency_and_limits_rapid_requests(self):
+        import study_limits
+        with patch.object(study_limits,'_events',__import__('collections').deque()),patch.object(study_limits,'_active',0):
+            for _ in range(6):
+                with study_limits.admit_study():pass
+            self.assertEqual(study_limits._active,0)
+            with self.assertRaises(lecture.MentorError):
+                with study_limits.admit_study():pass
 
 if __name__=='__main__':unittest.main()

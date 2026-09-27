@@ -23,7 +23,7 @@ class handler(BaseHTTPRequestHandler):
             length=int(self.headers.get('Content-Length','0'));require(0<length<=3000000,'Invalid size')
             data=json.loads(self.rfile.read(length))
             explain=prepare_lecture(data)
-            self.reply(200,run_study(self.headers,explain,allow_failover=trusted))
+            self.reply(200,run_study(self.headers,explain,module='lecture'))
         except MentorError as e:self.reply(e.status,{'error':e.code})
         except (ValueError,TypeError):self.reply(400,{'error':'INVALID_REQUEST'})
         except Exception:self.reply(500,{'error':'INTERNAL_ERROR'})
