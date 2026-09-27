@@ -10,7 +10,7 @@ from mednote_access import mednote_request
 from v1server.provider import Provider
 from v1server.engine import Engine
 from v1server.contracts import MentorError,require,string,empty_state,validate_patch
-from server.resilience import TrackedTransport
+from study_routing import run_study
 
 class handler(BaseHTTPRequestHandler):
     def reply(self,status,data):
@@ -31,9 +31,7 @@ class handler(BaseHTTPRequestHandler):
             require(state['student_level'] in ('beginner','medical_student','advanced_student','researcher'),'Invalid level')
             history=data.get('conversation',[]);require(isinstance(history,list) and len(history)<=12,'Invalid history')
             require(all(isinstance(t,dict) and set(t)=={'role','content'} and t['role'] in ('user','assistant') and isinstance(t['content'],str) and len(t['content'])<=24000 for t in history),'Invalid history')
-            p=Provider(Path('/nonexistent-research-mentor-config/inference.json'));require(p.available,'Inference unavailable','PROVIDER_UNAVAILABLE',503)
-            p.opener=TrackedTransport(p.opener,p.config['api_key'])
-            response=Engine(p).answer(text,deepcopy(state),history,mode=mode,papers=[])
+            response=run_study(self.headers,lambda p:Engine(p).answer(text,deepcopy(state),deepcopy(history),mode=mode,papers=[]),allow_failover=trusted)
             response.update(experimental=True,baseline='REAL-ENGINE BASELINE V1',evaluation_record=False)
             return self.reply(200,response)
         except MentorError as e:return self.reply(e.status,{'error':e.code})

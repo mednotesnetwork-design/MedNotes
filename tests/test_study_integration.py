@@ -67,4 +67,46 @@ class ProxyTests(unittest.TestCase):
         self.assertEqual(self.fake({'Host':'preview.vercel.app','Origin':'https://other.example'}).do_POST()[0],403)
         with patch.dict(proxy.os.environ,{'VERCEL_ENV':'preview'}):self.assertEqual(self.fake({}).do_POST()[0],503)
 
+
+class FailoverTests(unittest.TestCase):
+    def provider(self):return SimpleNamespace(available=True,opener=None,config={'model':'test'},calls=[])
+    def test_transient_restarts_workflow_with_fresh_provider(self):
+        from study_routing import run_study
+        primary=self.provider();alternate=self.provider();seen=[]
+        def execute(p):
+            seen.append(p)
+            if p is primary:raise lecture.MentorError('PROVIDER_BUSY','busy',503)
+            return {'answer':'reviewed'}
+        result=run_study({},execute,primary_factory=lambda:primary,fallback_factory=lambda h,d:alternate)
+        self.assertEqual(seen,[primary,alternate]);self.assertTrue(result['provider_routing']['failover_used'])
+    def test_never_falls_back_after_scientific_or_json_rejection(self):
+        from study_routing import run_study
+        for code in ('LECTURE_REVIEW_FAILED','SCIENTIFIC_REVIEW_FAILED','PROVIDER_FAILURE'):
+            def execute(p):raise lecture.MentorError(code,'rejected',422)
+            with self.assertRaises(lecture.MentorError):
+                run_study({},execute,primary_factory=self.provider,fallback_factory=lambda h,d:self.fail('must not route'))
+    def test_caller_token_is_not_used_for_gateway_auth(self):
+        from study_routing import gateway_provider
+        with patch.dict('os.environ',{},clear=True),self.assertRaises(lecture.MentorError) as error:
+            gateway_provider({'X-MedNote-Identity':'caller-token'},time.monotonic()+30)
+        self.assertEqual(error.exception.code,'GATEWAY_ACCESS_REQUIRED')
+    def test_no_generation_when_existing_credit_is_insufficient(self):
+        import study_routing
+        from io import BytesIO
+        with patch.dict('os.environ',{},clear=True),patch.object(study_routing,'build_opener') as op:
+            op.return_value.open.return_value=BytesIO(b'{"balance":"0"}')
+            with self.assertRaises(lecture.MentorError) as error:study_routing.gateway_provider({'x-vercel-oidc-token':'runtime-token'},time.monotonic()+30)
+            self.assertEqual(error.exception.code,'GATEWAY_CREDITS_REQUIRED')
+            self.assertEqual(op.return_value.open.call_count,1)
+            self.assertTrue(op.return_value.open.call_args.args[0].full_url.endswith('/credits'))
+    def test_image_is_sent_to_gateway_generation_and_review(self):
+        captured=[]
+        class Inner:
+            def open(self,r,**kwargs):captured.append(json.loads(r.data))
+        from urllib.request import Request
+        t=lecture.SlideTransport(Inner(),'data:image/jpeg;base64,/9j/')
+        for phase in ('generation','review'):
+            t.open(Request('https://example.com',data=json.dumps({'messages':[{'role':'user','content':phase}]}).encode()))
+        self.assertTrue(all(x['messages'][0]['content'][1]['image_url']['url']=='data:image/jpeg;base64,/9j/' for x in captured))
+
 if __name__=='__main__':unittest.main()
