@@ -44,9 +44,29 @@ class CloudflareTransport:
             return response
         except HTTPError as error:
             status = error.code
-            error.close()
+            diagnostics = {}
+            try:
+                body = json.loads(error.read(16384))
+                entries = body.get('errors', []) if isinstance(body, dict) else []
+                if isinstance(body, dict) and isinstance(body.get('error'), dict):entries = [body['error']]
+                codes = [entry.get('code') for entry in entries if isinstance(entry, dict)]
+                diagnostics['upstream_codes'] = [c for c in codes if isinstance(c, int)]
+                statuses = [entry.get('status') for entry in entries if isinstance(entry, dict)]
+                diagnostics['upstream_statuses'] = [v for v in statuses if v in ('PERMISSION_DENIED','UNAUTHENTICATED','NOT_FOUND','INVALID_ARGUMENT','RESOURCE_EXHAUSTED')]
+                messages = ' '.join(str(entry.get('message', '')) for entry in entries if isinstance(entry, dict)).lower()
+                # Only categorical diagnostics; never echo upstream content or credentials.
+                diagnostics['signals'] = [label for label, phrase in (
+                    ('authentication_error','authentication error'), ('invalid_token','invalid token'),
+                    ('invalid_api_key','api key not valid'), ('permission_denied','permission denied'),
+                    ('gateway_not_found','gateway not found'), ('account_not_found','account not found'),
+                    ('missing_provider_key','no provider key'), ('api_disabled','has not been used'),
+                    ('key_blocked','api key was reported as leaked'), ('expired_token','expired'),
+                    ('invalid_cf_authorization','invalid cf-aig-authorization'),
+                    ('unauthorized','unauthorized'), ('forbidden','forbidden')) if phrase in messages]
+            except (ValueError, TypeError, AttributeError):pass
+            finally:error.close()
             print(json.dumps({'event': 'study_provider_error', 'request_id': self.request_id,
-                              'module': self.module, 'status': status, 'call': self.attempts}), flush=True)
+                              'module': self.module, 'status': status, 'call': self.attempts, **diagnostics}), flush=True)
             if status == 429: raise MentorError('USAGE_LIMIT', 'Rate limit reached', 429)
             if status in (408, 504): raise MentorError('STUDY_TIMEOUT', 'Provider timeout', 504)
             if status in (401, 403): raise MentorError('STUDY_CONFIGURATION_REQUIRED', 'Server authentication failed', 503)
