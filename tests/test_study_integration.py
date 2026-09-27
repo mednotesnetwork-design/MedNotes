@@ -90,15 +90,25 @@ class FailoverTests(unittest.TestCase):
         with patch.dict('os.environ',{},clear=True),self.assertRaises(lecture.MentorError) as error:
             gateway_provider({'X-MedNote-Identity':'caller-token'},time.monotonic()+30)
         self.assertEqual(error.exception.code,'GATEWAY_ACCESS_REQUIRED')
-    def test_no_generation_when_existing_credit_is_insufficient(self):
+    def test_first_inference_does_not_require_a_preexisting_credit_balance(self):
         import study_routing
         from io import BytesIO
+        response={'choices':[{'finish_reason':'stop','message':{'content':'{"answer":"live"}'}}]}
         with patch.dict('os.environ',{},clear=True),patch.object(study_routing,'build_opener') as op:
-            op.return_value.open.return_value=BytesIO(b'{"balance":"0"}')
-            with self.assertRaises(lecture.MentorError) as error:study_routing.gateway_provider({'x-vercel-oidc-token':'runtime-token'},time.monotonic()+30)
-            self.assertEqual(error.exception.code,'GATEWAY_CREDITS_REQUIRED')
-            self.assertEqual(op.return_value.open.call_count,1)
-            self.assertTrue(op.return_value.open.call_args.args[0].full_url.endswith('/credits'))
+            op.return_value.open.return_value=BytesIO(json.dumps(response).encode())
+            provider=study_routing.gateway_provider({'x-vercel-oidc-token':'runtime-token'},time.monotonic()+30)
+            op.return_value.open.assert_not_called()
+            self.assertEqual(provider.complete('Return JSON',{'question':'test'}),{'answer':'live'})
+            self.assertTrue(op.return_value.open.call_args.args[0].full_url.endswith('/chat/completions'))
+    def test_actual_gateway_payment_rejection_stops_without_retry(self):
+        import study_routing
+        from urllib.error import HTTPError
+        from urllib.request import Request
+        from io import BytesIO
+        inner=SimpleNamespace(open=lambda *a,**k: (_ for _ in ()).throw(HTTPError(study_routing.GATEWAY,402,'Payment required',{},BytesIO(b'{}'))))
+        with self.assertRaises(lecture.MentorError) as error:
+            study_routing.StudyTransport(inner,time.monotonic()+30,gateway=True).open(Request(study_routing.GATEWAY))
+        self.assertEqual(error.exception.code,'GATEWAY_CREDITS_REQUIRED')
     def test_image_is_sent_to_gateway_generation_and_review(self):
         captured=[]
         class Inner:

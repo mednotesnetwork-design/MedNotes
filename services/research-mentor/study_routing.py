@@ -1,14 +1,13 @@
 """Preview study failover. Restart the entire reviewed workflow on a fresh provider."""
 import json, os, socket, time
-from decimal import Decimal, InvalidOperation
 from pathlib import Path
 from urllib.error import HTTPError, URLError
-from urllib.request import Request, build_opener
+from urllib.request import build_opener
 from v1server.provider import Provider, NoRedirect
 from v1server.contracts import MentorError, require
 
 GATEWAY='https://ai-gateway.vercel.sh/v1'
-FALLBACK_MODEL='openai/gpt-5.4-mini'
+FALLBACK_MODEL='openai/gpt-5-mini'
 
 class StudyTransport:
     def __init__(self, inner, deadline, gateway=False):
@@ -33,14 +32,9 @@ def gateway_provider(headers,deadline):
     token=os.environ.get('AI_GATEWAY_API_KEY','').strip() or headers.get('x-vercel-oidc-token','') or os.environ.get('VERCEL_OIDC_TOKEN','').strip()
     require(bool(token),'Gateway identity unavailable','GATEWAY_ACCESS_REQUIRED',503)
     opener=StudyTransport(build_opener(NoRedirect()),deadline,gateway=True)
-    request=Request(GATEWAY+'/credits',headers={'Authorization':'Bearer '+token,'Accept':'application/json'})
-    try:
-        with opener.open(request) as response:credits=json.loads(response.read(10000))
-        # Check existing funds only. Never enable billing or auto-top-up.
-        balance=Decimal(str(credits['balance']))
-        require(balance.is_finite() and balance>=Decimal('0.50'),'Insufficient existing gateway balance','GATEWAY_CREDITS_REQUIRED',402)
-    except (KeyError,ValueError,InvalidOperation):raise MentorError('GATEWAY_ACCESS_REQUIRED','Cannot verify gateway balance',503)
-    print(json.dumps({'event':'gateway_preflight','credit_available':True}),flush=True)
+    # Let the inference endpoint decide eligibility. Free credits activate on the
+    # first generation; a credits preflight can incorrectly reject new teams.
+    # No billing, purchase, or auto-top-up endpoint is called here.
     provider=Provider.__new__(Provider)
     provider.config={'endpoint':GATEWAY+'/chat/completions','model':FALLBACK_MODEL,'api_key':token,'protocol':'chat-completions-json','sampling_parameters':{'max_completion_tokens':8192,'reasoning_effort':'medium'}}
     provider.calls=[];provider.opener=opener
