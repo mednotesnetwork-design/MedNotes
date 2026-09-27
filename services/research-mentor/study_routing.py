@@ -1,5 +1,5 @@
 """Preview study failover. Restart the entire reviewed workflow on a fresh provider."""
-import json, os, socket, time
+import json, os, socket, time, re
 from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.request import build_opener
@@ -18,8 +18,17 @@ class StudyTransport:
         kwargs['timeout']=min(35 if self.gateway else 15,remaining)
         try:return self.inner.open(request,**kwargs)
         except HTTPError as error:
-            status=error.code;error.close()
-            print(json.dumps({'event':'study_provider_error','provider':'gateway' if self.gateway else 'gemini','status':status}),flush=True)
+            status=error.code
+            # Log only a machine-readable error type, never upstream message/body.
+            error_type='unknown'
+            try:
+                detail=json.loads(error.read(10000)).get('error',{})
+                value=detail.get('type',detail.get('code','unknown')) if isinstance(detail,dict) else 'unknown'
+                if isinstance(value,str) and re.fullmatch(r'[A-Za-z0-9_-]{1,80}',value):error_type=value
+            except (ValueError,TypeError,AttributeError):pass
+            finally:error.close()
+            print(json.dumps({'event':'study_provider_error','provider':'gateway' if self.gateway else 'gemini','status':status,'error_type':error_type}),flush=True)
+            if self.gateway and status==403 and error_type=='customer_verification_required':raise MentorError('GATEWAY_VERIFICATION_REQUIRED','Gateway account verification required',503)
             if self.gateway and status==402:raise MentorError('GATEWAY_CREDITS_REQUIRED','Gateway balance unavailable',402)
             if self.gateway and status in (401,403):raise MentorError('GATEWAY_ACCESS_REQUIRED','Gateway access unavailable',503)
             if status in (408,429,500,502,503,504):raise MentorError('PROVIDER_BUSY','Temporary provider error',503)
