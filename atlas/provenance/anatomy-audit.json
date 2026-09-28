@@ -1,0 +1,3890 @@
+{
+  "version": "0.4.0",
+  "errors": [],
+  "warnings": [
+    {
+      "id": "clavicle",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "scapula",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "humerus",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "radius",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "ulna",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "scaphoid",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "lunate",
+      "kind": "orphan-record"
+    },
+    {
+      "id": "lunate",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "triquetrum",
+      "kind": "orphan-record"
+    },
+    {
+      "id": "triquetrum",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "pisiform",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "trapezium",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "trapezoid",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "capitate",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "hamate",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "metacarpal-1",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "proximal-phalanx-1",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "distal-phalanx-1",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "metacarpal-2",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "proximal-phalanx-2",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "middle-phalanx-2",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "distal-phalanx-2",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "metacarpal-3",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "proximal-phalanx-3",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "middle-phalanx-3",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "distal-phalanx-3",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "metacarpal-4",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "proximal-phalanx-4",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "middle-phalanx-4",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "distal-phalanx-4",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "metacarpal-5",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "proximal-phalanx-5",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "middle-phalanx-5",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "distal-phalanx-5",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "scapula-spine",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "scapula-spine",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "scapula-acromion",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "scapula-acromion",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "scapula-coracoid-process",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "scapula-coracoid-process",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "scapula-glenoid-cavity",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "scapula-glenoid-cavity",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "scapula-supraglenoid-tubercle",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "scapula-supraglenoid-tubercle",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "scapula-infraglenoid-tubercle",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "scapula-infraglenoid-tubercle",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "scapula-supraspinous-fossa",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "scapula-supraspinous-fossa",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "scapula-infraspinous-fossa",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "scapula-infraspinous-fossa",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "scapula-subscapular-fossa",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "scapula-subscapular-fossa",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "scapula-superior-border",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "scapula-superior-border",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "scapula-medial-border",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "scapula-medial-border",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "scapula-lateral-border",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "scapula-lateral-border",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "scapula-superior-angle",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "scapula-superior-angle",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "scapula-inferior-angle",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "scapula-inferior-angle",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "scapula-suprascapular-notch",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "scapula-suprascapular-notch",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "scapula-neck",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "scapula-neck",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "scapula-spinoglenoid-notch",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "scapula-spinoglenoid-notch",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "clavicle-sternal-end",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "clavicle-sternal-end",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "clavicle-acromial-end",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "clavicle-acromial-end",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "clavicle-shaft",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "clavicle-shaft",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "clavicle-conoid-tubercle",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "clavicle-conoid-tubercle",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "clavicle-trapezoid-line",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "clavicle-trapezoid-line",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "clavicle-subclavian-groove",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "clavicle-subclavian-groove",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "clavicle-costoclavicular-impression",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "clavicle-costoclavicular-impression",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "humerus-head",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "humerus-head",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "humerus-anatomical-neck",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "humerus-anatomical-neck",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "humerus-surgical-neck",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "humerus-surgical-neck",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "humerus-greater-tubercle",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "humerus-greater-tubercle",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "humerus-lesser-tubercle",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "humerus-lesser-tubercle",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "humerus-intertubercular-sulcus",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "humerus-intertubercular-sulcus",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "humerus-crest-of-greater-tubercle",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "humerus-crest-of-greater-tubercle",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "humerus-crest-of-lesser-tubercle",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "humerus-crest-of-lesser-tubercle",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "humerus-deltoid-tuberosity",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "humerus-deltoid-tuberosity",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "humerus-radial-groove",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "humerus-radial-groove",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "humerus-medial-supracondylar-ridge",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "humerus-medial-supracondylar-ridge",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "humerus-lateral-supracondylar-ridge",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "humerus-lateral-supracondylar-ridge",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "humerus-medial-epicondyle",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "humerus-medial-epicondyle",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "humerus-lateral-epicondyle",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "humerus-lateral-epicondyle",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "humerus-capitulum",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "humerus-capitulum",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "humerus-trochlea",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "humerus-trochlea",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "humerus-radial-fossa",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "humerus-radial-fossa",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "humerus-coronoid-fossa",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "humerus-coronoid-fossa",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "humerus-olecranon-fossa",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "humerus-olecranon-fossa",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "humerus-shaft",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "humerus-shaft",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "radius-head",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "radius-head",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "radius-neck",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "radius-neck",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "radius-radial-tuberosity",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "radius-radial-tuberosity",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "radius-shaft",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "radius-shaft",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "radius-styloid-process",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "radius-styloid-process",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "radius-ulnar-notch",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "radius-ulnar-notch",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "radius-dorsal-tubercle",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "radius-dorsal-tubercle",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "ulna-olecranon",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "ulna-olecranon",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "ulna-coronoid-process",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "ulna-coronoid-process",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "ulna-trochlear-notch",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "ulna-trochlear-notch",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "ulna-radial-notch",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "ulna-radial-notch",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "ulna-ulnar-tuberosity",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "ulna-ulnar-tuberosity",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "ulna-supinator-crest",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "ulna-supinator-crest",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "ulna-head",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "ulna-head",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "ulna-styloid-process",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "ulna-styloid-process",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "ulna-shaft",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "ulna-shaft",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "scaphoid-scaphoid-tubercle",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "scaphoid-scaphoid-tubercle",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "hamate-hook-of-hamate",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "hamate-hook-of-hamate",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "trapezium-trapezium-tubercle",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "trapezium-trapezium-tubercle",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "pisiform-palmar-surface",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "pisiform-palmar-surface",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "metacarpal-1-base",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "metacarpal-1-base",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "metacarpal-1-shaft",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "metacarpal-1-shaft",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "metacarpal-1-head",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "metacarpal-1-head",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "proximal-phalanx-1-base",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "proximal-phalanx-1-base",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "proximal-phalanx-1-shaft",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "proximal-phalanx-1-shaft",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "proximal-phalanx-1-head",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "proximal-phalanx-1-head",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "distal-phalanx-1-base",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "distal-phalanx-1-base",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "distal-phalanx-1-shaft",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "distal-phalanx-1-shaft",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "distal-phalanx-1-tuberosity",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "distal-phalanx-1-tuberosity",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "metacarpal-2-base",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "metacarpal-2-base",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "metacarpal-2-shaft",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "metacarpal-2-shaft",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "metacarpal-2-head",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "metacarpal-2-head",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "proximal-phalanx-2-base",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "proximal-phalanx-2-base",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "proximal-phalanx-2-shaft",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "proximal-phalanx-2-shaft",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "proximal-phalanx-2-head",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "proximal-phalanx-2-head",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "middle-phalanx-2-base",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "middle-phalanx-2-base",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "middle-phalanx-2-shaft",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "middle-phalanx-2-shaft",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "middle-phalanx-2-head",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "middle-phalanx-2-head",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "distal-phalanx-2-base",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "distal-phalanx-2-base",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "distal-phalanx-2-shaft",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "distal-phalanx-2-shaft",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "distal-phalanx-2-tuberosity",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "distal-phalanx-2-tuberosity",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "metacarpal-3-base",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "metacarpal-3-base",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "metacarpal-3-shaft",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "metacarpal-3-shaft",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "metacarpal-3-head",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "metacarpal-3-head",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "proximal-phalanx-3-base",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "proximal-phalanx-3-base",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "proximal-phalanx-3-shaft",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "proximal-phalanx-3-shaft",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "proximal-phalanx-3-head",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "proximal-phalanx-3-head",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "middle-phalanx-3-base",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "middle-phalanx-3-base",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "middle-phalanx-3-shaft",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "middle-phalanx-3-shaft",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "middle-phalanx-3-head",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "middle-phalanx-3-head",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "distal-phalanx-3-base",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "distal-phalanx-3-base",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "distal-phalanx-3-shaft",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "distal-phalanx-3-shaft",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "distal-phalanx-3-tuberosity",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "distal-phalanx-3-tuberosity",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "metacarpal-4-base",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "metacarpal-4-base",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "metacarpal-4-shaft",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "metacarpal-4-shaft",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "metacarpal-4-head",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "metacarpal-4-head",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "proximal-phalanx-4-base",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "proximal-phalanx-4-base",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "proximal-phalanx-4-shaft",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "proximal-phalanx-4-shaft",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "proximal-phalanx-4-head",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "proximal-phalanx-4-head",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "middle-phalanx-4-base",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "middle-phalanx-4-base",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "middle-phalanx-4-shaft",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "middle-phalanx-4-shaft",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "middle-phalanx-4-head",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "middle-phalanx-4-head",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "distal-phalanx-4-base",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "distal-phalanx-4-base",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "distal-phalanx-4-shaft",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "distal-phalanx-4-shaft",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "distal-phalanx-4-tuberosity",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "distal-phalanx-4-tuberosity",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "metacarpal-5-base",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "metacarpal-5-base",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "metacarpal-5-shaft",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "metacarpal-5-shaft",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "metacarpal-5-head",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "metacarpal-5-head",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "proximal-phalanx-5-base",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "proximal-phalanx-5-base",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "proximal-phalanx-5-shaft",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "proximal-phalanx-5-shaft",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "proximal-phalanx-5-head",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "proximal-phalanx-5-head",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "middle-phalanx-5-base",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "middle-phalanx-5-base",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "middle-phalanx-5-shaft",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "middle-phalanx-5-shaft",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "middle-phalanx-5-head",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "middle-phalanx-5-head",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "distal-phalanx-5-base",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "distal-phalanx-5-base",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "distal-phalanx-5-shaft",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "distal-phalanx-5-shaft",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "distal-phalanx-5-tuberosity",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "distal-phalanx-5-tuberosity",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "sternum",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "ribs",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "cervical-vertebrae",
+      "kind": "orphan-record"
+    },
+    {
+      "id": "cervical-vertebrae",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "cervical-vertebrae",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "thoracic-vertebrae",
+      "kind": "orphan-record"
+    },
+    {
+      "id": "thoracic-vertebrae",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "thoracic-vertebrae",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "thoracolumbar-fascia",
+      "kind": "orphan-record"
+    },
+    {
+      "id": "thoracolumbar-fascia",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "thoracolumbar-fascia",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "nuchal-ligament",
+      "kind": "orphan-record"
+    },
+    {
+      "id": "nuchal-ligament",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "nuchal-ligament",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "palmar-aponeurosis",
+      "kind": "orphan-record"
+    },
+    {
+      "id": "palmar-aponeurosis",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "palmar-aponeurosis",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "extensor-expansion",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "extensor-expansion",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "flexor-tendon-sheaths",
+      "kind": "orphan-record"
+    },
+    {
+      "id": "flexor-tendon-sheaths",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "flexor-tendon-sheaths",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "pectoralis-major",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "pectoralis-major-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "pectoralis-major-origin-2",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "pectoralis-major-origin-3",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "pectoralis-major-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "pectoralis-minor",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "pectoralis-minor-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "pectoralis-minor-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "subclavius",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "subclavius-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "subclavius-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "serratus-anterior",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "serratus-anterior-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "serratus-anterior-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "trapezius",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "trapezius-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "trapezius-origin-2",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "trapezius-origin-3",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "trapezius-origin-4",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "trapezius-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "trapezius-insertion-2",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "trapezius-insertion-3",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "latissimus-dorsi",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "latissimus-dorsi-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "latissimus-dorsi-origin-2",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "latissimus-dorsi-origin-3",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "latissimus-dorsi-origin-4",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "latissimus-dorsi-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "levator-scapulae",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "levator-scapulae-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "levator-scapulae-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "rhomboid-minor",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "rhomboid-minor-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "rhomboid-minor-origin-2",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "rhomboid-minor-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "rhomboid-major",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "rhomboid-major-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "rhomboid-major-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "deltoid",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "deltoid-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "deltoid-origin-2",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "deltoid-origin-3",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "deltoid-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "teres-major",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "teres-major-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "teres-major-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "supraspinatus",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "supraspinatus-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "supraspinatus-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "infraspinatus",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "infraspinatus-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "infraspinatus-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "teres-minor",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "teres-minor-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "teres-minor-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "subscapularis",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "subscapularis-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "subscapularis-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "biceps-brachii",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "biceps-brachii-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "biceps-brachii-origin-2",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "biceps-brachii-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "biceps-brachii-insertion-2",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "brachialis",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "brachialis-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "brachialis-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "coracobrachialis",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "coracobrachialis-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "coracobrachialis-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "triceps-brachii",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "triceps-brachii-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "triceps-brachii-origin-2",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "triceps-brachii-origin-3",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "triceps-brachii-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "anconeus",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "anconeus-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "anconeus-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "pronator-teres",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "pronator-teres-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "pronator-teres-origin-2",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "pronator-teres-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "flexor-carpi-radialis",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "flexor-carpi-radialis-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "flexor-carpi-radialis-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "palmaris-longus",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "palmaris-longus-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "palmaris-longus-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "flexor-carpi-ulnaris",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "flexor-carpi-ulnaris-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "flexor-carpi-ulnaris-origin-2",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "flexor-carpi-ulnaris-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "flexor-carpi-ulnaris-insertion-2",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "flexor-digitorum-superficialis",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "flexor-digitorum-superficialis-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "flexor-digitorum-superficialis-origin-2",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "flexor-digitorum-superficialis-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "flexor-digitorum-profundus",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "flexor-digitorum-profundus-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "flexor-digitorum-profundus-origin-2",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "flexor-digitorum-profundus-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "flexor-pollicis-longus",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "flexor-pollicis-longus-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "flexor-pollicis-longus-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "pronator-quadratus",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "pronator-quadratus-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "pronator-quadratus-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "brachioradialis",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "brachioradialis-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "brachioradialis-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "extensor-carpi-radialis-longus",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "extensor-carpi-radialis-longus-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "extensor-carpi-radialis-longus-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "extensor-carpi-radialis-brevis",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "extensor-carpi-radialis-brevis-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "extensor-carpi-radialis-brevis-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "extensor-digitorum",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "extensor-digitorum-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "extensor-digitorum-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "extensor-digiti-minimi",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "extensor-digiti-minimi-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "extensor-digiti-minimi-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "extensor-carpi-ulnaris",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "extensor-carpi-ulnaris-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "extensor-carpi-ulnaris-origin-2",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "extensor-carpi-ulnaris-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "supinator",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "supinator-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "supinator-origin-2",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "supinator-origin-3",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "supinator-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "abductor-pollicis-longus",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "abductor-pollicis-longus-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "abductor-pollicis-longus-origin-2",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "abductor-pollicis-longus-origin-3",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "abductor-pollicis-longus-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "extensor-pollicis-brevis",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "extensor-pollicis-brevis-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "extensor-pollicis-brevis-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "extensor-pollicis-longus",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "extensor-pollicis-longus-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "extensor-pollicis-longus-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "extensor-indicis",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "extensor-indicis-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "extensor-indicis-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "abductor-pollicis-brevis",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "abductor-pollicis-brevis-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "abductor-pollicis-brevis-origin-2",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "abductor-pollicis-brevis-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "flexor-pollicis-brevis",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "flexor-pollicis-brevis-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "flexor-pollicis-brevis-origin-2",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "flexor-pollicis-brevis-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "opponens-pollicis",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "opponens-pollicis-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "opponens-pollicis-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "adductor-pollicis",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "adductor-pollicis-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "adductor-pollicis-origin-2",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "adductor-pollicis-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "abductor-digiti-minimi",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "abductor-digiti-minimi-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "abductor-digiti-minimi-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "flexor-digiti-minimi-brevis",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "flexor-digiti-minimi-brevis-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "flexor-digiti-minimi-brevis-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "opponens-digiti-minimi",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "opponens-digiti-minimi-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "opponens-digiti-minimi-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "palmaris-brevis",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "palmaris-brevis",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "palmaris-brevis-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "palmaris-brevis-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "lumbrical-1",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "lumbrical-1",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "lumbrical-1-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "lumbrical-1-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "lumbrical-2",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "lumbrical-2",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "lumbrical-2-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "lumbrical-2-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "lumbrical-3",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "lumbrical-3",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "lumbrical-3-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "lumbrical-3-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "lumbrical-4",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "lumbrical-4",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "lumbrical-4-origin-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "lumbrical-4-insertion-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "dorsal-interosseous-1",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "dorsal-interosseous-1",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "dorsal-interosseous-1-origins-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "dorsal-interosseous-1-insertions-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "dorsal-interosseous-2",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "dorsal-interosseous-2",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "dorsal-interosseous-2-origins-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "dorsal-interosseous-2-insertions-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "dorsal-interosseous-3",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "dorsal-interosseous-3",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "dorsal-interosseous-3-origins-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "dorsal-interosseous-3-insertions-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "dorsal-interosseous-4",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "dorsal-interosseous-4",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "dorsal-interosseous-4-origins-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "dorsal-interosseous-4-insertions-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "palmar-interosseous-1",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "palmar-interosseous-1",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "palmar-interosseous-1-origins-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "palmar-interosseous-1-insertions-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "palmar-interosseous-2",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "palmar-interosseous-2",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "palmar-interosseous-2-origins-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "palmar-interosseous-2-insertions-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "palmar-interosseous-3",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "palmar-interosseous-3",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "palmar-interosseous-3-origins-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "palmar-interosseous-3-insertions-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "pectoralis-major-clavicular-head",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "pectoralis-major-clavicular-head-origins-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "pectoralis-major-clavicular-head-insertions-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "pectoralis-major-sternocostal-head",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "pectoralis-major-sternocostal-head-origins-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "pectoralis-major-sternocostal-head-insertions-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "deltoid-anterior-fibers",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "deltoid-anterior-fibers-origins-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "deltoid-anterior-fibers-insertions-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "deltoid-middle-fibers",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "deltoid-middle-fibers-origins-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "deltoid-middle-fibers-insertions-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "deltoid-posterior-fibers",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "deltoid-posterior-fibers-origins-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "deltoid-posterior-fibers-insertions-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "biceps-brachii-long-head",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "biceps-brachii-long-head-origins-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "biceps-brachii-long-head-insertions-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "biceps-brachii-short-head",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "biceps-brachii-short-head-origins-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "biceps-brachii-short-head-insertions-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "triceps-brachii-long-head",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "triceps-brachii-long-head-origins-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "triceps-brachii-long-head-insertions-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "triceps-brachii-lateral-head",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "triceps-brachii-lateral-head-origins-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "triceps-brachii-lateral-head-insertions-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "triceps-brachii-medial-head",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "triceps-brachii-medial-head-origins-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "triceps-brachii-medial-head-insertions-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "pronator-teres-humeral-head",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "pronator-teres-humeral-head-origins-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "pronator-teres-humeral-head-insertions-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "pronator-teres-ulnar-head",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "pronator-teres-ulnar-head-origins-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "pronator-teres-ulnar-head-insertions-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "flexor-carpi-ulnaris-humeral-head",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "flexor-carpi-ulnaris-humeral-head-origins-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "flexor-carpi-ulnaris-humeral-head-insertions-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "flexor-carpi-ulnaris-ulnar-head",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "flexor-carpi-ulnaris-ulnar-head-origins-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "flexor-carpi-ulnaris-ulnar-head-insertions-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "adductor-pollicis-oblique-head",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "adductor-pollicis-oblique-head-origins-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "adductor-pollicis-oblique-head-insertions-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "adductor-pollicis-transverse-head",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "adductor-pollicis-transverse-head-origins-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "adductor-pollicis-transverse-head-insertions-1",
+      "kind": "attachment-area-pending"
+    },
+    {
+      "id": "root-c5",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "root-c5",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "root-c6",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "root-c6",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "root-c7",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "root-c7",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "root-c8",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "root-c8",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "root-t1",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "root-t1",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "upper-trunk",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "middle-trunk",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "lower-trunk",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "upper-anterior-division",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "upper-posterior-division",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "middle-anterior-division",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "middle-posterior-division",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "lower-anterior-division",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "lower-posterior-division",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "lateral-cord",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "lateral-cord",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "posterior-cord",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "medial-cord",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "medial-cord",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "musculocutaneous-nerve",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "axillary-nerve",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "radial-nerve",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "median-nerve",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "ulnar-nerve",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "dorsal-scapular-nerve",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "long-thoracic-nerve",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "suprascapular-nerve",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "nerve-to-subclavius",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "lateral-pectoral-nerve",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "medial-pectoral-nerve",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "upper-subscapular-nerve",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "thoracodorsal-nerve",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "lower-subscapular-nerve",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "medial-cutaneous-nerve-of-arm",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "medial-cutaneous-nerve-of-forearm",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "lateral-cutaneous-nerve-of-forearm",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "superior-lateral-cutaneous-nerve-of-arm",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "superficial-radial-nerve",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "deep-branch-radial-nerve",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "posterior-interosseous-nerve",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "anterior-interosseous-nerve",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "recurrent-median-nerve",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "recurrent-median-nerve",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "palmar-cutaneous-median-nerve",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "median-digital-nerves",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "superficial-ulnar-nerve",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "deep-ulnar-nerve",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "dorsal-cutaneous-ulnar-nerve",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "intercostobrachial-nerve",
+      "kind": "orphan-record"
+    },
+    {
+      "id": "intercostobrachial-nerve",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "intercostobrachial-nerve",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "accessory-nerve",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "accessory-nerve",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "cervical-muscular-branches",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "cervical-muscular-branches",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "subclavian-artery",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "thyrocervical-trunk",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "suprascapular-artery",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "transverse-cervical-artery",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "dorsal-scapular-artery",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "axillary-artery",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "superior-thoracic-artery",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "superior-thoracic-artery",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "thoracoacromial-trunk",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "lateral-thoracic-artery",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "subscapular-artery",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "anterior-circumflex-humeral-artery",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "posterior-circumflex-humeral-artery",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "circumflex-scapular-artery",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "thoracodorsal-artery",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "brachial-artery",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "profunda-brachii-artery",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "superior-ulnar-collateral-artery",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "inferior-ulnar-collateral-artery",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "radial-collateral-artery",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "radial-collateral-artery",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "middle-collateral-artery",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "middle-collateral-artery",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "radial-artery",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "radial-recurrent-artery",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "ulnar-artery",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "anterior-ulnar-recurrent-artery",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "posterior-ulnar-recurrent-artery",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "common-interosseous-artery",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "anterior-interosseous-artery",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "posterior-interosseous-artery",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "posterior-interosseous-artery",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "interosseous-recurrent-artery",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "superficial-palmar-arch",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "deep-palmar-arch",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "princeps-pollicis-artery",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "radialis-indicis-artery",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "radialis-indicis-artery",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "common-palmar-digital-artery-1",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "common-palmar-digital-artery-1",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "proper-palmar-digital-artery-digit-2-ulnar",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "proper-palmar-digital-artery-digit-2-ulnar",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "proper-palmar-digital-artery-digit-3-radial",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "proper-palmar-digital-artery-digit-3-radial",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "common-palmar-digital-artery-2",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "common-palmar-digital-artery-2",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "proper-palmar-digital-artery-digit-3-ulnar",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "proper-palmar-digital-artery-digit-3-ulnar",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "proper-palmar-digital-artery-digit-4-radial",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "proper-palmar-digital-artery-digit-4-radial",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "common-palmar-digital-artery-3",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "common-palmar-digital-artery-3",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "proper-palmar-digital-artery-digit-4-ulnar",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "proper-palmar-digital-artery-digit-4-ulnar",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "proper-palmar-digital-artery-digit-5-radial",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "proper-palmar-digital-artery-digit-5-radial",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "proper-palmar-digital-artery-little-finger-ulnar",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "proper-palmar-digital-artery-little-finger-ulnar",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "subclavian-vein",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "axillary-vein",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "cephalic-vein",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "basilic-vein",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "median-cubital-vein",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "median-antebrachial-vein",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "brachial-veins",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "radial-venae-comitantes",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "ulnar-venae-comitantes",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "anterior-sternoclavicular-ligament",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "anterior-sternoclavicular-ligament",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "posterior-sternoclavicular-ligament",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "posterior-sternoclavicular-ligament",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "interclavicular-ligament",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "interclavicular-ligament",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "costoclavicular-ligament",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "costoclavicular-ligament",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "acromioclavicular-ligament",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "acromioclavicular-ligament",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "conoid-ligament",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "conoid-ligament",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "trapezoid-ligament",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "trapezoid-ligament",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "coracoacromial-ligament",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "coracoacromial-ligament",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "superior-transverse-scapular-ligament",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "superior-glenohumeral-ligament",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "middle-glenohumeral-ligament",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "inferior-glenohumeral-ligament-complex",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "coracohumeral-ligament",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "transverse-humeral-ligament",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "transverse-humeral-ligament",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "glenoid-labrum",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "ulnar-collateral-ligament-of-elbow",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "ulnar-collateral-ligament-of-elbow",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "radial-collateral-ligament-complex",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "radial-collateral-ligament-complex",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "lateral-ulnar-collateral-ligament",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "lateral-ulnar-collateral-ligament",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "annular-ligament-of-radius",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "annular-ligament-of-radius",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "interosseous-membrane",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "oblique-cord",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "oblique-cord",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "flexor-retinaculum",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "extensor-retinaculum",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "extensor-retinaculum",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "palmar-radiocarpal-ligaments",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "palmar-radiocarpal-ligaments",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "dorsal-radiocarpal-ligament",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "dorsal-radiocarpal-ligament",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "scapholunate-interosseous-ligament",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "scapholunate-interosseous-ligament",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "lunotriquetral-interosseous-ligament",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "lunotriquetral-interosseous-ligament",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "triangular-fibrocartilage-complex",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "triangular-fibrocartilage-complex",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "palmar-radioulnar-ligament",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "palmar-radioulnar-ligament",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "dorsal-radioulnar-ligament",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "dorsal-radioulnar-ligament",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "deep-transverse-metacarpal-ligaments",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "deep-transverse-metacarpal-ligaments",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "collateral-ligaments-of-digits",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "collateral-ligaments-of-digits",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "palmar-plates",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "palmar-plates",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "thumb-ulnar-collateral-ligament",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "thumb-ulnar-collateral-ligament",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "sternoclavicular-joint",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "sternoclavicular-joint",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "acromioclavicular-joint",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "acromioclavicular-joint",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "scapulothoracic-articulation",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "scapulothoracic-articulation",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "glenohumeral-joint",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "glenohumeral-joint",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "humeroulnar-joint",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "humeroulnar-joint",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "humeroradial-joint",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "humeroradial-joint",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "proximal-radioulnar-joint",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "proximal-radioulnar-joint",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "distal-radioulnar-joint",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "distal-radioulnar-joint",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "radiocarpal-joint",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "radiocarpal-joint",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "midcarpal-joints",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "midcarpal-joints",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "intercarpal-joints",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "intercarpal-joints",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "carpometacarpal-joints",
+      "kind": "orphan-record"
+    },
+    {
+      "id": "carpometacarpal-joints",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "carpometacarpal-joints",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "thumb-carpometacarpal-joint",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "thumb-carpometacarpal-joint",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "intermetacarpal-joints",
+      "kind": "orphan-record"
+    },
+    {
+      "id": "intermetacarpal-joints",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "intermetacarpal-joints",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "metacarpophalangeal-joints",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "metacarpophalangeal-joints",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "proximal-interphalangeal-joints",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "proximal-interphalangeal-joints",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "distal-interphalangeal-joints",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "distal-interphalangeal-joints",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "thumb-interphalangeal-joint",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "thumb-interphalangeal-joint",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "axilla",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "axilla",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "quadrangular-space",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "quadrangular-space",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "triangular-space",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "triangular-space",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "triangular-interval",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "triangular-interval",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "cubital-fossa",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "cubital-fossa",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "carpal-tunnel",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "carpal-tunnel",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "guyon-canal",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "guyon-canal",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "anatomical-snuffbox",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "anatomical-snuffbox",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "scapular-elevation",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "scapular-elevation",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "scapular-depression",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "scapular-depression",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "scapular-protraction",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "scapular-protraction",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "scapular-retraction",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "scapular-retraction",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "scapular-upward-rotation",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "scapular-upward-rotation",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "scapular-downward-rotation",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "scapular-downward-rotation",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "shoulder-flexion",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "shoulder-flexion",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "shoulder-extension",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "shoulder-extension",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "shoulder-abduction",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "shoulder-abduction",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "shoulder-adduction",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "shoulder-adduction",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "shoulder-medial-rotation",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "shoulder-medial-rotation",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "shoulder-lateral-rotation",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "shoulder-lateral-rotation",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "shoulder-circumduction",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "shoulder-circumduction",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "elbow-flexion",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "elbow-flexion",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "elbow-extension",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "elbow-extension",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "pronation",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "pronation",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "supination",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "supination",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "wrist-flexion",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "wrist-flexion",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "wrist-extension",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "wrist-extension",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "radial-deviation",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "radial-deviation",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "ulnar-deviation",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "ulnar-deviation",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "finger-mcp-flexion",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "finger-mcp-flexion",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "finger-mcp-extension",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "finger-mcp-extension",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "finger-ip-flexion",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "finger-ip-flexion",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "finger-ip-extension",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "finger-ip-extension",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "finger-abduction",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "finger-abduction",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "finger-adduction",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "finger-adduction",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "thumb-flexion",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "thumb-flexion",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "thumb-extension",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "thumb-extension",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "thumb-abduction",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "thumb-abduction",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "thumb-adduction",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "thumb-adduction",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "thumb-opposition",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "thumb-opposition",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "thumb-reposition",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "thumb-reposition",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "winged-scapula",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "winged-scapula",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "wrist-drop",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "wrist-drop",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "ulnar-claw",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "ulnar-claw",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "thenar-wasting-and-loss-of-opposition",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "thenar-wasting-and-loss-of-opposition",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "carpal-tunnel-syndrome",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "carpal-tunnel-syndrome",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "anterior-interosseous-syndrome",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "anterior-interosseous-syndrome",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "hand-of-benediction",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "hand-of-benediction",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "erb-duchenne-palsy",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "erb-duchenne-palsy",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "klumpke-palsy",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "klumpke-palsy",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "anterior-shoulder-dislocation",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "anterior-shoulder-dislocation",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "supraspinatus-tendinopathy",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "supraspinatus-tendinopathy",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "rotator-cuff-tear",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "rotator-cuff-tear",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "subacromial-pain-impingement",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "subacromial-pain-impingement",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "proximal-biceps-tendon-rupture",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "proximal-biceps-tendon-rupture",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "lateral-epicondylitis",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "lateral-epicondylitis",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "medial-epicondylitis",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "medial-epicondylitis",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "de-quervain-tenosynovitis",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "de-quervain-tenosynovitis",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "mallet-finger",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "mallet-finger",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "boutonniere-deformity",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "boutonniere-deformity",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "swan-neck-deformity",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "swan-neck-deformity",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "surgical-neck-fracture",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "surgical-neck-fracture",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "midshaft-humeral-fracture",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "midshaft-humeral-fracture",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "supracondylar-humeral-fracture",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "supracondylar-humeral-fracture",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "medial-epicondyle-fracture",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "medial-epicondyle-fracture",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "scaphoid-fracture",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "scaphoid-fracture",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "colles-fracture",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "colles-fracture",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "smith-fracture",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "smith-fracture",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "monteggia-fracture-dislocation",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "monteggia-fracture-dislocation",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "galeazzi-fracture-dislocation",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "galeazzi-fracture-dislocation",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "clavicle-fracture",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "clavicle-fracture",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "ac-joint-separation",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "ac-joint-separation",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "dermatome-c5",
+      "kind": "orphan-record"
+    },
+    {
+      "id": "dermatome-c5",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "dermatome-c5",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "dermatome-c6",
+      "kind": "orphan-record"
+    },
+    {
+      "id": "dermatome-c6",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "dermatome-c6",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "dermatome-c7",
+      "kind": "orphan-record"
+    },
+    {
+      "id": "dermatome-c7",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "dermatome-c7",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "dermatome-c8",
+      "kind": "orphan-record"
+    },
+    {
+      "id": "dermatome-c8",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "dermatome-c8",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "dermatome-t1",
+      "kind": "orphan-record"
+    },
+    {
+      "id": "dermatome-t1",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "dermatome-t1",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "dermatome-t2",
+      "kind": "orphan-record"
+    },
+    {
+      "id": "dermatome-t2",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "dermatome-t2",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "lumbricals-group",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "dorsal-interossei-group",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "palmar-interossei-group",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "aorta",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "aorta",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "brachiocephalic-trunk",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "brachiocephalic-trunk",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "superior-vena-cava",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "superior-vena-cava",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "right-brachiocephalic-vein",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "right-brachiocephalic-vein",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "upper-limb-lymphatic-drainage",
+      "kind": "eligible-asset-pending"
+    },
+    {
+      "id": "upper-limb-lymphatic-drainage",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "shoulder-instability-specimen",
+      "kind": "medical-review-pending"
+    },
+    {
+      "id": "four-part-proximal-humerus-fracture",
+      "kind": "medical-review-pending"
+    }
+  ],
+  "summary": {
+    "artery": 45,
+    "bone": 32,
+    "clinical": 33,
+    "joint": 18,
+    "landmark": 121,
+    "ligament": 34,
+    "movement": 33,
+    "muscle": 74,
+    "nerve": 48,
+    "space": 9,
+    "surface": 18,
+    "vein": 11
+  },
+  "entityCount": 476,
+  "meshCount": 232,
+  "entitiesWithMeshes": 183,
+  "landmarkAnnotations": 48,
+  "exactAttachmentPatches": 0,
+  "clinicalSpecimens": 2,
+  "medicalReview": "Independent anatomy review pending",
+  "productionReady": false,
+  "geometryPolicy": "Documented original, CC0, public domain, CC BY 4.0 and CC BY-SA 4.0",
+  "limitations": [
+    "Source-mapped right upper limb restored; completeness varies by structure.",
+    "Attachment surfaces and landmark points are source-mapped, not independently validated or fully segmented.",
+    "Reviewed animation rigs and sensory territory surfaces remain pending."
+  ]
+}

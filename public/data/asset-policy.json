@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "allowedLicenses": [
+    "CC0-1.0",
+    "Public Domain",
+    "MedNote Original",
+    "CC-BY-4.0",
+    "CC-BY-SA-4.0"
+  ],
+  "authorizedChange": "Owner permits Z-Anatomy assets with attribution and license compliance, 2026-09-14",
+  "requires": [
+    "verified source",
+    "file SHA-256",
+    "eligible dependencies",
+    "attribution and license link for CC BY/SA",
+    "derivative changes documented",
+    "anatomical review tracked separately"
+  ],
+  "eligibleAssetCount": 232,
+  "note": "Source geometry is not independently anatomically validated. Z-Anatomy derivatives and annotations remain CC BY-SA 4.0. See /models/LICENSES.txt."
+}
