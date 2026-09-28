@@ -118,6 +118,16 @@ class CloudflareTests(unittest.TestCase):
 
 class LectureRepairTests(unittest.TestCase):
     def lesson(self):return dict(explanation='Calcium binds troponin.',high_yield=[],terms=[],clarifications=[],mechanism=[],questions=[],source_quotes=['Calcium'])
+    def test_requested_tool_is_sent_to_generation_and_review(self):
+        import lecture_workflow
+        from unittest.mock import Mock
+        for tool in ('explain','quiz','visual'):
+            p=SimpleNamespace(opener=None,complete=Mock(side_effect=[self.lesson(),{'passed':True,'issues':[]}]))
+            lecture_workflow.prepare_lecture({'slide':'Calcium binds troponin.','requested_tool':tool})(p)
+            self.assertEqual(p.complete.call_args_list[0].args[1]['requested_tool'],tool)
+            self.assertEqual(p.complete.call_args_list[1].args[1]['requested_tool'],tool)
+        with self.assertRaises(lecture.MentorError):
+            lecture_workflow.prepare_lecture({'slide':'Calcium','requested_tool':'other'})
     def test_selected_text_context_and_full_image_survive_repair(self):
         import lecture_workflow
         from unittest.mock import Mock

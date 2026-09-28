@@ -12,7 +12,7 @@ from v1server.provider import Provider, NoRedirect
 from v1server.contracts import MentorError, require
 from study_limits import admit_study
 
-DEFAULT_MODEL = 'gemini-3.5-flash-lite'
+DEFAULT_MODEL = 'gemini-3.1-flash-lite'
 
 class CloudflareTransport:
     """Gateway owns retries; the application never multiplies attempts."""
@@ -56,7 +56,7 @@ class CloudflareTransport:
                 codes = [entry.get('code') for entry in entries if isinstance(entry, dict)]
                 diagnostics['upstream_codes'] = [c for c in codes if isinstance(c, int)]
                 statuses = [entry.get('status') for entry in entries if isinstance(entry, dict)]
-                diagnostics['upstream_statuses'] = [v for v in statuses if v in ('PERMISSION_DENIED','UNAUTHENTICATED','NOT_FOUND','INVALID_ARGUMENT','RESOURCE_EXHAUSTED')]
+                diagnostics['upstream_statuses'] = [v for v in statuses if v in ('PERMISSION_DENIED','UNAUTHENTICATED','NOT_FOUND','INVALID_ARGUMENT','RESOURCE_EXHAUSTED','UNAVAILABLE','INTERNAL','DEADLINE_EXCEEDED')]
                 messages = ' '.join(str(entry.get('message', '')) for entry in entries if isinstance(entry, dict)).lower()
                 # Only categorical diagnostics; never echo upstream content or credentials.
                 diagnostics['signals'] = [label for label, phrase in (
@@ -66,7 +66,9 @@ class CloudflareTransport:
                     ('missing_provider_key','no provider key'), ('api_disabled','has not been used'),
                     ('key_blocked','api key was reported as leaked'), ('expired_token','expired'),
                     ('invalid_cf_authorization','invalid cf-aig-authorization'),
-                    ('unauthorized','unauthorized'), ('forbidden','forbidden')) if phrase in messages]
+                    ('unauthorized','unauthorized'), ('forbidden','forbidden'),
+                    ('overloaded','overloaded'), ('high_demand','high demand'),
+                    ('service_unavailable','service unavailable')) if phrase in messages]
             except (ValueError, TypeError, AttributeError):pass
             finally:error.close()
             print(json.dumps({'event': 'study_provider_error', 'request_id': self.request_id,
@@ -117,5 +119,6 @@ def run_study(headers, execute, *, module='research', provider_factory=None):
         return result
     except MentorError as error:
         print(json.dumps({'event': 'study_failed', 'request_id': request_id, 'module': module,
-                          'code': error.code, 'status': error.status}), flush=True)
+                          'code': error.code, 'status': error.status,
+                          'model': provider.config['model'] if 'provider' in locals() else None}), flush=True)
         raise
