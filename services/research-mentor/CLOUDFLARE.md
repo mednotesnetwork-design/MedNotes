@@ -10,7 +10,7 @@ No Vercel AI Gateway, OpenAI or Claude request path is enabled.
 - `CLOUDFLARE_ACCOUNT_ID`: account owning the gateway.
 - `CLOUDFLARE_AI_GATEWAY_ID`: gateway slug.
 - `CLOUDFLARE_AI_GATEWAY_TOKEN`: encrypted, scoped gateway-run credential.
-- `MEDNOTE_GEMINI_MODEL`: optional, defaults to stable `gemini-3.1-flash-lite`.
+- `MEDNOTE_GEMINI_MODEL`: optional, defaults to stable `gemini-3.5-flash-lite`.
 
 Cloudflare authentication is required. Missing configuration fails closed with
 `STUDY_CONFIGURATION_REQUIRED`; there is no implicit direct or paid fallback.
