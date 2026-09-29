@@ -1,4 +1,4 @@
-"""Private study provider boundary. Gemini via Cloudflare only; no automatic fallback."""
+"""Private study provider boundary. Gemini via Cloudflare only; bounded same-provider recovery."""
 import json
 import os
 import re
@@ -7,20 +7,45 @@ import time
 import uuid
 from pathlib import Path
 from urllib.error import HTTPError, URLError
-from urllib.request import build_opener
+from urllib.request import Request, build_opener
 from v1server.provider import Provider, NoRedirect
 from v1server.contracts import MentorError, require
 from study_limits import admit_study
 
-DEFAULT_MODEL = 'gemini-3.8-flash'
+DEFAULT_MODEL = 'gemini-3.5-flash-lite'
+RECOVERY_MODELS = ('gemini-3.8-flash', 'gemini-3.5-flash')
 
 class CloudflareTransport:
     """Gateway owns retries; the application never multiplies attempts."""
-    def __init__(self, inner, deadline, token, request_id, module):
+    def __init__(self, inner, deadline, token, request_id, module, config=None):
         self.inner, self.deadline, self.token = inner, deadline, token
         self.request_id, self.module, self.attempts = request_id, module, 0
+        self.config = config
+        self.models = list(dict.fromkeys([config['model'], *RECOVERY_MODELS])) if config else []
+        self.model_index = 0
 
     def open(self, request, **kwargs):
+        while True:
+            # Only change the model segment, never the gateway/account, credentials,
+            # JSON payload, image parts, selection or review state.
+            if self.config:
+                endpoint = self.config['endpoint']
+                request = Request(endpoint, data=request.data, headers=dict(request.header_items()), method=request.get_method())
+            try:
+                return self._open(request, **kwargs)
+            except MentorError as error:
+                if error.code != 'PROVIDER_BUSY' or self.model_index + 1 >= len(self.models):
+                    raise
+                if self.deadline - time.monotonic() <= 8 or self.attempts >= 8:
+                    raise
+                self.model_index += 1
+                model = self.models[self.model_index]
+                self.config['endpoint'] = self.config['endpoint'].rsplit('/models/', 1)[0] + '/models/' + model + ':generateContent'
+                self.config['model'] = model
+                print(json.dumps({'event':'study_model_recovery','request_id':self.request_id,
+                                  'module':self.module,'model':model}), flush=True)
+
+    def _open(self, request, **kwargs):
         remaining = self.deadline - time.monotonic()
         require(remaining > 5, 'Study deadline reached', 'STUDY_TIMEOUT', 504)
         self.attempts += 1
@@ -72,7 +97,7 @@ class CloudflareTransport:
             except (ValueError, TypeError, AttributeError):pass
             finally:error.close()
             print(json.dumps({'event': 'study_provider_error', 'request_id': self.request_id,
-                              'module': self.module, 'status': status, 'call': self.attempts, **diagnostics}), flush=True)
+                              'module': self.module, 'status': status, 'call': self.attempts, 'model': self.config['model'] if self.config else None, **diagnostics}), flush=True)
             if status == 429: raise MentorError('USAGE_LIMIT', 'Rate limit reached', 429)
             if status in (408, 504): raise MentorError('STUDY_TIMEOUT', 'Provider timeout', 504)
             if status in (401, 403): raise MentorError('STUDY_CONFIGURATION_REQUIRED', 'Server authentication failed', 503)
@@ -100,7 +125,7 @@ def cloudflare_provider(deadline, request_id, module):
     provider.config.update(endpoint=f'https://gateway.ai.cloudflare.com/v1/{account}/{gateway}/google-ai-studio/v1beta/models/{model}:generateContent',
                            model=model, protocol='gemini-generate-content',
                            sampling_parameters={'max_completion_tokens': 6144, 'reasoning_effort': 'low'})
-    provider.opener = CloudflareTransport(build_opener(NoRedirect()), deadline, token, request_id, module)
+    provider.opener = CloudflareTransport(build_opener(NoRedirect()), deadline, token, request_id, module, provider.config)
     return provider
 
 

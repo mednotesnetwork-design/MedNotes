@@ -10,7 +10,7 @@ No Vercel AI Gateway, OpenAI or Claude request path is enabled.
 - `CLOUDFLARE_ACCOUNT_ID`: account owning the gateway.
 - `CLOUDFLARE_AI_GATEWAY_ID`: gateway slug.
 - `CLOUDFLARE_AI_GATEWAY_TOKEN`: encrypted, scoped gateway-run credential.
-- `MEDNOTE_GEMINI_MODEL`: optional, defaults to `gemini-3.8-flash`, the existing project's Flash model. Flash-Lite returned repeated `503 UNAVAILABLE` during live verification; no paid third-party fallback is enabled.
+- `MEDNOTE_GEMINI_MODEL`: optional, defaults to `gemini-3.5-flash-lite`. On upstream 500/502/503 only, a workflow can advance to `gemini-3.8-flash`, then `gemini-3.5-flash`, through the same gateway and existing key. No third-party fallback is enabled.
 
 Cloudflare authentication is required. Missing configuration fails closed with
 `STUDY_CONFIGURATION_REQUIRED`; there is no implicit direct or paid fallback.
@@ -25,7 +25,7 @@ Enable authentication, logging and a sliding rate limit of 20 model requests
 per 60 seconds for the private gateway. Disable response caching. Runtime request
 headers bound attempts to 2 with 700ms exponential backoff, provider timeout to
 25s, and application socket timeout to 58s (240s workflow deadline).
-No application transport retry multiplies Gateway retries. Lecture repair is
+Each model receives at most 2 Gateway attempts. Model recovery advances only, never loops, and shares an 8-call transport budget and the 240s deadline; the maximum is 16 upstream attempts across the entire workflow. Auth, quota, validation and review failures never trigger model recovery. Lecture repair is
 limited to one rewrite + re-review (at most 4 calls); Research retains its existing
 reviewed engine and 8-call maximum. Maximum output is 6144 tokens/call.
 

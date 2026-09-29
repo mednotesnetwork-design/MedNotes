@@ -87,6 +87,37 @@ class CloudflareTests(unittest.TestCase):
             body=json.loads(req.data)
             self.assertIn('troponin',body['contents'][0]['parts'][0]['text'])
             self.assertEqual(body['generationConfig']['thinkingConfig']['thinkingLevel'],'LOW')
+    def test_overload_recovers_without_losing_slide_or_review_payload(self):
+        import study_routing
+        from io import BytesIO
+        from urllib.error import HTTPError
+        response={'candidates':[{'finishReason':'STOP','content':{'parts':[{'text':'{"answer":"ok"}'}]}}]}
+        busy=lambda:HTTPError('https://gateway.ai.cloudflare.com',503,'busy',{},BytesIO(b'{}'))
+        with patch.dict('os.environ',self.env(),clear=True),patch.object(study_routing,'build_opener') as op:
+            op.return_value.open.side_effect=[busy(),BytesIO(json.dumps(response).encode()),BytesIO(json.dumps(response).encode())]
+            p=study_routing.cloudflare_provider(time.monotonic()+240,'test','lecture')
+            import lecture_workflow
+            p.opener=lecture_workflow.SlideTransport(p.opener,'data:image/jpeg;base64,/9j/')
+            payload={'selected_text':'troponin','current_slide':'Calcium binds troponin'}
+            self.assertEqual(p.complete('Generate',payload),{'answer':'ok'})
+            calls=op.return_value.open.call_args_list
+            self.assertEqual(calls[0].args[0].data,calls[1].args[0].data)
+            self.assertIn('gemini-3.8-flash:generateContent',calls[1].args[0].full_url)
+            p.complete('Review',payload)
+            self.assertEqual(op.return_value.open.call_args_list[-1].args[0].full_url,calls[1].args[0].full_url)
+            self.assertEqual(json.loads(calls[1].args[0].data)['contents'][0]['parts'][1]['inlineData']['data'],'/9j/')
+
+    def test_model_recovery_is_bounded_and_auth_does_not_recover(self):
+        import study_routing
+        from io import BytesIO
+        from urllib.error import HTTPError
+        for status,expected in [(503,3),(403,1),(429,1)]:
+            with patch.dict('os.environ',self.env(),clear=True),patch.object(study_routing,'build_opener') as op:
+                op.return_value.open.side_effect=lambda *a,**k:(_ for _ in ()).throw(HTTPError('https://gateway.ai.cloudflare.com',status,'failed',{},BytesIO(b'{}')))
+                p=study_routing.cloudflare_provider(time.monotonic()+240,'test','lecture')
+                with self.assertRaises(lecture.MentorError):p.complete('Generate',{})
+                self.assertEqual(op.return_value.open.call_count,expected)
+
     def test_stored_provider_key_requires_only_gateway_token(self):
         import study_routing
         from io import BytesIO
