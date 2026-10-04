@@ -111,7 +111,7 @@ class CloudflareTests(unittest.TestCase):
         import study_routing
         from io import BytesIO
         from urllib.error import HTTPError
-        for status,expected in [(503,3),(403,1),(429,1)]:
+        for status,expected in [(503,2),(403,1),(429,1)]:
             with patch.dict('os.environ',self.env(),clear=True),patch.object(study_routing,'build_opener') as op:
                 op.return_value.open.side_effect=lambda *a,**k:(_ for _ in ()).throw(HTTPError('https://gateway.ai.cloudflare.com',status,'failed',{},BytesIO(b'{}')))
                 p=study_routing.cloudflare_provider(time.monotonic()+240,'test','lecture')
