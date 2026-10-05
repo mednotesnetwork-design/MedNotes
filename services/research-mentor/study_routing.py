@@ -13,7 +13,7 @@ from v1server.contracts import MentorError, require
 from study_limits import admit_study
 
 DEFAULT_MODEL = 'gemini-3.5-flash-lite'
-RECOVERY_MODELS = ('gemini-3.8-flash', 'gemini-3.5-flash')
+RECOVERY_MODELS = ('gemini-3.8-flash', 'gemini-3.5-flash', DEFAULT_MODEL)
 
 class CloudflareTransport:
     """Gateway owns retries; the application never multiplies attempts."""
