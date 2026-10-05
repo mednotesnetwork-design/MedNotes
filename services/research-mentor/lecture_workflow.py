@@ -157,8 +157,11 @@ def prepare_lecture(data):
                           'full_image':bool(image),'detail_image':bool(detail),'region':region}),flush=True)
         try:
             # One bounded repair, preserving validation/review instead of publishing a rejected answer.
+            approved={}
             for attempt in range(2):
                 lesson=p.complete(PROMPT+mode_rule,payload)
+                # Repair cannot overwrite sections that already passed the independent audit.
+                if isinstance(lesson,dict):lesson.update(approved)
                 issues=[]
                 try:
                     validate(lesson,slide,bool(image),source_mode)
@@ -177,8 +180,12 @@ def prepare_lecture(data):
                     issues=review_issues(review)
                     if not issues:
                         return {'lesson':lesson,'experimental':True,'evaluation_record':False,'module':'lecture-tutor-v1'}
-                    print(json.dumps({'event':'lecture_review_failed','attempt':attempt+1,'issue_count':len(issues)}),flush=True)
-                payload.update(previous_draft=lesson,repair_feedback=issues[:8],task='Correct the draft using only the source and feedback. Remove unsupported content rather than adding more details. Follow the requested_tool and source_mode rules. Return the entire lesson JSON. Do not weaken evidence rules.')
+                    checks=review.get('checks',[])
+                    complete=isinstance(checks,list) and len(checks)==len(REVIEW_FIELDS) and all(isinstance(c,dict) for c in checks) and {c.get('field') for c in checks}==set(REVIEW_FIELDS)
+                    if complete:
+                        approved={c['field']:lesson[c['field']] for c in checks if c.get('supported') is True and c['field'] in lesson}
+                    print(json.dumps({'event':'lecture_review_failed','attempt':attempt+1,'issue_count':len(issues),'fields':[c['field'] for c in checks if c.get('supported') is not True] if complete else ['incomplete_audit']}),flush=True)
+                payload.update(previous_draft=lesson,repair_feedback=issues[:24],approved_fields=list(approved),task='Preserve approved_fields EXACTLY. Rewrite only failed sections. Prefer short, precise explanations; remove ungrounded details instead of expanding them. Correct the draft using only the source and feedback. Remove unsupported content rather than adding more details. Follow the requested_tool and source_mode rules. Return the entire lesson JSON. Do not weaken evidence rules.')
             raise MentorError('LECTURE_REVIEW_FAILED','Review failed after bounded repair',422)
         finally:p.opener=original
     return explain

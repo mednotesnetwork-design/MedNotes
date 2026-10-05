@@ -21,6 +21,17 @@ class JourneyEvidenceTests(unittest.TestCase):
         self.assertTrue(review_issues(bad))
         for checks in ([],review['checks'][:-1],review['checks'][:-1]+[review['checks'][0]]):
             self.assertTrue(review_issues(dict(review,checks=checks)))
+    def test_repair_preserves_approved_fields(self):
+        from types import SimpleNamespace
+        from unittest.mock import Mock
+        draft=self.lesson();draft['explanation']='Unsupported claim'
+        checks=[dict(field=f,supported=f!='explanation',issue='Fix claim' if f=='explanation' else '') for f in REVIEW_FIELDS]
+        repaired=self.lesson();repaired['checkpoint']['answer']='Wrong new answer'
+        audit={'passed':True,'issues':[],'checks':[dict(field=f,supported=True,issue='') for f in REVIEW_FIELDS]}
+        provider=SimpleNamespace(opener=None,complete=Mock(side_effect=[draft,{'passed':False,'issues':['Fix explanation'],'checks':checks},repaired,audit]))
+        result=prepare_lecture({'slide':self.slide})(provider)['lesson']
+        self.assertEqual(result['checkpoint']['answer'],'ATP')
+        self.assertEqual(result['explanation'],'Calcium binds troponin C.')
     def test_lecture_only_rejects_additional_content_in_every_teaching_surface(self):
         for field in ('opening','visual','clinical_connection'):
             value=self.lesson();value[field]['basis']='additional'
