@@ -56,11 +56,11 @@ class CloudflareTransport:
         request.add_header('cf-aig-max-attempts', '2')
         request.add_header('cf-aig-retry-delay', '700')
         request.add_header('cf-aig-backoff', 'exponential')
-        request.add_header('cf-aig-request-timeout', str(int(min(25000, (remaining - 2) * 500))))
+        request.add_header('cf-aig-request-timeout', str(int(min(45000, (remaining - 2) * 500))))
         request.add_header('cf-aig-skip-cache', 'true')
         # No student text, identifiers, keys or slide data in metadata/runtime logs.
         request.add_header('cf-aig-metadata', json.dumps({'request_id': self.request_id, 'module': self.module}))
-        kwargs['timeout'] = min(58, remaining)
+        kwargs['timeout'] = min(95, remaining)
         start = time.monotonic()
         try:
             response = self.inner.open(request, **kwargs)
