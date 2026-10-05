@@ -86,7 +86,7 @@ class CloudflareTests(unittest.TestCase):
             self.assertNotIn('Authorization',req.headers)
             body=json.loads(req.data)
             self.assertIn('troponin',body['contents'][0]['parts'][0]['text'])
-            self.assertEqual(body['generationConfig']['thinkingConfig']['thinkingLevel'],'LOW')
+            self.assertEqual(body['generationConfig']['thinkingConfig']['thinkingLevel'],'MEDIUM')
     def test_overload_recovers_without_losing_slide_or_review_payload(self):
         import study_routing
         from io import BytesIO
@@ -153,7 +153,7 @@ class LectureRepairTests(unittest.TestCase):
         import lecture_workflow
         from unittest.mock import Mock
         for tool in ('explain','quiz','visual'):
-            p=SimpleNamespace(opener=None,complete=Mock(side_effect=[self.lesson(),{'passed':True,'issues':[]}]))
+            p=SimpleNamespace(opener=None,complete=Mock(side_effect=[self.lesson(),{'passed':True,'issues':[],'checks':[{'field':f,'supported':True,'issue':''} for f in lecture_workflow.REVIEW_FIELDS]}]))
             lecture_workflow.prepare_lecture({'slide':'Calcium binds troponin.','requested_tool':tool})(p)
             self.assertEqual(p.complete.call_args_list[0].args[1]['requested_tool'],tool)
             self.assertEqual(p.complete.call_args_list[1].args[1]['requested_tool'],tool)
@@ -163,7 +163,7 @@ class LectureRepairTests(unittest.TestCase):
         import lecture_workflow
         from unittest.mock import Mock
         bad=self.lesson();bad['source_quotes']=['fabricated quote']
-        p=SimpleNamespace(opener=object(),complete=Mock(side_effect=[bad,self.lesson(),{'passed':True,'issues':[]}]))
+        p=SimpleNamespace(opener=object(),complete=Mock(side_effect=[bad,self.lesson(),{'passed':True,'issues':[],'checks':[{'field':f,'supported':True,'issue':''} for f in lecture_workflow.REVIEW_FIELDS]}]))
         original=p.opener
         explain=lecture_workflow.prepare_lecture({'slide':'Calcium binds troponin.','selection':'troponin','image':'data:image/jpeg;base64,/9j/','detail_image':'data:image/jpeg;base64,/9j/','region':True,'region_bounds':{'x':0,'y':0,'w':.5,'h':.5}})
         self.assertEqual(explain(p)['lesson']['explanation'],'Calcium binds troponin.')

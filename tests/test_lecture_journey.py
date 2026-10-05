@@ -3,7 +3,7 @@ import sys,unittest
 from copy import deepcopy
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'services/research-mentor'))
-from lecture_workflow import validate,prepare_lecture
+from lecture_workflow import validate,prepare_lecture,review_issues,REVIEW_FIELDS
 from v1server.contracts import MentorError
 
 class JourneyEvidenceTests(unittest.TestCase):
@@ -14,6 +14,13 @@ class JourneyEvidenceTests(unittest.TestCase):
             visual=dict(kind='sequence',title='Binding',caption='',basis='lecture',labels=[dict(label='Calcium',detail='Binds troponin C.',system='neuromuscular')],source_quotes=['Calcium'],skin_features=[]),
             clinical_connection=dict(text='',basis='lecture',source_quote=''),
             checkpoint=dict(question='What supports cross-bridge cycling?',answer='ATP',concept='Energy',source_quote='ATP supports cross-bridge cycling.'),summary=['Calcium binds troponin C.'])
+    def test_review_requires_all_fields_and_rejects_false_overall_pass(self):
+        review={'passed':True,'issues':[],'checks':[dict(field=f,supported=True,issue='') for f in REVIEW_FIELDS]}
+        self.assertEqual(review_issues(review),[])
+        bad=deepcopy(review);bad['checks'][0].update(supported=False,issue='Unsupported causal relation')
+        self.assertTrue(review_issues(bad))
+        for checks in ([],review['checks'][:-1],review['checks'][:-1]+[review['checks'][0]]):
+            self.assertTrue(review_issues(dict(review,checks=checks)))
     def test_lecture_only_rejects_additional_content_in_every_teaching_surface(self):
         for field in ('opening','visual','clinical_connection'):
             value=self.lesson();value[field]['basis']='additional'

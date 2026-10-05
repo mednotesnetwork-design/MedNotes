@@ -128,7 +128,7 @@ def cloudflare_provider(deadline, request_id, module):
     require(bool(re.fullmatch(r'gemini-[a-zA-Z0-9.-]+', model)), 'Invalid model', 'STUDY_CONFIGURATION_REQUIRED', 503)
     provider.config.update(endpoint=f'https://gateway.ai.cloudflare.com/v1/{account}/{gateway}/google-ai-studio/v1beta/models/{model}:generateContent',
                            model=model, protocol='gemini-generate-content',
-                           sampling_parameters={'max_completion_tokens': 6144, 'reasoning_effort': 'low'})
+                           sampling_parameters={'max_completion_tokens': 6144, 'reasoning_effort': 'medium' if module == 'lecture' else 'low'})
     provider.opener = CloudflareTransport(build_opener(NoRedirect()), deadline, token, request_id, module, provider.config)
     return provider
 
