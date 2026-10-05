@@ -3,7 +3,7 @@ import sys,unittest
 from copy import deepcopy
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'services/research-mentor'))
-from lecture_workflow import validate,prepare_lecture,review_issues,REVIEW_FIELDS
+from lecture_workflow import validate,prepare_lecture,review_issues,REVIEW_FIELDS,prune_rejected_sections
 from v1server.contracts import MentorError
 
 class JourneyEvidenceTests(unittest.TestCase):
@@ -32,6 +32,26 @@ class JourneyEvidenceTests(unittest.TestCase):
         result=prepare_lecture({'slide':self.slide})(provider)['lesson']
         self.assertEqual(result['checkpoint']['answer'],'ATP')
         self.assertEqual(result['explanation'],'Calcium binds troponin C.')
+    def test_pruning_removes_failed_sections_but_never_failed_core(self):
+        review={'checks':[dict(field=f,supported=f!='questions') for f in REVIEW_FIELDS]}
+        lesson=self.lesson();lesson['questions']=[{'question':'Unsupported'}]
+        pruned=prune_rejected_sections(lesson,review)
+        self.assertEqual(pruned['questions'],[])
+        self.assertEqual(pruned['explanation'],lesson['explanation'])
+        review['checks'][0]['supported']=False
+        self.assertIsNone(prune_rejected_sections(lesson,review))
+        self.assertIsNone(prune_rejected_sections(lesson,{'checks':[]}))
+    def test_trimmed_lesson_requires_a_new_successful_audit(self):
+        from types import SimpleNamespace
+        from unittest.mock import Mock
+        draft=self.lesson();draft['high_yield']=['Unsupported fact']
+        bad={'passed':False,'issues':['Unsupported high yield'],'checks':[dict(field=f,supported=f!='high_yield',issue='Remove unsupported detail') for f in REVIEW_FIELDS]}
+        good={'passed':True,'issues':[],'checks':[dict(field=f,supported=True) for f in REVIEW_FIELDS]}
+        p=SimpleNamespace(opener=None,complete=Mock(side_effect=[draft,bad,dict(draft),bad,good]))
+        result=prepare_lecture({'slide':self.slide})(p)['lesson']
+        self.assertEqual(p.complete.call_count,5)
+        self.assertEqual(result['high_yield'],[])
+        self.assertIn('review_note',result)
     def test_lecture_only_rejects_additional_content_in_every_teaching_surface(self):
         for field in ('opening','visual','clinical_connection'):
             value=self.lesson();value[field]['basis']='additional'

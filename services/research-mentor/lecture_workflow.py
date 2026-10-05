@@ -39,6 +39,23 @@ def review_issues(review):
     if review.get('passed') is not True and not issues:issues=['Content audit did not pass']
     return issues
 
+def prune_rejected_sections(lesson,review):
+    """Remove rejected optional content, never override a rejected core explanation."""
+    checks=review.get('checks',[]) if isinstance(review,dict) else []
+    if len(checks)!=len(REVIEW_FIELDS) or any(not isinstance(c,dict) for c in checks):return None
+    if {c.get('field') for c in checks}!=set(REVIEW_FIELDS):return None
+    if not any(c.get('field')=='explanation' and c.get('supported') is True for c in checks):return None
+    empty={k:[] for k in ('high_yield','terms','clarifications','mechanism','questions','summary')}
+    empty.update(opening=dict(kind='none',scene='',prompt='',answer='',basis='lecture',source_quote=''),
+                 visual=dict(kind='none',title='',caption='',labels=[],basis='lecture',source_quotes=[],skin_features=[]),
+                 clinical_connection=dict(text='',basis='lecture',source_quote=''),
+                 checkpoint=dict(question='',answer='',concept='',source_quote=''))
+    rejected=[c['field'] for c in checks if c.get('supported') is not True]
+    if not rejected or any(k not in empty for k in rejected):return None
+    result=dict(lesson)
+    for field in rejected:result[field]=empty[field]
+    return result
+
 def validate(lesson,slide,has_image=False,source_mode='lecture_only'):
     require(isinstance(lesson,dict),'Invalid lesson','LECTURE_REVIEW_FAILED',422)
     require(isinstance(lesson.get('explanation'),str) and 0<len(lesson['explanation'].strip())<=16000, 'The explanation field must be a nonempty string, including quiz and visual tools; add a short source-based introduction, never omit it or use an object.', 'LECTURE_REVIEW_FAILED',422)
@@ -157,8 +174,18 @@ def prepare_lecture(data):
                           'full_image':bool(image),'detail_image':bool(detail),'region':region}),flush=True)
         try:
             # One bounded repair, preserving validation/review instead of publishing a rejected answer.
+            def audit(value):
+                params=getattr(p,'config',{}).get('sampling_parameters')
+                previous_effort=params.get('reasoning_effort') if params else None
+                try:
+                    if params is not None:params['reasoning_effort']='high'
+                    return p.complete(REVIEW+mode_rule,{'requested_tool':requested_tool,'source_mode':source_mode,'current_slide':slide,'selected_text':selection,'student_question':question,'lesson':value})
+                finally:
+                    if params is not None:params['reasoning_effort']=previous_effort
             approved={}
+            review=None
             for attempt in range(2):
+                review=None
                 lesson=p.complete(PROMPT+mode_rule,payload)
                 # Repair cannot overwrite sections that already passed the independent audit.
                 if isinstance(lesson,dict):lesson.update(approved)
@@ -170,13 +197,7 @@ def prepare_lecture(data):
                     issues=[error.message]
                     print(json.dumps({'event':'lecture_validation_failed','attempt':attempt+1,'reason':error.message}),flush=True)
                 if not issues:
-                    params=getattr(p,'config',{}).get('sampling_parameters')
-                    previous_effort=params.get('reasoning_effort') if params else None
-                    try:
-                        if params is not None:params['reasoning_effort']='high'
-                        review=p.complete(REVIEW+mode_rule,{'requested_tool':requested_tool,'source_mode':source_mode,'current_slide':slide,'selected_text':selection,'student_question':question,'lesson':lesson})
-                    finally:
-                        if params is not None:params['reasoning_effort']=previous_effort
+                    review=audit(lesson)
                     issues=review_issues(review)
                     if not issues:
                         return {'lesson':lesson,'experimental':True,'evaluation_record':False,'module':'lecture-tutor-v1'}
@@ -186,6 +207,16 @@ def prepare_lecture(data):
                         approved={c['field']:lesson[c['field']] for c in checks if c.get('supported') is True and c['field'] in lesson}
                     print(json.dumps({'event':'lecture_review_failed','attempt':attempt+1,'issue_count':len(issues),'fields':[c['field'] for c in checks if c.get('supported') is not True] if complete else ['incomplete_audit']}),flush=True)
                 payload.update(previous_draft=lesson,repair_feedback=issues[:24],approved_fields=list(approved),task='Preserve approved_fields EXACTLY. Rewrite only failed sections. Prefer short, precise explanations; remove ungrounded details instead of expanding them. Correct the draft using only the source and feedback. Remove unsupported content rather than adding more details. Follow the requested_tool and source_mode rules. Return the entire lesson JSON. Do not weaken evidence rules.')
+            # Optional sections may be omitted, but the remaining lesson must pass a fresh audit.
+            for _ in range(2):
+                trimmed=prune_rejected_sections(lesson,review)
+                if trimmed is None:break
+                validate(trimmed,slide,bool(image),source_mode)
+                review=audit(trimmed)
+                lesson=trimmed
+                if not review_issues(review):
+                    lesson['review_note']='اقتصر هذا الشرح على الأجزاء التي أمكن التحقق منها من السلايد.'
+                    return {'lesson':lesson,'experimental':True,'evaluation_record':False,'module':'lecture-tutor-v1'}
             raise MentorError('LECTURE_REVIEW_FAILED','Review failed after bounded repair',422)
         finally:p.opener=original
     return explain
