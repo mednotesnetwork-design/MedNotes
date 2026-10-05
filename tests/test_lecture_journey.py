@@ -47,9 +47,9 @@ class JourneyEvidenceTests(unittest.TestCase):
         draft=self.lesson();draft['high_yield']=['Unsupported fact']
         bad={'passed':False,'issues':['Unsupported high yield'],'checks':[dict(field=f,supported=f!='high_yield',issue='Remove unsupported detail') for f in REVIEW_FIELDS]}
         good={'passed':True,'issues':[],'checks':[dict(field=f,supported=True) for f in REVIEW_FIELDS]}
-        p=SimpleNamespace(opener=None,complete=Mock(side_effect=[draft,bad,dict(draft),bad,good]))
+        p=SimpleNamespace(opener=None,complete=Mock(side_effect=[draft,bad,good]))
         result=prepare_lecture({'slide':self.slide})(p)['lesson']
-        self.assertEqual(p.complete.call_count,5)
+        self.assertEqual(p.complete.call_count,3)
         self.assertEqual(result['high_yield'],[])
         self.assertIn('review_note',result)
     def test_lecture_only_rejects_additional_content_in_every_teaching_surface(self):

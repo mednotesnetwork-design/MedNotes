@@ -184,9 +184,15 @@ def prepare_lecture(data):
                     if params is not None:params['reasoning_effort']=previous_effort
             approved={}
             review=None
+            pending_lesson=None
+            trimmed_content=False
             for attempt in range(2):
                 review=None
-                lesson=p.complete(PROMPT+mode_rule,payload)
+                if pending_lesson is not None:
+                    lesson=pending_lesson
+                    pending_lesson=None
+                else:
+                    lesson=p.complete(PROMPT+mode_rule,payload)
                 # Repair cannot overwrite sections that already passed the independent audit.
                 if isinstance(lesson,dict):lesson.update(approved)
                 issues=[]
@@ -200,12 +206,18 @@ def prepare_lecture(data):
                     review=audit(lesson)
                     issues=review_issues(review)
                     if not issues:
+                        if trimmed_content:lesson['review_note']='اقتصر هذا الشرح على الأجزاء التي أمكن التحقق منها من السلايد.'
                         return {'lesson':lesson,'experimental':True,'evaluation_record':False,'module':'lecture-tutor-v1'}
                     checks=review.get('checks',[])
                     complete=isinstance(checks,list) and len(checks)==len(REVIEW_FIELDS) and all(isinstance(c,dict) for c in checks) and {c.get('field') for c in checks}==set(REVIEW_FIELDS)
                     if complete:
                         approved={c['field']:lesson[c['field']] for c in checks if c.get('supported') is True and c['field'] in lesson}
                     print(json.dumps({'event':'lecture_review_failed','attempt':attempt+1,'issue_count':len(issues),'fields':[c['field'] for c in checks if c.get('supported') is not True] if complete else ['incomplete_audit']}),flush=True)
+                    if attempt==0:
+                        pending_lesson=prune_rejected_sections(lesson,review)
+                        if pending_lesson is not None:
+                            approved={}
+                            trimmed_content=True
                 payload.update(previous_draft=lesson,repair_feedback=issues[:24],approved_fields=list(approved),task='Preserve approved_fields EXACTLY. Rewrite only failed sections. Prefer short, precise explanations; remove ungrounded details instead of expanding them. Correct the draft using only the source and feedback. Remove unsupported content rather than adding more details. Follow the requested_tool and source_mode rules. Return the entire lesson JSON. Do not weaken evidence rules.')
             # Optional sections may be omitted, but the remaining lesson must pass a fresh audit.
             for _ in range(2):
