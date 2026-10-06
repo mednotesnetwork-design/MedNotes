@@ -13,7 +13,7 @@ from v1server.contracts import MentorError, require
 from study_limits import admit_study
 
 DEFAULT_MODEL = 'gemini-3.5-flash-lite'
-RECOVERY_MODELS = ('gemini-3.8-flash', 'gemini-3.5-flash', DEFAULT_MODEL)
+RECOVERY_MODELS = (DEFAULT_MODEL, 'gemini-3.5-flash', 'gemini-3.8-flash')
 
 class CloudflareTransport:
     """Gateway owns retries; the application never multiplies attempts."""
@@ -120,9 +120,9 @@ def cloudflare_provider(deadline, request_id, module):
     # Reuse Gemini key stored in Cloudflare Provider Keys when no local key exists.
     # Cloudflare gateway must have byok_only enabled; no Unified Billing fallback.
     if not provider.available:provider.config={'api_key':''}
-    # Rich medical lessons need the Flash tier for generation AND evidence review.
-    # Research keeps its established default; existing explicit model settings win.
-    default = 'gemini-3.5-flash' if module == 'lecture' else DEFAULT_MODEL
+    # Use the economical model already serving successful study requests.
+    # Content validation and independent review remain mandatory for lectures.
+    default = DEFAULT_MODEL
     model = os.environ.get('MEDNOTE_LECTURE_MODEL' if module == 'lecture' else 'MEDNOTE_GEMINI_MODEL',
                            os.environ.get('MEDNOTE_GEMINI_MODEL', default)).strip()
     require(bool(re.fullmatch(r'gemini-[a-zA-Z0-9.-]+', model)), 'Invalid model', 'STUDY_CONFIGURATION_REQUIRED', 503)

@@ -13,6 +13,12 @@ type Region={x:number;y:number;w:number;h:number};
 type Tab='explain'|'notes';
 const initial:Lecture={name:'',slides:[],page:1,results:{},answers:{},notes:{}};
 
+function LectureProgress({cancel}:{cancel:()=>void}){
+ const [elapsed,setElapsed]=useState(0);
+ useEffect(()=>{const started=Date.now();const timer=setInterval(()=>setElapsed(Math.floor((Date.now()-started)/1000)),1000);return()=>clearInterval(timer);},[]);
+ return <div className="tutor-loading" role="status"><Sparkles size={18}/><span>{elapsed<45?'أجهّز الشرح وأراجعه مع السلايد…':'تأخر الرد؛ ما زلت أراجع الطلب. يمكنك إيقافه دون فقد محتواك.'}<small style={{display:'block'}}>{elapsed} ثانية</small></span><button onClick={cancel}>إيقاف</button></div>;
+}
+
 export function Lectures(){
  const [lecture,setLecture]=useState<Lecture>(initial);
  const [ready,setReady]=useState(false),[busy,setBusy]=useState(false),[loading,setLoading]=useState(false),[error,setError]=useState('');
@@ -86,7 +92,7 @@ export function Lectures(){
       {(result||turns.length>0)&&<div className="followup-chips"><button disabled={busy} onClick={()=>void explain('بسّطي شرحك السابق أكثر، وركزي على النقطة التي سألت عنها')}>بسّطيها</button><button disabled={busy} onClick={()=>void explain('لماذا؟ وضحي السبب والآلية والنتيجة في سياق السلايد')}>لماذا؟</button><button disabled={busy} onClick={()=>void explain('اختبر فهمي بتطبيق من المحاضرة، واشرح المفهوم وسبب صحة الإجابة وخطأ البدائل','quiz')}><ListChecks size={14}/>اختبريني</button><button disabled={busy} onClick={()=>void explain('وضحي الفكرة برسم مناسب مع شرح كل خطوة نصيًا','visual')}><Network size={14}/>وضّحي بصريًا</button></div>}
      </>}
      {tab==='notes'&&<><h2>ملاحظاتي · سلايد {page}</h2><textarea aria-label="ملاحظاتي لهذا السلايد" rows={12} value={lecture.notes[page]||''} onChange={e=>setLecture(v=>({...v,notes:{...v.notes,[page]:e.target.value}}))} placeholder="اكتبي بطريقتك ما فهمتيه…"/></>}
-     {busy&&<div className="tutor-loading" role="status"><Sparkles size={18}/><span>أربط الفكرة بالسلايد وأراجع الشرح…</span><button onClick={()=>controller.current?.abort()}>إيقاف</button></div>}
+     {busy&&<LectureProgress cancel={()=>controller.current?.abort()}/>}
      {error&&<div role="alert" className="study-error"><p>{error}</p>{lastAttempt.current&&<button disabled={busy} onClick={()=>{const retry=lastAttempt.current;if(retry)void explain(retry.message,retry.target,retry);}}>إعادة المحاولة</button>}</div>}<div ref={endRef}/>
     </div><form className="tutor-composer" onSubmit={e=>{e.preventDefault();if(question.trim())void explain(question);}}><div className="composer-row"><textarea aria-label="اسألي عن السلايد" rows={2} maxLength={2000} value={question} onChange={e=>updateQuestion(e.target.value)} placeholder="اسألي عن الفكرة… سياق السلايد محفوظ" disabled={busy} onKeyDown={e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.nativeEvent.isComposing){e.preventDefault();if(question.trim())void explain(question);}}}/><button className="primary" type="submit" disabled={busy||loading||!question.trim()} aria-label="إرسال سؤال المتابعة"><Send size={18}/></button></div></form>
    </aside></div>

@@ -6,7 +6,7 @@ export async function studyRequest(route:string,body:unknown,signal?:AbortSignal
  const response=await fetch(import.meta.env.BASE_URL+'api/'+route,{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify(body),signal});
  const data=await response.json().catch(()=>({error:'SERVICE_UNAVAILABLE'}));
  if(!response.ok){
-  const message=data.error==='STUDY_TIMEOUT'?'استغرق الشرح وقتًا أطول من المتوقع. محتواك محفوظ؛ حاولي مجددًا.':data.error==='STUDY_CONFIGURATION_REQUIRED'?'خدمة الشرح غير جاهزة حاليًا. محتواك محفوظ؛ نعمل على استعادة الاتصال.':data.error==='PROVIDER_BUSY'?'خدمة الشرح مشغولة مؤقتًا. محتواك محفوظ؛ حاولي بعد قليل.':response.status===429?'وصلتِ إلى حد الاستخدام المؤقت. انتظري دقيقة قبل الطلب التالي.':data.error==='LECTURE_REVIEW_FAILED'?'تعذر إعداد شرح موثوق لهذا السلايد بعد مراجعته. حاولي سؤالًا محددًا أو صورة أوضح.':response.status===413?'حجم السلايد كبير. اختاري صورة أصغر.':'تعذر الاتصال بخدمة الشرح الآن. محتواك وسؤالك محفوظان؛ حاولي مجددًا.';
+  const message=data.error==='STUDY_TIMEOUT'?'استغرق الشرح وقتًا أطول من المتوقع. محتواك محفوظ؛ حاولي مجددًا.':data.error==='STUDY_CONFIGURATION_REQUIRED'?'خدمة الشرح غير جاهزة حاليًا. محتواك محفوظ؛ نعمل على استعادة الاتصال.':data.error==='PROVIDER_BUSY'?'خدمة الشرح مشغولة مؤقتًا. محتواك محفوظ؛ حاولي بعد قليل.':response.status===429?'وصلتِ إلى حد الاستخدام المؤقت. محتواك محفوظ؛ حاولي مجددًا بعد قليل.':data.error==='LECTURE_REVIEW_FAILED'?'تعذر إعداد شرح موثوق لهذا السلايد بعد مراجعته. حاولي سؤالًا محددًا أو صورة أوضح.':response.status===413?'حجم السلايد كبير. اختاري صورة أصغر.':'تعذر الاتصال بخدمة الشرح الآن. محتواك وسؤالك محفوظان؛ حاولي مجددًا.';
   throw new Error(message);
  }
  return data;

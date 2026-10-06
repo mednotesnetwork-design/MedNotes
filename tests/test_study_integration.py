@@ -102,7 +102,7 @@ class CloudflareTests(unittest.TestCase):
             self.assertEqual(p.complete('Generate',payload),{'answer':'ok'})
             calls=op.return_value.open.call_args_list
             self.assertEqual(calls[0].args[0].data,calls[1].args[0].data)
-            self.assertIn('gemini-3.8-flash:generateContent',calls[1].args[0].full_url)
+            self.assertIn('gemini-3.5-flash:generateContent',calls[1].args[0].full_url)
             p.complete('Review',payload)
             self.assertEqual(op.return_value.open.call_args_list[-1].args[0].full_url,calls[1].args[0].full_url)
             self.assertEqual(json.loads(calls[1].args[0].data)['contents'][0]['parts'][1]['inlineData']['data'],'/9j/')

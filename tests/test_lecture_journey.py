@@ -26,10 +26,11 @@ class JourneyEvidenceTests(unittest.TestCase):
         from unittest.mock import Mock
         draft=self.lesson();draft['explanation']='Unsupported claim'
         checks=[dict(field=f,supported=f!='explanation',issue='Fix claim' if f=='explanation' else '') for f in REVIEW_FIELDS]
-        repaired=self.lesson();repaired['checkpoint']['answer']='Wrong new answer'
+        repaired={'explanation':self.lesson()['explanation'],'checkpoint':{'answer':'Wrong new answer'}}
         audit={'passed':True,'issues':[],'checks':[dict(field=f,supported=True,issue='') for f in REVIEW_FIELDS]}
         provider=SimpleNamespace(opener=None,complete=Mock(side_effect=[draft,{'passed':False,'issues':['Fix explanation'],'checks':checks},repaired,audit]))
         result=prepare_lecture({'slide':self.slide})(provider)['lesson']
+        self.assertEqual(provider.complete.call_args_list[2].args[1]['repair_fields'],['explanation'])
         self.assertEqual(result['checkpoint']['answer'],'ATP')
         self.assertEqual(result['explanation'],'Calcium binds troponin C.')
     def test_pruning_removes_failed_sections_but_never_failed_core(self):
