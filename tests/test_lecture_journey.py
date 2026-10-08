@@ -21,6 +21,17 @@ class JourneyEvidenceTests(unittest.TestCase):
         self.assertTrue(review_issues(bad))
         for checks in ([],review['checks'][:-1],review['checks'][:-1]+[review['checks'][0]]):
             self.assertTrue(review_issues(dict(review,checks=checks)))
+    def test_unattributed_optional_clinical_text_is_removed_then_audited(self):
+        from types import SimpleNamespace
+        from unittest.mock import Mock
+        draft=self.lesson()
+        draft['clinical_connection']={'text':'No clinical connection is given','basis':'lecture','source_quote':''}
+        audit={'passed':True,'issues':[],'checks':[dict(field=f,supported=True,issue='') for f in REVIEW_FIELDS]}
+        provider=SimpleNamespace(opener=None,complete=Mock(side_effect=[draft,audit]))
+        result=prepare_lecture({'slide':self.slide})(provider)['lesson']
+        self.assertEqual(result['clinical_connection']['text'],'')
+        self.assertEqual(provider.complete.call_count,2)
+
     def test_repair_preserves_approved_fields(self):
         from types import SimpleNamespace
         from unittest.mock import Mock

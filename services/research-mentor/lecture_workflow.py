@@ -208,6 +208,15 @@ def prepare_lecture(data):
                 # Repair cannot overwrite sections that already passed the independent audit.
                 if isinstance(lesson,dict):lesson.update(approved)
                 issues=[]
+                # Optional clinical content without evidence is never published.
+                # This also handles prose placeholders such as 'not in the lecture'.
+                # Mandatory source coverage and the fresh full audit still apply.
+                if isinstance(lesson,dict) and not image:
+                    connection=lesson.get('clinical_connection')
+                    if isinstance(connection,dict) and connection.get('text') and not connection.get('source_quote') and connection.get('basis','lecture')=='lecture':
+                        lesson['clinical_connection']={'text':'','basis':'lecture','source_quote':''}
+                        approved.pop('clinical_connection',None)
+                        trimmed_content=True
                 try:
                     validate(lesson,slide,bool(image),source_mode)
                     if source_points:
