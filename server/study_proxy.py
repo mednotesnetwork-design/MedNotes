@@ -15,19 +15,12 @@ class StudyProxy(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(json.dumps(data,ensure_ascii=False).encode())
     def do_POST(self):
-        # Browser requests are accepted only from the protected Vercel preview origin.
-        # Vercel Deployment Protection handles user authentication *before* invoking
-        # the function. x-vercel-oidc-token is a workload token, NOT a browser
-        # request header; requiring it here broke every legitimate browser request.
-        origin=self.headers.get('Origin','')
-        host=self.headers.get('Host','').lower()
-        parsed=urlparse(origin)
-        if (parsed.scheme!='https' or parsed.netloc.lower()!=host or
-            not host.endswith('.vercel.app') or
-            self.headers.get('Sec-Fetch-Site','same-origin') not in ('same-origin','none')):
-            return self.reply(403,{'error':'FORBIDDEN'})
-        if os.environ.get('VERCEL_ENV')!='preview':
-            return self.reply(503,{'error':'PREVIEW_ONLY'})
+        origin=self.headers.get('Origin')
+        if origin and urlparse(origin).netloc!=self.headers.get('Host'):return self.reply(403,{'error':'FORBIDDEN'})
+        if self.headers.get('Sec-Fetch-Site')=='cross-site':return self.reply(403,{'error':'FORBIDDEN'})
+        # Preserve private preview protection. Runtime identity is never sent to AI providers.
+        if os.environ.get('VERCEL_ENV')!='preview' or not self.headers.get('x-vercel-oidc-token'):
+            return self.reply(503,{'error':'PREVIEW_IDENTITY_UNAVAILABLE'})
         try:
             n=int(self.headers.get('Content-Length','0'))
             if n>3000000:return self.reply(413,{'error':'REQUEST_TOO_LARGE'})
