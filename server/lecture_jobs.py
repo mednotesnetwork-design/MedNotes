@@ -140,6 +140,13 @@ def status(job_id,token):
             'error_code':error,'attempts':attempts,
             'pages':[{'number':no,'points':points,'warnings':w} for no,points,w in rows if points is not None]}
 
+def is_terminal(job_id):
+    with connect() as conn:
+        with conn.cursor() as cur:
+            cur.execute("SELECT phase FROM mednote_lecture_jobs WHERE id=%s",(job_id,))
+            row=cur.fetchone()
+    return not row or row[0] in ('ready','failed')
+
 def claim(job_id):
     with connect() as conn:
         with conn.cursor() as cur:
