@@ -2,6 +2,7 @@ import {lazy,Suspense,useState} from 'react';
 import {ChevronLeft,ChevronRight,Lightbulb,Layers3,Box} from 'lucide-react';
 import {entities} from '@atlas/lib/anatomy';
 import type {Explanation,StudyQuestion,Basis} from './types';
+import {ClinicalTeachingLayers,type OriginalSourceImage} from './ClinicalTeachingLayers';
 const InlineAnatomy=lazy(()=>import('./InlineAnatomy'));
 const basisText=(basis?:Basis)=>basis==='additional'?'توضيح إضافي خارج المحاضرة':'شرح مستند للمحاضرة';
 
@@ -34,7 +35,7 @@ function ConceptVisual({lesson}:{lesson:Explanation}){
 }
 
 export type LearningTab='explain'|'visual'|'quiz'|'3d';
-export function LessonJourney({lesson,slide,answers,onAnswer,prefix,onAsk,busy,view='all'}:{lesson:Explanation;slide:string;answers:Record<string,number>;onAnswer:(key:string,value?:number)=>void;prefix:string;onAsk:(q:string)=>void;busy:boolean;view?:LearningTab|'all'}){
+export function LessonJourney({lesson,slide,answers,onAnswer,prefix,onAsk,busy,view='all',sourceImages=[]}:{lesson:Explanation;slide:string;answers:Record<string,number>;onAnswer:(key:string,value?:number)=>void;prefix:string;onAsk:(q:string)=>void;busy:boolean;view?:LearningTab|'all';sourceImages?:OriginalSourceImage[]}){
  const [revealed,setRevealed]=useState(false),[modelOpen,setModelOpen]=useState(false);
  const showExplain=view==='all'||view==='explain';
  const showVisual=view==='all'||view==='visual';
@@ -50,12 +51,14 @@ export function LessonJourney({lesson,slide,answers,onAnswer,prefix,onAsk,busy,v
   {lesson.review_note&&<p className="lesson-basis">{lesson.review_note}</p>}
   {showExplain&&hasOpening&&<section className="case-opening"><span className="lesson-basis"><Lightbulb size={15}/>{opening.kind==='case'?'حالة تعليمية افتراضية':'فكّري أولًا'} · {basisText(opening.basis)}</span>{opening.scene&&<p>{opening.scene}</p>}<h3>{opening.prompt}</h3><button aria-expanded={revealed} onClick={()=>setRevealed(v=>!v)}>{revealed?'إخفاء التفسير':'اكشفي التفسير خطوة بخطوة'}</button>{revealed&&<p className="opening-answer">{opening.answer}</p>}</section>}
   {(!showExplain||!hasOpening||revealed)&&<>
-   {showExplain&&<section className="lesson-core"><h3>ما الذي يجب أن أفهمه؟</h3><p className="preserve" dir="auto">{lesson.explanation}</p>{lesson.terms.length>0&&<div className="lesson-terms">{lesson.terms.map((t,i)=><details key={i}><summary>{t.term}</summary><p>{t.meaning}</p><button disabled={busy} onClick={()=>onAsk('اشرح المصطلح: '+t.term)}>بسّطي هذا المصطلح</button></details>)}</div>}</section>}
+   {showExplain&&lesson.clinical_layers&&<ClinicalTeachingLayers layers={lesson.clinical_layers} registry={lesson.source_registry} sourceImages={sourceImages} view="explain"/>}
+  {showVisual&&lesson.clinical_layers&&<ClinicalTeachingLayers layers={lesson.clinical_layers} registry={lesson.source_registry} sourceImages={sourceImages} view="visual"/>}
+  {showExplain&&!lesson.clinical_layers&&<section className="lesson-core"><h3>ما الذي يجب أن أفهمه؟</h3><p className="preserve" dir="auto">{lesson.explanation}</p>{lesson.terms.length>0&&<div className="lesson-terms">{lesson.terms.map((t,i)=><details key={i}><summary>{t.term}</summary><p>{t.meaning}</p><button disabled={busy} onClick={()=>onAsk('اشرح المصطلح: '+t.term)}>بسّطي هذا المصطلح</button></details>)}</div>}</section>}
    {showVisual&&<ConceptVisual lesson={lesson}/>}
   {view==='visual'&&!(lesson.mechanism?.length||lesson.visual?.labels?.length)&&(!lesson.visual||lesson.visual.kind==='none')&&<p className="lesson-basis">لا يتضمن هذا الجزء رسمًا يمكن إنشاؤه من مصدر المحاضرة بدقة.</p>}
    {showAnatomy&&(view==='3d'?matches.length>0:anatomyRelevant)&&<section className="anatomy-in-context"><h3>أين تقع هذه العلاقة؟</h3><p>استكشفي التركيب مع إبقاء السلايد والشرح أمامك.</p>{view!=='3d'&&<button aria-expanded={modelOpen} onClick={()=>setModelOpen(v=>!v)}><Box size={16}/>{modelOpen?'إغلاق النموذج':'فتح 3D داخل الشرح'}</button>}{(modelOpen||view==='3d')&&<Suspense fallback={<p role="status">فتح النموذج…</p>}><InlineAnatomy ids={matches.map(e=>e.id)} supplemental={supplemental}/></Suspense>}</section>}
    {view==='3d'&&!matches.length&&<p className="lesson-basis">لا يوجد تركيب مطابق في أطلس 3D لهذا السلايد؛ لن نعرض تشريحًا غير موثّق.</p>}
-  {showExplain&&lesson.clinical_connection?.text&&<section className="clinical-connection"><span className="lesson-basis">Clinical connection · {basisText(lesson.clinical_connection.basis)}</span><p>{lesson.clinical_connection.text}</p></section>}
+  {showExplain&&!lesson.clinical_layers&&lesson.clinical_connection?.text&&<section className="clinical-connection"><span className="lesson-basis">Clinical connection · {basisText(lesson.clinical_connection.basis)}</span><p>{lesson.clinical_connection.text}</p></section>}
    {showExplain&&lesson.high_yield.length>0&&<section><h3>نقاط تستحق الانتباه في الاختبار</h3><ul>{lesson.high_yield.map((s,i)=><li key={i}>{s}</li>)}</ul></section>}
    {showQuiz&&lesson.checkpoint?.question&&<section className="thought-checkpoint"><h3>Checkpoint · توقفي وفكّري</h3><p>{lesson.checkpoint.question}</p><details><summary>قارني إجابتك</summary><strong>{lesson.checkpoint.concept}</strong><p>{lesson.checkpoint.answer}</p></details></section>}
    {showQuiz&&!!lesson.questions.length&&<ReverseReview questions={lesson.questions} answers={answers} onAnswer={onAnswer} prefix={prefix} onRetest={onAsk}/>}
