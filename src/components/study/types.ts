@@ -1,6 +1,16 @@
+export type SourceRegistryItem={item_id:string;page_number?:number;content_type:string;source_ref:string;bbox?:number[]|null};
+export type ClinicalLayerText={text:string;source_item_ids_used:string[]};
+export type ClinicalLayers={
+ core_concept:ClinicalLayerText;
+ mechanism:{steps:ClinicalLayerText[]};
+ clinical_correlation:ClinicalLayerText;
+ visual_cues:{label:string;detail:string;source_item_ids_used:string[]}[];
+};
 export type Basis = 'lecture' | 'additional';
 export type StudyQuestion = {question:string;concept?:string;options:string[];correct_index:number;explanations:string[];source_quote:string};
 export type Explanation = {
+ clinical_layers?:ClinicalLayers;
+ source_registry?:SourceRegistryItem[];
  coverage?:{source_id:string;explanation:string}[];
  review_note?:string;id?:string;requested_tool?:string;source_mode?:string;
  opening?:{kind:'case'|'question'|'none';scene:string;prompt:string;answer:string;basis:Basis;source_quote:string};
