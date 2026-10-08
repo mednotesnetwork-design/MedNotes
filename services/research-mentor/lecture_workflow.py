@@ -87,7 +87,54 @@ def prune_rejected_sections(lesson,review):
     for field in rejected:result[field]=empty[field]
     return result
 
-def validate(lesson,slide,has_image=False,source_mode='lecture_only'):
+def validate_clinical_layers(lesson,source_points):
+    """Reject invented IDs and malformed pedagogical layers before independent review."""
+    layers=lesson.get('clinical_layers')
+    if layers is None:
+        require(not source_points,'Missing clinical teaching layers','LECTURE_REVIEW_FAILED',422)
+        return
+    require(isinstance(layers,dict) and set(layers)=={'core_concept','mechanism','clinical_correlation','visual_cues'},
+            'Malformed clinical teaching layers','LECTURE_REVIEW_FAILED',422)
+    source_ids={point['id'] for point in source_points}
+    def text_and_ids(item, required=False,limit=4000):
+        require(isinstance(item,dict) and isinstance(item.get('text'),str)
+                and len(item['text'])<=limit and (not required or item['text'].strip()),
+                'Invalid clinical layer text','LECTURE_REVIEW_FAILED',422)
+        ids=item.get('source_item_ids_used')
+        require(isinstance(ids,list) and len(ids)<=8 and all(isinstance(i,str) for i in ids)
+                and len(set(ids))==len(ids) and set(ids).issubset(source_ids)
+                and (not item['text'].strip() or not source_points or bool(ids))
+                and (item['text'].strip() or not ids),
+                'Unverified clinical layer source IDs','LECTURE_REVIEW_FAILED',422)
+    text_and_ids(layers.get('core_concept'),required=True)
+    steps=layers.get('mechanism')
+    require(isinstance(steps,dict) and isinstance(steps.get('steps'),list) and len(steps['steps'])<=9,
+            'Invalid clinical mechanism','LECTURE_REVIEW_FAILED',422)
+    for step in steps['steps']:text_and_ids(step,required=True,limit=1600)
+    text_and_ids(layers.get('clinical_correlation'),limit=2400)
+    cues=layers.get('visual_cues')
+    require(isinstance(cues,list) and len(cues)<=8,'Invalid visual cues','LECTURE_REVIEW_FAILED',422)
+    for cue in cues:
+        require(isinstance(cue,dict) and isinstance(cue.get('label'),str)
+                and 0<len(cue['label'].strip())<=250,
+                'Invalid visual cue label','LECTURE_REVIEW_FAILED',422)
+        text_and_ids({'text':cue.get('detail'),
+                      'source_item_ids_used':cue.get('source_item_ids_used')},
+                     required=True,limit=1600)
+
+def attach_source_registry(lesson,source_points):
+    """Page and bounding-box references come from extraction, NEVER from the LLM."""
+    lesson['source_registry']=[
+        {'item_id':point['id'],
+         'page_number':point.get('page_number',point.get('page')),
+         'content_type':point.get('content_type',point.get('kind','text')),
+         'source_ref':point.get('source_ref',f"lecture:page:{point.get('page')}:item:{point['id']}"),
+         'bbox':point.get('bbox')}
+        for point in source_points
+    ]
+    return lesson
+
+def validate(lesson,slide,has_image=False,source_mode='lecture_only',source_points=None):
     require(isinstance(lesson,dict),'Invalid lesson','LECTURE_REVIEW_FAILED',422)
     require(isinstance(lesson.get('explanation'),str) and 0<len(lesson['explanation'].strip())<=16000, 'The explanation field must be a nonempty string, including quiz and visual tools; add a short source-based introduction, never omit it or use an object.', 'LECTURE_REVIEW_FAILED',422)
     for key in ('high_yield','clarifications','source_quotes'):
@@ -154,6 +201,7 @@ def validate(lesson,slide,has_image=False,source_mode='lecture_only'):
     require(isinstance(summary,list) and len(summary)<=4 and all(isinstance(t,str) and 0<len(t)<=1000 for t in summary),'Invalid summary','LECTURE_REVIEW_FAILED',422)
     for question in lesson['questions']:short_fields(question,('concept',))
     require(source_mode!='lecture_only' or not lesson['clarifications'],'Outside-source additions in lecture-only mode','LECTURE_REVIEW_FAILED',422)
+    validate_clinical_layers(lesson,source_points or [])
     return lesson
 class SlideTransport:
     """Attach the supplied slide to the existing native provider request, never as prompt text."""
@@ -242,7 +290,7 @@ def prepare_lecture(data):
                         approved.pop('clinical_connection',None)
                         trimmed_content=True
                 try:
-                    validate(lesson,slide,bool(image),source_mode)
+                    validate(lesson,slide,bool(image),source_mode,source_points)
                     if source_points:
                         entries=lesson.get('coverage',[])
                         require(isinstance(entries,list) and len(entries)==len(source_points) and all(isinstance(e,dict) and isinstance(e.get('source_id'),str) and isinstance(e.get('explanation'),str) and 0<len(e['explanation'])<=2400 for e in entries),'Incomplete teaching coverage','LECTURE_REVIEW_FAILED',422)
@@ -256,7 +304,7 @@ def prepare_lecture(data):
                     issues=review_issues(review)
                     if not issues:
                         if trimmed_content:lesson['review_note']='اقتصر هذا الشرح على الأجزاء التي أمكن التحقق منها من السلايد.'
-                        return {'lesson':lesson,'experimental':True,'evaluation_record':False,'module':'lecture-tutor-v1'}
+                        return {'lesson':attach_source_registry(lesson,source_points),'experimental':True,'evaluation_record':False,'module':'lecture-tutor-v1'}
                     checks=review.get('checks',[])
                     complete=isinstance(checks,list) and len(checks)==len(REVIEW_FIELDS) and all(isinstance(c,dict) for c in checks) and {c.get('field') for c in checks}==set(REVIEW_FIELDS)
                     if complete:
@@ -273,7 +321,7 @@ def prepare_lecture(data):
             for _ in range(2):
                 trimmed=prune_rejected_sections(lesson,review)
                 if trimmed is None:break
-                validate(trimmed,slide,bool(image),source_mode)
+                validate(trimmed,slide,bool(image),source_mode,source_points)
                 review=audit(trimmed)
                 lesson=trimmed
                 if not review_issues(review):
