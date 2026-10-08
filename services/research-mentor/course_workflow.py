@@ -66,6 +66,51 @@ def validate_plan(plan,points):
     require(count<=400 and len(seen)==len(set(seen)) and set(seen)==set(source),'Every point must be assigned exactly once','COURSE_PLAN_FAILED',422)
     return plan
 
+def complete_plan_or_repair(plan,points):
+    """Repair missing/duplicate IDs deterministically; never invent source content."""
+    source={p['id']:p for p in points}
+    used=set()
+    units=[]
+    changed=False
+    raw=plan.get('units',[]) if isinstance(plan,dict) else []
+    if not isinstance(raw,list):raw=[]
+    for unit in raw[:60]:
+        if not isinstance(unit,dict):continue
+        cards=[]
+        for card in unit.get('cards',[])[:100] if isinstance(unit.get('cards'),list) else []:
+            if not isinstance(card,dict) or not isinstance(card.get('source_ids'),list):continue
+            ids=[];characters=0
+            for point_id in card['source_ids']:
+                if not isinstance(point_id,str) or point_id not in source or point_id in used or len(ids)>=8:changed=True;continue
+                size=len(source[point_id]['text'])
+                if characters+size>14000:changed=True;continue
+                used.add(point_id);ids.append(point_id);characters+=size
+            if ids:
+                cards.append({'title':str(card.get('title') or 'الفكرة الأساسية')[:180],
+                              'source_ids':ids})
+        if cards:
+            units.append({'title':str(unit.get('title') or 'أساسيات المحاضرة')[:180],
+                          'objective':str(unit.get('objective') or '')[:500],'cards':cards})
+    pending=[p for p in points if p['id'] not in used]
+    if pending:
+        changed=True
+        # Rescue points not assigned by the LLM; never mark them as covered by
+        # the teaching engine until a separately audited card is generated.
+        batches=[]
+        batch=[];characters=0
+        for item in pending:
+            if batch and (len(batch)>=8 or characters+len(item['text'])>14000):
+                batches.append(batch);batch=[];characters=0
+            batch.append(item['id']);characters+=len(item['text'])
+        if batch:batches.append(batch)
+        for index,ids in enumerate(batches):
+            if not units or len(units[-1]['cards'])>=90:
+                units.append({'title':'نقاط المصدر المتبقية','objective':'تغطية التفاصيل المستخرجة دون حذف','cards':[]})
+            units[-1]['cards'].append({'title':f'نقاط تحتاج شرحًا · {index+1}','source_ids':ids})
+    fixed={'title':str(plan.get('title') or 'المحاضرة التفاعلية')[:180] if isinstance(plan,dict) else 'المحاضرة التفاعلية',
+           'units':units}
+    return validate_plan(fixed,points),changed
+
 def prepare_course(data):
     action=data.get('operation')
     if action=='extract':
@@ -112,9 +157,16 @@ def prepare_course(data):
             payload={'title':str(data.get('title',''))[:180],'points':points}
             for _ in range(2):
                 output=provider.complete(PLAN,payload)
-                try:return {'plan':validate_plan(output,points)}
+                try:
+                    checked,changed=complete_plan_or_repair(output,points)
+                    if not changed:return {'plan':checked,'recovered_missing_ids':False}
+                    # Give the model one opportunity to produce a clean
+                    # dependency-based plan before accepting lossless repairs.
+                    if 'previous_plan' in payload:return {'plan':checked,'recovered_missing_ids':True}
+                    payload.update(previous_plan=output,repair='Some extracted source IDs were missing, duplicated or invalid. Rebuild the plan with every valid ID exactly once.')
                 except MentorError as e:payload.update(previous_plan=output,repair=e.message)
-            raise MentorError('COURSE_PLAN_FAILED','Incomplete coverage map',422)
+            checked,_=complete_plan_or_repair(payload.get('previous_plan'),points)
+            return {'plan':checked,'recovered_missing_ids':True}
         return plan
     if action=='reorder':
         units=data.get('units')
