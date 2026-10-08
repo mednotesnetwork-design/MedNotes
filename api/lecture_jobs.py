@@ -50,7 +50,11 @@ class handler(BaseHTTPRequestHandler):
                 # The DB write completes before dispatching. Failed dispatches can
                 # be retried via the same authenticated start request.
                 jobs.start(job_id,token)
+                from vercel.headers import set_headers
                 from vercel.queue import send
+                # The Python Queue SDK resolves the Vercel workload OIDC token
+                # from the active request; never place it in the message body.
+                set_headers(dict(self.headers))
                 asyncio.run(send('mednote-lecture-jobs',{'job_id':job_id}))
                 return self.reply(202,{'job_id':job_id,'phase':'queued'})
             raise jobs.JobError(400,'INVALID_ACTION')
