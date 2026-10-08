@@ -50,7 +50,7 @@ export function LessonJourney({lesson,slide,answers,onAnswer,prefix,onAsk,busy,v
   {lesson.review_note&&<p className="lesson-basis">{lesson.review_note}</p>}
   {showExplain&&hasOpening&&<section className="case-opening"><span className="lesson-basis"><Lightbulb size={15}/>{opening.kind==='case'?'حالة تعليمية افتراضية':'فكّري أولًا'} · {basisText(opening.basis)}</span>{opening.scene&&<p>{opening.scene}</p>}<h3>{opening.prompt}</h3><button aria-expanded={revealed} onClick={()=>setRevealed(v=>!v)}>{revealed?'إخفاء التفسير':'اكشفي التفسير خطوة بخطوة'}</button>{revealed&&<p className="opening-answer">{opening.answer}</p>}</section>}
   {(!showExplain||!hasOpening||revealed)&&<>
-   {showExplain&&<section className="lesson-core"><h3>ما الذي يجب أن أفهمه؟</h3><p className="preserve" dir="auto">{lesson.explanation}</p>{lesson.terms.length>0&&<div className="lesson-terms">{lesson.terms.map((t,i)=><details key={i}><summary>{t.term}</summary><p>{t.meaning}</p><button disabled={busy} onClick={()=>onAsk('اشرح المصطلح: '+t.term)}>بسّطي هذا المصطلح</button></details>)}</div>}</section>
+   {showExplain&&<section className="lesson-core"><h3>ما الذي يجب أن أفهمه؟</h3><p className="preserve" dir="auto">{lesson.explanation}</p>{lesson.terms.length>0&&<div className="lesson-terms">{lesson.terms.map((t,i)=><details key={i}><summary>{t.term}</summary><p>{t.meaning}</p><button disabled={busy} onClick={()=>onAsk('اشرح المصطلح: '+t.term)}>بسّطي هذا المصطلح</button></details>)}</div>}</section>}
    {showVisual&&<ConceptVisual lesson={lesson}/>}
   {view==='visual'&&!(lesson.mechanism?.length||lesson.visual?.labels?.length)&&(!lesson.visual||lesson.visual.kind==='none')&&<p className="lesson-basis">لا يتضمن هذا الجزء رسمًا يمكن إنشاؤه من مصدر المحاضرة بدقة.</p>}
    {showAnatomy&&(view==='3d'?matches.length>0:anatomyRelevant)&&<section className="anatomy-in-context"><h3>أين تقع هذه العلاقة؟</h3><p>استكشفي التركيب مع إبقاء السلايد والشرح أمامك.</p>{view!=='3d'&&<button aria-expanded={modelOpen} onClick={()=>setModelOpen(v=>!v)}><Box size={16}/>{modelOpen?'إغلاق النموذج':'فتح 3D داخل الشرح'}</button>}{(modelOpen||view==='3d')&&<Suspense fallback={<p role="status">فتح النموذج…</p>}><InlineAnatomy ids={matches.map(e=>e.id)} supplemental={supplemental}/></Suspense>}</section>}
@@ -62,7 +62,7 @@ export function LessonJourney({lesson,slide,answers,onAnswer,prefix,onAsk,busy,v
    {view==='quiz'&&!lesson.checkpoint?.question&&!lesson.questions.length&&<p className="lesson-basis">لم تتوفر أسئلة يمكن التحقق من إجاباتها من محتوى هذا السلايد.</p>}
   {showExplain&&lesson.clarifications.length>0&&<aside className="study-warning"><strong>توضيح إضافي خارج المحاضرة</strong>{lesson.clarifications.map((s,i)=><p key={i}>{s}</p>)}</aside>}
    {showExplain&&!!lesson.summary?.length&&<section className="lesson-summary"><h3>خذي معك هذه الفكرة</h3><ul>{lesson.summary.map((s,i)=><li key={i}>{s}</li>)}</ul></section>}
-   {showExplain&&<details className="lesson-evidence"><summary>النص الذي استند إليه الشرح</summary>{lesson.source_quotes.length?lesson.source_quotes.map((q,i)=><blockquote key={i} dir="auto">{q}</blockquote>):<p>استند الشرح إلى صورة السلايد؛ لا توجد اقتباسات نصية قابلة للتحقق.</p>}</details>
+   {showExplain&&<details className="lesson-evidence"><summary>النص الذي استند إليه الشرح</summary>{lesson.source_quotes.length?lesson.source_quotes.map((q,i)=><blockquote key={i} dir="auto">{q}</blockquote>):<p>استند الشرح إلى صورة السلايد؛ لا توجد اقتباسات نصية قابلة للتحقق.</p>}</details>}
   </>}
  </article>;
 }
