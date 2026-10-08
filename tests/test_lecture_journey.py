@@ -91,4 +91,18 @@ class JourneyEvidenceTests(unittest.TestCase):
         lesson=self.lesson();lesson['checkpoint']['basis']='additional'
         with self.assertRaises(MentorError):validate(lesson,self.slide,source_mode='supplemental')
 
+class ClinicalTeachingPersonaTests(unittest.TestCase):
+    def test_first_principles_instruction_does_not_override_source_fidelity(self):
+        from lecture_workflow import PROMPT,REVIEW
+        self.assertIn('FIRST PRINCIPLES',PROMPT)
+        self.assertIn('not a PDF narrator',PROMPT)
+        self.assertIn('trigger -> process -> consequence',PROMPT)
+        self.assertIn('nonliteral learning aid',REVIEW)
+        self.assertIn('lecture_only use only concepts',PROMPT)
+        self.assertIn('Additional Explanation',PROMPT)
+    def test_generation_and_audit_still_separate(self):
+        from lecture_workflow import PROMPT,REVIEW
+        self.assertIn('coverage:[{source_id,explanation}]',PROMPT)
+        self.assertIn('SOURCE ENTAILMENT CHECK',REVIEW)
+
 if __name__=='__main__':unittest.main()
