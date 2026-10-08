@@ -45,7 +45,7 @@ class CloudflareTransport:
                 self.busy_on_model += 1
                 # One extra try on the current model before moving on. Research
                 # Mentor keeps its existing recovery policy unchanged.
-                same_model_retry = self.module == 'lecture' and self.busy_on_model == 1
+                same_model_retry = False  # preserve one attempt per configured model; backoff before rotation
                 if not same_model_retry:
                     if self.model_index + 1 >= len(self.models):raise
                     self.model_index += 1
