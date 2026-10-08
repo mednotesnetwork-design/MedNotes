@@ -5,14 +5,15 @@ import {readStudy,writeStudy,studyRequest} from '../../lib/study-store';
 import {LessonJourney} from './LessonJourney';
 import type {Explanation} from './types';
 
-type Point={id:string;page:number;kind:string;text:string;origin:string};
+type Point={id:string;page:number;kind:string;text:string;origin:string;item_id?:string;page_number?:number;content_type?:string;source_ref?:string;bbox?:number[]};
 type SourcePage={number:number;text:string;image?:string;title?:string;points?:Point[];warnings?:string[]};
 type Card={id:string;title:string;source_ids:string[]};
 type Unit={id:string;title:string;objective:string;cards:Card[]};
 type Plan={title:string;units:Unit[]};
 type Turn={question:string;lesson:Explanation};
-type Course={name:string;pages:SourcePage[];plan?:Plan;active:number;mode:string;lessons:Record<string,Explanation>;turns:Record<string,Turn[]>;answers:Record<string,number>};
-const empty:Course={name:'',pages:[],active:0,mode:'lecture_only',lessons:{},turns:{},answers:{}};
+type Stage='queued'|'extracting'|'structuring'|'generating'|'validating'|'ready';
+type Course={name:string;pages:SourcePage[];plan?:Plan;planning?:{next:number;units:Unit[]};phase?:Stage;active:number;mode:string;lessons:Record<string,Explanation>;turns:Record<string,Turn[]>;answers:Record<string,number>};
+const empty:Course={name:'',pages:[],active:0,mode:'lecture_only',phase:'queued',lessons:{},turns:{},answers:{}};
 const STORE='lecture-course-v2';
 function jpeg(canvas:HTMLCanvasElement){
  let result=canvas.toDataURL('image/jpeg',.87);
@@ -32,6 +33,15 @@ export function LectureCourse(){
  function update(value:Course){current.current=value;setCourse(value);}
  async function save(value:Course){await writeStudy(STORE,value);update(value);}
  useEffect(()=>{let live=true;void readStudy<Course>(STORE).then(c=>{if(live){if(c){current.current=c;setCourse(c);}setReady(true);}}).catch(()=>{if(live){setError('تعذر فتح المحاضرة المحفوظة محليًا.');setReady(true);}});return()=>{live=false;control.current?.abort();};},[]);
+ useEffect(()=>{
+  if(!ready||!course.pages.length||control.current)return;
+  const first=course.plan?.units[0]?.cards[0];
+  if(!course.plan||(first&&!course.lessons[first.id+':'+course.mode])){
+   void work(organize);
+  }
+ // Run only after restoring a saved course, not after every processing checkpoint.
+ // eslint-disable-next-line react-hooks/exhaustive-deps
+ },[ready]);
  async function request(body:unknown,signal:AbortSignal){
   // Sequential and paced: no burst of model requests for a large lecture.
   const delay=Math.max(0,11000-(Date.now()-lastRequest.current));
@@ -45,6 +55,13 @@ export function LectureCourse(){
  }
  async function organize(signal:AbortSignal){
   let state=current.current;
+  if(state.plan){
+   const first=state.plan.units[0]?.cards[0];
+   if(first&&!state.lessons[first.id+':'+state.mode])await teach(signal);
+   await save({...current.current,phase:'ready'});
+   return;
+  }
+  if(state.phase!=='extracting') {state={...state,phase:'extracting'};await save(state);}
   for(let i=0;i<state.pages.length;){
    signal.throwIfAborted();if(state.pages[i].points){i++;continue;}
    const batch:SourcePage[]=[];let bytes=0;
@@ -55,14 +72,51 @@ export function LectureCourse(){
    setBusy(`قراءة النصوص والرسومات والجداول · الصفحات ${batch.map(p=>p.number).join('، ')} من ${state.pages.length}`);
    const result=await request({operation:'extract',pages:batch.map(p=>({number:p.number,text:p.text,image:p.image}))},signal);signal.throwIfAborted();
    const extracted=result.pages as SourcePage[];
-   state={...state,pages:state.pages.map(p=>({...p,...extracted.find(r=>r.number===p.number)}))};await save(state);i+=batch.length;
+   state={...state,phase:'extracting',pages:state.pages.map(p=>({...p,...extracted.find(r=>r.number===p.number)}))};await save(state);i+=batch.length;
   }
   const points=state.pages.flatMap(p=>p.points||[]);
   if(!points.length)throw new Error('لم نتمكن من قراءة محتوى هذه المحاضرة. افتحي الأصل وتحققي من وضوح الصفحات.');
-  setBusy('ربط جميع النقاط بوحدات تعليمية وترتيبها حسب تسلسل الفهم…');
-  const result=await request({operation:'plan',title:state.name,points},signal);signal.throwIfAborted();
-  await save({...state,plan:result.plan,active:0});
+  // Planning the entire PDF in one model request can overflow model output or
+  // hit the serverless deadline. Commit each small planning batch to IndexedDB.
+  let next=state.planning?.next??0;
+  let units=state.planning?.units||[];
+  for(;next<points.length;){
+   signal.throwIfAborted();
+   const batch:Point[]=[];let characters=0;
+   while(next+batch.length<points.length&&batch.length<32){
+    const item=points[next+batch.length];
+    if(batch.length&&characters+item.text.length>18000)break;
+    batch.push(item);characters+=item.text.length;
+   }
+   setBusy(`تنظيم المفاهيم وربط المصادر · ${next+batch.length} / ${points.length} نقطة`);
+   const result=await request({operation:'plan',title:state.name,points:batch},signal);
+   signal.throwIfAborted();
+   const offset=units.length;
+   const incoming=(result.plan as Plan).units.map((u,ui)=>({
+    ...u,id:`u${offset+ui+1}`,cards:u.cards.map((card,ci)=>({...card,id:`u${offset+ui+1}-c${ci+1}`}))
+   }));
+   units=[...units,...incoming];next+=batch.length;
+   state={...state,phase:'structuring',planning:{next,units}};await save(state);
+  }
+  // This short second pass reorders units across page batches without
+  // resending the entire original lecture to the provider.
+  if(units.length>1&&units.length<=120){
+   setBusy('إعادة ترتيب جميع الوحدات حسب تسلسل الفهم…');
+   const output=await request({operation:'reorder',units:units.map(u=>({id:u.id,title:u.title,objective:u.objective}))},signal);
+   signal.throwIfAborted();
+   const byId=new Map(units.map(u=>[u.id,u]));
+   const order=output.unit_ids as string[];
+   if(order.length!==units.length||new Set(order).size!==units.length||order.some(id=>!byId.has(id)))throw new Error('تعذر التحقق من ترتيب جميع الوحدات. محتواك محفوظ.');
+   units=order.map(id=>byId.get(id)!);
+  }
+  const assigned=units.flatMap(u=>u.cards.flatMap(c=>c.source_ids));
+  const ids=new Set(points.map(p=>p.id));
+  if(assigned.length!==points.length||new Set(assigned).size!==ids.size||assigned.some(id=>!ids.has(id)))
+   throw new Error('خطة الشرح لا تغطي جميع نقاط المحاضرة؛ لن نحذف أي معلومات.');
+  state={...state,planning:undefined,plan:{title:state.name,units},active:0,phase:'generating'};
+  await save(state);
   await teach(signal);
+  await save({...current.current,phase:'ready'});
  }
  async function openFile(file:File){await work(async signal=>{
   if(file.size>30*1024*1024)throw new Error('الحد الأقصى للملف 30 MB.');
@@ -83,7 +137,7 @@ export function LectureCourse(){
    const bitmap=await createImageBitmap(file);try{const scale=Math.min(1,2000/Math.max(bitmap.width,bitmap.height)),canvas=document.createElement('canvas');canvas.width=Math.round(bitmap.width*scale);canvas.height=Math.round(bitmap.height*scale);canvas.getContext('2d')!.fillStyle='#fff';canvas.getContext('2d')!.fillRect(0,0,canvas.width,canvas.height);canvas.getContext('2d')!.drawImage(bitmap,0,0,canvas.width,canvas.height);pages.push({number:1,text:'',image:jpeg(canvas)});}finally{bitmap.close();}
   }else if(/\.txt$/i.test(file.name)){pages.push(...textPages(await file.text()));}
   else throw new Error('اختاري PDF أو صورة أو ملف TXT.');
-  signal.throwIfAborted();await save({...empty,name:file.name,pages});setSources(false);await organize(signal);
+  signal.throwIfAborted();await save({...empty,name:file.name,pages,phase:'extracting'});setSources(false);await organize(signal);
  });}
  function textPages(text:string){const parts=text.split(/\n\s*---\s*\n/);if(!text.trim()||parts.length>300||parts.some(t=>t.length>40000))throw new Error('النص فارغ أو يتجاوز حدود الصفحات؛ افصلي الصفحات بسطر --- .');return parts.map((text,i)=>({number:i+1,text}));}
  async function teach(signal:AbortSignal,followup=''){
@@ -103,6 +157,7 @@ export function LectureCourse(){
  const cards=course.plan?.units.flatMap(u=>u.cards)||[],card=cards[course.active],unit=course.plan?.units.find(u=>u.cards.some(c=>c.id===card?.id));
  const key=card?card.id+':'+course.mode:'',lesson=course.lessons[key],turns=course.turns[key]||[],points=course.pages.flatMap(p=>p.points||[]);
  const cardPoints=points.filter(p=>card?.source_ids.includes(p.id));
+ const sourcePages=[...new Set(cardPoints.map(p=>p.page))].sort((a,b)=>a-b);
  const covered=new Set(cards.flatMap(c=>(course.lessons[c.id+':'+course.mode]?.coverage||[]).map(p=>p.source_id)));
  const warnings=course.pages.flatMap(p=>(p.warnings||[]).map(w=>`صفحة ${p.number}: ${w}`));
  const unitLessons=unit?.cards.map(c=>course.lessons[c.id+':'+course.mode]).filter((l):l is Explanation=>!!l)||[];
@@ -111,9 +166,9 @@ export function LectureCourse(){
  return <div className="study-page course-page" dir="rtl">
   <header className="study-title"><div><span className="study-badge">INTERACTIVE LECTURE EXPLAINER</span><h1>{course.plan?.title||'من المحاضرة إلى الفهم'}</h1><p>{course.name||'محاضرتك تُقرأ كاملة، ثم تتحول إلى وحدات وسلايدات شرح مترابطة.'}</p></div><button disabled={!!busy} onClick={()=>fileInput.current?.click()}><Upload size={17}/>محاضرة جديدة</button></header>
   <input ref={fileInput} hidden type="file" accept="application/pdf,image/*,.txt" onChange={e=>{const f=e.target.files?.[0];if(f)void openFile(f);e.target.value='';}}/>
-  {busy&&<Progress message={busy} cancel={()=>control.current?.abort()}/>}
+  {busy&&<><p className="course-state" role="status">{({queued:'بانتظار المعالجة',extracting:'استخراج',structuring:'تنظيم',generating:'إنشاء ومراجعة',validating:'تدقيق',ready:'جاهزة'} as Record<Stage,string>)[course.phase||'queued']} · المحاضرة محفوظة ويمكن استكمالها بعد إعادة التحميل</p><Progress message={busy} cancel={()=>control.current?.abort()}/></>}
   {error&&<div className="study-error" role="alert">{error}<p>الخطوات المكتملة محفوظة. يمكنك استكمال الطلب دون البدء من جديد.</p></div>}
-  {!course.pages.length&&!busy&&<section className="lecture-welcome"><BookOpen size={42}/><h2>افهمي الفكرة، ثم اختبري فهمك</h2><p>نص وشرح بصري في كل وحدة. السلايدات الأصلية متاحة للرجوع إليها.</p><button className="primary" onClick={()=>fileInput.current?.click()}>ارفعي المحاضرة · PDF أو صور</button><small>حتى 30 MB · لا تُحسب الأجزاء غير المقروءة كتغطية مكتملة</small><details><summary>أو الصقي نص المحاضرة</summary><textarea aria-label="نص المحاضرة" value={pasted} onChange={e=>setPasted(e.target.value)} rows={6}/><button disabled={!pasted.trim()} onClick={()=>void work(async signal=>{await save({...empty,name:'محاضرة نصية',pages:textPages(pasted)});await organize(signal);})}>ابدئي التعلم</button></details></section>}
+  {!course.pages.length&&!busy&&<section className="lecture-welcome"><BookOpen size={42}/><h2>افهمي الفكرة، ثم اختبري فهمك</h2><p>نص وشرح بصري في كل وحدة. السلايدات الأصلية متاحة للرجوع إليها.</p><button className="primary" onClick={()=>fileInput.current?.click()}>ارفعي المحاضرة · PDF أو صور</button><small>حتى 30 MB · لا تُحسب الأجزاء غير المقروءة كتغطية مكتملة</small><details><summary>أو الصقي نص المحاضرة</summary><textarea aria-label="نص المحاضرة" value={pasted} onChange={e=>setPasted(e.target.value)} rows={6}/><button disabled={!pasted.trim()} onClick={()=>void work(async signal=>{await save({...empty,name:'محاضرة نصية',pages:textPages(pasted),phase:'extracting'});await organize(signal);})}>ابدئي التعلم</button></details></section>}
   {!!course.pages.length&&<>
    <div className="course-toolbar"><span>{course.pages.filter(p=>p.points).length} / {course.pages.length} صفحات مقروءة · {covered.size} / {points.length} نقاط لها شرح مراجع</span><button aria-expanded={sources} onClick={()=>setSources(v=>!v)}>{sources?'إخفاء المرجع':'المحاضرة الأصلية وخريطة التغطية'}</button><select aria-label="مصدر الشرح" disabled={!!busy} value={course.mode} onChange={e=>void change(course.active,e.target.value)}><option value="lecture_only">Lecture only · المحاضرة فقط</option><option value="supplemental">المحاضرة + توضيح إضافي</option></select></div>
    {!!warnings.length&&<details className="study-warning"><summary>{warnings.length} ملاحظات على القراءة تحتاج مراجعتك</summary>{warnings.map((w,i)=><p key={i}>{w}</p>)}</details>}
@@ -122,7 +177,7 @@ export function LectureCourse(){
    {course.plan&&card&&unit&&<div className="course-layout">
     <nav className="course-map" aria-label="وحدات الفهم">{course.plan.units.map((u,i)=><details key={u.id} open={u.id===unit.id}><summary>{i+1}. {u.title}</summary>{u.cards.map(c=><button key={c.id} disabled={!!busy} aria-current={c.id===card.id?'step':undefined} onClick={()=>void change(cards.indexOf(c))}>{course.lessons[c.id+':'+course.mode]?'✓ ':''}{c.title}</button>)}</details>)}</nav>
     <section className="course-teaching" aria-label="سلايدات الشرح">
-     <div className="course-card-heading"><small>{unit.title} · سلايد شرح {course.active+1} / {cards.length}</small><h2>{card.title}</h2><p>{unit.objective}</p></div>
+     <div className="course-card-heading"><small>{unit.title} · سلايد شرح {course.active+1} / {cards.length}</small><h2>{card.title}</h2><p>{unit.objective}</p><small>المصدر: {sourcePages.map(n=>'ص '+n).join(' · ')}</small></div>
      {lesson?<><LessonJourney key={key} lesson={lesson} slide={cardPoints.map(p=>p.text).join('\n')} answers={course.answers} onAnswer={answer} prefix={key} busy={!!busy} onAsk={ask}/><details className="course-details"><summary>شرح جميع نقاط هذه الفكرة · {lesson.coverage?.length||0} نقاط</summary>{lesson.coverage?.map(item=><section key={item.source_id}><p dir="auto">{item.explanation}</p><small>من صفحة {points.find(p=>p.id===item.source_id)?.page}</small></section>)}</details></>:!busy&&<button onClick={()=>void work(signal=>teach(signal))}>إنشاء سلايد الشرح</button>}
      {turns.map((turn,i)=><section className="course-followup" key={turn.lesson.id||i}><h3>{turn.question}</h3><LessonJourney lesson={turn.lesson} slide={cardPoints.map(p=>p.text).join('\n')} answers={course.answers} onAnswer={answer} prefix={key+':turn:'+i} busy={!!busy} onAsk={ask}/></section>)}
      {lesson&&<><div className="followup-chips"><button disabled={!!busy} onClick={()=>ask('بسّطي الفكرة مع الحفاظ على تفاصيلها')}>بسّطيها</button><button disabled={!!busy} onClick={()=>ask('لماذا؟ اشرحي الآلية من محتوى هذه الفكرة')}>لماذا؟</button><button disabled={!!busy} onClick={()=>ask('اختبريني بسؤال تطبيق جديد من هذه الفكرة')}>اختبريني</button><button disabled={!!busy} onClick={()=>ask('وضحي الفكرة بصريًا')}>وضحي بصريًا</button></div><form className="course-question" onSubmit={e=>{e.preventDefault();ask(question);}}><label htmlFor="course-question">سؤال متابعة عن هذه الفكرة</label><textarea id="course-question" maxLength={1800} value={question} onChange={e=>setQuestion(e.target.value)} rows={2}/><button disabled={!!busy||!question.trim()}>اسألي</button></form></>}
