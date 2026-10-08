@@ -2,6 +2,7 @@
 import json
 import os
 import re
+import random
 import socket
 import time
 import uuid
@@ -23,6 +24,7 @@ class CloudflareTransport:
         self.config = config
         self.models = list(dict.fromkeys([config['model'], *RECOVERY_MODELS])) if config else []
         self.model_index = 0
+        self.busy_on_model = 0
 
     def open(self, request, **kwargs):
         while True:
@@ -34,16 +36,33 @@ class CloudflareTransport:
             try:
                 return self._open(request, **kwargs)
             except MentorError as error:
-                if error.code != 'PROVIDER_BUSY' or self.model_index + 1 >= len(self.models):
+                # Only provider overloads (HTTP 5xx) are retried. Authentication,
+                # quota and malformed responses must not create a retry storm.
+                if error.code != 'PROVIDER_BUSY' or self.attempts >= 8:
                     raise
-                if self.deadline - time.monotonic() <= 8 or self.attempts >= 8:
-                    raise
-                self.model_index += 1
-                model = self.models[self.model_index]
-                self.config['endpoint'] = self.config['endpoint'].rsplit('/models/', 1)[0] + '/models/' + model + ':generateContent'
-                self.config['model'] = model
-                print(json.dumps({'event':'study_model_recovery','request_id':self.request_id,
-                                  'module':self.module,'model':model}), flush=True)
+                remaining=self.deadline-time.monotonic()
+                if remaining < 12:raise
+                self.busy_on_model += 1
+                # One extra try on the current model before moving on. Research
+                # Mentor keeps its existing recovery policy unchanged.
+                same_model_retry = self.module == 'lecture' and self.busy_on_model == 1
+                if not same_model_retry:
+                    if self.model_index + 1 >= len(self.models):raise
+                    self.model_index += 1
+                    self.busy_on_model = 0
+                    model = self.models[self.model_index]
+                    self.config['endpoint'] = self.config['endpoint'].rsplit('/models/', 1)[0] + '/models/' + model + ':generateContent'
+                    self.config['model'] = model
+                    print(json.dumps({'event':'study_model_recovery','request_id':self.request_id,
+                                      'module':self.module,'model':model}), flush=True)
+                # Capped exponential delay with jitter; leave time for the
+                # mandatory independent medical-content review.
+                base=min(8.0, 0.65 * (2 ** min(self.attempts - 1,4)))
+                delay=min(max(0,remaining-9),base+random.uniform(0,base*.35))
+                if delay <= 0:raise
+                print(json.dumps({'event':'study_busy_backoff','module':self.module,
+                                  'call':self.attempts,'delay_ms':round(delay*1000)}),flush=True)
+                time.sleep(delay)
 
     def _open(self, request, **kwargs):
         remaining = self.deadline - time.monotonic()
