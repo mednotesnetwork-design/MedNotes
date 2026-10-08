@@ -33,8 +33,13 @@ function ConceptVisual({lesson}:{lesson:Explanation}){
  </section>;
 }
 
-export function LessonJourney({lesson,slide,answers,onAnswer,prefix,onAsk,busy}:{lesson:Explanation;slide:string;answers:Record<string,number>;onAnswer:(key:string,value?:number)=>void;prefix:string;onAsk:(q:string)=>void;busy:boolean}){
- const [revealed,setRevealed]=useState(false),[show3d,setShow3d]=useState(false);
+export type LearningTab='explain'|'visual'|'quiz'|'3d';
+export function LessonJourney({lesson,slide,answers,onAnswer,prefix,onAsk,busy,view='all'}:{lesson:Explanation;slide:string;answers:Record<string,number>;onAnswer:(key:string,value?:number)=>void;prefix:string;onAsk:(q:string)=>void;busy:boolean;view?:LearningTab|'all'}){
+ const [revealed,setRevealed]=useState(false),[modelOpen,setModelOpen]=useState(false);
+ const showExplain=view==='all'||view==='explain';
+ const showVisual=view==='all'||view==='visual';
+ const showQuiz=view==='all'||view==='quiz';
+ const showAnatomy=view==='all'||view==='3d';
  const opening=lesson.opening,hasOpening=opening&&opening.kind!=='none'&&opening.prompt;
  const supplemental=lesson.source_mode==='supplemental';
  const source=(slide+' '+lesson.explanation).toLowerCase();
@@ -43,18 +48,21 @@ export function LessonJourney({lesson,slide,answers,onAnswer,prefix,onAsk,busy}:
  return <article className="lesson-journey">
   <div className="journey-meta">{supplemental?'المحاضرة + إضافات موسومة':'Lecture only · المحاضرة فقط'}</div>
   {lesson.review_note&&<p className="lesson-basis">{lesson.review_note}</p>}
-  {hasOpening&&<section className="case-opening"><span className="lesson-basis"><Lightbulb size={15}/>{opening.kind==='case'?'حالة تعليمية افتراضية':'فكّري أولًا'} · {basisText(opening.basis)}</span>{opening.scene&&<p>{opening.scene}</p>}<h3>{opening.prompt}</h3><button aria-expanded={revealed} onClick={()=>setRevealed(v=>!v)}>{revealed?'إخفاء التفسير':'اكشفي التفسير خطوة بخطوة'}</button>{revealed&&<p className="opening-answer">{opening.answer}</p>}</section>}
-  {(!hasOpening||revealed)&&<>
-   <section className="lesson-core"><h3>ما الذي يجب أن أفهمه؟</h3><p className="preserve" dir="auto">{lesson.explanation}</p>{lesson.terms.length>0&&<div className="lesson-terms">{lesson.terms.map((t,i)=><details key={i}><summary>{t.term}</summary><p>{t.meaning}</p><button disabled={busy} onClick={()=>onAsk('اشرح المصطلح: '+t.term)}>بسّطي هذا المصطلح</button></details>)}</div>}</section>
-   <ConceptVisual lesson={lesson}/>
-   {anatomyRelevant&&<section className="anatomy-in-context"><h3>أين تقع هذه العلاقة؟</h3><p>استكشفي التركيب مع إبقاء السلايد والشرح أمامك.</p><button aria-expanded={show3d} onClick={()=>setShow3d(v=>!v)}><Box size={16}/>{show3d?'إغلاق النموذج':'فتح 3D داخل الشرح'}</button>{show3d&&<Suspense fallback={<p role="status">فتح النموذج…</p>}><InlineAnatomy ids={matches.map(e=>e.id)} supplemental={supplemental}/></Suspense>}</section>}
-   {lesson.clinical_connection?.text&&<section className="clinical-connection"><span className="lesson-basis">Clinical connection · {basisText(lesson.clinical_connection.basis)}</span><p>{lesson.clinical_connection.text}</p></section>}
-   {lesson.high_yield.length>0&&<section><h3>نقاط تستحق الانتباه في الاختبار</h3><ul>{lesson.high_yield.map((s,i)=><li key={i}>{s}</li>)}</ul></section>}
-   {lesson.checkpoint?.question&&<section className="thought-checkpoint"><h3>Checkpoint · توقفي وفكّري</h3><p>{lesson.checkpoint.question}</p><details><summary>قارني إجابتك</summary><strong>{lesson.checkpoint.concept}</strong><p>{lesson.checkpoint.answer}</p></details></section>}
-   {!!lesson.questions.length&&<ReverseReview questions={lesson.questions} answers={answers} onAnswer={onAnswer} prefix={prefix} onRetest={onAsk}/>}
-   {lesson.clarifications.length>0&&<aside className="study-warning"><strong>توضيح إضافي خارج المحاضرة</strong>{lesson.clarifications.map((s,i)=><p key={i}>{s}</p>)}</aside>}
-   {!!lesson.summary?.length&&<section className="lesson-summary"><h3>خذي معك هذه الفكرة</h3><ul>{lesson.summary.map((s,i)=><li key={i}>{s}</li>)}</ul></section>}
-   <details className="lesson-evidence"><summary>النص الذي استند إليه الشرح</summary>{lesson.source_quotes.length?lesson.source_quotes.map((q,i)=><blockquote key={i} dir="auto">{q}</blockquote>):<p>استند الشرح إلى صورة السلايد؛ لا توجد اقتباسات نصية قابلة للتحقق.</p>}</details>
+  {showExplain&&hasOpening&&<section className="case-opening"><span className="lesson-basis"><Lightbulb size={15}/>{opening.kind==='case'?'حالة تعليمية افتراضية':'فكّري أولًا'} · {basisText(opening.basis)}</span>{opening.scene&&<p>{opening.scene}</p>}<h3>{opening.prompt}</h3><button aria-expanded={revealed} onClick={()=>setRevealed(v=>!v)}>{revealed?'إخفاء التفسير':'اكشفي التفسير خطوة بخطوة'}</button>{revealed&&<p className="opening-answer">{opening.answer}</p>}</section>}
+  {(!showExplain||!hasOpening||revealed)&&<>
+   {showExplain&&<section className="lesson-core"><h3>ما الذي يجب أن أفهمه؟</h3><p className="preserve" dir="auto">{lesson.explanation}</p>{lesson.terms.length>0&&<div className="lesson-terms">{lesson.terms.map((t,i)=><details key={i}><summary>{t.term}</summary><p>{t.meaning}</p><button disabled={busy} onClick={()=>onAsk('اشرح المصطلح: '+t.term)}>بسّطي هذا المصطلح</button></details>)}</div>}</section>
+   {showVisual&&<ConceptVisual lesson={lesson}/>}
+  {view==='visual'&&!(lesson.mechanism?.length||lesson.visual?.labels?.length)&&(!lesson.visual||lesson.visual.kind==='none')&&<p className="lesson-basis">لا يتضمن هذا الجزء رسمًا يمكن إنشاؤه من مصدر المحاضرة بدقة.</p>}
+   {showAnatomy&&(view==='3d'?matches.length>0:anatomyRelevant)&&<section className="anatomy-in-context"><h3>أين تقع هذه العلاقة؟</h3><p>استكشفي التركيب مع إبقاء السلايد والشرح أمامك.</p>{view!=='3d'&&<button aria-expanded={modelOpen} onClick={()=>setModelOpen(v=>!v)}><Box size={16}/>{modelOpen?'إغلاق النموذج':'فتح 3D داخل الشرح'}</button>}{(modelOpen||view==='3d')&&<Suspense fallback={<p role="status">فتح النموذج…</p>}><InlineAnatomy ids={matches.map(e=>e.id)} supplemental={supplemental}/></Suspense>}</section>}
+   {view==='3d'&&!matches.length&&<p className="lesson-basis">لا يوجد تركيب مطابق في أطلس 3D لهذا السلايد؛ لن نعرض تشريحًا غير موثّق.</p>}
+  {showExplain&&lesson.clinical_connection?.text&&<section className="clinical-connection"><span className="lesson-basis">Clinical connection · {basisText(lesson.clinical_connection.basis)}</span><p>{lesson.clinical_connection.text}</p></section>}
+   {showExplain&&lesson.high_yield.length>0&&<section><h3>نقاط تستحق الانتباه في الاختبار</h3><ul>{lesson.high_yield.map((s,i)=><li key={i}>{s}</li>)}</ul></section>}
+   {showQuiz&&lesson.checkpoint?.question&&<section className="thought-checkpoint"><h3>Checkpoint · توقفي وفكّري</h3><p>{lesson.checkpoint.question}</p><details><summary>قارني إجابتك</summary><strong>{lesson.checkpoint.concept}</strong><p>{lesson.checkpoint.answer}</p></details></section>}
+   {showQuiz&&!!lesson.questions.length&&<ReverseReview questions={lesson.questions} answers={answers} onAnswer={onAnswer} prefix={prefix} onRetest={onAsk}/>}
+   {view==='quiz'&&!lesson.checkpoint?.question&&!lesson.questions.length&&<p className="lesson-basis">لم تتوفر أسئلة يمكن التحقق من إجاباتها من محتوى هذا السلايد.</p>}
+  {showExplain&&lesson.clarifications.length>0&&<aside className="study-warning"><strong>توضيح إضافي خارج المحاضرة</strong>{lesson.clarifications.map((s,i)=><p key={i}>{s}</p>)}</aside>}
+   {showExplain&&!!lesson.summary?.length&&<section className="lesson-summary"><h3>خذي معك هذه الفكرة</h3><ul>{lesson.summary.map((s,i)=><li key={i}>{s}</li>)}</ul></section>}
+   {showExplain&&<details className="lesson-evidence"><summary>النص الذي استند إليه الشرح</summary>{lesson.source_quotes.length?lesson.source_quotes.map((q,i)=><blockquote key={i} dir="auto">{q}</blockquote>):<p>استند الشرح إلى صورة السلايد؛ لا توجد اقتباسات نصية قابلة للتحقق.</p>}</details>
   </>}
  </article>;
 }
