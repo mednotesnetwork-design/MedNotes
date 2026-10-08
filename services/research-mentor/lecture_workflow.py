@@ -315,7 +315,7 @@ def prepare_lecture(data):
                         if pending_lesson is not None:
                             approved={}
                             trimmed_content=True
-                repair_fields=[k for k in REVIEW_FIELDS if k not in approved and (k!='coverage' or source_points)] if approved else []
+                repair_fields=[k for k in REVIEW_FIELDS if k not in approved and (k!='coverage' or source_points) and (k!='clinical_layers' or source_points or 'clinical_layers' in lesson)] if approved else []
                 payload.update(repair_fields=repair_fields,previous_draft={k:v for k,v in lesson.items() if k in repair_fields} if repair_fields else lesson,repair_feedback=issues[:24],approved_fields=list(approved),task='Preserve approved_fields EXACTLY. Rewrite only failed sections. Prefer short, precise explanations; remove ungrounded details instead of expanding them. Correct the draft using only the source and feedback. Remove unsupported content rather than adding more details. Follow the requested_tool and source_mode rules. When repair_fields is nonempty, return only those fields as a JSON object. Otherwise return the entire lesson JSON. Do not weaken evidence rules.')
             # Optional sections may be omitted, but the remaining lesson must pass a fresh audit.
             for _ in range(2):
