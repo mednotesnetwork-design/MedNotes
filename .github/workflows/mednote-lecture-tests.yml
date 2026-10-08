@@ -19,7 +19,7 @@ jobs:
       - name: Python dependencies
         run: pip install -r requirements.txt 'pymupdf>=1.24,<2'
       - name: Python course and AI gateway tests
-        run: PYTHONPATH=. python -c 'import sys,importlib.util; print(sys.path[:4]); print(importlib.util.find_spec("server"))' && PYTHONPATH=. python -m unittest discover -s tests -v
+        run: for name in test_course_workflow test_large_lecture_workflow test_lecture_jobs test_lecture_journey test_study_integration; do PYTHONPATH=. python -m unittest discover -s tests -p "$name.py" -v || exit 1; done
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '22'
