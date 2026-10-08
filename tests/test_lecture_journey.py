@@ -105,4 +105,50 @@ class ClinicalTeachingPersonaTests(unittest.TestCase):
         self.assertIn('coverage:[{source_id,explanation}]',PROMPT)
         self.assertIn('SOURCE ENTAILMENT CHECK',REVIEW)
 
+class EliteClinicalLayersTests(unittest.TestCase):
+    def layers(self,source_id='p4-v2'):
+        return dict(core_concept=dict(text='Causality grounded in the lecture.',source_item_ids_used=[source_id]),
+            mechanism=dict(steps=[dict(text='Calcium binds troponin C.',source_item_ids_used=[source_id])]),
+            clinical_correlation=dict(text='',source_item_ids_used=[]),
+            visual_cues=[dict(label='Diagram',detail='Calcium binds troponin C.',source_item_ids_used=[source_id])])
+
+    def test_four_layer_schema_rejects_missing_or_forged_ids(self):
+        from lecture_workflow import validate_clinical_layers
+        point=[dict(id='p4-v2',page=4,kind='diagram',text='Calcium binds troponin C.')]
+        with self.assertRaises(MentorError):validate_clinical_layers({},point)
+        lesson=dict(clinical_layers=self.layers())
+        validate_clinical_layers(lesson,point)
+        for field in ('core_concept','mechanism','visual_cues'):
+            corrupted=deepcopy(lesson)
+            if field=='mechanism':corrupted['clinical_layers'][field]['steps'][0]['source_item_ids_used']=['invented']
+            elif field=='visual_cues':corrupted['clinical_layers'][field][0]['source_item_ids_used']=['invented']
+            else:corrupted['clinical_layers'][field]['source_item_ids_used']=['invented']
+            with self.subTest(field=field),self.assertRaises(MentorError):
+                validate_clinical_layers(corrupted,point)
+
+    def test_empty_clinical_link_is_allowed_not_invented(self):
+        from lecture_workflow import validate_clinical_layers
+        item=[dict(id='p2-t1',page=2,text='Anatomy relation.')]
+        lesson=dict(clinical_layers=self.layers('p2-t1'))
+        validate_clinical_layers(lesson,item)
+        lesson['clinical_layers']['clinical_correlation']['text']='Unsupported symptom'
+        with self.assertRaises(MentorError):validate_clinical_layers(lesson,item)
+
+    def test_source_registry_is_extraction_owned(self):
+        from lecture_workflow import attach_source_registry
+        points=[dict(id='p7-v1',page=7,page_number=7,kind='clinical',
+                     content_type='clinical',source_ref='lecture:page:7:item:p7-v1',
+                     bbox=[.1,.2,.3,.4],text='clinical evidence')]
+        lesson={'clinical_layers':self.layers('p7-v1'),'source_registry':[{'item_id':'fake','page_number':999}]}
+        attached=attach_source_registry(lesson,points)
+        self.assertEqual(attached['source_registry'][0]['item_id'],'p7-v1')
+        self.assertEqual(attached['source_registry'][0]['page_number'],7)
+        self.assertEqual(attached['source_registry'][0]['bbox'],[.1,.2,.3,.4])
+        self.assertEqual(len(attached['source_registry']),1)
+
+    def test_existing_slide_without_registry_stays_compatible(self):
+        from lecture_workflow import validate_clinical_layers
+        validate_clinical_layers({},[])
+        self.assertIn('clinical_layers',REVIEW_FIELDS)
+
 if __name__=='__main__':unittest.main()
