@@ -1,9 +1,9 @@
-import {useEffect,useRef,useState} from 'react';
+import {useEffect,useRef,useState,type TouchEvent,type KeyboardEvent} from 'react';
 import {pdfjs} from 'react-pdf';
 import {BookOpen,Upload,ChevronLeft,ChevronRight,Sparkles} from 'lucide-react';
 import {readStudy,writeStudy,studyRequest} from '../../lib/study-store';
 import {appendLecturePage,createLectureJob,getLectureJob,startLectureJob,type LectureJobHandle} from '../../lib/lecture-jobs';
-import {LessonJourney} from './LessonJourney';
+import {LessonJourney,type LearningTab} from './LessonJourney';
 import type {Explanation} from './types';
 
 type Point={id:string;page:number;kind:string;text:string;origin:string;item_id?:string;page_number?:number;content_type?:string;source_ref?:string;bbox?:number[]};
@@ -12,8 +12,9 @@ type Card={id:string;title:string;source_ids:string[]};
 type Unit={id:string;title:string;objective:string;cards:Card[]};
 type Plan={title:string;units:Unit[]};
 type Turn={question:string;lesson:Explanation};
+type StudyTab=LearningTab|'notes';
 type Stage='queued'|'extracting'|'structuring'|'generating'|'validating'|'retrying'|'failed'|'ready';
-type Course={name:string;pages:SourcePage[];plan?:Plan;remote?:LectureJobHandle;remoteProgress?:string;planning?:{next:number;units:Unit[]};planningNotices?:string[];phase?:Stage;active:number;mode:string;lessons:Record<string,Explanation>;turns:Record<string,Turn[]>;answers:Record<string,number>};
+type Course={name:string;pages:SourcePage[];plan?:Plan;remote?:LectureJobHandle;remoteProgress?:string;planning?:{next:number;units:Unit[]};planningNotices?:string[];phase?:Stage;active:number;mode:string;lessons:Record<string,Explanation>;turns:Record<string,Turn[]>;answers:Record<string,number>;notes?:Record<string,string>};
 const empty:Course={name:'',pages:[],active:0,mode:'lecture_only',phase:'queued',lessons:{},turns:{},answers:{}};
 const STORE='lecture-course-v2';
 function jpeg(canvas:HTMLCanvasElement){
@@ -30,6 +31,8 @@ function Progress({message,cancel}:{message:string;cancel:()=>void}){
 export function LectureCourse(){
  const [course,setCourse]=useState<Course>(empty),[ready,setReady]=useState(false),[busy,setBusy]=useState(''),[error,setError]=useState('');
  const [question,setQuestion]=useState(''),[pasted,setPasted]=useState(''),[sources,setSources]=useState(false);
+ const [studyTab,setStudyTab]=useState<StudyTab>('explain'),[slideDirection,setSlideDirection]=useState<'next'|'prev'>('next');
+ const gesture=useRef<{x:number;y:number}|null>(null);
  const current=useRef(course),control=useRef<AbortController|null>(null),fileInput=useRef<HTMLInputElement>(null),lastRequest=useRef(0);
  function update(value:Course){current.current=value;setCourse(value);}
  async function save(value:Course){await writeStudy(STORE,value);update(value);}
@@ -213,12 +216,36 @@ export function LectureCourse(){
   if(followup)await save({...current.current,turns:{...current.current.turns,[key]:[...turns,{question:followup,lesson}]}});
   else await save({...current.current,lessons:{...current.current.lessons,[key]:lesson}});
  }
- async function change(index:number,mode=course.mode){if(control.current)return;setQuestion('');
+ async function change(index:number,mode=course.mode){
+  if(control.current||index<0||index>=(current.current.plan?.units.flatMap(u=>u.cards).length||0))return;
+  if(index!==current.current.active)setSlideDirection(index>current.current.active?'next':'prev');
+  setQuestion('');
   if(current.current.remote){
    await save({...current.current,active:index,mode});
    return;
   }
   await work(async signal=>{await save({...current.current,active:index,mode});const card=current.current.plan?.units.flatMap(u=>u.cards)[index];if(card&&!current.current.lessons[card.id+':'+mode])await teach(signal);});
+ }
+ function onSlideTouchStart(event:TouchEvent<HTMLDivElement>){
+  const target=event.target;
+  if(event.touches.length!==1||!(target instanceof Element)||
+     target.closest('button,a,input,textarea,select,summary,canvas,[contenteditable],.lesson-anatomy,.concept-visual,[data-no-swipe]')){
+   gesture.current=null;return;
+  }
+  gesture.current={x:event.touches[0].clientX,y:event.touches[0].clientY};
+ }
+ function onSlideTouchEnd(event:TouchEvent<HTMLDivElement>){
+  const start=gesture.current;gesture.current=null;
+  if(!start||event.changedTouches.length!==1||control.current)return;
+  const dx=event.changedTouches[0].clientX-start.x,dy=event.changedTouches[0].clientY-start.y;
+  if(Math.abs(dx)<65||Math.abs(dx)<Math.abs(dy)*1.3)return;
+  void change(current.current.active+(dx<0?1:-1));
+ }
+ function onSlideKeyDown(event:KeyboardEvent<HTMLDivElement>){
+  if(event.target!==event.currentTarget||event.altKey||event.ctrlKey||event.metaKey)return;
+  if(event.key==='ArrowLeft'||event.key==='ArrowRight'){
+   event.preventDefault();void change(current.current.active+(event.key==='ArrowLeft'?1:-1));
+  }
  }
  function ask(text:string){if(text.trim())void work(signal=>teach(signal,text.trim()));}
  function answer(key:string,value?:number){const answers={...current.current.answers};if(value===undefined)delete answers[key];else answers[key]=value;void save({...current.current,answers}).catch(()=>setError('تعذر حفظ الإجابة محليًا.'));}
