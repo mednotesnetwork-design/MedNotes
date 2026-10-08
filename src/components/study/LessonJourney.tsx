@@ -5,10 +5,10 @@ import type {Explanation,StudyQuestion,Basis} from './types';
 const InlineAnatomy=lazy(()=>import('./InlineAnatomy'));
 const basisText=(basis?:Basis)=>basis==='additional'?'توضيح إضافي خارج المحاضرة':'شرح مستند للمحاضرة';
 
-function ReverseReview({questions,answers,onAnswer,prefix}:{questions:StudyQuestion[];answers:Record<string,number>;onAnswer:(key:string,value?:number)=>void;prefix:string}){
+function ReverseReview({questions,answers,onAnswer,prefix,onRetest}:{onRetest:(question:string)=>void;questions:StudyQuestion[];answers:Record<string,number>;onAnswer:(key:string,value?:number)=>void;prefix:string}){
  return <section className="lesson-review" aria-label="Reverse Review"><h3>اختبري الفكرة · Reverse Review</h3>{questions.map((q,i)=>{
  const key=prefix+':'+i,chosen=answers[key];
- return <fieldset key={key} className="checkpoint"><legend>{q.question}</legend>{q.options.map((o,j)=><button key={j} disabled={chosen!==undefined} className={chosen===j?'selected':''} onClick={()=>onAnswer(key,j)}>{o}</button>)}{chosen!==undefined&&<div className="study-feedback"><strong>{chosen===q.correct_index?'إجابة صحيحة':'لنراجع الفكرة وراء السؤال'}</strong><h4>المفهوم الذي يختبره السؤال</h4><p>{q.concept||q.explanations[q.correct_index]}</p><h4>لماذا الإجابة الصحيحة؟</h4><p>{q.options[q.correct_index]}: {q.explanations[q.correct_index]}</p><h4>لماذا لا نختار البدائل؟</h4>{q.options.map((o,j)=>j!==q.correct_index&&<p key={j}>{o}: {q.explanations[j]}</p>)}{q.source_quote&&<blockquote dir="auto">{q.source_quote}</blockquote>}<button onClick={()=>onAnswer(key)}>أعيد المحاولة</button></div>}</fieldset>;
+ return <fieldset key={key} className="checkpoint"><legend>{q.question}</legend>{q.options.map((o,j)=><button key={j} disabled={chosen!==undefined} className={chosen===j?'selected':''} onClick={()=>onAnswer(key,j)}>{o}</button>)}{chosen!==undefined&&<div className="study-feedback"><strong>{chosen===q.correct_index?'إجابة صحيحة':'لنراجع الفكرة وراء السؤال'}</strong><h4>المفهوم الذي يختبره السؤال</h4><p>{q.concept||q.explanations[q.correct_index]}</p><h4>لماذا الإجابة الصحيحة؟</h4><p>{q.options[q.correct_index]}: {q.explanations[q.correct_index]}</p><h4>لماذا لا نختار البدائل؟</h4>{q.options.map((o,j)=>j!==q.correct_index&&<p key={j}>{o}: {q.explanations[j]}</p>)}{q.source_quote&&<blockquote dir="auto">{q.source_quote}</blockquote>}<button onClick={()=>onAnswer(key)}>أعيد المحاولة</button>{chosen!==q.correct_index&&<button onClick={()=>onRetest('راجع التباس فهمي في: '+q.question+' إجابتي كانت: '+q.options[chosen]+' ثم اختبرني بسؤال مشابه جديد من نفس المحتوى')}>راجع الفكرة واختبرني بسؤال مشابه</button>}</div>}</fieldset>;
  })}</section>;
 }
 
@@ -51,7 +51,7 @@ export function LessonJourney({lesson,slide,answers,onAnswer,prefix,onAsk,busy}:
    {lesson.clinical_connection?.text&&<section className="clinical-connection"><span className="lesson-basis">Clinical connection · {basisText(lesson.clinical_connection.basis)}</span><p>{lesson.clinical_connection.text}</p></section>}
    {lesson.high_yield.length>0&&<section><h3>نقاط تستحق الانتباه في الاختبار</h3><ul>{lesson.high_yield.map((s,i)=><li key={i}>{s}</li>)}</ul></section>}
    {lesson.checkpoint?.question&&<section className="thought-checkpoint"><h3>Checkpoint · توقفي وفكّري</h3><p>{lesson.checkpoint.question}</p><details><summary>قارني إجابتك</summary><strong>{lesson.checkpoint.concept}</strong><p>{lesson.checkpoint.answer}</p></details></section>}
-   {!!lesson.questions.length&&<ReverseReview questions={lesson.questions} answers={answers} onAnswer={onAnswer} prefix={prefix}/>}
+   {!!lesson.questions.length&&<ReverseReview questions={lesson.questions} answers={answers} onAnswer={onAnswer} prefix={prefix} onRetest={onAsk}/>}
    {lesson.clarifications.length>0&&<aside className="study-warning"><strong>توضيح إضافي خارج المحاضرة</strong>{lesson.clarifications.map((s,i)=><p key={i}>{s}</p>)}</aside>}
    {!!lesson.summary?.length&&<section className="lesson-summary"><h3>خذي معك هذه الفكرة</h3><ul>{lesson.summary.map((s,i)=><li key={i}>{s}</li>)}</ul></section>}
    <details className="lesson-evidence"><summary>النص الذي استند إليه الشرح</summary>{lesson.source_quotes.length?lesson.source_quotes.map((q,i)=><blockquote key={i} dir="auto">{q}</blockquote>):<p>استند الشرح إلى صورة السلايد؛ لا توجد اقتباسات نصية قابلة للتحقق.</p>}</details>

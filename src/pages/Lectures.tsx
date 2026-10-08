@@ -19,7 +19,9 @@ function LectureProgress({cancel}:{cancel:()=>void}){
  return <div className="tutor-loading" role="status"><Sparkles size={18}/><span>{elapsed<45?'أجهّز الشرح وأراجعه مع السلايد…':'تأخر الرد؛ ما زلت أراجع الطلب. يمكنك إيقافه دون فقد محتواك.'}<small style={{display:'block'}}>{elapsed} ثانية</small></span><button onClick={cancel}>إيقاف</button></div>;
 }
 
-export function Lectures(){
+export {LectureCourse as Lectures} from '../components/study/LectureCourse';
+
+export function SourceLecture(){
  const [lecture,setLecture]=useState<Lecture>(initial);
  const [ready,setReady]=useState(false),[busy,setBusy]=useState(false),[loading,setLoading]=useState(false),[error,setError]=useState('');
  const [pasted,setPasted]=useState(''),[question,setQuestion]=useState(''),[selection,setSelection]=useState(''),[region,setRegion]=useState<Region|null>(null),[drawing,setDrawing]=useState(false);

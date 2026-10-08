@@ -8,11 +8,12 @@ if str(SERVICE) not in sys.path:sys.path.insert(0,str(SERVICE))
 from v1server.contracts import MentorError,require,string,empty_state,validate_patch
 from v1server.engine import Engine
 from lecture_workflow import prepare_lecture
+from course_workflow import prepare_course
 from study_routing import run_study
 
 def execute_study(module,data):
     require(isinstance(data,dict),'Invalid request')
-    if module=='lecture':return run_study({},prepare_lecture(data),module='lecture')
+    if module=='lecture':return run_study({},prepare_course(data) if data.get('operation') else prepare_lecture(data),module='lecture')
     require(module=='student','Invalid module')
     require(len(json.dumps(data).encode())<=100000,'Research request too large','REQUEST_TOO_LARGE',413)
     text=string(data.get('input'),'input')
