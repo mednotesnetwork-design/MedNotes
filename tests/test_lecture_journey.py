@@ -146,6 +146,24 @@ class EliteClinicalLayersTests(unittest.TestCase):
         self.assertEqual(attached['source_registry'][0]['bbox'],[.1,.2,.3,.4])
         self.assertEqual(len(attached['source_registry']),1)
 
+    def test_reviewed_course_attaches_authoritative_source_page(self):
+        from types import SimpleNamespace
+        from unittest.mock import Mock
+        original=JourneyEvidenceTests().lesson()
+        original['clinical_layers']=self.layers('p7-v1')
+        original['coverage']=[{'source_id':'p7-v1','explanation':'Calcium binds troponin C. ATP supports cross-bridge cycling.'}]
+        point={'id':'p7-v1','page':7,'page_number':7,'text':'Calcium binds troponin C. ATP supports cross-bridge cycling.',
+               'kind':'diagram','content_type':'diagram','bbox':[.1,.2,.3,.4],
+               'source_ref':'lecture:page:7:item:p7-v1'}
+        review={'passed':True,'issues':[],
+                'checks':[{'field':field,'supported':True,'issue':''} for field in REVIEW_FIELDS]}
+        provider=SimpleNamespace(opener=None,complete=Mock(side_effect=[original,review]))
+        result=prepare_lecture({'slide':point['text'],'source_points':[point]})(provider)['lesson']
+        self.assertEqual(provider.complete.call_count,2)
+        self.assertEqual(result['source_registry'][0]['page_number'],7)
+        self.assertEqual(result['source_registry'][0]['bbox'],[.1,.2,.3,.4])
+        self.assertEqual(result['coverage'][0]['source_id'],'p7-v1')
+
     def test_existing_slide_without_registry_stays_compatible(self):
         from lecture_workflow import validate_clinical_layers
         validate_clinical_layers({},[])
