@@ -12,7 +12,7 @@ type Unit={id:string;title:string;objective:string;cards:Card[]};
 type Plan={title:string;units:Unit[]};
 type Turn={question:string;lesson:Explanation};
 type Stage='queued'|'extracting'|'structuring'|'generating'|'validating'|'ready';
-type Course={name:string;pages:SourcePage[];plan?:Plan;planning?:{next:number;units:Unit[]};phase?:Stage;active:number;mode:string;lessons:Record<string,Explanation>;turns:Record<string,Turn[]>;answers:Record<string,number>};
+type Course={name:string;pages:SourcePage[];plan?:Plan;planning?:{next:number;units:Unit[]};planningNotices?:string[];phase?:Stage;active:number;mode:string;lessons:Record<string,Explanation>;turns:Record<string,Turn[]>;answers:Record<string,number>};
 const empty:Course={name:'',pages:[],active:0,mode:'lecture_only',phase:'queued',lessons:{},turns:{},answers:{}};
 const STORE='lecture-course-v2';
 function jpeg(canvas:HTMLCanvasElement){
@@ -96,18 +96,28 @@ export function LectureCourse(){
     ...u,id:`u${offset+ui+1}`,cards:u.cards.map((card,ci)=>({...card,id:`u${offset+ui+1}-c${ci+1}`}))
    }));
    units=[...units,...incoming];next+=batch.length;
-   state={...state,phase:'structuring',planning:{next,units}};await save(state);
+   const notices=[...(state.planningNotices||[])];
+   if(result.recovered_missing_ids)notices.push(`المجموعة ${Math.ceil(next/32)}: استُعيدت نقاط لم يصنفها Gemini آليًا؛ ستظهر في سلايدات شرح منفصلة.`);
+   state={...state,phase:'structuring',planning:{next,units},planningNotices:notices};await save(state);
   }
   // This short second pass reorders units across page batches without
   // resending the entire original lecture to the provider.
   if(units.length>1&&units.length<=120){
    setBusy('إعادة ترتيب جميع الوحدات حسب تسلسل الفهم…');
-   const output=await request({operation:'reorder',units:units.map(u=>({id:u.id,title:u.title,objective:u.objective}))},signal);
-   signal.throwIfAborted();
-   const byId=new Map(units.map(u=>[u.id,u]));
-   const order=output.unit_ids as string[];
-   if(order.length!==units.length||new Set(order).size!==units.length||order.some(id=>!byId.has(id)))throw new Error('تعذر التحقق من ترتيب جميع الوحدات. محتواك محفوظ.');
-   units=order.map(id=>byId.get(id)!);
+   try {
+    const output=await request({operation:'reorder',units:units.map(u=>({id:u.id,title:u.title,objective:u.objective}))},signal);
+    signal.throwIfAborted();
+    const byId=new Map(units.map(u=>[u.id,u]));
+    const order=output.unit_ids as string[];
+    if(order.length!==units.length||new Set(order).size!==units.length||order.some(id=>!byId.has(id)))throw new Error('ترتيب غير مكتمل');
+    units=order.map(id=>byId.get(id)!);
+   }catch(err){
+    signal.throwIfAborted();
+    // Preserve the locally valid per-batch sequence rather than discarding
+    // the extracted lecture when the optional global reorder is unavailable.
+    state={...state,planningNotices:[...(state.planningNotices||[]),'تعذرت إعادة ترتيب الوحدات بين المجموعات؛ بقي ترتيب كل مجموعة تعليميًا ومعلوماتها محفوظة.']};
+    await save(state);
+   }
   }
   const assigned=units.flatMap(u=>u.cards.flatMap(c=>c.source_ids));
   const ids=new Set(points.map(p=>p.id));
@@ -159,7 +169,7 @@ export function LectureCourse(){
  const cardPoints=points.filter(p=>card?.source_ids.includes(p.id));
  const sourcePages=[...new Set(cardPoints.map(p=>p.page))].sort((a,b)=>a-b);
  const covered=new Set(cards.flatMap(c=>(course.lessons[c.id+':'+course.mode]?.coverage||[]).map(p=>p.source_id)));
- const warnings=course.pages.flatMap(p=>(p.warnings||[]).map(w=>`صفحة ${p.number}: ${w}`));
+ const warnings=[...course.pages.flatMap(p=>(p.warnings||[]).map(w=>`صفحة ${p.number}: ${w}`)),...(course.planningNotices||[])];
  const unitLessons=unit?.cards.map(c=>course.lessons[c.id+':'+course.mode]).filter((l):l is Explanation=>!!l)||[];
  const unitDone=unit&&unitLessons.length===unit.cards.length;
  if(!ready)return <div className="study-page" role="status">فتح مساحة المحاضرة…</div>;
