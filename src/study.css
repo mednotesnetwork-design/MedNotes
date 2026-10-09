@@ -274,3 +274,28 @@
 .course-slide-preview button{margin-top:16px}
 @media(max-width:850px){.course-slide-preview{max-height:min(68dvh,750px);min-height:260px;padding:20px}}
 @media(prefers-reduced-motion:reduce){.course-swipe-track{transition:none}}
+
+/* iPhone lecture recovery: keep the actionable learning canvas above the
+   long curriculum and allow long uploaded filenames to wrap safely. */
+.course-page{min-width:0;overflow-x:clip}
+.course-page .study-title{min-width:0;max-width:100%}
+.course-page .study-title>div{min-width:0;max-width:100%}
+.course-page .study-title :is(h1,p){max-width:100%;min-width:0;overflow-wrap:anywhere;word-break:break-word}
+.course-page .study-title h1{line-height:1.28}
+.course-local-notice{border:1px solid var(--mn-border);border-inline-start:3px solid var(--mn-mint);border-radius:8px;padding:10px 14px;margin:10px 0 15px;background:var(--mn-selection);color:var(--mn-muted);font-size:13px;line-height:1.8}
+.course-page .study-error{overflow-wrap:anywhere}
+.course-page .study-error button{min-height:44px;max-width:100%;white-space:normal}
+@media(max-width:850px){
+ .course-page{padding-top:max(38px,env(safe-area-inset-top,0px));}
+ .course-page .study-title{padding-inline-end:48px;gap:10px}
+ .course-page .study-title h1{font-size:clamp(22px,6.1vw,27px);letter-spacing:-.3px}
+ .course-page .study-title p{font-size:13px;line-height:1.7}
+ .course-page .study-title>button{margin:4px 0;min-height:44px}
+ .course-page .course-toolbar{gap:8px;padding:10px 0}
+ .course-page .course-toolbar>span{flex:1 0 100%;line-height:1.8}
+ .course-page .course-layout{display:flex;flex-direction:column;gap:12px}
+ .course-page .course-teaching{order:0;width:100%;padding:12px;min-width:0}
+ .course-page .course-map{order:1;position:relative;top:auto;width:100%;max-height:240px;overflow:auto;border:1px solid var(--mn-border);border-radius:10px;padding:0 12px;scrollbar-width:thin}
+ .course-page .course-slide-panel{max-height:min(75dvh,760px);min-height:260px}
+}
+@media(max-width:400px){.course-page .study-title{padding-inline-end:32px}.course-page .course-teaching{padding:9px}}
