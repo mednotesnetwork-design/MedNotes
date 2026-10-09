@@ -46,11 +46,22 @@ Each nonempty clinical layer must be DISTINCT, not four repetitive summaries. Fo
 PROMPT += '\n' + CLINICAL_LAYERS
 REVIEW += '\nELITE LAYERS EVIDENCE AUDIT: Check the core_concept, EVERY pathophysiology step, the clinical_correlation and EACH visual cue against the provided source point IDs and original slide. Reject invented causality, invented anatomical position, visual labels or implied clinical signs, invented external facts and disagreements with existing explanation, mechanism, visual and per-point coverage. No unsupported clinical connection is permitted. Do not treat analogies as medical evidence. Clinical layers are reviewable content, not page-number metadata.'
 
+
+TEXTBOOK_LAYOUT_PROMPT = """MEDICAL ATLAS PRESENTATION (JSON DATA, NOT HTML): Return two additional fields in every lesson:
+textbook_layouts: array (0-3) of:
+ - comparison_table: {kind:"comparison_table",title:string,columns:[string],rows:[{cells:[string],source_item_ids_used:[string]}]}
+ - classification_grid|tissue_layers|flowchart: {kind:...,title:string,nodes:[{label:string,detail:string,source_item_ids_used:[string]}]}
+clinical_callouts: array (0-4) of {kind:"clinical"|"warning"|"high_yield",text:string,source_item_ids_used:[string]}.
+Use grids for actual categories (e.g., cell specialisations, nerve branches); comparison tables for real distinctions (e.g., diseases, drugs, structures); ordered nodes for documented mechanisms, pathways and tissue layers. Use clinical callouts for clinical reasoning; warning ONLY for an explicit source warning, caution, exception or contraindication; high_yield ONLY for supported exam distinctions. Each row, node and callout must cite at least one original source_item_id when source_points are supplied, without adding a source point. For slide-only requests without IDs use []. Empty arrays are better than invented content. In tables keep every supported contrast and qualifier, including doses and units; never make empty/unsupported cells seem clinically certain: say 'غير مذكور في المحاضرة' when a specific comparison dimension is absent. Always keep all individual facts in coverage even if a grid/table is a compact teaching aid.
+Make each visual block self-contained, readable like a professional medical atlas page: short title, crisp labels, concise explanatory cells, actual medical terminology in English alongside natural Arabic teaching prose. A flowchart represents only a genuinely sequential relation in the lecture; don't draw causality from unordered bullet lists. Nodes and cells are DATA, not HTML/SVG instructions. No untrusted web URLs or invented images. Keep the existing four clinical_layers and legacy lesson fields intact; this schema adds structured display data and does not authorize external medical facts."""
+PROMPT += '\n' + TEXTBOOK_LAYOUT_PROMPT
+REVIEW += '\nTEXTBOOK AUDIT: Independently verify textbook_layouts and clinical_callouts row-by-row and node-by-node against the original source. Check that comparisons are correct, mechanisms really sequential, tissue layers accurately ordered, warning/contraindication wording preserved and each cited source ID is valid. Unsupported styling claims, implied diagnoses or additional pathophysiology must be rejected. Empty optional layout arrays are valid where evidence is insufficient.'
+
 PROMPT += '\nWhen source_points is provided, also return coverage:[{source_id,explanation}] with EXACTLY one entry per source point ID. Each explanation must teach ALL information in that point faithfully, not just mention its topic. Preserve numbers, negations, table values, examples and exceptions. Use up to 1200 characters per point if necessary; this requirement overrides the short total word target. Do not label a point covered unless it is actually explained. In this mode these are teaching cards in a reorganized lecture, not the original slide order.'
 PROMPT += '\nSTRICT SOURCE BOUNDARY: A true medical fact is still outside-source if the slide does not state or entail it. In lecture_only do not add treatments, urgency, prognosis, anatomy, cell subtypes, symptom mechanisms or severity qualifiers from memory. For example, a slide mentioning shock does not by itself supply hypotension, urgent treatment, or a fatal prognosis; a list of symptoms does not supply their mechanisms. Plain translation of terminology is allowed, but not an expanded medical definition containing extra facts. Say "السلايد لا يوضح ذلك" when the requested reason is not given. Avoid duplicating every fact in every section. Use no more than 3 terms, 4-6 mechanism steps and 1 MCQ unless the source requires more. For selected_text, selected_region, or a follow-up, answer that focus first with at most one relevant visual; opening.kind=none, questions=[] and empty checkpoint unless explicitly requested. When repairing, return ONLY the requested failed fields as a JSON patch; never rewrite approved fields.'
 REVIEW += '\nSOURCE ENTAILMENT CHECK: Medical correctness alone is NOT sufficient in lecture_only. For each field list any assertion that requires knowledge absent from the slide, even if medically true. Mark the field unsupported when one exists. Reject invented treatment/urgency/prognosis, hypotension inferred merely from the word shock, added severity or timeline, and causal chains invented from parallel symptom lists. Definitions may translate the term, but may not add an omitted biological process. Plain paraphrase and translation are supported. Do not approve a whole paragraph just because its first sentence has evidence. Set issue to the exact short unsupported claim and how to remove it. A selected-passage explanation must focus on that passage in its complete-slide context; absence of an optional case or quiz is valid.'
 
-REVIEW_FIELDS = ('explanation','high_yield','terms','clarifications','opening','mechanism','visual','clinical_connection','checkpoint','questions','summary','coverage','clinical_layers')
+REVIEW_FIELDS = ('explanation','high_yield','terms','clarifications','opening','mechanism','visual','clinical_connection','checkpoint','questions','summary','coverage','clinical_layers','textbook_layouts','clinical_callouts')
 REVIEW += '\nInclude coverage as a required additional audit field in checks, alongside the other fields. If source_points is supplied, audit coverage: every original detail in each source point must be taught in its matching coverage explanation; reject omitted details, altered numbers or negations, and unsupported additions. Mere topic mentions or copies of an ID do not count. With no source_points, an absent coverage field is supported.'
 REVIEW += '\nAudit each of these fields independently: ' + ', '.join(REVIEW_FIELDS) + '. Return checks:[{field:string,supported:boolean,issue:string}] with exactly one entry for EVERY field, including empty ones. issue is a brief factual correction when unsupported, not a reasoning transcript. An empty field is supported. passed can be true ONLY if every check is supported and issues is empty. A valid exact quote does not prove every claim in its section. In particular check the explanation and high_yield as carefully as the MCQ. Reject a bronchoconstriction-to-hoarseness assertion in ANY field: the lower airway mechanism does not explain an upper-airway voice sign. In lecture_only, remove that causal assertion rather than substituting an external mechanism. Do not borrow facts from neighbor slides. Quoted source evidence must come from current_slide.'
 
@@ -76,7 +87,7 @@ def prune_rejected_sections(lesson,review):
     if {c.get('field') for c in checks}!=set(REVIEW_FIELDS):return None
     if not any(c.get('field')=='explanation' and c.get('supported') is True for c in checks):return None
     if any(c.get('field')=='coverage' and c.get('supported') is not True for c in checks):return None
-    empty={k:[] for k in ('high_yield','terms','clarifications','mechanism','questions','summary')}
+    empty={k:[] for k in ('high_yield','terms','clarifications','mechanism','questions','summary','textbook_layouts','clinical_callouts')}
     empty.update(opening=dict(kind='none',scene='',prompt='',answer='',basis='lecture',source_quote=''),
                  visual=dict(kind='none',title='',caption='',labels=[],basis='lecture',source_quotes=[],skin_features=[]),
                  clinical_connection=dict(text='',basis='lecture',source_quote=''),
@@ -121,6 +132,58 @@ def validate_clinical_layers(lesson,source_points):
         text_and_ids({'text':cue.get('detail'),
                       'source_item_ids_used':cue.get('source_item_ids_used')},
                      required=True,limit=1600)
+
+
+def validate_atlas_layouts(lesson,source_points):
+    """Validate model-authored display data against the server's original source IDs."""
+    evidence={point['id'] for point in source_points}
+    def refs(ids,required=True):
+        require(isinstance(ids,list) and len(ids)<=8 and all(isinstance(x,str) for x in ids)
+                and len(ids)==len(set(ids)) and set(ids).issubset(evidence)
+                and (not required or not source_points or bool(ids)),
+                'Unknown or missing medical atlas source ID','LECTURE_REVIEW_FAILED',422)
+    def label(value,limit=1400):
+        require(isinstance(value,str) and 0<len(value.strip())<=limit,
+                'Invalid medical atlas label','LECTURE_REVIEW_FAILED',422)
+    layouts=lesson.get('textbook_layouts',[])
+    require(isinstance(layouts,list) and len(layouts)<=3,
+            'Invalid textbook layout list','LECTURE_REVIEW_FAILED',422)
+    for layout in layouts:
+        require(isinstance(layout,dict) and layout.get('kind') in
+                ('comparison_table','classification_grid','flowchart','tissue_layers'),
+                'Invalid atlas layout kind','LECTURE_REVIEW_FAILED',422)
+        label(layout.get('title'),180)
+        kind=layout['kind']
+        if kind=='comparison_table':
+            columns=layout.get('columns',[])
+            rows=layout.get('rows',[])
+            require(isinstance(columns,list) and 2<=len(columns)<=5
+                    and all(isinstance(column,str) and 0<len(column.strip())<=100 for column in columns)
+                    and isinstance(rows,list) and 1<=len(rows)<=10,
+                    'Malformed comparison table','LECTURE_REVIEW_FAILED',422)
+            for row in rows:
+                require(isinstance(row,dict) and isinstance(row.get('cells'),list)
+                        and len(row['cells'])==len(columns),
+                        'Table row/column mismatch','LECTURE_REVIEW_FAILED',422)
+                for cell in row['cells']:label(cell,700)
+                refs(row.get('source_item_ids_used'))
+        else:
+            nodes=layout.get('nodes',[])
+            require(isinstance(nodes,list) and 1<=len(nodes)<=10,
+                    'Malformed atlas nodes','LECTURE_REVIEW_FAILED',422)
+            for node in nodes:
+                require(isinstance(node,dict),'Invalid atlas node','LECTURE_REVIEW_FAILED',422)
+                label(node.get('label'),180)
+                label(node.get('detail'),1100)
+                refs(node.get('source_item_ids_used'))
+    callouts=lesson.get('clinical_callouts',[])
+    require(isinstance(callouts,list) and len(callouts)<=4,
+            'Invalid clinical callouts','LECTURE_REVIEW_FAILED',422)
+    for item in callouts:
+        require(isinstance(item,dict) and item.get('kind') in ('clinical','warning','high_yield'),
+                'Invalid medical callout','LECTURE_REVIEW_FAILED',422)
+        label(item.get('text'),1300)
+        refs(item.get('source_item_ids_used'))
 
 def attach_source_registry(lesson,source_points):
     """Page and bounding-box references come from extraction, NEVER from the LLM."""
@@ -202,6 +265,7 @@ def validate(lesson,slide,has_image=False,source_mode='lecture_only',source_poin
     for question in lesson['questions']:short_fields(question,('concept',))
     require(source_mode!='lecture_only' or not lesson['clarifications'],'Outside-source additions in lecture-only mode','LECTURE_REVIEW_FAILED',422)
     validate_clinical_layers(lesson,source_points or [])
+    validate_atlas_layouts(lesson,source_points or [])
     return lesson
 class SlideTransport:
     """Attach the supplied slide to the existing native provider request, never as prompt text."""
@@ -278,7 +342,10 @@ def prepare_lecture(data):
                         lesson={**lesson,**{k:v for k,v in generated.items() if k in payload['repair_fields']}}
                     else:lesson=generated
                 # Repair cannot overwrite sections that already passed the independent audit.
-                if isinstance(lesson,dict):lesson.update(approved)
+                if isinstance(lesson,dict):
+                    lesson.update(approved)
+                    lesson.setdefault('textbook_layouts',[])
+                    lesson.setdefault('clinical_callouts',[])
                 issues=[]
                 # Optional clinical content without evidence is never published.
                 # This also handles prose placeholders such as 'not in the lecture'.
@@ -315,7 +382,7 @@ def prepare_lecture(data):
                         if pending_lesson is not None:
                             approved={}
                             trimmed_content=True
-                repair_fields=[k for k in REVIEW_FIELDS if k not in approved and (k!='coverage' or source_points) and (k!='clinical_layers' or source_points or 'clinical_layers' in lesson)] if approved else []
+                repair_fields=[k for k in REVIEW_FIELDS if k not in approved and (k!='coverage' or source_points) and (k!='clinical_layers' or source_points or 'clinical_layers' in lesson) and (k not in ('textbook_layouts','clinical_callouts') or source_points or k in lesson)] if approved else []
                 payload.update(repair_fields=repair_fields,previous_draft={k:v for k,v in lesson.items() if k in repair_fields} if repair_fields else lesson,repair_feedback=issues[:24],approved_fields=list(approved),task='Preserve approved_fields EXACTLY. Rewrite only failed sections. Prefer short, precise explanations; remove ungrounded details instead of expanding them. Correct the draft using only the source and feedback. Remove unsupported content rather than adding more details. Follow the requested_tool and source_mode rules. When repair_fields is nonempty, return only those fields as a JSON object. Otherwise return the entire lesson JSON. Do not weaken evidence rules.')
             # Optional sections may be omitted, but the remaining lesson must pass a fresh audit.
             for _ in range(2):
