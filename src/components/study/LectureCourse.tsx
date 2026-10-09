@@ -287,16 +287,21 @@ export function LectureCourse(){
   setQuestion('');
   await save({...state,activeConcept:index,active:state.plan.units.flatMap(u=>u.cards)
     .findIndex(c=>c.id===branch[0].id)});
+   if(!state.remote&&!state.lessons[branch[0].id+':'+state.mode])await work(teach);
+ }
+ function stateConceptForCard(index:number){
+  const state=current.current,card=state.plan?.units.flatMap(u=>u.cards)[index];
+  return card&&state.plan&&state.concepts?findConceptIndex(state.concepts,state.plan.units,card.id):(state.activeConcept||0);
  }
  async function change(index:number,mode=course.mode){
   if(control.current||index<0||index>=(current.current.plan?.units.flatMap(u=>u.cards).length||0))return;
   // Selecting a subtopic does not increment the main slide number.
   setQuestion('');
   if(current.current.remote){
-   await save({...current.current,active:index,mode});
+   await save({...current.current,active:index,activeConcept:stateConceptForCard(index),mode});
    return;
   }
-  await work(async signal=>{await save({...current.current,active:index,mode});const card=current.current.plan?.units.flatMap(u=>u.cards)[index];if(card&&!current.current.lessons[card.id+':'+mode])await teach(signal);});
+  await work(async signal=>{await save({...current.current,active:index,activeConcept:stateConceptForCard(index),mode});const card=current.current.plan?.units.flatMap(u=>u.cards)[index];if(card&&!current.current.lessons[card.id+':'+mode])await teach(signal);});
  }
  function onSlideTouchStart(event:TouchEvent<HTMLDivElement>){
   const target=event.target;
@@ -341,11 +346,13 @@ export function LectureCourse(){
  const key=card?card.id+':'+course.mode:'',lesson=course.lessons[key],turns=course.turns[key]||[],points=course.pages.flatMap(p=>p.points||[]);
  const cardPoints=points.filter(p=>card?.source_ids.includes(p.id));
  const sourcePages=[...new Set(cardPoints.map(p=>p.page))].sort((a,b)=>a-b);
+ const conceptSourceSet=new Set(concept&&course.plan?conceptSourceIds(concept,course.plan.units):[]);
+ const conceptPages=[...new Set(points.filter(p=>conceptSourceSet.has(p.id)).map(p=>p.page))].sort((a,b)=>a-b);
  const planned=new Set((course.plan?.units||course.planning?.units||[]).flatMap(u=>u.cards.flatMap(c=>c.source_ids)));
  const covered=new Set(cards.flatMap(c=>(course.lessons[c.id+':'+course.mode]?.coverage||[]).map(p=>p.source_id)));
  const warnings=[...course.pages.flatMap(p=>(p.warnings||[]).map(w=>`صفحة ${p.number}: ${w}`)),...(course.planningNotices||[])];
- const unitLessons=unit?.cards.map(c=>course.lessons[c.id+':'+course.mode]).filter((l):l is Explanation=>!!l)||[];
- const unitDone=unit&&unitLessons.length===unit.cards.length;
+ const conceptLessons=conceptCardsCurrent.map(c=>course.lessons[c.id+':'+course.mode]).filter((l):l is Explanation=>!!l);
+ const conceptDone=concept&&conceptLessons.length===conceptCardsCurrent.length;
  if(!ready)return <div className="study-page" role="status">فتح مساحة المحاضرة…</div>;
  return <div className="study-page course-page" dir="rtl">
   <header className="study-title"><div><span className="study-badge">INTERACTIVE LECTURE EXPLAINER</span><h1>{course.plan?.title||'من المحاضرة إلى الفهم'}</h1><p>{course.name||'محاضرتك تُقرأ كاملة، ثم تتحول إلى وحدات وسلايدات شرح مترابطة.'}</p></div><button disabled={!!busy} onClick={()=>fileInput.current?.click()}><Upload size={17}/>محاضرة جديدة</button></header>
@@ -362,7 +369,7 @@ export function LectureCourse(){
    {!!warnings.length&&<details className="study-warning"><summary>{warnings.length} ملاحظات على القراءة تحتاج مراجعتك</summary>{warnings.map((w,i)=><p key={i}>{w}</p>)}</details>}
    {sources&&<section className="course-sources"><h2>الأصل والتغطية</h2><p>التغطية تتتبع النقاط المستخرجة، وليست ضمانًا لصحة قراءة كل تفصيل بصري. راجعي التنبيهات والصور الأصلية.</p>{course.pages.map(p=><details key={p.number}><summary>صفحة {p.number} · {p.title||'المصدر'} · {p.points?.length??'لم تُقرأ'} نقاط</summary>{p.image&&<img src={p.image} alt={`الصفحة الأصلية ${p.number}`} loading="lazy"/>}<p className="preserve" dir="auto">{p.text}</p>{p.points?.map(point=>{const destination=cards.find(c=>c.source_ids.includes(point.id));return <div key={point.id} className="coverage-row"><p dir="auto">{point.text}</p><span>{covered.has(point.id)?'يوجد شرح مراجع':'بانتظار الشرح'} · {destination?.title||'بانتظار التنظيم'}</span>{destination&&<button disabled={!!busy} onClick={()=>{setSources(false);void change(cards.indexOf(destination));}}>اذهبي للشرح</button>}</div>;})}</details>)}</section>}
    {!course.plan&&!busy&&!course.remote&&<section className="study-card"><h2>استكملي بناء الوحدات</h2><p>سنقرأ الصفحات المتبقية ثم نرتب جميع النقاط المستخرجة.</p><button onClick={()=>void work(organize)}>استكمال المعالجة</button></section>}
-   {course.plan&&card&&unit&&<div className="course-layout">
+   {course.plan&&card&&unit&&concept&&<div className="course-layout">
     <nav className="course-map" aria-label="وحدات الفهم">{course.plan.units.map((u,i)=><details key={u.id} open={u.id===unit.id}><summary>{i+1}. {u.title}</summary>{u.cards.map(c=><button key={c.id} disabled={!!busy} aria-current={c.id===card.id?'step':undefined} onClick={()=>void change(cards.indexOf(c))}>{course.lessons[c.id+':'+course.mode]?'✓ ':''}{c.title}</button>)}</details>)}</nav>
     <section className="course-teaching" aria-label="سلايدات الشرح">
      <nav className="course-slide-rail" aria-label="تسلسل الشرائح أفقيًا">
