@@ -13,7 +13,7 @@ const icons={clinical:Stethoscope,warning:AlertTriangle,high_yield:ClipboardList
 /** Only validated JSON fields become text or native DOM elements. Never evaluate generated markup. */
 export function MedicalAtlasLayouts({layouts=[],callouts=[],registry=[],sourceImages=[],view}:Props){
  const evidence=(ids:string[])=><References ids={ids} registry={registry} sourceImages={sourceImages}/>;
- const displayed=layouts.filter(layout=>view==='visual'||layout.kind!=='flowchart');
+ const displayed=layouts; // Show teaching flows in the main slide as well as the Visual tab.
  if(view==='explain'&&!callouts.length&&!displayed.length)return null;
  if(view==='visual'&&!displayed.length)return null;
  return <div className="medical-atlas-layouts" aria-label="المحتوى الطبي المنظم">
