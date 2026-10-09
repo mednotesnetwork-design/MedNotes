@@ -61,4 +61,35 @@ class ProvenanceAndRecoveryTests(unittest.TestCase):
   for order in [['u1'],['u2','u2'],['u1','u3']]:
    with self.assertRaises(MentorError):validate_order({'unit_ids':order},units)
 
+class PlanTruncationRecoveryTests(unittest.TestCase):
+ def test_truncated_json_recovers_without_dropping_12_medical_points(self):
+  points=[dict(id=f'p{(i//4)+1}-t{i+1}',page=i//4+1,text=f'Original medical detail {i+1}')
+          for i in range(12)]
+  class TruncatedProvider:
+   def __init__(self):self.calls=0
+   def complete(self,*args):
+    self.calls+=1
+    raise MentorError('PROVIDER_FAILURE','Incomplete Gemini JSON',502)
+  provider=TruncatedProvider()
+  result=prepare_course({'operation':'plan','title':'Bone and cartilage aging','points':points})(provider)
+  self.assertTrue(result['source_only_fallback'])
+  self.assertTrue(result['recovered_missing_ids'])
+  self.assertEqual(provider.calls,1)
+  ids=[v for u in result['plan']['units'] for card in u['cards'] for v in card['source_ids']]
+  self.assertEqual(ids,[p['id'] for p in points])
+  self.assertEqual(len(ids),len(set(ids)))
+  self.assertEqual(len(result['plan']['units']),3)
+  self.assertTrue(all(len(card['source_ids'])<=4 for u in result['plan']['units'] for card in u['cards']))
+ def test_permissions_and_quota_errors_never_get_hidden_by_source_fallback(self):
+  points=[dict(id='p1-t1',page=1,text='Nerve')];calls=[]
+  class BrokenProvider:
+   def __init__(self,code):self.code=code
+   def complete(self,*args):
+    calls.append(self.code)
+    raise MentorError(self.code,'upstream',503)
+  for code in ('STUDY_CONFIGURATION_REQUIRED','USAGE_LIMIT','PROVIDER_BUSY'):
+   with self.subTest(code=code),self.assertRaises(MentorError) as error:
+    prepare_course({'operation':'plan','title':'Lecture','points':points})(BrokenProvider(code))
+   self.assertEqual(error.exception.code,code)
+
 if __name__=='__main__':unittest.main()
