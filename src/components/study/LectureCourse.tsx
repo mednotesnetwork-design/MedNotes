@@ -31,8 +31,8 @@ function Progress({message,cancel}:{message:string;cancel:()=>void}){
 export function LectureCourse(){
  const [course,setCourse]=useState<Course>(empty),[ready,setReady]=useState(false),[busy,setBusy]=useState(''),[error,setError]=useState('');
  const [question,setQuestion]=useState(''),[pasted,setPasted]=useState(''),[sources,setSources]=useState(false);
- const [studyTab,setStudyTab]=useState<StudyTab>('explain'),[slideDirection,setSlideDirection]=useState<'next'|'prev'>('next'),[dragOffset,setDragOffset]=useState(0);
- const gesture=useRef<{x:number;y:number}|null>(null);
+ const [studyTab,setStudyTab]=useState<StudyTab>('explain'),[slideDirection,setSlideDirection]=useState<'next'|'prev'>('next');
+ const gesture=useRef<{x:number;y:number}|null>(null),trackRef=useRef<HTMLDivElement>(null);
  const current=useRef(course),control=useRef<AbortController|null>(null),fileInput=useRef<HTMLInputElement>(null),lastRequest=useRef(0);
  function update(value:Course){current.current=value;setCourse(value);}
  async function save(value:Course){await writeStudy(STORE,value);update(value);}
@@ -230,20 +230,23 @@ export function LectureCourse(){
   const target=event.target;
   if(event.touches.length!==1||!(target instanceof Element)||
      target.closest('button,a,input,textarea,select,summary,canvas,[contenteditable],.lesson-anatomy,.concept-visual,[data-no-swipe]')){
-   gesture.current=null;setDragOffset(0);return;
+   gesture.current=null;trackRef.current?.style.removeProperty('--drag-x');return;
   }
   gesture.current={x:event.touches[0].clientX,y:event.touches[0].clientY};
+  if(trackRef.current)trackRef.current.style.transition='none';
  }
  function onSlideTouchMove(event:TouchEvent<HTMLDivElement>){
   const start=gesture.current;
   if(!start||event.touches.length!==1)return;
   const dx=event.touches[0].clientX-start.x,dy=event.touches[0].clientY-start.y;
-  if(Math.abs(dx)<Math.abs(dy)*1.2){setDragOffset(0);return;}
+  if(Math.abs(dx)<Math.abs(dy)*1.2){trackRef.current?.style.removeProperty('--drag-x');return;}
   const max=Math.min(180,event.currentTarget.clientWidth*.35);
-  setDragOffset(Math.min(max,Math.max(-max,dx)));
+  trackRef.current?.style.setProperty('--drag-x',Math.min(max,Math.max(-max,dx))+'px');
  }
  function onSlideTouchEnd(event:TouchEvent<HTMLDivElement>){
-  const start=gesture.current;gesture.current=null;setDragOffset(0);
+  const start=gesture.current;gesture.current=null;
+  trackRef.current?.style.removeProperty('--drag-x');
+  trackRef.current?.style.removeProperty('transition');
   if(!start||event.changedTouches.length!==1||control.current)return;
   const dx=event.changedTouches[0].clientX-start.x,dy=event.changedTouches[0].clientY-start.y;
   if(Math.abs(dx)<65||Math.abs(dx)<Math.abs(dy)*1.3)return;
@@ -294,8 +297,8 @@ export function LectureCourse(){
       {([['explain','الشرح'],['visual','Visual'],['quiz','Quiz'],['3d','3D'],['notes','ملاحظاتي']] as const).map(([id,label])=>
        <button key={id} type="button" role="tab" aria-selected={studyTab===id} aria-controls="course-slide-content" onClick={()=>setStudyTab(id)}>{label}</button>)}
      </nav>
-     <div className="course-slide-viewport" onTouchStart={onSlideTouchStart} onTouchMove={onSlideTouchMove} onTouchEnd={onSlideTouchEnd} onTouchCancel={()=>{gesture.current=null;setDragOffset(0);}} onKeyDown={onSlideKeyDown} tabIndex={0} aria-label="سلايدات أفقية: اسحبي لليسار للتالي، أو استخدمي أسهم لوحة المفاتيح">
-     <div className={'course-swipe-track'+(dragOffset?' course-swipe-dragging':'')} style={{transform:`translateX(calc(-33.333333% + ${dragOffset}px))`}} dir="ltr">
+     <div className="course-slide-viewport" onTouchStart={onSlideTouchStart} onTouchMove={onSlideTouchMove} onTouchEnd={onSlideTouchEnd} onTouchCancel={()=>{gesture.current=null;trackRef.current?.style.removeProperty('--drag-x');trackRef.current?.style.removeProperty('transition');}} onKeyDown={onSlideKeyDown} tabIndex={0} aria-label="سلايدات أفقية: اسحبي لليسار للتالي، أو استخدمي أسهم لوحة المفاتيح">
+     <div ref={trackRef} className="course-swipe-track" dir="ltr">
       <article className="course-slide-preview" dir="rtl" aria-label="معاينة السلايد السابق">
        {cards[course.active-1]?<><span>PREVIOUS SLIDE</span><h3>{cards[course.active-1].title}</h3><p>{course.plan?.units.find(u=>u.cards.some(c=>c.id===cards[course.active-1].id))?.objective}</p><button disabled={!!busy} onClick={()=>void change(course.active-1)}>افتحي السلايد السابق</button></>:<p>بداية المحاضرة</p>}
       </article>
