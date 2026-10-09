@@ -169,4 +169,48 @@ class EliteClinicalLayersTests(unittest.TestCase):
         validate_clinical_layers({},[])
         self.assertIn('clinical_layers',REVIEW_FIELDS)
 
+class TextbookAtlasSourceTests(unittest.TestCase):
+    def test_valid_atlas_table_grid_flow_and_callouts(self):
+        from lecture_workflow import validate_atlas_layouts
+        evidence=[{'id':'p4-v1','page':4,'kind':'diagram','text':'Median nerve course'},
+                  {'id':'p5-t1','page':5,'kind':'text','text':'Clinical sign'}]
+        ref=['p4-v1']
+        sample={'textbook_layouts':[
+            {'kind':'comparison_table','title':'Nerves','columns':['Feature','Median nerve'],
+             'rows':[{'cells':['Course','Supported course'], 'source_item_ids_used':ref}]},
+            {'kind':'classification_grid','title':'Nerve branches',
+             'nodes':[{'label':'Branch','detail':'Source classification','source_item_ids_used':ref}]},
+            {'kind':'flowchart','title':'Clinical mechanism',
+             'nodes':[{'label':'Cause','detail':'Source mechanism','source_item_ids_used':ref}]}],
+            'clinical_callouts':[{'kind':'warning','text':'Original lecture warning',
+                                  'source_item_ids_used':['p5-t1']}]}
+        validate_atlas_layouts(sample,evidence)
+
+    def test_unknown_sources_and_mismatched_tables_are_rejected(self):
+        from lecture_workflow import validate_atlas_layouts
+        point=[{'id':'p1-t1','page':1,'text':'a'}]
+        valid={'textbook_layouts':[{'kind':'comparison_table','title':'Comparison',
+              'columns':['Name','Action'],'rows':[{'cells':['A','B'],
+              'source_item_ids_used':['p1-t1']}]}], 'clinical_callouts':[]}
+        validate_atlas_layouts(valid,point)
+        corrupt=deepcopy(valid)
+        corrupt['textbook_layouts'][0]['rows'][0]['source_item_ids_used']=['invented-id']
+        with self.assertRaises(MentorError):validate_atlas_layouts(corrupt,point)
+        corrupt=deepcopy(valid)
+        corrupt['textbook_layouts'][0]['rows'][0]['cells']=['Missing cell']
+        with self.assertRaises(MentorError):validate_atlas_layouts(corrupt,point)
+        corrupt=deepcopy(valid)
+        corrupt['clinical_callouts']=[{'kind':'warning','text':'Fabricated clinical warning',
+                                       'source_item_ids_used':['not-source']}]
+        with self.assertRaises(MentorError):validate_atlas_layouts(corrupt,point)
+        corrupt=deepcopy(valid)
+        corrupt['textbook_layouts'][0]['kind']='<script>'
+        with self.assertRaises(MentorError):validate_atlas_layouts(corrupt,point)
+
+    def test_empty_optional_atlas_content_is_backwards_compatible(self):
+        from lecture_workflow import validate_atlas_layouts
+        validate_atlas_layouts({},[])
+        self.assertIn('textbook_layouts',REVIEW_FIELDS)
+        self.assertIn('clinical_callouts',REVIEW_FIELDS)
+
 if __name__=='__main__':unittest.main()
