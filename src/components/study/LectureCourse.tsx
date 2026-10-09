@@ -164,8 +164,14 @@ export function LectureCourse(){
   let state=current.current;
   if(state.plan){
    if(!state.concepts?.length)await consolidateConcepts(signal);
-   // Existing cards retain their reviewed explanations; load only the active
-   // branch if it has not already been generated and is within the API cap.
+   // Each major concept gets a first-principles introduction, independently
+   // reviewed by the existing source fidelity audit.
+   try{await teachConceptOverview(signal);}
+   catch(e){
+    signal.throwIfAborted();
+    await save({...current.current,planningNotices:[...(current.current.planningNotices||[]),
+     'لم يكتمل التمهيد الطبي تلقائيًا؛ استخدمي زر إنشائه دون رفع المحاضرة مجددًا.']});
+   }
    await save({...current.current,phase:'ready'});
    return;
   }
@@ -235,6 +241,12 @@ export function LectureCourse(){
   state={...state,planning:undefined,plan:{title:state.name,units},active:0,phase:'generating'};
   await save(state);
   await consolidateConcepts(signal);
+  try{await teachConceptOverview(signal);}
+  catch(e){
+   signal.throwIfAborted();
+   await save({...current.current,planningNotices:[...(current.current.planningNotices||[]),
+    'لم يكتمل التمهيد الأول تلقائيًا؛ يمكنك إنشاؤه من داخل السلايد.']});
+  }
   await save({...current.current,phase:'ready'});
  }
  async function openFile(file:File){await work(async signal=>{
