@@ -29,7 +29,7 @@ function Progress({message,cancel}:{message:string;cancel:()=>void}){
  return <div className="course-progress" role="status"><Sparkles size={20}/><span>{message}<small>{seconds} ثانية · يُحفظ التقدم بعد كل خطوة</small></span><button onClick={cancel}>إيقاف</button></div>;
 }
 export function LectureCourse(){
- const [course,setCourse]=useState<Course>(empty),[ready,setReady]=useState(false),[busy,setBusy]=useState(''),[error,setError]=useState('');
+ const [course,setCourse]=useState<Course>(empty),[ready,setReady]=useState(false),[busy,setBusy]=useState(''),[error,setError]=useState(''),[notice,setNotice]=useState('');
  const [question,setQuestion]=useState(''),[pasted,setPasted]=useState(''),[sources,setSources]=useState(false);
  const [studyTab,setStudyTab]=useState<StudyTab>('explain'),[slideDirection,setSlideDirection]=useState<'next'|'prev'>('next');
  const gesture=useRef<{x:number;y:number}|null>(null),trackRef=useRef<HTMLDivElement>(null);
@@ -74,10 +74,28 @@ export function LectureCourse(){
  // eslint-disable-next-line react-hooks/exhaustive-deps
  },[ready,course.remote?.job_id,course.phase]);
  async function request(body:unknown,signal:AbortSignal){
-  // Sequential and paced: no burst of model requests for a large lecture.
-  const delay=Math.max(0,11000-(Date.now()-lastRequest.current));
-  if(delay)await new Promise<void>((resolve,reject)=>{const abort=()=>{clearTimeout(timer);reject(new DOMException('Stopped','AbortError'));};const timer=setTimeout(()=>{signal.removeEventListener('abort',abort);resolve();},delay);signal.addEventListener('abort',abort,{once:true});});
-  signal.throwIfAborted();lastRequest.current=Date.now();return studyRequest('lecture',body,signal);
+  // Only the current read-only AI call is retried; saved PDF and teaching
+  // checkpoints are never cleared or silently marked complete.
+  const wait=async(ms:number)=>{
+   if(ms<=0)return;
+   await new Promise<void>((resolve,reject)=>{
+    const abort=()=>{clearTimeout(timer);reject(new DOMException('Stopped','AbortError'));};
+    const timer=setTimeout(()=>{signal.removeEventListener('abort',abort);resolve();},ms);
+    signal.addEventListener('abort',abort,{once:true});
+   });
+  };
+  for(let attempt=0;attempt<3;attempt++){
+   await wait(Math.max(0,11000-(Date.now()-lastRequest.current)));
+   signal.throwIfAborted();lastRequest.current=Date.now();
+   try{return await studyRequest('lecture',body,signal);}
+   catch(err){
+    const code=(err as Error&{code?:string}).code;
+    if(attempt===2||!['PROVIDER_FAILURE','PROVIDER_BUSY','STUDY_TIMEOUT'].includes(code||''))throw err;
+    setBusy(`Gemini أرسل ردًا غير مكتمل؛ إعادة محاولة ${attempt+1} من 2 دون فقد التقدم…`);
+    await wait(900*(2**attempt)+Math.floor(Math.random()*450));
+   }
+  }
+  throw new Error('تعذرت معالجة الطلب الحالي، والمحتوى السابق محفوظ.');
  }
  async function work(task:(signal:AbortSignal)=>Promise<void>){
   if(control.current)return;const c=new AbortController();control.current=c;setError('');
@@ -101,8 +119,8 @@ export function LectureCourse(){
  async function organize(signal:AbortSignal){
   let state=current.current;
   if(state.plan){
-   const first=state.plan.units[0]?.cards[0];
-   if(first&&!state.lessons[first.id+':'+state.mode])await teach(signal);
+   const activeCard=state.plan.units.flatMap(u=>u.cards)[state.active]||state.plan.units[0]?.cards[0];
+   if(activeCard&&!state.lessons[activeCard.id+':'+state.mode])await teach(signal);
    await save({...current.current,phase:'ready'});
    return;
   }
@@ -128,9 +146,9 @@ export function LectureCourse(){
   for(;next<points.length;){
    signal.throwIfAborted();
    const batch:Point[]=[];let characters=0;
-   while(next+batch.length<points.length&&batch.length<32){
+   while(next+batch.length<points.length&&batch.length<12){
     const item=points[next+batch.length];
-    if(batch.length&&characters+item.text.length>18000)break;
+    if(batch.length&&characters+item.text.length>8000)break;
     batch.push(item);characters+=item.text.length;
    }
    setBusy(`تنظيم المفاهيم وربط المصادر · ${next+batch.length} / ${points.length} نقطة`);
@@ -142,7 +160,8 @@ export function LectureCourse(){
    }));
    units=[...units,...incoming];next+=batch.length;
    const notices=[...(state.planningNotices||[])];
-   if(result.recovered_missing_ids)notices.push(`المجموعة ${Math.ceil(next/32)}: استُعيدت نقاط لم يصنفها Gemini آليًا؛ ستظهر في سلايدات شرح منفصلة.`);
+   if(result.recovered_missing_ids)notices.push(`عند النقطة ${next}: استُعيدت نقاط لم يصنفها Gemini وستظهر في سلايدات شرح منفصلة.`);
+   if(result.source_only_fallback)notices.push(`عند النقطة ${next}: رد Gemini غير مكتمل؛ حُفظت كل نقاط المصدر في خطة مؤقتة حسب الصفحات.`);
    state={...state,phase:'structuring',planning:{next,units},planningNotices:notices};await save(state);
   }
   // This short second pass reorders units across page batches without
@@ -199,7 +218,7 @@ export function LectureCourse(){
    // show an explicit warning instead of claiming durable processing.
    const code=(e as Error & {code?:string}).code;
    if(code!=='DATABASE_NOT_CONFIGURED')throw e;
-   setError('التخزين على الخادم غير مفعّل بعد؛ ستعمل هذه المحاضرة بنظام الحفظ المحلي الحالي.');
+   setNotice('التخزين على الخادم غير مفعّل؛ تُحفظ المحاضرة وخطوات معالجتها في هذا المتصفح.');
    await save({...current.current,phase:'extracting'});
    await organize(signal);
   }
@@ -274,7 +293,10 @@ export function LectureCourse(){
   <input ref={fileInput} hidden type="file" accept="application/pdf,image/*,.txt" onChange={e=>{const f=e.target.files?.[0];if(f)void openFile(f);e.target.value='';}}/>
   {busy&&<><p className="course-state" role="status">{({queued:'بانتظار المعالجة',extracting:'استخراج',structuring:'تنظيم',generating:'إنشاء ومراجعة',validating:'تدقيق',retrying:'إعادة المحاولة تلقائيًا',failed:'فشلت المعالجة',ready:'جاهزة'} as Record<Stage,string>)[course.phase||'queued']} · المحاضرة محفوظة ويمكن استكمالها بعد إعادة التحميل</p><Progress message={busy} cancel={()=>control.current?.abort()}/></>}
   {course.remote&&course.phase!=='ready'&&<div className="course-state" role="status">المعالجة الخلفية على الخادم · {({queued:'بانتظار التنفيذ',extracting:'استخراج المحتوى',structuring:'بناء الوحدات',generating:'إنشاء الشرح المراجع',validating:'التحقق',retrying:'إعادة محاولة تلقائية',failed:'توقفت المهمة',ready:'اكتملت'} as Record<Stage,string>)[course.phase||'queued']} · {course.remoteProgress||'تم حفظ المهمة'} · يمكنكِ مغادرة الصفحة والعودة لاحقًا</div>}
-  {error&&<div className="study-error" role="alert">{error}<p>الخطوات المكتملة محفوظة. يمكنك استكمال الطلب دون البدء من جديد.</p></div>}
+  {notice&&<p className="course-local-notice" role="status">{notice}</p>}
+   {error&&<div className="study-error" role="alert">{error}<p>الصفحات والنقاط المكتملة محفوظة. لا تعيدي رفع الملف.</p>
+    {!!course.pages.length&&!busy&&!course.remote&&<button className="primary" onClick={()=>void work(organize)}>إعادة المحاولة من آخر خطوة محفوظة</button>}
+   </div>}
   {!course.pages.length&&!busy&&<section className="lecture-welcome"><BookOpen size={42}/><h2>افهمي الفكرة، ثم اختبري فهمك</h2><p>نص وشرح بصري في كل وحدة. السلايدات الأصلية متاحة للرجوع إليها.</p><button className="primary" onClick={()=>fileInput.current?.click()}>ارفعي المحاضرة · PDF أو صور</button><small>حتى 30 MB · لا تُحسب الأجزاء غير المقروءة كتغطية مكتملة</small><details><summary>أو الصقي نص المحاضرة</summary><textarea aria-label="نص المحاضرة" value={pasted} onChange={e=>setPasted(e.target.value)} rows={6}/><button disabled={!pasted.trim()} onClick={()=>void work(async signal=>{await save({...empty,name:'محاضرة نصية',pages:textPages(pasted),phase:'extracting'});await organize(signal);})}>ابدئي التعلم</button></details></section>}
   {!!course.pages.length&&<>
    <div className="course-toolbar"><span>{course.pages.filter(p=>p.points).length} / {course.pages.length} صفحات مقروءة · {covered.size} / {points.length} نقاط لها شرح مراجع</span><button aria-expanded={sources} onClick={()=>setSources(v=>!v)}>{sources?'إخفاء المرجع':'المحاضرة الأصلية وخريطة التغطية'}</button><select aria-label="مصدر الشرح" disabled={!!busy} value={course.mode} onChange={e=>void change(course.active,e.target.value)}><option value="lecture_only">Lecture only · المحاضرة فقط</option><option value="supplemental">المحاضرة + توضيح إضافي</option></select></div>
