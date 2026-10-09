@@ -370,17 +370,23 @@ export function LectureCourse(){
    {sources&&<section className="course-sources"><h2>الأصل والتغطية</h2><p>التغطية تتتبع النقاط المستخرجة، وليست ضمانًا لصحة قراءة كل تفصيل بصري. راجعي التنبيهات والصور الأصلية.</p>{course.pages.map(p=><details key={p.number}><summary>صفحة {p.number} · {p.title||'المصدر'} · {p.points?.length??'لم تُقرأ'} نقاط</summary>{p.image&&<img src={p.image} alt={`الصفحة الأصلية ${p.number}`} loading="lazy"/>}<p className="preserve" dir="auto">{p.text}</p>{p.points?.map(point=>{const destination=cards.find(c=>c.source_ids.includes(point.id));return <div key={point.id} className="coverage-row"><p dir="auto">{point.text}</p><span>{covered.has(point.id)?'يوجد شرح مراجع':'بانتظار الشرح'} · {destination?.title||'بانتظار التنظيم'}</span>{destination&&<button disabled={!!busy} onClick={()=>{setSources(false);void change(cards.indexOf(destination));}}>اذهبي للشرح</button>}</div>;})}</details>)}</section>}
    {!course.plan&&!busy&&!course.remote&&<section className="study-card"><h2>استكملي بناء الوحدات</h2><p>سنقرأ الصفحات المتبقية ثم نرتب جميع النقاط المستخرجة.</p><button onClick={()=>void work(organize)}>استكمال المعالجة</button></section>}
    {course.plan&&card&&unit&&concept&&<div className="course-layout">
-    <nav className="course-map" aria-label="وحدات الفهم">{course.plan.units.map((u,i)=><details key={u.id} open={u.id===unit.id}><summary>{i+1}. {u.title}</summary>{u.cards.map(c=><button key={c.id} disabled={!!busy} aria-current={c.id===card.id?'step':undefined} onClick={()=>void change(cards.indexOf(c))}>{course.lessons[c.id+':'+course.mode]?'✓ ':''}{c.title}</button>)}</details>)}</nav>
+    <nav className="course-map" aria-label="الأفكار الرئيسية">{concepts.map((main,i)=><details key={main.id} open={main.id===concept.id}>
+ <summary>{i+1}. {main.title}</summary>
+ {main.unit_ids.map(id=>{const branch=course.plan!.units.find(u=>u.id===id);return branch?<div key={id} className="concept-nav-branch">
+  <strong>{branch.title}</strong>
+  {branch.cards.map(c=><button key={c.id} disabled={!!busy} aria-current={c.id===card.id?'step':undefined}
+   onClick={()=>void change(cards.indexOf(c))}>{course.lessons[c.id+':'+course.mode]?'✓ ':''}{c.title}</button>)}
+ </div>:null;})}
+ </details>)}</nav>
     <section className="course-teaching" aria-label="سلايدات الشرح">
-     <nav className="course-slide-rail" aria-label="تسلسل الشرائح أفقيًا">
-      {cards.map((candidate,i)=>({candidate,i})).filter(({i})=>Math.abs(i-course.active)<=2).map(({candidate,i})=>
-       <button key={candidate.id} type="button" className="course-rail-card"
-        aria-current={i===course.active?'step':undefined}
-        disabled={!!busy} onClick={()=>void change(i)} title={candidate.title}>
-        <span className="course-rail-index">{i+1}</span>
-        <span className="course-rail-name">{candidate.title}</span>
-       </button>)}
-     </nav>
+     <nav className="course-slide-rail" aria-label="تصفح المفاهيم الرئيسية">
+ {concepts.map((main,i)=>({main,i})).filter(({i})=>Math.abs(i-(course.activeConcept||0))<=2).map(({main,i})=>
+  <button key={main.id} type="button" className="course-rail-card"
+   aria-current={i===(course.activeConcept||0)?'step':undefined}
+   disabled={!!busy} onClick={()=>void changeConcept(i)} title={main.title}>
+   <span className="course-rail-index">{i+1}</span><span className="course-rail-name">{main.title}</span>
+  </button>)}
+ </nav>
      <nav className="course-learning-tabs" role="tablist" aria-label="أدوات السلايد">
       {([['explain','الشرح'],['visual','Visual'],['quiz','Quiz'],['3d','3D'],['notes','ملاحظاتي']] as const).map(([id,label])=>
        <button key={id} type="button" role="tab" aria-selected={studyTab===id} aria-controls="course-slide-content" onClick={()=>setStudyTab(id)}>{label}</button>)}
@@ -389,7 +395,26 @@ export function LectureCourse(){
      <div ref={trackRef} className="course-swipe-track" dir="rtl">
       
      <div key={card.id+':'+course.mode} className={'course-slide-panel course-slide-motion-'+slideDirection} id="course-slide-content" role="tabpanel" aria-label={card.title}>
-     <div className="course-card-heading"><small>{unit.title} · سلايد شرح {course.active+1} / {cards.length}</small><h2>{card.title}</h2><p>{unit.objective}</p><small>المصدر: {sourcePages.map(n=>'ص '+n).join(' · ')}</small></div>
+     <div className="course-card-heading concept-master-heading">
+ <small>MAIN CONCEPT · الفكرة الرئيسية {(course.activeConcept||0)+1} من {concepts.length}</small>
+ <h2>{concept.title}</h2><p>{concept.objective}</p>
+ <small>المصادر: {conceptPages.map(n=>'ص '+n).join(' · ')} · {conceptSourceSet.size} نقطة محفوظة</small>
+ </div>
+ {!course.semanticClustering&&<p className="concept-provisional-note">هذا تجميع مؤقت. لم تُعتمد دلاليًا عناوين المفاهيم، لكن جميع معلومات المصدر محفوظة.</p>}
+ <section className="concept-branch-tree" aria-label="التفرعات التعليمية لهذا المفهوم">
+  <h3>خريطة المفهوم · اختاري التفرع لشرحه من الصفر</h3>
+  <div className="concept-branch-grid">{conceptUnits.map((branch,i)=><article className="concept-branch-node" key={branch.id}>
+   <div className="concept-branch-heading"><span>{i+1}</span><strong>{branch.title}</strong></div>
+   <p>{branch.objective}</p>
+   <div className="concept-branch-subtopics">{branch.cards.map(sub=><button key={sub.id}
+    type="button" disabled={!!busy} aria-pressed={sub.id===card.id}
+    className={sub.id===card.id?'concept-subtopic-active':''}
+    onClick={()=>void change(cards.indexOf(sub))}>
+    {course.lessons[sub.id+':'+course.mode]?'✓ ':''}{sub.title}</button>)}</div>
+  </article>)}</div>
+ </section>
+ <div className="concept-active-branch"><span>التفرع التعليمي المختار</span>
+ <h3>{card.title}</h3><small>المصدر: {sourcePages.map(n=>'ص '+n).join(' · ')}</small></div>
      {studyTab==='notes'&&<section className="course-slide-notes" data-no-swipe><h3>ملاحظاتي · {card.title}</h3><textarea rows={10} aria-label="ملاحظات هذا السلايد" placeholder="دوّني ما فهمتِه بطريقتك…" value={course.notes?.[card.id]||''} onChange={event=>{const notes={...current.current.notes,[card.id]:event.target.value};void save({...current.current,notes});}}/><small>محفوظة على جهازك ضمن هذه المحاضرة.</small></section>}
      {studyTab!=='notes'&&(lesson?<><LessonJourney key={key+':'+studyTab} view={studyTab} lesson={lesson} sourceImages={course.pages.filter(p=>sourcePages.includes(p.number)).map(p=>({page:p.number,image:p.image}))} slide={cardPoints.map(p=>p.text).join('\n')} answers={course.answers} onAnswer={answer} prefix={key} busy={!!busy} onAsk={ask}/>{studyTab==='explain'&&<details className="course-details"><summary>شرح جميع نقاط هذه الفكرة · {lesson.coverage?.length||0} نقاط</summary>{lesson.coverage?.map(item=><section key={item.source_id}><p dir="auto">{item.explanation}</p><small>من صفحة {points.find(p=>p.id===item.source_id)?.page}</small></section>)}</details>}</>:<section className="course-pending-lesson" role="status" aria-label="حالة إنشاء سلايد الشرح">
        <h3>{busy?'جارٍ إعداد هذا السلايد ومراجعته…':'هذا السلايد بانتظار الشرح الطبي'}</h3>
@@ -401,12 +426,24 @@ export function LectureCourse(){
       </section>)}
      {studyTab==='explain'&&turns.map((turn,i)=><section className="course-followup" key={turn.lesson.id||i}><h3>{turn.question}</h3><LessonJourney lesson={turn.lesson} slide={cardPoints.map(p=>p.text).join('\n')} answers={course.answers} onAnswer={answer} prefix={key+':turn:'+i} busy={!!busy} onAsk={ask}/></section>)}
      {studyTab==='explain'&&lesson&&<><div className="followup-chips"><button disabled={!!busy} onClick={()=>ask('بسّطي الفكرة مع الحفاظ على تفاصيلها')}>بسّطيها</button><button disabled={!!busy} onClick={()=>ask('لماذا؟ اشرحي الآلية من محتوى هذه الفكرة')}>لماذا؟</button><button disabled={!!busy} onClick={()=>ask('اختبريني بسؤال تطبيق جديد من هذه الفكرة')}>اختبريني</button><button disabled={!!busy} onClick={()=>ask('وضحي الفكرة بصريًا')}>وضحي بصريًا</button></div><form className="course-question" onSubmit={e=>{e.preventDefault();ask(question);}}><label htmlFor="course-question">سؤال متابعة عن هذه الفكرة</label><textarea id="course-question" maxLength={1800} value={question} onChange={e=>setQuestion(e.target.value)} rows={2}/><button disabled={!!busy||!question.trim()}>اسألي</button></form></>}
-     {studyTab==='explain'&&unit.cards.at(-1)?.id===card.id&&<section className="course-unit-summary"><h2>خلاصة الوحدة</h2>{!unitDone&&<p>ما زالت {unit.cards.length-unitLessons.length} سلايدات شرح تحتاج فتحها لتكتمل مراجعة الوحدة.</p>}<h3>ما يجب فهمه</h3>{unitLessons.flatMap(l=>l.summary||[l.explanation]).map((s,i)=><p key={i}>{s}</p>)}<h3>نقاط للحفظ والمراجعة</h3><ul>{unitLessons.flatMap(l=>l.high_yield).map((s,i)=><li key={i}>{s}</li>)}</ul><h3>المصطلحات الأساسية</h3>{unitLessons.flatMap(l=>l.terms).map((t,i)=><p key={i}><strong>{t.term}</strong> — {t.meaning}</p>)}{unitLessons.filter(l=>l.clinical_connection?.text).map((l,i)=><p key={i}>العلاقة السريرية: {l.clinical_connection!.text} {l.clinical_connection!.basis==='additional'&&'· توضيح إضافي خارج محتوى المحاضرة'}</p>)}<details><summary>تم شرح هذه النقاط من المحاضرة</summary>{unit.cards.flatMap(c=>course.lessons[c.id+':'+course.mode]?.coverage||[]).map(p=><p key={p.source_id}>{points.find(s=>s.id===p.source_id)?.text}</p>)}</details></section>}
+     {studyTab==='explain'&&<section className="course-unit-summary concept-master-summary">
+ <h2>خلاصة الفكرة الرئيسية</h2>
+ {!conceptDone&&<p>بقي {conceptCardsCurrent.length-conceptLessons.length} تفرعات تحتاج شرحًا مراجعًا. التفرعات ليست سلايدات رئيسية مستقلة.</p>}
+ <h3>الفهم الأساسي</h3>{conceptLessons.flatMap(l=>l.summary||[l.explanation]).map((line,i)=><p key={i}>{line}</p>)}
+ <h3>نقاط مهمة للحفظ</h3><ul>{conceptLessons.flatMap(l=>l.high_yield||[]).map((line,i)=><li key={i}>{line}</li>)}</ul>
+ <details><summary>مصادر جميع التفرعات · {conceptSourceSet.size} نقطة</summary>
+ {points.filter(p=>conceptSourceSet.has(p.id)).map(p=><p key={p.id} dir="auto"><small>ص {p.page}</small> {p.text}</p>)}
+ </details>
+ </section>}
      </div>
       
      </div></div>
-     <div className="course-pagination"><button disabled={!!busy||course.active===0} onClick={()=>void change(course.active-1)}><ChevronRight size={18}/>السابق</button><span dir="ltr" aria-label={`سلايد ${course.active+1} من ${cards.length}`}>{course.active+1} / {cards.length}</span><button disabled={!!busy||course.active===cards.length-1} onClick={()=>void change(course.active+1)}>الفكرة التالية<ChevronLeft size={18}/></button></div>
-     {studyTab==='explain'&&course.active===cards.length-1&&<section className="course-unit-summary"><h2>مراجعة المحاضرة كاملة</h2><p>{covered.size} من {points.length} نقطة مستخرجة لها شرح مراجع.{warnings.length>0?' توجد ملاحظات قراءة تحتاج مراجعة الأصل.':''}</p>{course.plan.units.map(u=><details key={u.id}><summary>{u.title}</summary>{u.cards.map(c=><div key={c.id}><h3>{c.title}</h3>{course.lessons[c.id+':'+course.mode]?.summary?.map((s,i)=><p key={i}>{s}</p>)}{!course.lessons[c.id+':'+course.mode]&&<button disabled={!!busy} onClick={()=>void change(cards.indexOf(c))}>أكملي شرح هذه الفكرة</button>}</div>)}</details>)}</section>}
+     <div className="course-pagination">
+ <button disabled={!!busy||(course.activeConcept||0)===0} onClick={()=>void changeConcept((course.activeConcept||0)-1)}><ChevronRight size={18}/>السابق</button>
+ <span dir="ltr" aria-label={`مفهوم ${(course.activeConcept||0)+1} من ${concepts.length}`}>{(course.activeConcept||0)+1} / {concepts.length}</span>
+ <button disabled={!!busy||(course.activeConcept||0)===concepts.length-1} onClick={()=>void changeConcept((course.activeConcept||0)+1)}>الفكرة التالية<ChevronLeft size={18}/></button>
+ </div>
+     {studyTab==='explain'&&(course.activeConcept||0)===concepts.length-1&&<section className="course-unit-summary"><h2>مراجعة المحاضرة كاملة</h2><p>{covered.size} من {points.length} نقطة مستخرجة لها شرح مراجع.{warnings.length>0?' توجد ملاحظات قراءة تحتاج مراجعة الأصل.':''}</p>{course.plan.units.map(u=><details key={u.id}><summary>{u.title}</summary>{u.cards.map(c=><div key={c.id}><h3>{c.title}</h3>{course.lessons[c.id+':'+course.mode]?.summary?.map((s,i)=><p key={i}>{s}</p>)}{!course.lessons[c.id+':'+course.mode]&&<button disabled={!!busy} onClick={()=>void change(cards.indexOf(c))}>أكملي شرح هذه الفكرة</button>}</div>)}</details>)}</section>}
     </section>
    </div>}
   </>}
