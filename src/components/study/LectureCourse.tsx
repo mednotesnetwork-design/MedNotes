@@ -340,7 +340,7 @@ export function LectureCourse(){
      </div>
       
      </div></div>
-     <div className="course-pagination"><button disabled={!!busy||course.active===0} onClick={()=>void change(course.active-1)}><ChevronRight size={18}/>السابق</button><span>{course.active+1} / {cards.length}</span><button disabled={!!busy||course.active===cards.length-1} onClick={()=>void change(course.active+1)}>الفكرة التالية<ChevronLeft size={18}/></button></div>
+     <div className="course-pagination"><button disabled={!!busy||course.active===0} onClick={()=>void change(course.active-1)}><ChevronRight size={18}/>السابق</button><span dir="ltr" aria-label={`سلايد ${course.active+1} من ${cards.length}`}>{course.active+1} / {cards.length}</span><button disabled={!!busy||course.active===cards.length-1} onClick={()=>void change(course.active+1)}>الفكرة التالية<ChevronLeft size={18}/></button></div>
      {studyTab==='explain'&&course.active===cards.length-1&&<section className="course-unit-summary"><h2>مراجعة المحاضرة كاملة</h2><p>{covered.size} من {points.length} نقطة مستخرجة لها شرح مراجع.{warnings.length>0?' توجد ملاحظات قراءة تحتاج مراجعة الأصل.':''}</p>{course.plan.units.map(u=><details key={u.id}><summary>{u.title}</summary>{u.cards.map(c=><div key={c.id}><h3>{c.title}</h3>{course.lessons[c.id+':'+course.mode]?.summary?.map((s,i)=><p key={i}>{s}</p>)}{!course.lessons[c.id+':'+course.mode]&&<button disabled={!!busy} onClick={()=>void change(cards.indexOf(c))}>أكملي شرح هذه الفكرة</button>}</div>)}</details>)}</section>}
     </section>
    </div>}
