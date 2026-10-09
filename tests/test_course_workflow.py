@@ -80,6 +80,27 @@ class PlanTruncationRecoveryTests(unittest.TestCase):
   self.assertEqual(len(ids),len(set(ids)))
   self.assertEqual(len(result['plan']['units']),3)
   self.assertTrue(all(len(card['source_ids'])<=4 for u in result['plan']['units'] for card in u['cards']))
+ def test_227_points_resume_at_128_with_zero_loss_fallback(self):
+  from course_workflow import source_only_plan
+  points=[{'id':f'p{i//9+1}-t{i+1}','page':i//9+1,'text':f'Clinical fact {i}'}
+          for i in range(227)]
+  # Simulate the saved IndexedDB state in the user's screenshot:
+  # the first 128 source points were already successfully classified.
+  already=source_only_plan(points[:128],'Aging bone and cartilage')
+  saved_ids=[sid for u in already['units'] for c in u['cards'] for sid in c['source_ids']]
+  self.assertEqual(len(saved_ids),128)
+  accumulated=saved_ids[:]
+  rest=points[128:]
+  for start in range(0,len(rest),12):
+   chunk=rest[start:start+12]
+   class PartialGemini:
+    def complete(self,*args):raise MentorError('PROVIDER_FAILURE','truncated output',502)
+   result=prepare_course({'operation':'plan','title':'Aging bone and cartilage','points':chunk})(PartialGemini())
+   accumulated.extend(sid for u in result['plan']['units'] for c in u['cards'] for sid in c['source_ids'])
+  self.assertEqual(len(accumulated),227)
+  self.assertEqual(len(set(accumulated)),227)
+  self.assertEqual(accumulated,[point['id'] for point in points])
+
  def test_permissions_and_quota_errors_never_get_hidden_by_source_fallback(self):
   points=[dict(id='p1-t1',page=1,text='Nerve')];calls=[]
   class BrokenProvider:
