@@ -225,3 +225,37 @@
 .course-rail-card[aria-current="step"] .course-rail-index{border-color:var(--mn-mint);background:var(--mn-mint);color:var(--mn-background)}
 .course-rail-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;min-width:0}
 @media(max-width:650px){.clinical-layer,.clinical-visual-cue{padding:14px}.clinical-layer h3,.clinical-layers-visual h3{font-size:15px}.course-page .course-rail-card{flex:0 0 125px}}
+
+/* Atlas-style textbook pages. Clinical meanings always come from reviewed source IDs. */
+.medical-atlas-layouts{display:grid;gap:16px;min-width:0;margin-block:18px 22px}
+.atlas-callout{position:relative;padding:16px 20px;border:1px solid var(--mn-border-strong);border-inline-start:4px solid var(--mn-mint);border-radius:9px;background:#8dd3b30d;min-width:0}
+.atlas-callout h3{display:flex;align-items:center;gap:9px;margin:0 0 8px;font-size:15px;font-weight:700;color:var(--mn-mint)}
+.atlas-callout p{margin:0 0 7px;font-size:14px;line-height:1.8;white-space:pre-wrap;overflow-wrap:anywhere}
+.atlas-callout-warning{border-inline-start-color:var(--mn-rose);background:#d7aeb312}
+.atlas-callout-warning h3{color:var(--mn-rose)}
+.atlas-callout-high_yield{border-inline-start-color:var(--mn-sand);background:#e6cfb70d}
+.atlas-callout-high_yield h3{color:var(--mn-sand)}
+.atlas-structured{min-width:0;padding:18px;border:1px solid var(--mn-border);border-radius:12px;background:var(--mn-background)}
+.atlas-structured-heading{display:flex;gap:9px;align-items:center;margin-bottom:15px;color:var(--mn-mint)}
+.atlas-structured-heading h3{color:var(--mn-sand);font-weight:650;font-size:17px;margin:0}
+.atlas-table-scroll{max-width:100%;overflow-x:auto;overscroll-behavior-inline:contain;border:1px solid var(--mn-border);border-radius:8px}
+.atlas-medical-table{width:100%;border-collapse:separate;border-spacing:0;min-width:420px;table-layout:fixed;font-size:13px;line-height:1.8}
+.atlas-medical-table th{background:var(--mn-selection);color:var(--mn-sand);font-weight:700}
+.atlas-medical-table td,.atlas-medical-table th{padding:12px;border-inline-end:1px solid var(--mn-border);border-block-end:1px solid var(--mn-border);text-align:start;vertical-align:top;overflow-wrap:anywhere;white-space:pre-line}
+.atlas-medical-table tbody tr:nth-child(2n){background:#8dd3b308}
+.atlas-medical-table tr>*:last-child{border-inline-end:0}
+.atlas-medical-table tbody tr:last-child>*{border-block-end:0}
+.atlas-classification-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,195px),1fr));gap:10px}
+.atlas-node-wrap{min-width:0}
+.atlas-node{height:100%;min-width:0;padding:14px;border:1px solid var(--mn-border-strong);border-radius:9px;background:var(--mn-surface)}
+.atlas-node-heading{display:flex;align-items:center;gap:9px;margin-bottom:7px;color:var(--mn-sand);font-size:14px}
+.atlas-node-index{display:grid;place-items:center;flex:0 0 27px;width:27px;height:27px;border:1px solid var(--mn-mint);border-radius:50%;color:var(--mn-mint);font-weight:700;font-size:12px}
+.atlas-node p{color:var(--mn-text);line-height:1.8;font-size:13px;white-space:pre-line;overflow-wrap:anywhere}
+.atlas-flow-nodes{display:flex;flex-direction:column;align-items:stretch;max-width:720px;margin:auto;gap:0}
+.atlas-flow-nodes .atlas-node-wrap{display:flex;align-items:stretch;flex-direction:column}
+.atlas-flow-nodes .atlas-node{height:auto;border-inline-start:3px solid var(--mn-mint)}
+.atlas-flow-arrow{align-self:center;color:var(--mn-mint);margin:5px 0}
+.atlas-tissue-nodes{display:grid;gap:3px}
+.atlas-tissue-nodes .atlas-node{border-inline-start:4px solid var(--mn-mint);border-radius:5px}
+.atlas-tissue-nodes .atlas-node-wrap:nth-child(2n) .atlas-node{border-inline-start-color:var(--mn-sand)}
+@media(max-width:600px){.atlas-structured{padding:11px}.atlas-callout{padding:12px 14px}.atlas-medical-table{font-size:12px}.atlas-medical-table td,.atlas-medical-table th{padding:9px}.atlas-classification-grid{grid-template-columns:1fr 1fr}}
