@@ -40,7 +40,7 @@ export function LectureCourse(){
  async function save(value:Course){await writeStudy(STORE,value);update(value);}
  useEffect(()=>{let live=true;void readStudy<Course>(STORE).then(c=>{if(live){if(c){current.current=c;setCourse(c);}setReady(true);}}).catch(()=>{if(live){setError('تعذر فتح المحاضرة المحفوظة محليًا.');setReady(true);}});return()=>{live=false;control.current?.abort();};},[]);
  useEffect(()=>{
-  if(!ready||!course.pages.length||control.current||course.remote)return;
+  if(!ready||!course.pages.length||control.current|| (course.remote&&!course.plan))return;
   if(!course.plan||!course.concepts?.length){
    // Migrate the user's already extracted and approved 47-card lecture
    // without discarding source points, explanations, quizzes or notes.
@@ -48,7 +48,7 @@ export function LectureCourse(){
   }
  // Run only after restoring a saved course, not after every processing checkpoint.
  // eslint-disable-next-line react-hooks/exhaustive-deps
- },[ready]);
+ },[ready,course.plan,course.concepts]);
  useEffect(()=>{
   if(!ready||!course.remote||course.phase==='ready'||course.phase==='failed')return;
   let stopped=false;
@@ -400,7 +400,12 @@ export function LectureCourse(){
  <h2>{concept.title}</h2><p>{concept.objective}</p>
  <small>المصادر: {conceptPages.map(n=>'ص '+n).join(' · ')} · {conceptSourceSet.size} نقطة محفوظة</small>
  </div>
- {!course.semanticClustering&&<p className="concept-provisional-note">هذا تجميع مؤقت. لم تُعتمد دلاليًا عناوين المفاهيم، لكن جميع معلومات المصدر محفوظة.</p>}
+ {!course.semanticClustering&&<div className="concept-provisional-note">
+ <p>هذا تجميع مؤقت يحافظ على مصادر المحاضرة، وليس تحليلًا دلاليًا معتمدًا.</p>
+ <button disabled={!!busy} onClick={()=>void work(async signal=>{
+  await save({...current.current,concepts:undefined,activeConcept:undefined});
+  await consolidateConcepts(signal);
+ })}>إعادة تحليل المفاهيم دلاليًا</button></div>}
  <section className="concept-branch-tree" aria-label="التفرعات التعليمية لهذا المفهوم">
   <h3>خريطة المفهوم · اختاري التفرع لشرحه من الصفر</h3>
   <div className="concept-branch-grid">{conceptUnits.map((branch,i)=><article className="concept-branch-node" key={branch.id}>
