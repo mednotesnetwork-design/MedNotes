@@ -9,7 +9,7 @@ type Props={
  sourceImages?:OriginalSourceImage[];
  view:'explain'|'visual';
 };
-function References({ids,registry=[],sourceImages=[]}:{ids:string[];registry?:SourceRegistryItem[];sourceImages?:OriginalSourceImage[]}){
+export function References({ids,registry=[],sourceImages=[]}:{ids:string[];registry?:SourceRegistryItem[];sourceImages?:OriginalSourceImage[]}){
  const [opened,setOpened]=useState<string|null>(null);
  if(!ids.length)return null;
  return <div className="clinical-source-links" aria-label="مراجع السلايد الأصلي">
