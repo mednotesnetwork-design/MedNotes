@@ -7,7 +7,7 @@ import {readFile} from 'node:fs/promises';
 test('The sole lecture panel stays in the visible 100%-wide Safari viewport',async()=>{
  const css=await readFile('src/study.css','utf8');
  const source=await readFile('src/components/study/LectureCourse.tsx','utf8');
- const rule=css.match(/\.course-swipe-track\{[^}]+\}/g)?.at(-1)||'';
+ const rule=css.match(/\.course-swipe-track\{[^}]+\}/g)?.find(text=>text.includes('will-change:transform'))||'';
  assert.match(rule,/width:100%/);
  assert.match(rule,/display:block/);
  assert.match(rule,/translate3d\(var\(--drag-x,0px\),0,0\)/);
