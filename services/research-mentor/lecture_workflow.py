@@ -337,7 +337,32 @@ def prepare_lecture(data):
                     lesson=pending_lesson
                     pending_lesson=None
                 else:
-                    generated=p.complete(PROMPT+mode_rule,payload)
+                    # Gemini may return HTTP 200 with truncated JSON under the
+                    # output-token limit. A bounded, larger-budget retry is
+                    # allowed, but BOTH attempts still require the same strict
+                    # validation, exact source coverage and independent audit.
+                    params=getattr(p,'config',{}).get('sampling_parameters') if isinstance(getattr(p,'config',{}),dict) else None
+                    original_budget=params.get('max_completion_tokens') if params else None
+                    try:
+                        for response_attempt in range(2):
+                            try:
+                                if response_attempt and params is not None:
+                                    params['max_completion_tokens']=max(int(original_budget or 6144),10000)
+                                concise=('\\nJSON RECOVERY MODE: Keep every source detail in coverage, '
+                                    'preserve the full required schema with concise explanation sections, '
+                                    'at most 1 visual/table, 1 checkpoint and 1 MCQ. '
+                                    'Use [] for unsupported optional content; do not omit the '
+                                    'clinical_layers or coverage or invent any content.') if response_attempt else ''
+                                generated=p.complete(PROMPT+mode_rule+concise,payload)
+                                break
+                            except MentorError as recovery_error:
+                                if recovery_error.code!='PROVIDER_FAILURE' or response_attempt:
+                                    raise
+                                print(json.dumps({'event':'lecture_json_retry',
+                                                  'attempt':response_attempt+1}),flush=True)
+                    finally:
+                        if params is not None and original_budget is not None:
+                            params['max_completion_tokens']=original_budget
                     if payload.get('repair_fields') and isinstance(generated,dict):
                         lesson={**lesson,**{k:v for k,v in generated.items() if k in payload['repair_fields']}}
                     else:lesson=generated
