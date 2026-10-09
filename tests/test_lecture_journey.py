@@ -213,4 +213,31 @@ class TextbookAtlasSourceTests(unittest.TestCase):
         self.assertIn('textbook_layouts',REVIEW_FIELDS)
         self.assertIn('clinical_callouts',REVIEW_FIELDS)
 
+class TruncatedLessonJSONRecoveryTests(unittest.TestCase):
+ def test_retries_invalid_json_once_then_independently_audits_result(self):
+  from types import SimpleNamespace
+  from unittest.mock import Mock
+  draft=JourneyEvidenceTests().lesson()
+  audit={'passed':True,'issues':[],
+         'checks':[{'field':field,'supported':True,'issue':''} for field in REVIEW_FIELDS]}
+  provider=SimpleNamespace(opener=None,config={'sampling_parameters':{'max_completion_tokens':6144}},
+    complete=Mock(side_effect=[MentorError('PROVIDER_FAILURE','Invalid JSON',502),draft,audit]))
+  answer=prepare_lecture({'slide':JourneyEvidenceTests.slide})(provider)['lesson']
+  self.assertEqual(answer['explanation'],draft['explanation'])
+  self.assertEqual(provider.complete.call_count,3)
+  self.assertIn('JSON RECOVERY MODE',provider.complete.call_args_list[1].args[0])
+  self.assertNotIn('JSON RECOVERY MODE',provider.complete.call_args_list[0].args[0])
+  self.assertEqual(provider.config['sampling_parameters']['max_completion_tokens'],6144)
+  self.assertEqual(provider.complete.call_args_list[1].args[1]['current_slide'],JourneyEvidenceTests.slide)
+ def test_source_claims_reject_unreviewed_generation_even_after_retry(self):
+  from types import SimpleNamespace
+  from unittest.mock import Mock
+  provider=SimpleNamespace(opener=None,complete=Mock(side_effect=[
+      MentorError('PROVIDER_FAILURE','Incomplete JSON',502),
+      MentorError('PROVIDER_FAILURE','Incomplete JSON again',502)]))
+  with self.assertRaises(MentorError) as error:
+   prepare_lecture({'slide':JourneyEvidenceTests.slide})(provider)
+  self.assertEqual(error.exception.code,'PROVIDER_FAILURE')
+  self.assertEqual(provider.complete.call_count,2)
+
 if __name__=='__main__':unittest.main()
