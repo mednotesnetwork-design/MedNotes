@@ -113,4 +113,48 @@ class PlanTruncationRecoveryTests(unittest.TestCase):
     prepare_course({'operation':'plan','title':'Lecture','points':points})(BrokenProvider(code))
    self.assertEqual(error.exception.code,code)
 
+class MainConceptClusteringTests(unittest.TestCase):
+ def units(self,count=47):
+  return [{'id':f'u{i+1}','title':f'Medical topic {i%7} / detail {i+1}',
+           'objective':'Medical teaching group','sample':f'pathophysiology of concept {i%7}'}
+          for i in range(count)]
+ def test_valid_47_groups_produce_seven_true_main_concepts(self):
+  from course_workflow import concept_count,validate_concepts,prepare_course
+  groups=self.units()
+  self.assertEqual(concept_count(27,len(groups)),7)
+  class SemanticGemini:
+   def complete(self,prompt,payload):
+    return {'concepts':[{'title':f'Main concept {j+1}','objective':f'Beginner learning objective {j+1}',
+       'unit_ids':[u['id'] for i,u in enumerate(groups) if i%7==j]} for j in range(7)]}
+  result=prepare_course({'operation':'consolidate','title':'Bone and cartilage aging',
+      'total_pages':27,'units':groups})(SemanticGemini())
+  self.assertTrue(result['semantic_clustering'])
+  self.assertEqual(len(result['concepts']),7)
+  ids=[id for c in result['concepts'] for id in c['unit_ids']]
+  self.assertEqual(len(ids),47)
+  self.assertEqual(set(ids),{u['id'] for u in groups})
+ def test_clustering_incomplete_json_produces_fully_traced_provisional_seven(self):
+  from course_workflow import prepare_course
+  groups=self.units()
+  class TruncatedGemini:
+   def complete(self,*args):raise MentorError('PROVIDER_FAILURE','Malformed JSON',502)
+  result=prepare_course({'operation':'consolidate','total_pages':27,'units':groups})(TruncatedGemini())
+  self.assertFalse(result['semantic_clustering'])
+  self.assertEqual(len(result['concepts']),7)
+  ids=[id for c in result['concepts'] for id in c['unit_ids']]
+  self.assertEqual(set(ids),{u['id'] for u in groups})
+  self.assertEqual(len(ids),len(set(ids)))
+ def test_refuses_duplicate_or_missing_unit_ids(self):
+  from course_workflow import validate_concepts
+  units=self.units(14)
+  invalid={'concepts':[{'title':'Concept A','objective':'Understand','unit_ids':[u['id'] for u in units[:13]]}]}
+  with self.assertRaises(MentorError):validate_concepts(invalid,units,7)
+  invalid['concepts'][0]['unit_ids'].append(units[0]['id'])
+  with self.assertRaises(MentorError):validate_concepts(invalid,units,7)
+ def test_administrative_objectives_do_not_require_separate_major_slide(self):
+  from course_workflow import concept_count
+  self.assertEqual(concept_count(27,47),7)
+  self.assertEqual(concept_count(15,30),6)
+  self.assertLessEqual(concept_count(100,160),10)
+
 if __name__=='__main__':unittest.main()
