@@ -26,6 +26,8 @@ jobs:
           cache: npm
       - name: Install Node dependencies
         run: npm ci
+      - name: Verify main concepts migration and zero-loss legacy cards
+        run: node --test tests/lecture-concepts.test.mjs
       - name: Verify iPhone slide visibility and source-backed pending states
         run: node --test tests/lecture-safari-pager.test.mjs
       - name: Render medical atlas pages and validate structural layouts
