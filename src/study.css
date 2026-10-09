@@ -263,7 +263,7 @@
 /* Actual horizontal deck geometry: previous / active / next are independent slides.
    Only the center panel mounts expensive interactive anatomy / MCQs. */
 .course-slide-viewport{overflow:hidden;touch-action:pan-y;position:relative;isolation:isolate}
-.course-swipe-track{width:300%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;will-change:transform;transform:translateX(calc(-33.333333% + var(--drag-x,0px)));transition:transform .28s cubic-bezier(.25,.8,.25,1)}
+.course-swipe-track{width:100%;min-width:0;display:block;will-change:transform;transform:translate3d(var(--drag-x,0px),0,0);transition:transform .28s cubic-bezier(.25,.8,.25,1)}
 .course-swipe-track.course-swipe-dragging{transition:none}
 .course-swipe-track>.course-slide-panel,.course-swipe-track>.course-slide-preview{min-width:0;width:100%;box-sizing:border-box;direction:rtl}
 .course-swipe-track>.course-slide-panel{scrollbar-gutter:stable}
@@ -299,3 +299,16 @@
  .course-page .course-slide-panel{max-height:min(75dvh,760px);min-height:260px}
 }
 @media(max-width:400px){.course-page .study-title{padding-inline-end:32px}.course-page .course-teaching{padding:9px}}
+
+/* One visible lesson per page. Never translate the only slide off-canvas on iOS Safari. */
+.course-slide-viewport>.course-swipe-track>.course-slide-panel{width:100%;max-width:100%;min-width:0;display:block;height:auto;min-height:0;max-height:none;overflow:visible;padding-inline:3px;box-sizing:border-box}
+.course-slide-viewport{height:auto;min-height:0;overflow:hidden}
+.course-pending-lesson{display:grid;align-content:start;gap:12px;min-height:210px;border:1px solid var(--mn-border-strong);background:var(--mn-background);border-radius:12px;margin:16px 0;padding:clamp(14px,3vw,23px)}
+.course-pending-lesson h3{margin:0;color:var(--mn-sand);font-size:clamp(17px,3vw,22px);font-weight:600;line-height:1.5}
+.course-pending-lesson>p{color:var(--mn-muted);line-height:1.9;margin:0}
+.course-pending-lesson>.primary{justify-self:start}
+.course-pending-source{max-width:100%;min-width:0}
+.course-source-item{padding:10px 0;border-bottom:1px solid var(--mn-border);overflow-wrap:anywhere}
+.course-source-item small{display:block;color:var(--mn-mint)}
+.course-source-item p{margin:7px 0;white-space:pre-wrap;line-height:1.8;overflow-wrap:anywhere}
+@media(max-width:850px){.course-page .course-slide-panel{max-height:none;min-height:0;overflow:visible}.course-page .course-slide-viewport{touch-action:pan-y}}
