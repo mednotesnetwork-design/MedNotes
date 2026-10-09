@@ -4,6 +4,8 @@ import {BookOpen,Upload,ChevronLeft,ChevronRight,Sparkles} from 'lucide-react';
 import {readStudy,writeStudy,studyRequest} from '../../lib/study-store';
 import {appendLecturePage,createLectureJob,getLectureJob,startLectureJob,type LectureJobHandle} from '../../lib/lecture-jobs';
 import {LessonJourney,type LearningTab} from './LessonJourney';
+import {ClinicalTeachingLayers} from './ClinicalTeachingLayers';
+import {MedicalAtlasLayouts} from './MedicalAtlasLayouts';
 import type {Explanation} from './types';
 import {type MainConcept,validateConceptGrouping,conceptBranches,conceptCards,conceptSourceIds,
  findConceptIndex,provisionalConcepts} from '../../lib/lecture-concepts';
@@ -16,7 +18,7 @@ type Plan={title:string;units:Unit[]};
 type Turn={question:string;lesson:Explanation};
 type StudyTab=LearningTab|'notes';
 type Stage='queued'|'extracting'|'structuring'|'generating'|'validating'|'retrying'|'failed'|'ready';
-type Course={name:string;pages:SourcePage[];plan?:Plan;concepts?:MainConcept[];semanticClustering?:boolean;activeConcept?:number;remote?:LectureJobHandle;remoteProgress?:string;planning?:{next:number;units:Unit[]};planningNotices?:string[];phase?:Stage;active:number;mode:string;lessons:Record<string,Explanation>;turns:Record<string,Turn[]>;answers:Record<string,number>;notes?:Record<string,string>};
+type Course={name:string;pages:SourcePage[];plan?:Plan;concepts?:MainConcept[];semanticClustering?:boolean;activeConcept?:number;conceptOverviews?:Record<string,Explanation>;remote?:LectureJobHandle;remoteProgress?:string;planning?:{next:number;units:Unit[]};planningNotices?:string[];phase?:Stage;active:number;mode:string;lessons:Record<string,Explanation>;turns:Record<string,Turn[]>;answers:Record<string,number>;notes?:Record<string,string>};
 const empty:Course={name:'',pages:[],active:0,mode:'lecture_only',phase:'queued',lessons:{},turns:{},answers:{}};
 const STORE='lecture-course-v2';
 function jpeg(canvas:HTMLCanvasElement){
@@ -278,6 +280,33 @@ export function LectureCourse(){
   if(followup)await save({...current.current,turns:{...current.current.turns,[key]:[...turns,{question:followup,lesson}]}});
   else await save({...current.current,lessons:{...current.current.lessons,[key]:lesson}});
  }
+ async function teachConceptOverview(signal:AbortSignal){
+  const state=current.current,concept=state.concepts?.[state.activeConcept||0];
+  if(!concept||!state.plan)return;
+  const key=concept.id+':'+state.mode;
+  if(state.conceptOverviews?.[key])return;
+  const all=new Map(state.pages.flatMap(p=>p.points||[]).map(p=>[p.id,p]));
+  const units=conceptBranches(concept,state.plan.units);
+  const selections:Point[]=[];let chars=0;
+  // Build an evidence-based beginner introduction using source samples from
+  // DISTINCT subtopics; never falsely mark all concept facts as reviewed.
+  for(const u of units){
+   const candidates=u.cards.flatMap(c=>c.source_ids).map(id=>all.get(id)).filter((p):p is Point=>!!p);
+   const preferred=candidates.find(p=>!/(?:\\btitle\\b|objectives|outlines|references|عنوان المحاضرة|قائمة الأهداف)/i.test(p.text))||candidates[0];
+   if(!preferred||selections.some(p=>p.id===preferred.id)||selections.length>=8||
+      chars+preferred.text.length>12500)continue;
+   selections.push(preferred);chars+=preferred.text.length;
+  }
+  if(!selections.length)return;
+  setBusy('إعداد تمهيد المفهوم الرئيسي من الصفر مع مراجعة مصادره…');
+  const response=await request({operation:'teach',
+   title:state.name+' · '+concept.title,points:selections,
+   source_mode:state.mode,requested_tool:'explain',
+   question:'قدمي تمهيدًا واضحًا جدًا لطالب طب يبدأ من الصفر: عرّفي الفكرة الأساسية والمصطلحات، ثم اشرحي العلاقة بين الأسباب والآليات والنتائج من النقاط المقدمة فقط، مع خريطة ذهنية للتفرعات ومثال سريري فقط إن كان مذكورًا. اتركي التفاصيل الأخرى داخل التفرعات ولا تدّعي اكتمال شرحها.'},signal);
+  signal.throwIfAborted();
+  const overview:Explanation={...response.lesson,id:crypto.randomUUID(),source_mode:state.mode};
+  await save({...current.current,conceptOverviews:{...current.current.conceptOverviews,[key]:overview}});
+ }
  async function changeConcept(index:number){
   const state=current.current,concept=state.concepts?.[index];
   if(!concept||control.current||!state.plan)return;
@@ -287,7 +316,7 @@ export function LectureCourse(){
   setQuestion('');
   await save({...state,activeConcept:index,active:state.plan.units.flatMap(u=>u.cards)
     .findIndex(c=>c.id===branch[0].id)});
-   if(!state.remote&&!state.lessons[branch[0].id+':'+state.mode])await work(teach);
+   if(!state.remote&&!state.conceptOverviews?.[concept.id+':'+state.mode])await work(teachConceptOverview);
  }
  function stateConceptForCard(index:number){
   const state=current.current,card=state.plan?.units.flatMap(u=>u.cards)[index];
@@ -343,6 +372,7 @@ export function LectureCourse(){
  const conceptUnits=concept&&course.plan?conceptBranches(concept,course.plan.units):[];
  const conceptCardsCurrent=concept&&course.plan?conceptCards(concept,course.plan.units):[];
  const card=cards[course.active],unit=course.plan?.units.find(u=>u.cards.some(c=>c.id===card?.id));
+ const conceptOverview=concept?course.conceptOverviews?.[concept.id+':'+course.mode]:undefined;
  const key=card?card.id+':'+course.mode:'',lesson=course.lessons[key],turns=course.turns[key]||[],points=course.pages.flatMap(p=>p.points||[]);
  const cardPoints=points.filter(p=>card?.source_ids.includes(p.id));
  const sourcePages=[...new Set(cardPoints.map(p=>p.page))].sort((a,b)=>a-b);
@@ -406,6 +436,19 @@ export function LectureCourse(){
   await save({...current.current,concepts:undefined,activeConcept:undefined});
   await consolidateConcepts(signal);
  })}>إعادة تحليل المفاهيم دلاليًا</button></div>}
+ <section className="concept-overview" aria-label="شرح تمهيدي للمفهوم الرئيسي من الصفر">
+  <h3>الفكرة الجوهرية · من الصفر</h3>
+  {conceptOverview?<><p className="concept-overview-context">تمهيد طبي مبني على نقاط موثقة من تفرعات هذه الفكرة. المعلومات المتبقية موجودة في التفرعات أدناه.</p>
+   {conceptOverview.clinical_layers?
+    <ClinicalTeachingLayers layers={conceptOverview.clinical_layers} registry={conceptOverview.source_registry}
+     sourceImages={course.pages.filter(p=>conceptPages.includes(p.number)).map(p=>({page:p.number,image:p.image}))} view="explain"/>:
+    <p dir="auto">{conceptOverview.explanation}</p>}
+   <MedicalAtlasLayouts layouts={conceptOverview.textbook_layouts} callouts={conceptOverview.clinical_callouts}
+    registry={conceptOverview.source_registry} sourceImages={course.pages.filter(p=>conceptPages.includes(p.number)).map(p=>({page:p.number,image:p.image}))} view="explain"/>
+  </>:<><p>سنبدأ بتعريف المفهوم خطوة خطوة، ثم ننتقل إلى التفرعات والآلية والأهمية السريرية.</p>
+   {!busy&&<button className="primary" onClick={()=>void work(teachConceptOverview)}>إنشاء شرح المفهوم من الصفر</button>}
+  </>}
+ </section>
  <section className="concept-branch-tree" aria-label="التفرعات التعليمية لهذا المفهوم">
   <h3>خريطة المفهوم · اختاري التفرع لشرحه من الصفر</h3>
   <div className="concept-branch-grid">{conceptUnits.map((branch,i)=><article className="concept-branch-node" key={branch.id}>
