@@ -5,6 +5,8 @@ import {readStudy,writeStudy,studyRequest} from '../../lib/study-store';
 import {appendLecturePage,createLectureJob,getLectureJob,startLectureJob,type LectureJobHandle} from '../../lib/lecture-jobs';
 import {LessonJourney,type LearningTab} from './LessonJourney';
 import type {Explanation} from './types';
+import {type MainConcept,validateConceptGrouping,conceptBranches,conceptCards,conceptSourceIds,
+ findConceptIndex,provisionalConcepts} from '../../lib/lecture-concepts';
 
 type Point={id:string;page:number;kind:string;text:string;origin:string;item_id?:string;page_number?:number;content_type?:string;source_ref?:string;bbox?:number[]};
 type SourcePage={number:number;text:string;image?:string;title?:string;points?:Point[];warnings?:string[]};
@@ -14,7 +16,7 @@ type Plan={title:string;units:Unit[]};
 type Turn={question:string;lesson:Explanation};
 type StudyTab=LearningTab|'notes';
 type Stage='queued'|'extracting'|'structuring'|'generating'|'validating'|'retrying'|'failed'|'ready';
-type Course={name:string;pages:SourcePage[];plan?:Plan;remote?:LectureJobHandle;remoteProgress?:string;planning?:{next:number;units:Unit[]};planningNotices?:string[];phase?:Stage;active:number;mode:string;lessons:Record<string,Explanation>;turns:Record<string,Turn[]>;answers:Record<string,number>;notes?:Record<string,string>};
+type Course={name:string;pages:SourcePage[];plan?:Plan;concepts?:MainConcept[];semanticClustering?:boolean;activeConcept?:number;remote?:LectureJobHandle;remoteProgress?:string;planning?:{next:number;units:Unit[]};planningNotices?:string[];phase?:Stage;active:number;mode:string;lessons:Record<string,Explanation>;turns:Record<string,Turn[]>;answers:Record<string,number>;notes?:Record<string,string>};
 const empty:Course={name:'',pages:[],active:0,mode:'lecture_only',phase:'queued',lessons:{},turns:{},answers:{}};
 const STORE='lecture-course-v2';
 function jpeg(canvas:HTMLCanvasElement){
@@ -39,8 +41,9 @@ export function LectureCourse(){
  useEffect(()=>{let live=true;void readStudy<Course>(STORE).then(c=>{if(live){if(c){current.current=c;setCourse(c);}setReady(true);}}).catch(()=>{if(live){setError('تعذر فتح المحاضرة المحفوظة محليًا.');setReady(true);}});return()=>{live=false;control.current?.abort();};},[]);
  useEffect(()=>{
   if(!ready||!course.pages.length||control.current||course.remote)return;
-  const first=course.plan?.units[0]?.cards[0];
-  if(!course.plan||(first&&!course.lessons[first.id+':'+course.mode])){
+  if(!course.plan||!course.concepts?.length){
+   // Migrate the user's already extracted and approved 47-card lecture
+   // without discarding source points, explanations, quizzes or notes.
    void work(organize);
   }
  // Run only after restoring a saved course, not after every processing checkpoint.
@@ -116,11 +119,51 @@ export function LectureCourse(){
   await startLectureJob(handle,signal);
   await save({...current.current,remote:handle,phase:'queued'});
  }
+ async function consolidateConcepts(signal:AbortSignal){
+  const state=current.current,units=state.plan?.units||[];
+  if(!units.length)throw new Error('لا توجد وحدات مستخرجة لتجميعها.');
+  if(state.concepts?.length)return;
+  const all=state.pages.flatMap(p=>p.points||[]);
+  const byId=new Map(all.map(p=>[p.id,p]));
+  const sourceUnits=units.map(u=>{
+   const sample=u.cards.flatMap(c=>c.source_ids).map(id=>byId.get(id)?.text||'')
+    .filter(Boolean).join(' · ').slice(0,350);
+   return {id:u.id,title:u.title,objective:u.objective,sample};
+  });
+  setBusy(`دمج ${units.length} وحدة فرعية في مفاهيم رئيسية مترابطة…`);
+  let concepts:MainConcept[],semantic=true;
+  try{
+   const result=await request({operation:'consolidate',title:state.name,
+       total_pages:state.pages.length,units:sourceUnits},signal);
+   signal.throwIfAborted();
+   semantic=result.semantic_clustering===true;
+   concepts=validateConceptGrouping(units,{concepts:(result.concepts as MainConcept[]).map((c,i)=>({...c,id:'concept-'+(i+1)})),
+      semantic_clustering:semantic},10);
+  }catch(error){
+   signal.throwIfAborted();
+   const code=(error as Error&{code?:string}).code;
+   // Do not hide authentication/configuration failures.
+   if(!['PROVIDER_FAILURE','PROVIDER_BUSY','STUDY_TIMEOUT','COURSE_CONCEPT_FAILED'].includes(code||''))throw error;
+   concepts=provisionalConcepts(units,state.pages.length);
+   semantic=false;
+  }
+  // Reject any source loss even if Gemini returned superficially valid JSON.
+  const oldIDs=units.flatMap(u=>u.cards.flatMap(c=>c.source_ids));
+  const groupedIDs=concepts.flatMap(c=>conceptSourceIds(c,units));
+  if(oldIDs.length!==groupedIDs.length||new Set(groupedIDs).size!==new Set(oldIDs).size||
+     groupedIDs.some(id=>!oldIDs.includes(id)))throw new Error('فشلت مراجعة سلامة المصادر بعد دمج المفاهيم.');
+  const selectedCard=units.flatMap(u=>u.cards)[state.active];
+  const activeConcept=selectedCard?findConceptIndex(concepts,units,selectedCard.id):0;
+  await save({...current.current,concepts,semanticClustering:semantic,activeConcept,
+     planningNotices:[...(current.current.planningNotices||[]),...(!semantic?
+      ['التجميع الحالي مؤقت ويحافظ على جميع المصادر؛ لم ينجح Gemini في تصنيف المفاهيم دلاليًا.']:[])]});
+ }
  async function organize(signal:AbortSignal){
   let state=current.current;
   if(state.plan){
-   const activeCard=state.plan.units.flatMap(u=>u.cards)[state.active]||state.plan.units[0]?.cards[0];
-   if(activeCard&&!state.lessons[activeCard.id+':'+state.mode])await teach(signal);
+   if(!state.concepts?.length)await consolidateConcepts(signal);
+   // Existing cards retain their reviewed explanations; load only the active
+   // branch if it has not already been generated and is within the API cap.
    await save({...current.current,phase:'ready'});
    return;
   }
@@ -189,7 +232,7 @@ export function LectureCourse(){
    throw new Error('خطة الشرح لا تغطي جميع نقاط المحاضرة؛ لن نحذف أي معلومات.');
   state={...state,planning:undefined,plan:{title:state.name,units},active:0,phase:'generating'};
   await save(state);
-  await teach(signal);
+  await consolidateConcepts(signal);
   await save({...current.current,phase:'ready'});
  }
  async function openFile(file:File){await work(async signal=>{
@@ -230,14 +273,24 @@ export function LectureCourse(){
   setBusy(followup?'إعداد إجابة مرتبطة بالفكرة ومراجعتها…':'بناء سلايد الشرح مع الرسم والأسئلة ومراجعة تغطية النقاط…');
   const turns=state.turns[key]||[],base=state.lessons[key];
   const conversation=(base?[{role:'assistant',content:base.explanation}]:[]).concat(turns.flatMap(t=>[{role:'user',content:t.question},{role:'assistant',content:t.lesson.explanation}])).slice(-8);
-  const data=await request({operation:'teach',title:state.name+' · '+card.title,points,source_mode:state.mode,question:followup,conversation,requested_tool:/اختبر|سؤال جديد|سؤال مشابه/.test(followup)?'quiz':/بصري|رسم/.test(followup)?'visual':'explain'},signal);signal.throwIfAborted();
+  const data=await request({operation:'teach',title:state.name+' · '+(state.concepts?.[state.activeConcept||0]?.title||'')+' · '+card.title,points,source_mode:state.mode,question:followup,conversation,requested_tool:/اختبر|سؤال جديد|سؤال مشابه/.test(followup)?'quiz':/بصري|رسم/.test(followup)?'visual':'explain'},signal);signal.throwIfAborted();
   const lesson:Explanation={...data.lesson,id:crypto.randomUUID(),source_mode:state.mode};
   if(followup)await save({...current.current,turns:{...current.current.turns,[key]:[...turns,{question:followup,lesson}]}});
   else await save({...current.current,lessons:{...current.current.lessons,[key]:lesson}});
  }
+ async function changeConcept(index:number){
+  const state=current.current,concept=state.concepts?.[index];
+  if(!concept||control.current||!state.plan)return;
+  const branch=conceptCards(concept,state.plan.units);
+  if(!branch.length)return;
+  setSlideDirection(index>(state.activeConcept||0)?'next':'prev');
+  setQuestion('');
+  await save({...state,activeConcept:index,active:state.plan.units.flatMap(u=>u.cards)
+    .findIndex(c=>c.id===branch[0].id)});
+ }
  async function change(index:number,mode=course.mode){
   if(control.current||index<0||index>=(current.current.plan?.units.flatMap(u=>u.cards).length||0))return;
-  if(index!==current.current.active)setSlideDirection(index>current.current.active?'next':'prev');
+  // Selecting a subtopic does not increment the main slide number.
   setQuestion('');
   if(current.current.remote){
    await save({...current.current,active:index,mode});
@@ -269,17 +322,22 @@ export function LectureCourse(){
   if(!start||event.changedTouches.length!==1||control.current)return;
   const dx=event.changedTouches[0].clientX-start.x,dy=event.changedTouches[0].clientY-start.y;
   if(Math.abs(dx)<65||Math.abs(dx)<Math.abs(dy)*1.3)return;
-  void change(current.current.active+(dx<0?1:-1));
+  void changeConcept((current.current.activeConcept||0)+(dx<0?1:-1));
  }
  function onSlideKeyDown(event:KeyboardEvent<HTMLDivElement>){
   if(event.target!==event.currentTarget||event.altKey||event.ctrlKey||event.metaKey)return;
   if(event.key==='ArrowLeft'||event.key==='ArrowRight'){
-   event.preventDefault();void change(current.current.active+(event.key==='ArrowLeft'?1:-1));
+   event.preventDefault();void changeConcept((current.current.activeConcept||0)+(event.key==='ArrowLeft'?1:-1));
   }
  }
  function ask(text:string){if(text.trim())void work(signal=>teach(signal,text.trim()));}
  function answer(key:string,value?:number){const answers={...current.current.answers};if(value===undefined)delete answers[key];else answers[key]=value;void save({...current.current,answers}).catch(()=>setError('تعذر حفظ الإجابة محليًا.'));}
- const cards=course.plan?.units.flatMap(u=>u.cards)||[],card=cards[course.active],unit=course.plan?.units.find(u=>u.cards.some(c=>c.id===card?.id));
+ const cards=course.plan?.units.flatMap(u=>u.cards)||[];
+ const concepts=course.concepts||[];
+ const concept=concepts[course.activeConcept||0];
+ const conceptUnits=concept&&course.plan?conceptBranches(concept,course.plan.units):[];
+ const conceptCardsCurrent=concept&&course.plan?conceptCards(concept,course.plan.units):[];
+ const card=cards[course.active],unit=course.plan?.units.find(u=>u.cards.some(c=>c.id===card?.id));
  const key=card?card.id+':'+course.mode:'',lesson=course.lessons[key],turns=course.turns[key]||[],points=course.pages.flatMap(p=>p.points||[]);
  const cardPoints=points.filter(p=>card?.source_ids.includes(p.id));
  const sourcePages=[...new Set(cardPoints.map(p=>p.page))].sort((a,b)=>a-b);
