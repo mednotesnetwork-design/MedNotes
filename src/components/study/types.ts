@@ -6,9 +6,15 @@ export type ClinicalLayers={
  clinical_correlation:ClinicalLayerText;
  visual_cues:{label:string;detail:string;source_item_ids_used:string[]}[];
 };
+export type TextbookLayout=
+ |{kind:'comparison_table';title:string;columns:string[];rows:{cells:string[];source_item_ids_used:string[]}[]}
+ |{kind:'classification_grid'|'tissue_layers'|'flowchart';title:string;nodes:{label:string;detail:string;source_item_ids_used:string[]}[]};
+export type ClinicalCallout={kind:'clinical'|'warning'|'high_yield';text:string;source_item_ids_used:string[]};
 export type Basis = 'lecture' | 'additional';
 export type StudyQuestion = {question:string;concept?:string;options:string[];correct_index:number;explanations:string[];source_quote:string};
 export type Explanation = {
+ textbook_layouts?:TextbookLayout[];
+ clinical_callouts?:ClinicalCallout[];
  clinical_layers?:ClinicalLayers;
  source_registry?:SourceRegistryItem[];
  coverage?:{source_id:string;explanation:string}[];
