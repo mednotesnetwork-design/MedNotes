@@ -344,3 +344,13 @@
  .concept-master-heading h2{font-size:22px}
  .concept-branch-subtopics{gap:5px}
 }
+
+/* First-principles concept introduction: textbook flow without endless boxes. */
+.concept-overview{margin:17px 0 22px;padding:17px 0 20px;border-block:1px solid var(--mn-border);min-width:0}
+.concept-overview>h3{font-size:19px;font-weight:650;color:var(--mn-sand);margin:0 0 11px;line-height:1.5}
+.concept-overview>p{line-height:1.95;color:var(--mn-text);margin-bottom:10px;overflow-wrap:anywhere}
+.concept-overview-context{font-size:12px;color:var(--mn-muted)!important;border-inline-start:3px solid var(--mn-mint);padding-inline-start:10px}
+.concept-overview .clinical-layers{margin-block:12px;gap:12px}
+.concept-overview .clinical-layer{background:transparent;border-radius:9px}
+.concept-overview .medical-atlas-layouts{margin-block:12px}
+.course-page .concept-provisional-note button{margin-top:7px;min-height:43px;background:transparent;border:1px solid var(--mn-sand);color:var(--mn-sand);border-radius:8px;padding:7px 12px}
