@@ -263,7 +263,7 @@
 /* Actual horizontal deck geometry: previous / active / next are independent slides.
    Only the center panel mounts expensive interactive anatomy / MCQs. */
 .course-slide-viewport{overflow:hidden;touch-action:pan-y;position:relative;isolation:isolate}
-.course-swipe-track{width:300%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;will-change:transform;transition:transform .28s cubic-bezier(.25,.8,.25,1)}
+.course-swipe-track{width:300%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;will-change:transform;transform:translateX(calc(-33.333333% + var(--drag-x,0px)));transition:transform .28s cubic-bezier(.25,.8,.25,1)}
 .course-swipe-track.course-swipe-dragging{transition:none}
 .course-swipe-track>.course-slide-panel,.course-swipe-track>.course-slide-preview{min-width:0;width:100%;box-sizing:border-box;direction:rtl}
 .course-swipe-track>.course-slide-panel{scrollbar-gutter:stable}
