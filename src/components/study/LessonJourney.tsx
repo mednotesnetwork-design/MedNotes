@@ -51,7 +51,7 @@ export function LessonJourney({lesson,slide,answers,onAnswer,prefix,onAsk,busy,v
   <div className="journey-meta">{supplemental?'المحاضرة + إضافات موسومة':'Lecture only · المحاضرة فقط'}</div>
   {lesson.review_note&&<p className="lesson-basis">{lesson.review_note}</p>}
   {showExplain&&hasOpening&&<section className="case-opening"><span className="lesson-basis"><Lightbulb size={15}/>{opening.kind==='case'?'حالة تعليمية افتراضية':'فكّري أولًا'} · {basisText(opening.basis)}</span>{opening.scene&&<p>{opening.scene}</p>}<h3>{opening.prompt}</h3><button aria-expanded={revealed} onClick={()=>setRevealed(v=>!v)}>{revealed?'إخفاء التفسير':'اكشفي التفسير خطوة بخطوة'}</button>{revealed&&<p className="opening-answer">{opening.answer}</p>}</section>}
-  {(!showExplain||!hasOpening||revealed)&&<>
+  {<>
    {showExplain&&lesson.clinical_layers&&<ClinicalTeachingLayers layers={lesson.clinical_layers} registry={lesson.source_registry} sourceImages={sourceImages} view="explain"/>}
   {showVisual&&lesson.clinical_layers&&<ClinicalTeachingLayers layers={lesson.clinical_layers} registry={lesson.source_registry} sourceImages={sourceImages} view="visual"/>}
   {(showExplain||showVisual)&&<MedicalAtlasLayouts layouts={lesson.textbook_layouts} callouts={showExplain?lesson.clinical_callouts:[]} registry={lesson.source_registry} sourceImages={sourceImages} view={showVisual&&!showExplain?'visual':'explain'}/>}
