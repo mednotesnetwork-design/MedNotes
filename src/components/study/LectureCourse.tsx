@@ -448,7 +448,7 @@ export function LectureCourse(){
   await save({...current.current,concepts:undefined,activeConcept:undefined});
   await consolidateConcepts(signal);
  })}>إعادة تحليل المفاهيم دلاليًا</button></div>}
- <section className="concept-overview" aria-label="شرح تمهيدي للمفهوم الرئيسي من الصفر">
+ {studyTab==='explain'&&<section className="concept-overview" aria-label="شرح تمهيدي للمفهوم الرئيسي من الصفر">
   <h3>الفكرة الجوهرية · من الصفر</h3>
   {conceptOverview?<><p className="concept-overview-context">تمهيد طبي مبني على نقاط موثقة من تفرعات هذه الفكرة. المعلومات المتبقية موجودة في التفرعات أدناه.</p>
    {conceptOverview.clinical_layers?
@@ -460,7 +460,7 @@ export function LectureCourse(){
   </>:<><p>سنبدأ بتعريف المفهوم خطوة خطوة، ثم ننتقل إلى التفرعات والآلية والأهمية السريرية.</p>
    {!busy&&<button className="primary" onClick={()=>void work(teachConceptOverview)}>إنشاء شرح المفهوم من الصفر</button>}
   </>}
- </section>
+ </section>}
  <section className="concept-branch-tree" aria-label="التفرعات التعليمية لهذا المفهوم">
   <h3>خريطة المفهوم · اختاري التفرع لشرحه من الصفر</h3>
   <div className="concept-branch-grid">{conceptUnits.map((branch,i)=><article className="concept-branch-node" key={branch.id}>
