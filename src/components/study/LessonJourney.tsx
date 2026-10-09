@@ -3,6 +3,7 @@ import {ChevronLeft,ChevronRight,Lightbulb,Layers3,Box} from 'lucide-react';
 import {entities} from '@atlas/lib/anatomy';
 import type {Explanation,StudyQuestion,Basis} from './types';
 import {ClinicalTeachingLayers,type OriginalSourceImage} from './ClinicalTeachingLayers';
+import {MedicalAtlasLayouts} from './MedicalAtlasLayouts';
 const InlineAnatomy=lazy(()=>import('./InlineAnatomy'));
 const basisText=(basis?:Basis)=>basis==='additional'?'توضيح إضافي خارج المحاضرة':'شرح مستند للمحاضرة';
 
@@ -53,6 +54,8 @@ export function LessonJourney({lesson,slide,answers,onAnswer,prefix,onAsk,busy,v
   {(!showExplain||!hasOpening||revealed)&&<>
    {showExplain&&lesson.clinical_layers&&<ClinicalTeachingLayers layers={lesson.clinical_layers} registry={lesson.source_registry} sourceImages={sourceImages} view="explain"/>}
   {showVisual&&lesson.clinical_layers&&<ClinicalTeachingLayers layers={lesson.clinical_layers} registry={lesson.source_registry} sourceImages={sourceImages} view="visual"/>}
+  {(showExplain||showVisual)&&<MedicalAtlasLayouts layouts={lesson.textbook_layouts} callouts={showExplain?lesson.clinical_callouts:[]} registry={lesson.source_registry} sourceImages={sourceImages} view={showVisual&&!showExplain?'visual':'explain'}/>}
+
   {showExplain&&!lesson.clinical_layers&&<section className="lesson-core"><h3>ما الذي يجب أن أفهمه؟</h3><p className="preserve" dir="auto">{lesson.explanation}</p>{lesson.terms.length>0&&<div className="lesson-terms">{lesson.terms.map((t,i)=><details key={i}><summary>{t.term}</summary><p>{t.meaning}</p><button disabled={busy} onClick={()=>onAsk('اشرح المصطلح: '+t.term)}>بسّطي هذا المصطلح</button></details>)}</div>}</section>}
    {showVisual&&<ConceptVisual lesson={lesson}/>}
   {view==='visual'&&!(lesson.mechanism?.length||lesson.visual?.labels?.length)&&(!lesson.visual||lesson.visual.kind==='none')&&<p className="lesson-basis">لا يتضمن هذا الجزء رسمًا يمكن إنشاؤه من مصدر المحاضرة بدقة.</p>}
