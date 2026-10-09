@@ -312,3 +312,35 @@
 .course-source-item small{display:block;color:var(--mn-mint)}
 .course-source-item p{margin:7px 0;white-space:pre-wrap;line-height:1.8;overflow-wrap:anywhere}
 @media(max-width:850px){.course-page .course-slide-panel{max-height:none;min-height:0;overflow:visible}.course-page .course-slide-viewport{touch-action:pan-y}}
+
+/* ONE concept per slide. Subtopics are a visual textbook branch tree, not more slides. */
+.concept-master-heading{margin-bottom:14px;max-width:100%}
+.concept-master-heading h2{font-size:clamp(21px,3.3vw,30px);line-height:1.35;color:var(--mn-sand)}
+.concept-master-heading p{font-size:14px;line-height:1.9}
+.concept-provisional-note{margin-block:8px 16px;padding:10px 14px;border-inline-start:3px solid var(--mn-sand);background:#e6cfb70f;border-radius:6px;color:var(--mn-sand);font-size:13px}
+.concept-branch-tree{margin-block:18px 22px;position:relative}
+.concept-branch-tree>h3{font-size:15px;color:var(--mn-mint);font-weight:650;padding-block:7px 12px;margin:0}
+.concept-branch-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:13px;position:relative}
+.concept-branch-node{display:flex;flex-direction:column;min-width:0;padding:16px 17px 14px;border-radius:11px;border:1px solid var(--mn-border);background:var(--mn-surface);position:relative;overflow:hidden}
+.concept-branch-node::before{content:"";position:absolute;inset-block:0;inset-inline-start:0;width:3px;background:var(--mn-mint);opacity:.75}
+.concept-branch-node:nth-child(3n+2)::before{background:var(--mn-sand)}
+.concept-branch-node:nth-child(3n+3)::before{background:var(--mn-rose,#d7aeb3)}
+.concept-branch-heading{display:flex;align-items:flex-start;gap:9px;line-height:1.55;font-size:14px;color:var(--mn-sand)}
+.concept-branch-heading span{display:grid;place-items:center;flex:0 0 29px;width:29px;height:29px;border:1px solid var(--mn-border-strong);border-radius:50%;color:var(--mn-mint);font-size:12px}
+.concept-branch-heading strong{min-width:0;overflow-wrap:anywhere}
+.concept-branch-node p{color:var(--mn-muted);font-size:12px;line-height:1.8;margin:8px 0}
+.concept-branch-subtopics{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;padding-top:10px}
+.course-page .concept-branch-subtopics button{min-height:40px;max-width:100%;border-radius:7px;font-size:12px;line-height:1.6;padding:7px 10px;white-space:normal;text-align:start;overflow-wrap:anywhere;background:var(--mn-background)}
+.course-page .concept-branch-subtopics button.concept-subtopic-active{border-color:var(--mn-mint);background:var(--mn-selection);color:var(--mn-mint);font-weight:650}
+.concept-active-branch{margin:20px 0 15px;padding:14px 0;border-top:1px solid var(--mn-border);border-bottom:1px solid var(--mn-border)}
+.concept-active-branch>span{color:var(--mn-mint);font-size:12px}
+.concept-active-branch h3{font-size:18px;color:var(--mn-sand);margin:5px 0}
+.concept-active-branch small{color:var(--mn-muted)}
+.concept-nav-branch{padding:5px 8px 9px;border-bottom:1px solid var(--mn-border);min-width:0}
+.concept-nav-branch strong{display:block;color:var(--mn-sand);font-size:12px;line-height:1.6;overflow-wrap:anywhere}
+@media(max-width:650px){
+ .concept-branch-grid{grid-template-columns:1fr;gap:9px}
+ .concept-branch-node{padding:13px 14px}
+ .concept-master-heading h2{font-size:22px}
+ .concept-branch-subtopics{gap:5px}
+}
