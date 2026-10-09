@@ -26,6 +26,8 @@ jobs:
           cache: npm
       - name: Install Node dependencies
         run: npm ci
+      - name: Render medical atlas pages and validate structural layouts
+        run: node --test tests/medical-atlas-render.test.mjs
       - name: Check TypeScript
         run: npm run typecheck
       - name: Build frontend
