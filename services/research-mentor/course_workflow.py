@@ -111,6 +111,38 @@ def complete_plan_or_repair(plan,points):
            'units':units}
     return validate_plan(fixed,points),changed
 
+def source_only_plan(points,title=''):
+    """Lossless curriculum fallback if the provider returns incomplete JSON.
+
+    Never guess a medical statement from source text. Organize by page, with
+    small focused cards and exact original source IDs. The teaching pass still
+    requires separate evidence-grounded Gemini generation and review.
+    """
+    require(bool(points),'Cannot plan an empty lecture','COURSE_PLAN_FAILED',422)
+    units=[]
+    for point in points:
+        page=point['page']
+        if not units or units[-1]['_page']!=page or len(units[-1]['cards'])>=80:
+            units.append({'_page':page,'title':f'محتوى المحاضرة · الصفحة {page}',
+                          'objective':'شرح النقاط المستخرجة من المحاضرة دون فقد أي معلومة',
+                          'cards':[]})
+        cards=units[-1]['cards']
+        if (cards and (len(cards[-1]['source_ids'])>=4 or
+                       cards[-1]['_chars']+len(point['text'])>4000)):
+            pass
+        else:
+            if cards:
+                cards[-1]['source_ids'].append(point['id'])
+                cards[-1]['_chars']+=len(point['text'])
+                continue
+        cards.append({'title':f'مفاهيم من صفحة {page} · {len(cards)+1}',
+                      'source_ids':[point['id']], '_chars':len(point['text'])})
+    for unit in units:
+        unit.pop('_page',None)
+        for card in unit['cards']:card.pop('_chars',None)
+    return validate_plan({'title':str(title or 'المحاضرة التفاعلية')[:180],
+                          'units':units},points)
+
 def prepare_course(data):
     action=data.get('operation')
     if action=='extract':
@@ -156,7 +188,15 @@ def prepare_course(data):
         def plan(provider):
             payload={'title':str(data.get('title',''))[:180],'points':points}
             for _ in range(2):
-                output=provider.complete(PLAN,payload)
+                try:
+                    output=provider.complete(PLAN,payload)
+                except MentorError as error:
+                    # Only malformed/truncated 200 responses can safely fall
+                    # back to a deterministic source plan. Never camouflage
+                    # authentication, quota exhaustion, or connectivity faults.
+                    if error.code!='PROVIDER_FAILURE':raise
+                    return {'plan':source_only_plan(points,payload['title']),
+                            'recovered_missing_ids':True,'source_only_fallback':True}
                 try:
                     checked,changed=complete_plan_or_repair(output,points)
                     if not changed:return {'plan':checked,'recovered_missing_ids':False}
