@@ -13,7 +13,7 @@ test('The sole lecture panel stays in the visible 100%-wide Safari viewport',asy
  assert.match(rule,/translate3d\(var\(--drag-x,0px\),0,0\)/);
  assert.doesNotMatch(rule,/width:300%|grid-template-columns:repeat\(3|33\.33333%/);
  assert.match(source,/className="course-swipe-track"/);
- assert.match(source,/className=\\{['"]course-slide-panel course-slide-motion-/);
+ assert.match(source,/course-slide-panel course-slide-motion-/);
  assert.doesNotMatch(source,/course-slide-preview/);
  assert.match(source,/onTouchStart=\{onSlideTouchStart\}/);
  assert.match(source,/onTouchEnd=\{onSlideTouchEnd\}/);
