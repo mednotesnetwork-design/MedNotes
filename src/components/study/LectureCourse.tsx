@@ -31,7 +31,7 @@ function Progress({message,cancel}:{message:string;cancel:()=>void}){
 export function LectureCourse(){
  const [course,setCourse]=useState<Course>(empty),[ready,setReady]=useState(false),[busy,setBusy]=useState(''),[error,setError]=useState('');
  const [question,setQuestion]=useState(''),[pasted,setPasted]=useState(''),[sources,setSources]=useState(false);
- const [studyTab,setStudyTab]=useState<StudyTab>('explain'),[slideDirection,setSlideDirection]=useState<'next'|'prev'>('next');
+ const [studyTab,setStudyTab]=useState<StudyTab>('explain'),[slideDirection,setSlideDirection]=useState<'next'|'prev'>('next'),[dragOffset,setDragOffset]=useState(0);
  const gesture=useRef<{x:number;y:number}|null>(null);
  const current=useRef(course),control=useRef<AbortController|null>(null),fileInput=useRef<HTMLInputElement>(null),lastRequest=useRef(0);
  function update(value:Course){current.current=value;setCourse(value);}
@@ -230,12 +230,20 @@ export function LectureCourse(){
   const target=event.target;
   if(event.touches.length!==1||!(target instanceof Element)||
      target.closest('button,a,input,textarea,select,summary,canvas,[contenteditable],.lesson-anatomy,.concept-visual,[data-no-swipe]')){
-   gesture.current=null;return;
+   gesture.current=null;setDragOffset(0);return;
   }
   gesture.current={x:event.touches[0].clientX,y:event.touches[0].clientY};
  }
+ function onSlideTouchMove(event:TouchEvent<HTMLDivElement>){
+  const start=gesture.current;
+  if(!start||event.touches.length!==1)return;
+  const dx=event.touches[0].clientX-start.x,dy=event.touches[0].clientY-start.y;
+  if(Math.abs(dx)<Math.abs(dy)*1.2){setDragOffset(0);return;}
+  const max=Math.min(180,event.currentTarget.clientWidth*.35);
+  setDragOffset(Math.min(max,Math.max(-max,dx)));
+ }
  function onSlideTouchEnd(event:TouchEvent<HTMLDivElement>){
-  const start=gesture.current;gesture.current=null;
+  const start=gesture.current;gesture.current=null;setDragOffset(0);
   if(!start||event.changedTouches.length!==1||control.current)return;
   const dx=event.changedTouches[0].clientX-start.x,dy=event.changedTouches[0].clientY-start.y;
   if(Math.abs(dx)<65||Math.abs(dx)<Math.abs(dy)*1.3)return;
@@ -286,7 +294,11 @@ export function LectureCourse(){
       {([['explain','الشرح'],['visual','Visual'],['quiz','Quiz'],['3d','3D'],['notes','ملاحظاتي']] as const).map(([id,label])=>
        <button key={id} type="button" role="tab" aria-selected={studyTab===id} aria-controls="course-slide-content" onClick={()=>setStudyTab(id)}>{label}</button>)}
      </nav>
-     <div className="course-slide-viewport" onTouchStart={onSlideTouchStart} onTouchEnd={onSlideTouchEnd} onTouchCancel={()=>{gesture.current=null;}} onKeyDown={onSlideKeyDown} tabIndex={0} aria-label="سلايدات أفقية: اسحبي لليسار للتالي، أو استخدمي أسهم لوحة المفاتيح">
+     <div className="course-slide-viewport" onTouchStart={onSlideTouchStart} onTouchMove={onSlideTouchMove} onTouchEnd={onSlideTouchEnd} onTouchCancel={()=>{gesture.current=null;setDragOffset(0);}} onKeyDown={onSlideKeyDown} tabIndex={0} aria-label="سلايدات أفقية: اسحبي لليسار للتالي، أو استخدمي أسهم لوحة المفاتيح">
+     <div className={'course-swipe-track'+(dragOffset?' course-swipe-dragging':'')} style={{transform:`translateX(calc(-33.333333% + ${dragOffset}px))`}} dir="ltr">
+      <article className="course-slide-preview" dir="rtl" aria-label="معاينة السلايد السابق">
+       {cards[course.active-1]?<><span>PREVIOUS SLIDE</span><h3>{cards[course.active-1].title}</h3><p>{course.plan?.units.find(u=>u.cards.some(c=>c.id===cards[course.active-1].id))?.objective}</p><button disabled={!!busy} onClick={()=>void change(course.active-1)}>افتحي السلايد السابق</button></>:<p>بداية المحاضرة</p>}
+      </article>
      <div key={card.id+':'+course.mode} className={'course-slide-panel course-slide-motion-'+slideDirection} id="course-slide-content" role="tabpanel" aria-label={card.title}>
      <div className="course-card-heading"><small>{unit.title} · سلايد شرح {course.active+1} / {cards.length}</small><h2>{card.title}</h2><p>{unit.objective}</p><small>المصدر: {sourcePages.map(n=>'ص '+n).join(' · ')}</small></div>
      {studyTab==='notes'&&<section className="course-slide-notes" data-no-swipe><h3>ملاحظاتي · {card.title}</h3><textarea rows={10} aria-label="ملاحظات هذا السلايد" placeholder="دوّني ما فهمتِه بطريقتك…" value={course.notes?.[card.id]||''} onChange={event=>{const notes={...current.current.notes,[card.id]:event.target.value};void save({...current.current,notes});}}/><small>محفوظة على جهازك ضمن هذه المحاضرة.</small></section>}
@@ -294,6 +306,10 @@ export function LectureCourse(){
      {studyTab==='explain'&&turns.map((turn,i)=><section className="course-followup" key={turn.lesson.id||i}><h3>{turn.question}</h3><LessonJourney lesson={turn.lesson} slide={cardPoints.map(p=>p.text).join('\n')} answers={course.answers} onAnswer={answer} prefix={key+':turn:'+i} busy={!!busy} onAsk={ask}/></section>)}
      {studyTab==='explain'&&lesson&&<><div className="followup-chips"><button disabled={!!busy} onClick={()=>ask('بسّطي الفكرة مع الحفاظ على تفاصيلها')}>بسّطيها</button><button disabled={!!busy} onClick={()=>ask('لماذا؟ اشرحي الآلية من محتوى هذه الفكرة')}>لماذا؟</button><button disabled={!!busy} onClick={()=>ask('اختبريني بسؤال تطبيق جديد من هذه الفكرة')}>اختبريني</button><button disabled={!!busy} onClick={()=>ask('وضحي الفكرة بصريًا')}>وضحي بصريًا</button></div><form className="course-question" onSubmit={e=>{e.preventDefault();ask(question);}}><label htmlFor="course-question">سؤال متابعة عن هذه الفكرة</label><textarea id="course-question" maxLength={1800} value={question} onChange={e=>setQuestion(e.target.value)} rows={2}/><button disabled={!!busy||!question.trim()}>اسألي</button></form></>}
      {studyTab==='explain'&&unit.cards.at(-1)?.id===card.id&&<section className="course-unit-summary"><h2>خلاصة الوحدة</h2>{!unitDone&&<p>ما زالت {unit.cards.length-unitLessons.length} سلايدات شرح تحتاج فتحها لتكتمل مراجعة الوحدة.</p>}<h3>ما يجب فهمه</h3>{unitLessons.flatMap(l=>l.summary||[l.explanation]).map((s,i)=><p key={i}>{s}</p>)}<h3>نقاط للحفظ والمراجعة</h3><ul>{unitLessons.flatMap(l=>l.high_yield).map((s,i)=><li key={i}>{s}</li>)}</ul><h3>المصطلحات الأساسية</h3>{unitLessons.flatMap(l=>l.terms).map((t,i)=><p key={i}><strong>{t.term}</strong> — {t.meaning}</p>)}{unitLessons.filter(l=>l.clinical_connection?.text).map((l,i)=><p key={i}>العلاقة السريرية: {l.clinical_connection!.text} {l.clinical_connection!.basis==='additional'&&'· توضيح إضافي خارج محتوى المحاضرة'}</p>)}<details><summary>تم شرح هذه النقاط من المحاضرة</summary>{unit.cards.flatMap(c=>course.lessons[c.id+':'+course.mode]?.coverage||[]).map(p=><p key={p.source_id}>{points.find(s=>s.id===p.source_id)?.text}</p>)}</details></section>}
+     </div>
+      <article className="course-slide-preview" dir="rtl" aria-label="معاينة السلايد التالي">
+       {cards[course.active+1]?<><span>NEXT SLIDE</span><h3>{cards[course.active+1].title}</h3><p>{course.plan?.units.find(u=>u.cards.some(c=>c.id===cards[course.active+1].id))?.objective}</p><button disabled={!!busy} onClick={()=>void change(course.active+1)}>افتحي السلايد التالي</button></>:<p>نهاية المحاضرة</p>}
+      </article>
      </div></div>
      <div className="course-pagination"><button disabled={!!busy||course.active===0} onClick={()=>void change(course.active-1)}><ChevronRight size={18}/>السابق</button><span>{course.active+1} / {cards.length}</span><button disabled={!!busy||course.active===cards.length-1} onClick={()=>void change(course.active+1)}>الفكرة التالية<ChevronLeft size={18}/></button></div>
      {studyTab==='explain'&&course.active===cards.length-1&&<section className="course-unit-summary"><h2>مراجعة المحاضرة كاملة</h2><p>{covered.size} من {points.length} نقطة مستخرجة لها شرح مراجع.{warnings.length>0?' توجد ملاحظات قراءة تحتاج مراجعة الأصل.':''}</p>{course.plan.units.map(u=><details key={u.id}><summary>{u.title}</summary>{u.cards.map(c=><div key={c.id}><h3>{c.title}</h3>{course.lessons[c.id+':'+course.mode]?.summary?.map((s,i)=><p key={i}>{s}</p>)}{!course.lessons[c.id+':'+course.mode]&&<button disabled={!!busy} onClick={()=>void change(cards.indexOf(c))}>أكملي شرح هذه الفكرة</button>}</div>)}</details>)}</section>}
