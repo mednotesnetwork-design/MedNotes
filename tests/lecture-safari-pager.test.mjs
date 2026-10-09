@@ -17,7 +17,7 @@ test('The sole lecture panel stays in the visible 100%-wide Safari viewport',asy
  assert.doesNotMatch(source,/course-slide-preview/);
  assert.match(source,/onTouchStart=\{onSlideTouchStart\}/);
  assert.match(source,/onTouchEnd=\{onSlideTouchEnd\}/);
- assert.match(source,/aria-label=\{\x60سلايد/);
+ assert.match(source,/aria-label=\{\x60مفهوم/);
 });
 
 test('Unreviewed slides show original source and explicit actionable status, never empty space',async()=>{
