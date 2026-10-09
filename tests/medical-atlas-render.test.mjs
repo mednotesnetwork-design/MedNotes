@@ -1,20 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {mkdtemp,rm} from 'node:fs/promises';
-import {tmpdir} from 'node:os';
-import {join} from 'node:path';
-import {pathToFileURL} from 'node:url';
 import React from 'react';
 import {renderToStaticMarkup} from 'react-dom/server';
-import {build} from 'esbuild';
+import {createServer} from 'vite';
+import react from '@vitejs/plugin-react';
 
 test('Medical atlas renders a sourced comparison table, clinical warning, and mechanism flow',async()=>{
- const temp=await mkdtemp(join(process.cwd(),'.atlas-test-'));
+ const server=await createServer({configFile:false,appType:'custom',plugins:[react()],server:{middlewareMode:true}});
  try{
-  const output=join(temp,'render.mjs');
-  await build({entryPoints:['src/components/study/MedicalAtlasLayouts.tsx'],outfile:output,
-    bundle:true,platform:'node',format:'esm',packages:'external',jsx:'automatic',logLevel:'silent'});
-  const {MedicalAtlasLayouts}=await import(pathToFileURL(output).href);
+  const {MedicalAtlasLayouts}=await server.ssrLoadModule('/src/components/study/MedicalAtlasLayouts.tsx');
   const ids=['p4-t1'];
   const node={label:'Synapse',detail:'ACh binds receptor',source_item_ids_used:ids};
   const layouts=[
@@ -44,5 +38,5 @@ test('Medical atlas renders a sourced comparison table, clinical warning, and me
   const visual=renderToStaticMarkup(React.createElement(MedicalAtlasLayouts,{...props,view:'visual'}));
   assert.match(visual,/NMJ mechanism/);
   assert.doesNotMatch(visual,/Important lecture warning/);
- } finally{await rm(temp,{recursive:true,force:true});}
+ } finally{await server.close();}
 });
