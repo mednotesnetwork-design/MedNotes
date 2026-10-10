@@ -461,8 +461,13 @@ export function LectureCourse(){
    {!busy&&<button className="primary" onClick={()=>void work(teachConceptOverview)}>إنشاء شرح المفهوم من الصفر</button>}
   </>}
  </section>}
- <section className="concept-branch-tree" aria-label="التفرعات التعليمية لهذا المفهوم">
-  <h3>خريطة المفهوم · اختاري التفرع لشرحه من الصفر</h3>
+ <section className="concept-branch-tree concept-editorial-tree" aria-label="التفرعات التعليمية لهذا المفهوم">
+  <header className="concept-editorial-heading">
+   <span>MEDICAL ATLAS / CONCEPT RELATIONSHIPS</span>
+   <h3>خريطة المفهوم · اختاري التفرع لشرحه من الصفر</h3>
+  </header>
+  <div className="concept-tree-hub" dir="auto">{concept.title}</div>
+  <div className="concept-tree-stem" aria-hidden="true"/>
   <div className="concept-branch-grid">{conceptUnits.map((branch,i)=><article className="concept-branch-node" key={branch.id}>
    <div className="concept-branch-heading"><span>{i+1}</span><strong>{branch.title}</strong></div>
    <p>{branch.objective}</p>
