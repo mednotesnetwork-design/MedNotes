@@ -22,7 +22,6 @@ type StudyTab=LearningTab|'notes';
 type Stage='queued'|'extracting'|'structuring'|'generating'|'validating'|'retrying'|'failed'|'ready';
 type Course={id?:string;name:string;pages:SourcePage[];plan?:Plan;concepts?:MainConcept[];semanticClustering?:boolean;activeConcept?:number;conceptOverviews?:Record<string,Explanation>;remote?:LectureJobHandle;remoteProgress?:string;planning?:{next:number;units:Unit[]};planningNotices?:string[];phase?:Stage;active:number;mode:string;lessons:Record<string,Explanation>;turns:Record<string,Turn[]>;answers:Record<string,number>;notes?:Record<string,string>};
 const empty:Course={name:'',pages:[],active:0,mode:'lecture_only',phase:'queued',lessons:{},turns:{},answers:{}};
-const STORE='lecture-course-v2';
 function jpeg(canvas:HTMLCanvasElement){
  let result=canvas.toDataURL('image/jpeg',.87);
  if(result.length>650000)result=canvas.toDataURL('image/jpeg',.68);
@@ -252,32 +251,62 @@ export function LectureCourse(){
  }
  async function openFile(file:File){await work(async signal=>{
   if(file.size>30*1024*1024)throw new Error('الحد الأقصى للملف 30 MB.');
-  setBusy('فتح المحاضرة وقراءة جميع صفحاتها…');const pages:SourcePage[]=[];
-  if(file.type==='application/pdf'||/\.pdf$/i.test(file.name)){
+  const id=crypto.randomUUID(),pages:SourcePage[]=[];
+  // Save the source as a single Blob, separately from the lesson checkpoints.
+  // Previous lectures stay in the library rather than being overwritten.
+  await saveLectureOriginal(id,file);
+  await save({...empty,id,name:file.name,pages:[],phase:'extracting'});
+  setLibraryOpen(false);setSources(false);
+  setBusy('فتح المحاضرة وحفظ نصوص صفحاتها مباشرة…');
+  if(file.type==='application/pdf'||/\\.pdf$/i.test(file.name)){
    const pdf=await pdfjs.getDocument({data:await file.arrayBuffer()}).promise;
-   try{if(pdf.numPages>300)throw new Error('الحد الأقصى 300 صفحة. قسّمي المحاضرة إلى ملفات.');
+   try{
+    if(pdf.numPages>300)throw new Error('الحد الأقصى 300 صفحة. قسّمي المحاضرة إلى ملفات.');
     for(let n=1;n<=pdf.numPages;n++){
-     signal.throwIfAborted();setBusy(`فتح صفحة ${n} من ${pdf.numPages}`);const page=await pdf.getPage(n),content=await page.getTextContent();
-     const text=content.items.map(x=>'str'in x?x.str+(x.hasEOL?'\n':' '):'').join('');
+     signal.throwIfAborted();
+     setBusy(`قراءة النص الفوري · صفحة ${n} من ${pdf.numPages}`);
+     const page=await pdf.getPage(n),content=await page.getTextContent();
+     const text=content.items.map(x=>'str'in x?x.str+(x.hasEOL?'\\n':' '):'').join('');
      if(text.length>40000)throw new Error(`الصفحة ${n} تتجاوز حد النص؛ لم يتم حذف أي جزء منها.`);
-     const raw=page.getViewport({scale:1}),viewport=page.getViewport({scale:Math.min(2,1800/Math.max(raw.width,raw.height))});
-     const canvas=document.createElement('canvas');canvas.width=Math.ceil(viewport.width);canvas.height=Math.ceil(viewport.height);
-     await page.render({canvas,viewport}).promise;pages.push({number:n,text,image:jpeg(canvas)});canvas.width=0;canvas.height=0;page.cleanup();
+     let image:string|undefined;
+     if(text.trim().length<80){
+      // Image-only pages need a bounded vision call later; render those only.
+      const raw=page.getViewport({scale:1}),viewport=page.getViewport({scale:Math.min(2,1500/Math.max(raw.width,raw.height))});
+      const canvas=document.createElement('canvas');
+      canvas.width=Math.ceil(viewport.width);canvas.height=Math.ceil(viewport.height);
+      await page.render({canvas,viewport}).promise;
+      image=jpeg(canvas);canvas.width=0;canvas.height=0;
+     }
+     const quick=text.trim().length>=80;
+     pages.push({number:n,text,image,title:text.split(/\\n/).map(t=>t.trim()).find(t=>t.length>=6)?.slice(0,180),
+      points:quick?extractTextPoints(n,text):undefined,
+      warnings:quick?['طبقة نص PDF مقروءة؛ الرسومات غير المستخرجة نصيًا تنتظر فحصًا بصريًا مستقلًا.']:[]});
+     page.cleanup();
+     if(n%6===0)await save({...current.current,pages:[...pages],phase:'extracting'});
     }
    }finally{await pdf.destroy();}
   }else if(file.type.startsWith('image/')){
-   const bitmap=await createImageBitmap(file);try{const scale=Math.min(1,2000/Math.max(bitmap.width,bitmap.height)),canvas=document.createElement('canvas');canvas.width=Math.round(bitmap.width*scale);canvas.height=Math.round(bitmap.height*scale);canvas.getContext('2d')!.fillStyle='#fff';canvas.getContext('2d')!.fillRect(0,0,canvas.width,canvas.height);canvas.getContext('2d')!.drawImage(bitmap,0,0,canvas.width,canvas.height);pages.push({number:1,text:'',image:jpeg(canvas)});}finally{bitmap.close();}
-  }else if(/\.txt$/i.test(file.name)){pages.push(...textPages(await file.text()));}
-  else throw new Error('اختاري PDF أو صورة أو ملف TXT.');
-  signal.throwIfAborted();await save({...empty,name:file.name,pages,phase:'queued'});setSources(false);
+   const bitmap=await createImageBitmap(file);
+   try{
+    const scale=Math.min(1,2000/Math.max(bitmap.width,bitmap.height)),canvas=document.createElement('canvas');
+    canvas.width=Math.round(bitmap.width*scale);canvas.height=Math.round(bitmap.height*scale);
+    const context=canvas.getContext('2d');if(!context)throw new Error('تعذر فتح الصورة.');
+    context.fillStyle='#fff';context.fillRect(0,0,canvas.width,canvas.height);
+    context.drawImage(bitmap,0,0,canvas.width,canvas.height);
+    pages.push({number:1,text:'',image:jpeg(canvas)});
+   }finally{bitmap.close();}
+  }else if(/\\.txt$/i.test(file.name)){
+   pages.push(...textPages(await file.text()).map(p=>({...p,points:extractTextPoints(p.number,p.text)})));
+  }else throw new Error('اختاري PDF أو صورة أو ملف TXT.');
+  signal.throwIfAborted();
+  await save({...current.current,pages,phase:'extracting'});
+  // Server jobs remain optional until a real database is provisioned. Fast
+  // source ingestion always works offline in the same Safari library.
   try{await submitRemote(pages,signal);}
-  catch(e){
-   // No database provisioned: retain the established local fallback and
-   // show an explicit warning instead of claiming durable processing.
-   const code=(e as Error & {code?:string}).code;
-   if(code!=='DATABASE_NOT_CONFIGURED')throw e;
-   setNotice('التخزين على الخادم غير مفعّل؛ تُحفظ المحاضرة وخطوات معالجتها في هذا المتصفح.');
-   await save({...current.current,phase:'extracting'});
+  catch(error){
+   const code=(error as Error&{code?:string}).code;
+   if(code!=='DATABASE_NOT_CONFIGURED')throw error;
+   setNotice('تم حفظ المحاضرة في Safari فقط. لا توجد بعد قاعدة بيانات خادم للمزامنة بين الأجهزة.');
    await organize(signal);
   }
  });}
