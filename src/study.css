@@ -536,3 +536,28 @@
  background:var(--mn-chrome);padding:16px;margin-top:9px;border-radius:6px}
 .course-page .study-feedback h4{color:var(--mn-mint);font-size:14px;border-bottom:1px solid var(--mn-border);padding-bottom:6px}
 @media(max-width:600px){.course-page .checkpoint{grid-template-columns:1fr}.course-page .checkpoint legend{font-size:14px}}
+
+/* Medical illustration from the reference's first learning page. */
+.course-page .concept-visual{background:#fbfaf6;color:#263c3b;border:1px solid #cadbd3;border-radius:7px;padding:clamp(13px,2.2vw,24px)}
+.course-page .concept-visual>h3{color:#174e48;font-size:18px;font-weight:800;margin:12px 0}
+.course-page .concept-visual>p{color:#5f6c69}
+.course-page .concept-visual .lesson-basis{color:#007f75}
+.course-page .atlas-nmj-figure{margin:15px 0;border:1px solid #dce6e0;border-radius:9px;padding:10px 10px 12px;background:#fbfaf6;overflow:hidden}
+.course-page .atlas-nmj-head{display:flex;justify-content:space-between;gap:9px;flex-wrap:wrap;direction:ltr;
+ border-bottom:1px solid #cde2db;padding:4px 7px 10px;font-size:10px;font-weight:850;letter-spacing:.06em;color:#087f75}
+.course-page .atlas-nmj-head>span:last-child{color:#9f89b1}
+.course-page .atlas-nmj-figure svg{width:100%;height:auto;display:block;max-height:440px}
+.course-page .atlas-nmj-figure figcaption{color:#596b66;font-size:11px;line-height:1.85;border-top:1px solid #dce6e0;margin-top:4px;padding:11px 6px 0}
+.course-page .concept-nodes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:9px;margin:18px 0}
+.course-page .concept-nodes button{min-height:72px;border:1px solid #aed9c9;border-top:3px solid #d9aa31;background:#eef8f2;color:#234844;
+ border-radius:6px;align-items:flex-start;padding:12px;white-space:normal;overflow-wrap:anywhere;text-align:start}
+.course-page .concept-nodes button[aria-pressed=true]{background:#d5f1e6;border-color:#00877c}
+.course-page .concept-nodes button span{color:#886a1d;background:#fff0c2;border-radius:3px}
+.course-page .concept-nodes button b{display:none}
+.course-page .concept-detail{border:0;border-inline-start:4px solid #00877c;background:#e2f3eb;border-radius:4px;padding:13px 16px;color:#244a44}
+.course-page .concept-detail strong{color:#04685f;font-weight:750}
+.course-page .concept-detail p{color:#2c4e49}
+.course-page .concept-controls{margin-top:12px;color:#234844}
+.course-page .concept-controls span{color:#546b63}
+.course-page .concept-controls button{color:#0c766a;background:#fbfaf6;border:1px solid #9dcabd}
+@media(max-width:600px){.course-page .concept-nodes{grid-template-columns:repeat(2,minmax(0,1fr))}.course-page .concept-nodes button{font-size:12px;padding:9px}}
