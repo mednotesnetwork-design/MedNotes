@@ -11,7 +11,14 @@ const basisText=(basis?:Basis)=>basis==='additional'?'توضيح إضافي خا
 function ReverseReview({questions,answers,onAnswer,prefix,onRetest}:{onRetest:(question:string)=>void;questions:StudyQuestion[];answers:Record<string,number>;onAnswer:(key:string,value?:number)=>void;prefix:string}){
  return <section className="lesson-review" aria-label="Reverse Review"><h3>اختبري الفكرة · Reverse Review</h3>{questions.map((q,i)=>{
  const key=prefix+':'+i,chosen=answers[key];
- return <fieldset key={key} className="checkpoint"><legend>{q.question}</legend>{q.options.map((o,j)=><button key={j} disabled={chosen!==undefined} className={chosen===j?'selected':''} onClick={()=>onAnswer(key,j)}>{o}</button>)}{chosen!==undefined&&<div className="study-feedback"><strong>{chosen===q.correct_index?'إجابة صحيحة':'لنراجع الفكرة وراء السؤال'}</strong><h4>المفهوم الذي يختبره السؤال</h4><p>{q.concept||q.explanations[q.correct_index]}</p><h4>لماذا الإجابة الصحيحة؟</h4><p>{q.options[q.correct_index]}: {q.explanations[q.correct_index]}</p><h4>لماذا لا نختار البدائل؟</h4>{q.options.map((o,j)=>j!==q.correct_index&&<p key={j}>{o}: {q.explanations[j]}</p>)}{q.source_quote&&<blockquote dir="auto">{q.source_quote}</blockquote>}<button onClick={()=>onAnswer(key)}>أعيد المحاولة</button>{chosen!==q.correct_index&&<button onClick={()=>onRetest('راجع التباس فهمي في: '+q.question+' إجابتي كانت: '+q.options[chosen]+' ثم اختبرني بسؤال مشابه جديد من نفس المحتوى')}>راجع الفكرة واختبرني بسؤال مشابه</button>}</div>}</fieldset>;
+ return <fieldset key={key} className="checkpoint"><legend>{q.question}</legend>{q.options.map((o,j)=><button key={j} type="button" disabled={chosen!==undefined}
+ className={chosen===undefined?'':j===q.correct_index?'answer-is-correct':chosen===j?'answer-is-incorrect':''}
+ aria-label={`الخيار ${String.fromCharCode(65+j)}: ${o}`} onClick={()=>onAnswer(key,j)}>
+ <span className="answer-option-letter" aria-hidden="true">{String.fromCharCode(65+j)}</span>
+ <span className="answer-option-text" dir="auto">{o}</span>
+ {chosen!==undefined&&j===q.correct_index&&<span className="answer-option-result" aria-label="الإجابة الصحيحة">✓</span>}
+ {chosen!==undefined&&chosen===j&&chosen!==q.correct_index&&<span className="answer-option-result" aria-label="اختيار غير صحيح">×</span>}
+ </button>)}{chosen!==undefined&&<div className="study-feedback"><strong>{chosen===q.correct_index?'إجابة صحيحة':'لنراجع الفكرة وراء السؤال'}</strong><h4>المفهوم الذي يختبره السؤال</h4><p>{q.concept||q.explanations[q.correct_index]}</p><h4>لماذا الإجابة الصحيحة؟</h4><p>{q.options[q.correct_index]}: {q.explanations[q.correct_index]}</p><h4>لماذا لا نختار البدائل؟</h4>{q.options.map((o,j)=>j!==q.correct_index&&<p key={j}>{o}: {q.explanations[j]}</p>)}{q.source_quote&&<blockquote dir="auto">{q.source_quote}</blockquote>}<button onClick={()=>onAnswer(key)}>أعيد المحاولة</button>{chosen!==q.correct_index&&<button onClick={()=>onRetest('راجع التباس فهمي في: '+q.question+' إجابتي كانت: '+q.options[chosen]+' ثم اختبرني بسؤال مشابه جديد من نفس المحتوى')}>راجع الفكرة واختبرني بسؤال مشابه</button>}</div>}</fieldset>;
  })}</section>;
 }
 
