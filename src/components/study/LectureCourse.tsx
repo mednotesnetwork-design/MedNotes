@@ -192,27 +192,10 @@ export function LectureCourse(){
    if(!original)throw new Error('لم يُعثر على الأصل المحفوظ لاستكمال القراءة.');
    await ingestFile(original as File,signal,state.id);return;
   }
-  // Read every available page image before final semantic organization.
-  const unread=state.pages.filter(p=>p.image&&!p.visionChecked);
-  for(let offset=0;offset<unread.length;){
-   signal.throwIfAborted();const batch:SourcePage[]=[];let bytes=0;
-   while(offset<unread.length&&batch.length<4){const p=unread[offset];if(batch.length&&bytes+(p.image?.length||0)>2600000)break;batch.push(p);bytes+=p.image?.length||0;offset++;}
-   setBusy(`تحليل الرسومات والجداول مع سياقها · ${offset} / ${unread.length} صفحات`);
-   const result=await request({operation:'extract',pages:batch.map(p=>({number:p.number,text:p.text,image:p.image}))},signal);
-   signal.throwIfAborted();
-   state={...current.current,pages:current.current.pages.map(p=>{
-    const found=(result.pages as SourcePage[]).find(r=>r.number===p.number);
-    return found?{...p,...found,visionChecked:true,warnings:[...(p.warnings||[]).filter(w=>!w.includes('تنتظر')&&!w.includes('لم تُراجع')), ...(found.warnings||[])]}:p;
-   })};
-   // New visual facts invalidate the map only before a lecture has been taught.
-   if(!Object.keys(state.lessons).length)state={...state,plan:undefined,concepts:undefined};
-   else if(state.plan){
-    const assigned=new Set(state.plan.units.flatMap(u=>u.cards.flatMap(c=>c.source_ids)));
-    const additions=buildFastSourcePlan(state.pages.map(p=>({...p,points:(p.points||[]).filter(x=>!assigned.has(x.id))})),state.name).units;
-    if(additions.length)state={...state,concepts:undefined,plan:{...state.plan,units:[...state.plan.units,...additions.map((u,i)=>({...u,id:'vision-'+state.plan!.units.length+'-'+i,cards:u.cards.map((c,j)=>({...c,id:'vision-'+state.plan!.units.length+'-'+i+'-'+j}))}))]}};
-   }
-   await save(state);
-  }
+  // Never block first teaching on rendering or AI-visually analysing every
+  // diagram. Text extraction and source-backed concepts become available
+  // immediately; high-res diagrams are fetched from the saved original PDF
+  // only when the learner requests visual study.
   if(state.plan){
    if(!state.concepts?.length)await consolidateConcepts(signal);
    // Each major concept gets a first-principles introduction, independently
@@ -302,15 +285,17 @@ export function LectureCourse(){
      const text=content.items.map(x=>'str'in x?x.str+(x.hasEOL?'\n':' '):'').join('');
      if(text.length>40000)throw new Error(`الصفحة ${n} تتجاوز حد النص؛ لم يتم حذف أي جزء منها.`);
      let image:string|undefined;
-     {
-      // All pages carry visual evidence, including text-bearing diagrams and tables.
+     const quick=text.trim().length>=80;
+     if(!quick){
+      // Rasterise ONLY pages without searchable text. For text pages, defer
+      // diagram rendering until Visual is opened. This saves substantial
+      // memory and 43 unnecessary canvas renders on iPhone Safari.
       const raw=page.getViewport({scale:1}),viewport=page.getViewport({scale:Math.min(2,1500/Math.max(raw.width,raw.height))});
       const canvas=document.createElement('canvas');
       canvas.width=Math.ceil(viewport.width);canvas.height=Math.ceil(viewport.height);
-      await page.render({canvas,viewport}).promise;
-      image=jpeg(canvas);canvas.width=0;canvas.height=0;
+      try{await page.render({canvas,viewport}).promise;image=jpeg(canvas);}
+      finally{canvas.width=0;canvas.height=0;}
      }
-     const quick=text.trim().length>=80;
      pages.push({number:n,text,image,title:text.split(/\n/).map(t=>t.trim()).find(t=>t.length>=6)?.slice(0,180),
       points:quick?extractTextPoints(n,text):undefined,
       warnings:quick?['طبقة نص PDF مقروءة؛ الرسومات غير المستخرجة نصيًا تنتظر فحصًا بصريًا مستقلًا.']:[]});
