@@ -26,6 +26,8 @@ jobs:
           cache: npm
       - name: Install Node dependencies
         run: npm ci
+      - name: Verify fast PDF ingestion and interactive neuronal diagrams
+        run: node --test tests/lecture-fast-and-neuro-visual.test.mjs
       - name: Verify main concepts migration and zero-loss legacy cards
         run: node --test tests/lecture-concepts.test.mjs
       - name: Verify iPhone slide visibility and source-backed pending states
