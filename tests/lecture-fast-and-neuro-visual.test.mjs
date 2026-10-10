@@ -43,7 +43,7 @@ test('Interactive neuron and action potential diagrams show verified terms but n
   const html=renderToStaticMarkup(React.createElement(NeuroVisualLab,{lesson,slide:lesson.explanation}));
   assert.match(html,/Action Potential/);
   assert.match(html,/Membrane potential/);
-  assert.match(html,/Sodium/);
+  assert.match(html,/Na⁺/);
   assert.match(html,/Resting potential/);
   assert.match(html,/<svg/);
   assert.doesNotMatch(html,/−70 mV|−55 mV|\+30 mV/);
