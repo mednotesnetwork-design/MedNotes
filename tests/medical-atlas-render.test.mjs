@@ -16,7 +16,10 @@ test('Medical atlas renders a sourced comparison table, clinical warning, and me
     rows:[{cells:['ACh','Signal'],source_item_ids_used:ids}]},
    {kind:'classification_grid',title:'Nerve types',nodes:[node]},
    {kind:'flowchart',title:'NMJ mechanism',nodes:[node]},
-   {kind:'tissue_layers',title:'Layers',nodes:[node]}
+   {kind:'tissue_layers',title:'Layers',nodes:[node]},
+   {kind:'radial_map',title:'Bone remodeling',nodes:[node,node]},
+   {kind:'hierarchy_tree',title:'Bone cells',nodes:[node,node]},
+   {kind:'comparison_map',title:'Bone turnover',nodes:[node,node]}
   ];
   const callouts=[{kind:'warning',text:'Important lecture warning',source_item_ids_used:ids},
     {kind:'clinical',text:'Clinical correlation',source_item_ids_used:ids},
@@ -30,6 +33,12 @@ test('Medical atlas renders a sourced comparison table, clinical warning, and me
   assert.match(html,/atlas-flow-nodes/);
   assert.match(html,/atlas-classification-grid/);
   assert.match(html,/atlas-tissue-nodes/);
+  assert.match(html,/atlas-radial-map/);
+  assert.match(html,/atlas-radial-links/);
+  assert.match(html,/atlas-hierarchy-tree/);
+  assert.match(html,/atlas-contrast-map/);
+  assert.match(html,/MEDICAL NOTES \/ VISUAL LEARNING/);
+  assert.match(html,/FIGURE 1/);
   assert.match(html,/Important lecture warning/);
   assert.match(html,/Clinical correlation/);
   assert.match(html,/Exam landmark/);
@@ -37,6 +46,6 @@ test('Medical atlas renders a sourced comparison table, clinical warning, and me
   assert.doesNotMatch(html,/<script/);
   const visual=renderToStaticMarkup(React.createElement(MedicalAtlasLayouts,{...props,view:'visual'}));
   assert.match(visual,/NMJ mechanism/);
-  assert.doesNotMatch(visual,/Important lecture warning/);
+  assert.match(visual,/Important lecture warning/);
  } finally{await server.close();}
 });
