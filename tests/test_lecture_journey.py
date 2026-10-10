@@ -240,4 +240,31 @@ class TruncatedLessonJSONRecoveryTests(unittest.TestCase):
   self.assertEqual(error.exception.code,'PROVIDER_FAILURE')
   self.assertEqual(provider.complete.call_count,2)
 
+class EditorialAtlasValidationTests(unittest.TestCase):
+ def test_reference_map_kinds_are_accepted_with_valid_source_ids(self):
+  from lecture_workflow import validate_atlas_layouts
+  points=[{'id':'p1-t1','page':1,'text':'Structure'},
+          {'id':'p1-t2','page':1,'text':'Role'}]
+  node=lambda id:{'label':'Evidence','detail':'Source-backed detail',
+                  'source_item_ids_used':[id]}
+  for kind,count in [('radial_map',4),('hierarchy_tree',3),
+                     ('comparison_map',2),('flowchart',3)]:
+   with self.subTest(kind=kind):
+    lesson={'textbook_layouts':[{'kind':kind,'title':'Medical atlas map',
+      'nodes':[node(points[i%2]['id']) for i in range(count)]}]}
+    validate_atlas_layouts(lesson,points)
+ def test_comparison_map_rejects_three_branches(self):
+  from lecture_workflow import validate_atlas_layouts
+  points=[{'id':'p1-t1','page':1,'text':'Something'}]
+  node={'label':'A','detail':'Explanation','source_item_ids_used':['p1-t1']}
+  lesson={'textbook_layouts':[{'kind':'comparison_map','title':'Comparison',
+                                'nodes':[node,node,node]}]}
+  with self.assertRaises(MentorError):validate_atlas_layouts(lesson,points)
+ def test_radial_map_rejects_forged_claim_ids(self):
+  from lecture_workflow import validate_atlas_layouts
+  points=[{'id':'p1-t1','page':1,'text':'Supported'}]
+  node={'label':'Claim','detail':'Explanation','source_item_ids_used':['fake-id']}
+  lesson={'textbook_layouts':[{'kind':'radial_map','title':'Topic','nodes':[node,node]}]}
+  with self.assertRaises(MentorError):validate_atlas_layouts(lesson,points)
+
 if __name__=='__main__':unittest.main()
