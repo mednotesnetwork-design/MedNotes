@@ -1,8 +1,9 @@
 import {useEffect,useRef,useState,type TouchEvent,type KeyboardEvent} from 'react';
 import {pdfjs} from 'react-pdf';
 import {BookOpen,Upload,ChevronLeft,ChevronRight,Sparkles} from 'lucide-react';
-import {studyRequest,saveLectureRecord,loadActiveLecture,listSavedLectures,loadSavedLecture,
+import {studyRequest,saveLectureRecord,loadActiveLecture,listSavedLectures,loadSavedLecture,saveLectureOriginal,loadLectureOriginal,
  type SavedLectureMeta} from '../../lib/study-store';
+import {extractTextPoints,buildFastSourcePlan} from '../../lib/lecture-fast';
 import {appendLecturePage,createLectureJob,getLectureJob,startLectureJob,type LectureJobHandle} from '../../lib/lecture-jobs';
 import {LessonJourney,type LearningTab} from './LessonJourney';
 import {ClinicalTeachingLayers} from './ClinicalTeachingLayers';
@@ -196,74 +197,53 @@ export function LectureCourse(){
    await save({...current.current,phase:'ready'});
    return;
   }
-  if(state.phase!=='extracting') {state={...state,phase:'extracting'};await save(state);}
-  for(let i=0;i<state.pages.length;){
-   signal.throwIfAborted();if(state.pages[i].points){i++;continue;}
-   const batch:SourcePage[]=[];let bytes=0;
-   for(let j=i;j<state.pages.length&&batch.length<3;j++){
-    const p=state.pages[j];if(p.points)break;if(batch.length&&bytes+(p.image?.length||0)>2700000)break;
-    batch.push(p);bytes+=p.image?.length||0;
-   }
-   setBusy(`قراءة النصوص والرسومات والجداول · الصفحات ${batch.map(p=>p.number).join('، ')} من ${state.pages.length}`);
-   const result=await request({operation:'extract',pages:batch.map(p=>({number:p.number,text:p.text,image:p.image}))},signal);signal.throwIfAborted();
-   const extracted=result.pages as SourcePage[];
-   state={...state,phase:'extracting',pages:state.pages.map(p=>({...p,...extracted.find(r=>r.number===p.number)}))};await save(state);i+=batch.length;
+  // FAST PATH: text-bearing PDF pages are ingested deterministically without
+  // a paid inference call per page/chunk. Images without searchable text still
+  // require separate Gemini vision extraction and explicit uncertainty labels.
+  if(state.phase!=='extracting'&&state.phase!=='structuring'){
+   state={...state,phase:'extracting'};await save(state);
   }
-  const points=state.pages.flatMap(p=>p.points||[]);
-  if(!points.length)throw new Error('لم نتمكن من قراءة محتوى هذه المحاضرة. افتحي الأصل وتحققي من وضوح الصفحات.');
-  // Planning the entire PDF in one model request can overflow model output or
-  // hit the serverless deadline. Commit each small planning batch to IndexedDB.
-  let next=state.planning?.next??0;
-  let units=state.planning?.units||[];
-  for(;next<points.length;){
+  let textPages=0;
+  for(let index=0;index<state.pages.length;index++){
    signal.throwIfAborted();
-   const batch:Point[]=[];let characters=0;
-   while(next+batch.length<points.length&&batch.length<12){
-    const item=points[next+batch.length];
-    if(batch.length&&characters+item.text.length>8000)break;
-    batch.push(item);characters+=item.text.length;
+   const page=state.pages[index];
+   if(page.points!==undefined)continue;
+   if(page.text.trim().length>=80){
+    const preserved:SourcePage={...page,points:extractTextPoints(page.number,page.text),
+     warnings:[...(page.warnings||[]),'تم استخراج النص الأصلي مباشرة. تفاصيل الرسومات غير الممثلة في طبقة النص لم تُراجع بصريًا.']};
+    state={...state,pages:state.pages.map((old,k)=>k===index?preserved:old)};
+    textPages++;
+    setBusy(`قراءة النص الأصلي مباشرة · الصفحة ${index+1} من ${state.pages.length}`);
+    if(textPages%6===0)await save(state);
+    continue;
    }
-   setBusy(`تنظيم المفاهيم وربط المصادر · ${next+batch.length} / ${points.length} نقطة`);
-   const result=await request({operation:'plan',title:state.name,points:batch},signal);
-   signal.throwIfAborted();
-   const offset=units.length;
-   const incoming=(result.plan as Plan).units.map((u,ui)=>({
-    ...u,id:`u${offset+ui+1}`,cards:u.cards.map((card,ci)=>({...card,id:`u${offset+ui+1}-c${ci+1}`}))
-   }));
-   units=[...units,...incoming];next+=batch.length;
-   const notices=[...(state.planningNotices||[])];
-   if(result.recovered_missing_ids)notices.push(`عند النقطة ${next}: استُعيدت نقاط لم يصنفها Gemini وستظهر في سلايدات شرح منفصلة.`);
-   if(result.source_only_fallback)notices.push(`عند النقطة ${next}: رد Gemini غير مكتمل؛ حُفظت كل نقاط المصدر في خطة مؤقتة حسب الصفحات.`);
-   state={...state,phase:'structuring',planning:{next,units},planningNotices:notices};await save(state);
-  }
-  // This short second pass reorders units across page batches without
-  // resending the entire original lecture to the provider.
-  if(units.length>1&&units.length<=120){
-   setBusy('إعادة ترتيب جميع الوحدات حسب تسلسل الفهم…');
-   try {
-    const output=await request({operation:'reorder',units:units.map(u=>({id:u.id,title:u.title,objective:u.objective}))},signal);
-    signal.throwIfAborted();
-    const byId=new Map(units.map(u=>[u.id,u]));
-    const order=output.unit_ids as string[];
-    if(order.length!==units.length||new Set(order).size!==units.length||order.some(id=>!byId.has(id)))throw new Error('ترتيب غير مكتمل');
-    units=order.map(id=>byId.get(id)!);
-   }catch(err){
-    signal.throwIfAborted();
-    // Preserve the locally valid per-batch sequence rather than discarding
-    // the extracted lecture when the optional global reorder is unavailable.
-    state={...state,planningNotices:[...(state.planningNotices||[]),'تعذرت إعادة ترتيب الوحدات بين المجموعات؛ بقي ترتيب كل مجموعة تعليميًا ومعلوماتها محفوظة.']};
+   setBusy(`فحص صفحة مصورة بدون نص قابل للنسخ · ${page.number} من ${state.pages.length}`);
+   if(!page.image){
+    state={...state,pages:state.pages.map((old,k)=>k===index?{...old,points:extractTextPoints(old.number,old.text),warnings:
+      [...(old.warnings||[]),'تعذر استخراج الصورة والنص من الصفحة؛ يلزم فحص الأصل.']}:old)};
     await save(state);
+    continue;
    }
+   const extraction=await request({operation:'extract',pages:[{number:page.number,text:page.text,image:page.image}]},signal);
+   signal.throwIfAborted();
+   const result=(extraction.pages as SourcePage[])?.find(p=>p.number===page.number);
+   if(!result)throw new Error('تعذر استلام نتيجة فحص الصفحة '+page.number);
+   state={...state,pages:state.pages.map((old,k)=>k===index?{...old,...result}:old)};
+   await save(state);
   }
-  const assigned=units.flatMap(u=>u.cards.flatMap(c=>c.source_ids));
-  const ids=new Set(points.map(p=>p.id));
-  if(assigned.length!==points.length||new Set(assigned).size!==ids.size||assigned.some(id=>!ids.has(id)))
-   throw new Error('خطة الشرح لا تغطي جميع نقاط المحاضرة؛ لن نحذف أي معلومات.');
-  state={...state,planning:undefined,plan:{title:state.name,units},active:0,phase:'generating'};
+  if(textPages%6)await save(state);
+  const points=state.pages.flatMap(p=>p.points||[]);
+  if(!points.length)throw new Error('لم يظهر محتوى قابل للاستخراج. راجعي الملف الأصلي.');
+  setBusy('بناء خريطة المصادر دون انتظار عشرات طلبات Gemini…');
+  // One source-safe local pass replaces 10–40 per-chunk curriculum requests.
+  // Semantic AI then groups these exact source IDs into few major concepts.
+  const fastPlan=buildFastSourcePlan(state.pages,state.name);
+  state={...state,plan:fastPlan,planning:undefined,active:0,phase:'structuring',
+   planningNotices:[...(state.planningNotices||[]),'تم بناء الهيكل الأساسي سريعًا من النص الموثّق. الرسومات غير المفحوصة تظهر بتنبيه ولا تُعتبر مراجَعة.']};
   await save(state);
   await consolidateConcepts(signal);
   try{await teachConceptOverview(signal);}
-  catch(e){
+  catch(error){
    signal.throwIfAborted();
    await save({...current.current,planningNotices:[...(current.current.planningNotices||[]),
     'لم يكتمل التمهيد الأول تلقائيًا؛ يمكنك إنشاؤه من داخل السلايد.']});
