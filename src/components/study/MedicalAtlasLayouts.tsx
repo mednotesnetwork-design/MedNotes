@@ -1,4 +1,5 @@
-import {AlertTriangle,ArrowLeft,ArrowDown,BookOpenText,ClipboardList,GitBranch,Network,Stethoscope,Table2} from 'lucide-react';
+import type {ReactNode} from 'react';
+import {AlertTriangle,ArrowLeft,BookOpenText,ClipboardList,GitBranch,Network,Stethoscope,Table2} from 'lucide-react';
 import {References,type OriginalSourceImage} from './ClinicalTeachingLayers';
 import type {ClinicalCallout,SourceRegistryItem,TextbookLayout} from './types';
 
@@ -15,14 +16,14 @@ const categoryTitles:Record<TextbookLayout['kind'],string>={
  tissue_layers:'ANATOMICAL LAYERS',
  flowchart:'CAUSE → MECHANISM → EFFECT'
 };
-function EditorialNode({node,index,refs,tone='teal'}:{node:AtlasNode;index?:number;refs:(ids:string[])=>React.ReactNode;tone?:string}){
+function EditorialNode({node,index,refs,tone='teal'}:{node:AtlasNode;index?:number;refs:(ids:string[])=>ReactNode;tone?:string}){
  return <article className={'atlas-editorial-node atlas-tone-'+tone} dir="auto">
   <div className="atlas-editorial-node-title">{index!==undefined&&<span className="atlas-editorial-number">{String(index+1).padStart(2,'0')}</span>}<strong>{node.label}</strong></div>
   <p>{node.detail}</p>{refs(node.source_item_ids_used)}
  </article>;
 }
 /** The connecting curves are decorative geometry, not AI-generated coordinates or claims. */
-function RadialMap({title,nodes,refs}:{title:string;nodes:AtlasNode[];refs:(ids:string[])=>React.ReactNode}){
+function RadialMap({title,nodes,refs}:{title:string;nodes:AtlasNode[];refs:(ids:string[])=>ReactNode}){
  // More than four branches use the accessible hierarchy grid instead of overlapping.
  if(nodes.length>4)return <HierarchyTree title={title} nodes={nodes} refs={refs}/>;
  return <div className="atlas-radial-map" aria-label={'خريطة ذهنية: '+title}>
@@ -35,7 +36,7 @@ function RadialMap({title,nodes,refs}:{title:string;nodes:AtlasNode[];refs:(ids:
   </div>)}
  </div>;
 }
-function HierarchyTree({title,nodes,refs}:{title:string;nodes:AtlasNode[];refs:(ids:string[])=>React.ReactNode}){
+function HierarchyTree({title,nodes,refs}:{title:string;nodes:AtlasNode[];refs:(ids:string[])=>ReactNode}){
  return <div className="atlas-hierarchy-tree atlas-classification-grid" aria-label={'شجرة التفرعات: '+title}>
   <div className="atlas-tree-hub" dir="auto">{title}</div>
   <div className="atlas-tree-stem" aria-hidden="true"/>
@@ -45,7 +46,7 @@ function HierarchyTree({title,nodes,refs}:{title:string;nodes:AtlasNode[];refs:(
    </div>)}</div>
  </div>;
 }
-function ProcessFlow({nodes,refs}:{nodes:AtlasNode[];refs:(ids:string[])=>React.ReactNode}){
+function ProcessFlow({nodes,refs}:{nodes:AtlasNode[];refs:(ids:string[])=>ReactNode}){
  return <div className="atlas-flow-nodes" aria-label="التسلسل السببي">
   {nodes.map((node,i)=><div className="atlas-flow-stage" key={i}>
    <div className="atlas-node-wrap"><EditorialNode node={node} index={i} refs={refs} tone="gold"/></div>
@@ -53,7 +54,7 @@ function ProcessFlow({nodes,refs}:{nodes:AtlasNode[];refs:(ids:string[])=>React.
   </div>)}
  </div>;
 }
-function ContrastMap({title,nodes,refs}:{title:string;nodes:AtlasNode[];refs:(ids:string[])=>React.ReactNode}){
+function ContrastMap({title,nodes,refs}:{title:string;nodes:AtlasNode[];refs:(ids:string[])=>ReactNode}){
  return <div className="atlas-contrast-map" aria-label={'خريطة مقارنة: '+title}>
   <div className="atlas-tree-hub" dir="auto">{title}</div><div className="atlas-tree-stem" aria-hidden="true"/>
   <div className="atlas-contrast-sides">{nodes.map((node,i)=><div key={i} className="atlas-contrast-side">
@@ -62,7 +63,7 @@ function ContrastMap({title,nodes,refs}:{title:string;nodes:AtlasNode[];refs:(id
   </div>)}</div>
  </div>;
 }
-function TissueLayers({nodes,refs}:{nodes:AtlasNode[];refs:(ids:string[])=>React.ReactNode}){
+function TissueLayers({nodes,refs}:{nodes:AtlasNode[];refs:(ids:string[])=>ReactNode}){
  return <div className="atlas-tissue-nodes" aria-label="الطبقات من الأعلى إلى الأسفل">
   {nodes.map((node,i)=><div className="atlas-node-wrap" key={i}>
    <span className="atlas-tissue-index">{String(i+1).padStart(2,'0')}</span>
