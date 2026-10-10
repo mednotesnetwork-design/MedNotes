@@ -349,14 +349,41 @@ export function LectureCourse(){
   const overview:Explanation={...response.lesson,id:crypto.randomUUID(),source_mode:state.mode};
   await save({...current.current,conceptOverviews:{...current.current.conceptOverviews,[key]:overview}});
  }
+ async function sourceImageForPage(number:number,signal:AbortSignal):Promise<string|undefined>{
+  const cached=current.current.pages.find(p=>p.number===number)?.image;
+  if(cached)return cached;
+  const id=current.current.id;
+  if(!id)return undefined;
+  const original=await loadLectureOriginal(id);
+  if(!original)return undefined;
+  if(!((original as File).type==='application/pdf'))return undefined;
+  const document=await pdfjs.getDocument({data:await original.arrayBuffer()}).promise;
+  try{
+   signal.throwIfAborted();
+   const page=await document.getPage(number);
+   const native=page.getViewport({scale:1});
+   const viewport=page.getViewport({scale:Math.min(2.25,1600/Math.max(native.width,native.height))});
+   const canvas=document.createElement('canvas');
+   canvas.width=Math.ceil(viewport.width);canvas.height=Math.ceil(viewport.height);
+   try{
+    await page.render({canvas,viewport}).promise;
+    signal.throwIfAborted();
+    const image=jpeg(canvas);
+    await save({...current.current,pages:current.current.pages.map(p=>p.number===number?{...p,image}:p)});
+    return image;
+   }finally{canvas.width=0;canvas.height=0;page.cleanup();}
+  }finally{await document.destroy();}
+ }
  async function rebuildEditorialVisual(signal:AbortSignal){
   const state=current.current,card=state.plan?.units.flatMap(u=>u.cards)[state.active];
   if(!card)return;
   const key=card.id+':'+state.mode;
   const points=state.pages.flatMap(p=>p.points||[]).filter(p=>card.source_ids.includes(p.id));
   if(!points.length)throw new Error('لا توجد نقاط مصدر موثّقة لهذه الفكرة.');
-  setBusy('إعادة بناء الشرح البصري بأسلوب المرجع الطبي ومراجعة كل عنصر…');
+  setBusy('قراءة الرسم الأصلي عالي الدقة ثم إنشاء شرح بصري مستند إلى المصدر…');
+  const image=await sourceImageForPage(points[0].page,signal);
   const response=await request({operation:'teach',
+   image,
    title:state.name+' · '+(state.concepts?.[state.activeConcept||0]?.title||card.title),
    points,source_mode:state.mode,requested_tool:'visual',
    question:'قدمي مخططًا طبيًا تعليميًا مستندًا للمحاضرة بأسلوب textbook editorial: خريطة شعاعية للعلاقات المستقلة، شجرة تصنيف للتفرعات، أسهم مرقمة للآلية السببية المصرح بها، مقارنة منظمة أو طبقات عند ملاءمتها. استخدمي فقط العناصر التي تذكرها المحاضرة ولا تبتكري حقائق أو تشخيصات.'},signal);
