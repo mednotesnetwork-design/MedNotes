@@ -334,6 +334,7 @@ def prepare_course(data):
         mode=data.get('source_mode','lecture_only')
         title=str(data.get('title',''))[:300]
         return prepare_lecture({'slide':source,'title':title,'source_mode':mode,'source_points':points,
+              'image':data.get('image'),
              'question':question or 'اشرح هذه الفكرة من جميع النقاط المرفقة. لا تختصر بحذف تفاصيل، وأضف سؤال فهم من المصدر.',
              'requested_tool':data.get('requested_tool','explain'),'conversation':data.get('conversation',[])})
     raise MentorError('INVALID_REQUEST','Unknown lecture operation',400)
