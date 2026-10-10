@@ -28,7 +28,9 @@ function RadialMap({title,nodes,refs}:{title:string;nodes:AtlasNode[];refs:(ids:
  if(nodes.length>4)return <HierarchyTree title={title} nodes={nodes} refs={refs}/>;
  return <div className="atlas-radial-map" aria-label={'خريطة ذهنية: '+title}>
   <svg className="atlas-radial-links" viewBox="0 0 1000 430" preserveAspectRatio="none" aria-hidden="true">
-   <path d="M500 210 C370 210 380 100 215 100 M500 210 C630 210 620 100 785 100 M500 210 C370 210 380 330 215 330 M500 210 C630 210 620 330 785 330" fill="none" stroke="#9ba9a2" strokeWidth="2"/>
+   {["M500 210 C370 210 380 100 215 100","M500 210 C630 210 620 100 785 100",
+    "M500 210 C370 210 380 330 215 330","M500 210 C630 210 620 330 785 330"]
+    .slice(0,nodes.length).map((path,i)=><path key={i} d={path} fill="none" stroke="#9ba9a2" strokeWidth="2"/>)}
   </svg>
   <div className="atlas-radial-hub" dir="auto"><strong>{title}</strong></div>
   {nodes.map((node,i)=><div key={i} className={'atlas-radial-branch atlas-radial-branch-'+i}>
@@ -72,9 +74,9 @@ function TissueLayers({nodes,refs}:{nodes:AtlasNode[];refs:(ids:string[])=>React
  </div>;
 }
 /** Only validated medical JSON becomes DOM text; no HTML, external URLs or executable SVG from Gemini. */
-export function MedicalAtlasLayouts({layouts=[],callouts=[],registry=[],sourceImages=[],view}:Props){
+export function MedicalAtlasLayouts({layouts=[],callouts=[],registry=[],sourceImages=[]}:Props){
  const refs=(ids:string[])=><References ids={ids} registry={registry} sourceImages={sourceImages}/>;
- if(!layouts.length&&(!callouts.length||view==='visual'))return null;
+ if(!layouts.length&&!callouts.length)return null;
  return <div className="medical-atlas-layouts atlas-editorial" aria-label="الأطلس الطبي المصور">
   <div className="atlas-editorial-topline"><span>MEDICAL NOTES / VISUAL LEARNING</span><span>EDITORIAL ATLAS</span></div>
   {layouts.map((layout,i)=><section key={i} className={'atlas-structured atlas-'+layout.kind} aria-label={layout.title}>
@@ -97,7 +99,7 @@ export function MedicalAtlasLayouts({layouts=[],callouts=[],registry=[],sourceIm
    }
    <p className="atlas-figure-caption"><BookOpenText size={13}/> FIGURE {i+1} · Schematic learning figure. Source references appear with each element.</p>
   </section>)}
-  {view==='explain'&&callouts.length>0&&<div className="atlas-editorial-callouts">{callouts.map((item,i)=>{
+  {callouts.length>0&&<div className="atlas-editorial-callouts">{callouts.map((item,i)=>{
    const Icon=icons[item.kind];
    return <aside key={i} className={'atlas-callout atlas-callout-'+item.kind}>
     <h3><Icon size={16} aria-hidden="true"/>{kindNames[item.kind]}</h3><p dir="auto">{item.text}</p>
