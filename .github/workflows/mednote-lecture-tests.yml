@@ -30,6 +30,8 @@ jobs:
         run: node --test tests/lecture-concepts.test.mjs
       - name: Verify iPhone slide visibility and source-backed pending states
         run: node --test tests/lecture-safari-pager.test.mjs
+      - name: Verify clinical textbook NMJ figure with source-conditioned labels
+        run: node --test tests/nmj-editorial-render.test.mjs
       - name: Render medical atlas pages and validate structural layouts
         run: node --test tests/medical-atlas-render.test.mjs
       - name: Check TypeScript
