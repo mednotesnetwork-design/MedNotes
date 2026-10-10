@@ -25,11 +25,26 @@ class CourseTests(unittest.TestCase):
   self.assertEqual(''.join(p['text'] for p in result['points'] if p['origin']=='text'),text)
   self.assertEqual(result['warnings'],['Small caption unreadable'])
   self.assertEqual(result['points'][-1]['text'],'A = 10; B = 20')
- def test_incomplete_page_batch_rejected(self):
+ def test_incomplete_visual_batch_preserves_verbatim_source_and_warns(self):
   class Provider:
    opener=None
    def complete(self,*args):return {'pages':[]}
-  with self.assertRaises(MentorError):prepare_course({'operation':'extract','pages':[{'number':1,'text':'hi'}]})(Provider())
+  result=prepare_course({'operation':'extract','pages':[{'number':1,'text':'Neurons and axons'}]})(Provider())['pages'][0]
+  self.assertEqual(''.join(p['text'] for p in result['points']),'Neurons and axons')
+  self.assertTrue(result['warnings'])
+  self.assertIn('لم يرجع',result['warnings'][0])
+ def test_one_invalid_diagram_does_not_abort_good_diagram_or_text(self):
+  class Provider:
+   opener=None
+   def complete(self,*args):return {'pages':[{'number':2,'title':'Membrane voltage',
+    'visual_points':[{'kind':'diagram','text':'Sodium influx','bbox':[1,.1,.5,.5]},
+     {'kind':'mechanism','text':'Potassium efflux','bbox':[.2,.3,.4,.2]}],
+    'warnings':[]}]}
+  result=prepare_course({'operation':'extract','pages':[{'number':2,'text':'Resting membrane potential'}]})(Provider())['pages'][0]
+  self.assertEqual([p['text'] for p in result['points'] if p['origin']=='image'],['Sodium influx','Potassium efflux'])
+  self.assertIsNone(result['points'][-2]['bbox'])
+  self.assertEqual(result['points'][-1]['bbox'],[.2,.3,.4,.2])
+  self.assertTrue(result['warnings'])
 class ProvenanceAndRecoveryTests(unittest.TestCase):
  def test_text_point_metadata(self):
   point=text_points(7,'Femoralis')[0]
