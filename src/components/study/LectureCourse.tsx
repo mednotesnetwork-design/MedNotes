@@ -1,7 +1,8 @@
 import {useEffect,useRef,useState,type TouchEvent,type KeyboardEvent} from 'react';
 import {pdfjs} from 'react-pdf';
 import {BookOpen,Upload,ChevronLeft,ChevronRight,Sparkles} from 'lucide-react';
-import {readStudy,writeStudy,studyRequest} from '../../lib/study-store';
+import {studyRequest,saveLectureRecord,loadActiveLecture,listSavedLectures,loadSavedLecture,
+ type SavedLectureMeta} from '../../lib/study-store';
 import {appendLecturePage,createLectureJob,getLectureJob,startLectureJob,type LectureJobHandle} from '../../lib/lecture-jobs';
 import {LessonJourney,type LearningTab} from './LessonJourney';
 import {ClinicalTeachingLayers} from './ClinicalTeachingLayers';
@@ -18,7 +19,7 @@ type Plan={title:string;units:Unit[]};
 type Turn={question:string;lesson:Explanation};
 type StudyTab=LearningTab|'notes';
 type Stage='queued'|'extracting'|'structuring'|'generating'|'validating'|'retrying'|'failed'|'ready';
-type Course={name:string;pages:SourcePage[];plan?:Plan;concepts?:MainConcept[];semanticClustering?:boolean;activeConcept?:number;conceptOverviews?:Record<string,Explanation>;remote?:LectureJobHandle;remoteProgress?:string;planning?:{next:number;units:Unit[]};planningNotices?:string[];phase?:Stage;active:number;mode:string;lessons:Record<string,Explanation>;turns:Record<string,Turn[]>;answers:Record<string,number>;notes?:Record<string,string>};
+type Course={id?:string;name:string;pages:SourcePage[];plan?:Plan;concepts?:MainConcept[];semanticClustering?:boolean;activeConcept?:number;conceptOverviews?:Record<string,Explanation>;remote?:LectureJobHandle;remoteProgress?:string;planning?:{next:number;units:Unit[]};planningNotices?:string[];phase?:Stage;active:number;mode:string;lessons:Record<string,Explanation>;turns:Record<string,Turn[]>;answers:Record<string,number>;notes?:Record<string,string>};
 const empty:Course={name:'',pages:[],active:0,mode:'lecture_only',phase:'queued',lessons:{},turns:{},answers:{}};
 const STORE='lecture-course-v2';
 function jpeg(canvas:HTMLCanvasElement){
@@ -35,12 +36,32 @@ function Progress({message,cancel}:{message:string;cancel:()=>void}){
 export function LectureCourse(){
  const [course,setCourse]=useState<Course>(empty),[ready,setReady]=useState(false),[busy,setBusy]=useState(''),[error,setError]=useState(''),[notice,setNotice]=useState('');
  const [question,setQuestion]=useState(''),[pasted,setPasted]=useState(''),[sources,setSources]=useState(false);
+ const [library,setLibrary]=useState<SavedLectureMeta[]>([]),[libraryOpen,setLibraryOpen]=useState(false);
  const [studyTab,setStudyTab]=useState<StudyTab>('explain'),[slideDirection,setSlideDirection]=useState<'next'|'prev'>('next');
  const gesture=useRef<{x:number;y:number}|null>(null),trackRef=useRef<HTMLDivElement>(null);
  const current=useRef(course),control=useRef<AbortController|null>(null),fileInput=useRef<HTMLInputElement>(null),lastRequest=useRef(0);
  function update(value:Course){current.current=value;setCourse(value);}
- async function save(value:Course){await writeStudy(STORE,value);update(value);}
- useEffect(()=>{let live=true;void readStudy<Course>(STORE).then(c=>{if(live){if(c){current.current=c;setCourse(c);}setReady(true);}}).catch(()=>{if(live){setError('تعذر فتح المحاضرة المحفوظة محليًا.');setReady(true);}});return()=>{live=false;control.current?.abort();};},[]);
+ async function save(value:Course){
+  const saved=await saveLectureRecord(value);
+  update(saved);
+ }
+ useEffect(()=>{
+  let live=true;
+  void Promise.all([loadActiveLecture<Course>(),listSavedLectures()]).then(([saved,entries])=>{
+   if(!live)return;
+   if(saved){current.current=saved;setCourse(saved);}
+   setLibrary(entries);setReady(true);
+  }).catch(()=>{if(live){setError('تعذر فتح مكتبة المحاضرات في هذا المتصفح. تحققي من مساحة التخزين وخصوصية Safari.');setReady(true);}});
+  return()=>{live=false;control.current?.abort();};
+ },[]);
+ async function switchLecture(id:string){
+  if(control.current){setError('أوقفي المعالجة الحالية قبل الانتقال لمحاضرة أخرى.');return;}
+  try{
+   const saved=await loadSavedLecture<Course>(id);
+   if(!saved)throw new Error('لم نعثر على نسخة المحاضرة داخل هذا المتصفح.');
+   update(saved);setLibraryOpen(false);setError('');setStudyTab('explain');setNotice('المحاضرة محفوظة محليًا في Safari. المزامنة عبر الأجهزة تحتاج قاعدة بيانات على الخادم.');
+  }catch(e){setError(e instanceof Error?e.message:'تعذر فتح المحاضرة');}
+ }
  useEffect(()=>{
   if(!ready||!course.pages.length||control.current|| (course.remote&&!course.plan))return;
   if(!course.plan||!course.concepts?.length){
@@ -426,7 +447,19 @@ export function LectureCourse(){
  const conceptDone=concept&&conceptLessons.length===conceptCardsCurrent.length;
  if(!ready)return <div className="study-page" role="status">فتح مساحة المحاضرة…</div>;
  return <div className="study-page course-page" dir="rtl">
-  <header className="study-title"><div><span className="study-badge">INTERACTIVE LECTURE EXPLAINER</span><h1>{course.plan?.title||'من المحاضرة إلى الفهم'}</h1><p>{course.name||'محاضرتك تُقرأ كاملة، ثم تتحول إلى وحدات وسلايدات شرح مترابطة.'}</p></div><button disabled={!!busy} onClick={()=>fileInput.current?.click()}><Upload size={17}/>محاضرة جديدة</button></header>
+  <header className="study-title"><div><span className="study-badge">INTERACTIVE LECTURE EXPLAINER</span><h1>{course.plan?.title||'من المحاضرة إلى الفهم'}</h1><p>{course.name||'اقرئي المحاضرة أولًا، ثم استكشفي مفاهيمها.'}</p></div>
+  <div className="lecture-library-actions">
+   <button type="button" disabled={!!busy} onClick={async()=>{setLibrary(await listSavedLectures());setLibraryOpen(v=>!v);}}>محاضراتي المحفوظة</button>
+   <button type="button" disabled={!!busy} onClick={()=>fileInput.current?.click()}><Upload size={17}/>محاضرة جديدة</button>
+  </div></header>
+  {libraryOpen&&<section className="lecture-saved-library" aria-label="المحاضرات المحفوظة">
+   <h2>محاضراتي · الحفظ المحلي</h2>
+   <p>تُحفظ كل محاضرة مستقلة في Safari على هذا الجهاز. الحفظ السحابي غير متاح إلى أن تُربط قاعدة بيانات خادم.</p>
+   {library.length?library.map(item=><button type="button" key={item.id} disabled={!!busy}
+    aria-current={item.id===course.id?'page':undefined} onClick={()=>void switchLecture(item.id)}>
+    <strong dir="auto">{item.name}</strong><small>{item.pages} صفحة · {item.ready?'جاهزة':'تحت المعالجة'}</small></button>):
+    <p>لم تُحفظ محاضرات في هذا المتصفح بعد.</p>}
+  </section>
   <input ref={fileInput} hidden type="file" accept="application/pdf,image/*,.txt" onChange={e=>{const f=e.target.files?.[0];if(f)void openFile(f);e.target.value='';}}/>
   {busy&&<><p className="course-state" role="status">{({queued:'بانتظار المعالجة',extracting:'استخراج',structuring:'تنظيم',generating:'إنشاء ومراجعة',validating:'تدقيق',retrying:'إعادة المحاولة تلقائيًا',failed:'فشلت المعالجة',ready:'جاهزة'} as Record<Stage,string>)[course.phase||'queued']} · المحاضرة محفوظة ويمكن استكمالها بعد إعادة التحميل</p><Progress message={busy} cancel={()=>control.current?.abort()}/></>}
   {course.remote&&course.phase!=='ready'&&<div className="course-state" role="status">المعالجة الخلفية على الخادم · {({queued:'بانتظار التنفيذ',extracting:'استخراج المحتوى',structuring:'بناء الوحدات',generating:'إنشاء الشرح المراجع',validating:'التحقق',retrying:'إعادة محاولة تلقائية',failed:'توقفت المهمة',ready:'اكتملت'} as Record<Stage,string>)[course.phase||'queued']} · {course.remoteProgress||'تم حفظ المهمة'} · يمكنكِ مغادرة الصفحة والعودة لاحقًا</div>}
