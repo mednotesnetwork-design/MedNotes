@@ -41,6 +41,18 @@ export function LessonJourney({lesson,slide,answers,onAnswer,prefix,onAsk,busy,v
  const showExplain=view==='all'||view==='explain';
  const showVisual=view==='all'||view==='visual';
  const showQuiz=view==='all'||view==='quiz';
+ const supportedVisuals=lesson.textbook_layouts?.length?lesson.textbook_layouts:
+  lesson.clinical_layers?.mechanism.steps.length&&lesson.clinical_layers.mechanism.steps.length>=2?
+   [{kind:'flowchart' as const,title:lesson.visual?.title||'التسلسل العلمي خطوة بخطوة',
+     nodes:lesson.clinical_layers.mechanism.steps.map((step,i)=>({
+      label:`الخطوة ${i+1}`,detail:step.text,source_item_ids_used:step.source_item_ids_used
+     }))}]:
+  lesson.clinical_layers?.visual_cues.length&&lesson.clinical_layers.visual_cues.length>=2?
+   [{kind:lesson.clinical_layers.visual_cues.length<=4?'radial_map' as const:'classification_grid' as const,
+    title:lesson.visual?.title||'العلاقات والمكونات المرئية',
+    nodes:lesson.clinical_layers.visual_cues.map(cue=>({
+     label:cue.label,detail:cue.detail,source_item_ids_used:cue.source_item_ids_used
+    }))}]:[];
  const showAnatomy=view==='all'||view==='3d';
  const opening=lesson.opening,hasOpening=opening&&opening.kind!=='none'&&opening.prompt;
  const supplemental=lesson.source_mode==='supplemental';
@@ -53,8 +65,8 @@ export function LessonJourney({lesson,slide,answers,onAnswer,prefix,onAsk,busy,v
   {showExplain&&hasOpening&&<section className="case-opening"><span className="lesson-basis"><Lightbulb size={15}/>{opening.kind==='case'?'حالة تعليمية افتراضية':'فكّري أولًا'} · {basisText(opening.basis)}</span>{opening.scene&&<p>{opening.scene}</p>}<h3>{opening.prompt}</h3><button aria-expanded={revealed} onClick={()=>setRevealed(v=>!v)}>{revealed?'إخفاء التفسير':'اكشفي التفسير خطوة بخطوة'}</button>{revealed&&<p className="opening-answer">{opening.answer}</p>}</section>}
   {<>
    {showExplain&&lesson.clinical_layers&&<ClinicalTeachingLayers layers={lesson.clinical_layers} registry={lesson.source_registry} sourceImages={sourceImages} view="explain"/>}
-  {showVisual&&lesson.clinical_layers&&<ClinicalTeachingLayers layers={lesson.clinical_layers} registry={lesson.source_registry} sourceImages={sourceImages} view="visual"/>}
-  {(showExplain||showVisual)&&<MedicalAtlasLayouts layouts={lesson.textbook_layouts} callouts={showExplain?lesson.clinical_callouts:[]} registry={lesson.source_registry} sourceImages={sourceImages} view={showVisual&&!showExplain?'visual':'explain'}/>}
+  {(showExplain||showVisual)&&<MedicalAtlasLayouts layouts={supportedVisuals} callouts={showExplain?lesson.clinical_callouts:[]} registry={lesson.source_registry} sourceImages={sourceImages} view={showVisual&&!showExplain?'visual':'explain'}/>}
+  {showVisual&&!supportedVisuals.length&&lesson.clinical_layers&&<ClinicalTeachingLayers layers={lesson.clinical_layers} registry={lesson.source_registry} sourceImages={sourceImages} view="visual"/>}
 
   {showExplain&&!lesson.clinical_layers&&<section className="lesson-core"><h3>ما الذي يجب أن أفهمه؟</h3><p className="preserve" dir="auto">{lesson.explanation}</p>{lesson.terms.length>0&&<div className="lesson-terms">{lesson.terms.map((t,i)=><details key={i}><summary>{t.term}</summary><p>{t.meaning}</p><button disabled={busy} onClick={()=>onAsk('اشرح المصطلح: '+t.term)}>بسّطي هذا المصطلح</button></details>)}</div>}</section>}
    {showVisual&&<ConceptVisual lesson={lesson}/>}
