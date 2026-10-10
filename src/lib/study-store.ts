@@ -44,6 +44,14 @@ export async function loadActiveLecture<T extends {id?:string;name:string;pages:
  }
  return undefined;
 }
+export async function saveLectureOriginal(id:string,file:File):Promise<void>{
+ if(!/^[a-zA-Z0-9-]{8,80}$/.test(id))throw new Error('Invalid lecture ID');
+ await writeStudy('lecture-original:'+id,file);
+}
+export async function loadLectureOriginal(id:string):Promise<Blob|undefined>{
+ if(!/^[a-zA-Z0-9-]{8,80}$/.test(id))return undefined;
+ return readStudy<Blob>('lecture-original:'+id);
+}
 export async function loadSavedLecture<T>(id:string):Promise<T|undefined>{
  if(!/^[a-zA-Z0-9-]{8,80}$/.test(id))return undefined;
  const saved=await readStudy<T>(lectureKey(id));
