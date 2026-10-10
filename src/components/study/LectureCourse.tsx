@@ -357,10 +357,10 @@ export function LectureCourse(){
   const original=await loadLectureOriginal(id);
   if(!original)return undefined;
   if(!((original as File).type==='application/pdf'))return undefined;
-  const document=await pdfjs.getDocument({data:await original.arrayBuffer()}).promise;
+  const pdfDocument=await pdfjs.getDocument({data:await original.arrayBuffer()}).promise;
   try{
    signal.throwIfAborted();
-   const page=await document.getPage(number);
+   const page=await pdfDocument.getPage(number);
    const native=page.getViewport({scale:1});
    const viewport=page.getViewport({scale:Math.min(2.25,1600/Math.max(native.width,native.height))});
    const canvas=document.createElement('canvas');
@@ -372,7 +372,7 @@ export function LectureCourse(){
     await save({...current.current,pages:current.current.pages.map(p=>p.number===number?{...p,image}:p)});
     return image;
    }finally{canvas.width=0;canvas.height=0;page.cleanup();}
-  }finally{await document.destroy();}
+  }finally{await pdfDocument.destroy();}
  }
  async function rebuildEditorialVisual(signal:AbortSignal){
   const state=current.current,card=state.plan?.units.flatMap(u=>u.cards)[state.active];
