@@ -479,3 +479,60 @@
  .atlas-editorial .atlas-medical-table{min-width:370px}
 }
 @media(prefers-reduced-motion:reduce){.atlas-editorial *{scroll-behavior:auto}}
+
+/* Main concept map follows the same editorial hierarchy semantics as the
+   supplied V3 medical textbook reference. Nodes remain interactive. */
+.course-page .concept-editorial-tree{
+ --map-paper:#fbfaf6;--map-ink:#293e3d;--map-muted:#556b65;
+ background:var(--map-paper);color:var(--map-ink);
+ padding:clamp(14px,2.6vw,28px);border-radius:7px;border:1px solid #ccdcd5;
+ margin-block:19px 24px;overflow:hidden;
+}
+.course-page .concept-editorial-heading{border-top:3px solid #23b3a3;border-bottom:1px solid #d8e4de;padding:9px 0 12px;margin-bottom:18px}
+.course-page .concept-editorial-heading>span{font-size:10px;font-weight:800;letter-spacing:.08em;color:#00867d;direction:ltr;display:block;text-align:start}
+.course-page .concept-editorial-heading h3{font-size:17px;color:#174b47;font-weight:750;margin:7px 0 0;line-height:1.55}
+.course-page .concept-tree-hub{border:2px solid #3fcab7;max-width:min(440px,82%);width:max-content;min-width:180px;
+ color:#fff;background:#00877c;padding:15px 26px;border-radius:28px;line-height:1.7;
+ text-align:center;font-size:14px;font-weight:750;margin-inline:auto;overflow-wrap:anywhere}
+.course-page .concept-tree-stem{height:30px;width:2px;background:#b0c3b9;margin-inline:auto;position:relative}
+.course-page .concept-editorial-tree .concept-branch-grid{padding-top:17px;position:relative;
+ grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:16px}
+.course-page .concept-editorial-tree .concept-branch-grid::before{content:"";position:absolute;top:0;inset-inline:10%;border-top:2px solid #b0c3b9}
+.course-page .concept-editorial-tree .concept-branch-node{overflow:visible;position:relative;
+ background:#dbf1eb;border:1px solid #54bfb0;border-radius:9px;padding:15px;min-width:0}
+.course-page .concept-editorial-tree .concept-branch-node::before{content:"";width:2px;height:17px;background:#b0c3b9;
+ position:absolute;inset-inline-start:50%;top:-17px;inset-block:unset;opacity:1}
+.course-page .concept-editorial-tree .concept-branch-node:nth-child(3n+2){background:#fff0ce;border-color:#dcb24d}
+.course-page .concept-editorial-tree .concept-branch-node:nth-child(3n+3){background:#f7e2e7;border-color:#e2a0ae}
+.course-page .concept-editorial-tree .concept-branch-heading{color:#214e49;font-size:13px}
+.course-page .concept-editorial-tree .concept-branch-heading strong{font-weight:750}
+.course-page .concept-editorial-tree .concept-branch-heading span{border-color:#00877c;color:#00695f;flex-shrink:0}
+.course-page .concept-editorial-tree .concept-branch-node p{color:var(--map-muted);line-height:1.8;margin-block:8px}
+.course-page .concept-editorial-tree .concept-branch-subtopics button{background:#ffffffba;color:#24514b;
+ border:1px solid #9fcac0;border-radius:6px;min-height:42px}
+.course-page .concept-editorial-tree .concept-branch-subtopics button.concept-subtopic-active{
+ border-color:#007e70;background:#c5f2e5;color:#005d55}
+@media(max-width:650px){
+ .course-page .concept-editorial-tree{padding:13px 11px}
+ .course-page .concept-editorial-tree .concept-branch-grid{grid-template-columns:1fr;gap:10px;padding-top:0}
+ .course-page .concept-editorial-tree .concept-branch-grid::before{inset-inline:16px auto;
+  top:0;bottom:0;border-top:none;border-inline-start:2px solid #b0c3b9}
+ .course-page .concept-editorial-tree .concept-branch-node{margin-inline-start:29px;padding:12px}
+ .course-page .concept-editorial-tree .concept-branch-node::before{inset-inline-start:-29px;top:25px;width:29px;height:2px}
+ .course-page .concept-tree-stem{margin-inline-start:16px;margin-inline-end:0;height:18px}
+}
+/* Print-like question hierarchy from the attached study reference. */
+.course-page .lesson-review{margin-block:24px}
+.course-page .lesson-review>h3{font-size:19px;font-weight:750;color:var(--mn-mint);border-bottom:1px solid var(--mn-border);padding-bottom:11px}
+.course-page .checkpoint{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:13px;row-gap:10px;
+ border:0;border-top:3px solid var(--mn-mint);padding:16px 0;margin:20px 0;min-width:0}
+.course-page .checkpoint legend{grid-column:1/-1;font-weight:650;font-size:15px;color:var(--mn-text);
+ line-height:1.9;white-space:normal;max-width:100%;padding:0 0 13px;overflow-wrap:anywhere}
+.course-page .checkpoint>button{display:flex;min-width:0;min-height:54px;border:1px solid var(--mn-border-strong);
+ border-radius:8px;align-items:center;justify-content:flex-start;padding:10px 14px;line-height:1.65;
+ color:var(--mn-text);background:var(--mn-chrome);font-size:14px;white-space:normal}
+.course-page .checkpoint>button.selected{background:#8dd3b32a;border-color:var(--mn-mint)}
+.course-page .study-feedback{grid-column:1/-1;border-inline-start:4px solid var(--mn-mint);border-top:0;
+ background:var(--mn-chrome);padding:16px;margin-top:9px;border-radius:6px}
+.course-page .study-feedback h4{color:var(--mn-mint);font-size:14px;border-bottom:1px solid var(--mn-border);padding-bottom:6px}
+@media(max-width:600px){.course-page .checkpoint{grid-template-columns:1fr}.course-page .checkpoint legend{font-size:14px}}
