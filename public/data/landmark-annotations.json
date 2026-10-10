@@ -1,0 +1,674 @@
+[
+  {
+    "entityId": "scapula-spine",
+    "boneId": "scapula",
+    "position": [
+      -1.095521387013683,
+      2.20157527745177,
+      0.13136275380018647
+    ],
+    "sourceObject": "Spine of scapula.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 0.0
+  },
+  {
+    "entityId": "scapula-acromion",
+    "boneId": "scapula",
+    "position": [
+      -1.5656710097090722,
+      2.4649702665707593,
+      0.563954239446482
+    ],
+    "sourceObject": "Acromion.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 0.0
+  },
+  {
+    "entityId": "scapula-coracoid-process",
+    "boneId": "scapula",
+    "position": [
+      -1.340840106357638,
+      2.2301416719263223,
+      1.0258959939856789
+    ],
+    "sourceObject": "Coracoid process.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 0.0
+  },
+  {
+    "entityId": "scapula-supraglenoid-tubercle",
+    "boneId": "scapula",
+    "position": [
+      -1.3903769574240097,
+      2.2742578445031842,
+      0.7258378558562288
+    ],
+    "sourceObject": "Supraglenoid tubercle.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 0.0
+  },
+  {
+    "entityId": "scapula-infraglenoid-tubercle",
+    "boneId": "scapula",
+    "position": [
+      -1.50422443020034,
+      1.9666979007533794,
+      0.5998510863202751
+    ],
+    "sourceObject": "Infraglenoid tubercle.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 0.0
+  },
+  {
+    "entityId": "scapula-supraspinous-fossa",
+    "boneId": "scapula",
+    "position": [
+      -1.0129997363477017,
+      2.134602044107284,
+      0.3267500439931712
+    ],
+    "sourceObject": "Supraspinous fossa.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 0.0
+  },
+  {
+    "entityId": "scapula-infraspinous-fossa",
+    "boneId": "scapula",
+    "position": [
+      -0.9358280247201559,
+      1.6448886222205346,
+      0.13107625931061073
+    ],
+    "sourceObject": "Infraspinous fossa.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 0.0
+  },
+  {
+    "entityId": "scapula-subscapular-fossa",
+    "boneId": "scapula",
+    "position": [
+      -0.9224299588643063,
+      1.7114019533912188,
+      0.1736252657670302
+    ],
+    "sourceObject": "Subscapular fossa.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 0.0
+  },
+  {
+    "entityId": "scapula-superior-border",
+    "boneId": "scapula",
+    "position": [
+      -0.939818476529279,
+      2.302746926844417,
+      0.4426849892928615
+    ],
+    "sourceObject": "Superior border of scapula.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 0.0
+  },
+  {
+    "entityId": "scapula-medial-border",
+    "boneId": "scapula",
+    "position": [
+      -0.606326818760865,
+      1.629699300388591,
+      -0.010136917044477167
+    ],
+    "sourceObject": "Medial border of scapula.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 0.0
+  },
+  {
+    "entityId": "scapula-lateral-border",
+    "boneId": "scapula",
+    "position": [
+      -1.2627376756821462,
+      1.61167545843813,
+      0.399197592746505
+    ],
+    "sourceObject": "Lateral border of scapula.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 0.0
+  },
+  {
+    "entityId": "scapula-superior-angle",
+    "boneId": "scapula",
+    "position": [
+      -0.7995275035843533,
+      2.4141709704802583,
+      0.2816131699582112
+    ],
+    "sourceObject": "Superior angle of scapula.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 0.0
+  },
+  {
+    "entityId": "scapula-inferior-angle",
+    "boneId": "scapula",
+    "position": [
+      -0.9158076467190297,
+      0.9088974642480476,
+      0.030579897002416923
+    ],
+    "sourceObject": "Inferior angle of scapula.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 0.884
+  },
+  {
+    "entityId": "scapula-suprascapular-notch",
+    "boneId": "scapula",
+    "position": [
+      -1.1145506797910127,
+      2.192237710202784,
+      0.5288264375531785
+    ],
+    "sourceObject": "Scapular notch.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 0.0
+  },
+  {
+    "entityId": "scapula-neck",
+    "boneId": "scapula",
+    "position": [
+      -1.4371346258202033,
+      1.886325410073562,
+      0.5850947493603057
+    ],
+    "sourceObject": "Neck of scapula.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 0.0
+  },
+  {
+    "entityId": "scapula-spinoglenoid-notch",
+    "boneId": "scapula",
+    "position": [
+      -1.3625132599369156,
+      2.1674452376430065,
+      0.4490912810672395
+    ],
+    "sourceObject": "Spinoglenoid notch.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 0.0
+  },
+  {
+    "entityId": "clavicle-costoclavicular-impression",
+    "boneId": "clavicle",
+    "position": [
+      -0.2865262229772419,
+      2.208869121129542,
+      1.3919591106070377
+    ],
+    "sourceObject": "Impression for costoclavicular ligament.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 7.795
+  },
+  {
+    "entityId": "humerus-head",
+    "boneId": "humerus",
+    "position": [
+      -1.6554221242769138,
+      2.330084359853343,
+      0.8700396054853354
+    ],
+    "sourceObject": "Head of humerus.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 0.001
+  },
+  {
+    "entityId": "humerus-anatomical-neck",
+    "boneId": "humerus",
+    "position": [
+      -1.4658851109749962,
+      2.034839608287367,
+      0.8220392587501775
+    ],
+    "sourceObject": "Anatomical neck of humerus.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 0.001
+  },
+  {
+    "entityId": "humerus-greater-tubercle",
+    "boneId": "humerus",
+    "position": [
+      -1.8636802624200333,
+      2.299561919687873,
+      0.7805024057033841
+    ],
+    "sourceObject": "Greater tubercle.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 0.001
+  },
+  {
+    "entityId": "humerus-lesser-tubercle",
+    "boneId": "humerus",
+    "position": [
+      -1.6176238263154394,
+      2.171404593256698,
+      0.9883576592700356
+    ],
+    "sourceObject": "Lesser tubercle.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 0.001
+  },
+  {
+    "entityId": "humerus-intertubercular-sulcus",
+    "boneId": "humerus",
+    "position": [
+      -1.76099001702657,
+      2.1577986756749468,
+      0.9063340136964094
+    ],
+    "sourceObject": "Intertubercular sulcus.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 0.001
+  },
+  {
+    "entityId": "humerus-crest-of-greater-tubercle",
+    "boneId": "humerus",
+    "position": [
+      -1.8081414666328364,
+      2.042712893600786,
+      0.8893617430589129
+    ],
+    "sourceObject": "Crest of greater tubercle.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 0.001
+  },
+  {
+    "entityId": "humerus-crest-of-lesser-tubercle",
+    "boneId": "humerus",
+    "position": [
+      -1.71712913478346,
+      1.9730216781244998,
+      0.9129057301952197
+    ],
+    "sourceObject": "Crest of lesser tubercle.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 0.001
+  },
+  {
+    "entityId": "humerus-radial-groove",
+    "boneId": "humerus",
+    "position": [
+      -2.1117281000571015,
+      0.9369043096293801,
+      0.6333191401109632
+    ],
+    "sourceObject": "Radial groove.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 7.981
+  },
+  {
+    "entityId": "humerus-medial-supracondylar-ridge",
+    "boneId": "humerus",
+    "position": [
+      -1.8786237150028682,
+      -0.3647312049238991,
+      0.6670711460522157
+    ],
+    "sourceObject": "Medial supracondylar ridge.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 0.001
+  },
+  {
+    "entityId": "humerus-lateral-supracondylar-ridge",
+    "boneId": "humerus",
+    "position": [
+      -2.3163022460123157,
+      -0.2370712785862228,
+      0.5331291919083448
+    ],
+    "sourceObject": "Lateral supracondylar ridge.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 0.001
+  },
+  {
+    "entityId": "humerus-medial-epicondyle",
+    "boneId": "humerus",
+    "position": [
+      -1.7818857903404064,
+      -0.4884746080750091,
+      0.6723954117839437
+    ],
+    "sourceObject": "Medial epicondyle of humerus.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 1.468
+  },
+  {
+    "entityId": "humerus-lateral-epicondyle",
+    "boneId": "humerus",
+    "position": [
+      -2.4075162203893403,
+      -0.4580713485263104,
+      0.5972395161403201
+    ],
+    "sourceObject": "Lateral epicondyle of humerus.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 0.001
+  },
+  {
+    "entityId": "humerus-capitulum",
+    "boneId": "humerus",
+    "position": [
+      -2.3245741630037484,
+      -0.5408353119651128,
+      0.762223482471686
+    ],
+    "sourceObject": "Capitulum of humerus.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 0.001
+  },
+  {
+    "entityId": "humerus-trochlea",
+    "boneId": "humerus",
+    "position": [
+      -2.28168210541661,
+      -0.5996132040558564,
+      0.81213687591737
+    ],
+    "sourceObject": "Trochlea of humerus.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 7.375
+  },
+  {
+    "entityId": "humerus-radial-fossa",
+    "boneId": "humerus",
+    "position": [
+      -2.2273819597327202,
+      -0.40063153591379574,
+      0.669061995029049
+    ],
+    "sourceObject": "Radial fossa.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 0.001
+  },
+  {
+    "entityId": "humerus-coronoid-fossa",
+    "boneId": "humerus",
+    "position": [
+      -2.091591136143224,
+      -0.4369561854735391,
+      0.686542228737104
+    ],
+    "sourceObject": "Coronoid fossa.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 1.526
+  },
+  {
+    "entityId": "humerus-olecranon-fossa",
+    "boneId": "humerus",
+    "position": [
+      -2.101284457281555,
+      -0.4692712794846816,
+      0.6404385559210743
+    ],
+    "sourceObject": "Olecranon fossa.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 0.001
+  },
+  {
+    "entityId": "humerus-shaft",
+    "boneId": "humerus",
+    "position": [
+      -1.8655127187580114,
+      1.0153541643000832,
+      0.7751274882479573
+    ],
+    "sourceObject": "Body of humerus.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 3.663
+  },
+  {
+    "entityId": "radius-head",
+    "boneId": "radius",
+    "position": [
+      -2.215948702566225,
+      -0.7507020589401581,
+      0.7237442605790079
+    ],
+    "sourceObject": "Head of radius.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 3.704
+  },
+  {
+    "entityId": "radius-neck",
+    "boneId": "radius",
+    "position": [
+      -2.3846978825375085,
+      -0.8267960881144187,
+      0.7767721931588013
+    ],
+    "sourceObject": "Neck of radius.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 2.302
+  },
+  {
+    "entityId": "radius-radial-tuberosity",
+    "boneId": "radius",
+    "position": [
+      -2.3539680835010723,
+      -0.9534740949556095,
+      0.9079575948470103
+    ],
+    "sourceObject": "Radial tuberosity.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 0.222
+  },
+  {
+    "entityId": "radius-styloid-process",
+    "boneId": "radius",
+    "position": [
+      -2.766236744204336,
+      -2.943176750767787,
+      1.1806790201878552
+    ],
+    "sourceObject": "Radial styloid process.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 0.604
+  },
+  {
+    "entityId": "radius-ulnar-notch",
+    "boneId": "radius",
+    "position": [
+      -2.492065183505883,
+      -2.821975180171995,
+      1.1350896656887224
+    ],
+    "sourceObject": "Ulnar notch.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 1.065
+  },
+  {
+    "entityId": "ulna-olecranon",
+    "boneId": "ulna",
+    "position": [
+      -2.078418201251703,
+      -0.5328417252867066,
+      0.4864568372821788
+    ],
+    "sourceObject": "Olecranon.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 5.621
+  },
+  {
+    "entityId": "ulna-coronoid-process",
+    "boneId": "ulna",
+    "position": [
+      -2.122857735151435,
+      -0.6601958909726537,
+      0.7999060275601814
+    ],
+    "sourceObject": "Coronoid process of ulna.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 0.757
+  },
+  {
+    "entityId": "ulna-trochlear-notch",
+    "boneId": "ulna",
+    "position": [
+      -2.106201325466162,
+      -0.6671816550389167,
+      0.6182909179726694
+    ],
+    "sourceObject": "Trochlear notch.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 1.494
+  },
+  {
+    "entityId": "ulna-radial-notch",
+    "boneId": "ulna",
+    "position": [
+      -2.1921236320410613,
+      -0.7442580668346892,
+      0.6663166588922325
+    ],
+    "sourceObject": "Radial notch.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 2.288
+  },
+  {
+    "entityId": "ulna-ulnar-tuberosity",
+    "boneId": "ulna",
+    "position": [
+      -2.161414450724901,
+      -0.9280175568538578,
+      0.7323974986051388
+    ],
+    "sourceObject": "Tuberosity of ulna.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 0.801
+  },
+  {
+    "entityId": "ulna-supinator-crest",
+    "boneId": "ulna",
+    "position": [
+      -2.2473355486468187,
+      -0.9787023592909136,
+      0.6467490722540485
+    ],
+    "sourceObject": "Supinator crest.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 1.995
+  },
+  {
+    "entityId": "ulna-head",
+    "boneId": "ulna",
+    "position": [
+      -2.3158596048795728,
+      -2.8033087302054476,
+      1.147971818683786
+    ],
+    "sourceObject": "Head of ulna.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 2.76
+  },
+  {
+    "entityId": "ulna-styloid-process",
+    "boneId": "ulna",
+    "position": [
+      -2.357589639391093,
+      -2.9450527558448023,
+      1.1351431803965424
+    ],
+    "sourceObject": "Ulnar styloid process.j",
+    "sourceId": "z-anatomy",
+    "review": "source-mapped",
+    "representation": "Source landmark label endpoint; not a segmented surface area",
+    "distanceToBoneVerticesMm": 0.738
+  }
+]

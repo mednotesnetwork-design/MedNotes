@@ -1,0 +1,3431 @@
+[
+  {
+    "id": "root-c5",
+    "name": "C5 root",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Shoulder girdle",
+    "description": "Anterior ramus contributing to the brachial plexus.",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Plexus level": "Root (anterior ramus)"
+    },
+    "rootValues": [
+      "C5"
+    ],
+    "parentIds": [],
+    "branchIds": [],
+    "course": [
+      "Anterior ramus of C5 spinal nerve; between anterior and middle scalene muscles."
+    ],
+    "motorIds": [],
+    "sensory": [],
+    "lesionIds": []
+  },
+  {
+    "id": "root-c6",
+    "name": "C6 root",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Shoulder girdle",
+    "description": "Anterior ramus contributing to the brachial plexus.",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Plexus level": "Root (anterior ramus)"
+    },
+    "rootValues": [
+      "C6"
+    ],
+    "parentIds": [],
+    "branchIds": [],
+    "course": [
+      "Anterior ramus of C6 spinal nerve; between anterior and middle scalene muscles."
+    ],
+    "motorIds": [],
+    "sensory": [],
+    "lesionIds": []
+  },
+  {
+    "id": "root-c7",
+    "name": "C7 root",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Shoulder girdle",
+    "description": "Anterior ramus contributing to the brachial plexus.",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Plexus level": "Root (anterior ramus)"
+    },
+    "rootValues": [
+      "C7"
+    ],
+    "parentIds": [],
+    "branchIds": [],
+    "course": [
+      "Anterior ramus of C7 spinal nerve; between anterior and middle scalene muscles."
+    ],
+    "motorIds": [],
+    "sensory": [],
+    "lesionIds": []
+  },
+  {
+    "id": "root-c8",
+    "name": "C8 root",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Shoulder girdle",
+    "description": "Anterior ramus contributing to the brachial plexus.",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Plexus level": "Root (anterior ramus)"
+    },
+    "rootValues": [
+      "C8"
+    ],
+    "parentIds": [],
+    "branchIds": [],
+    "course": [
+      "Anterior ramus of C8 spinal nerve; between anterior and middle scalene muscles."
+    ],
+    "motorIds": [],
+    "sensory": [],
+    "lesionIds": []
+  },
+  {
+    "id": "root-t1",
+    "name": "T1 root",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Shoulder girdle",
+    "description": "Anterior ramus contributing to the brachial plexus.",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Plexus level": "Root (anterior ramus)"
+    },
+    "rootValues": [
+      "T1"
+    ],
+    "parentIds": [],
+    "branchIds": [],
+    "course": [
+      "Anterior ramus of T1 spinal nerve; between anterior and middle scalene muscles."
+    ],
+    "motorIds": [],
+    "sensory": [],
+    "lesionIds": []
+  },
+  {
+    "id": "upper-trunk",
+    "name": "Upper trunk",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Shoulder girdle",
+    "description": "",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Plexus level": "Trunk"
+    },
+    "rootValues": [
+      "C5",
+      "C6"
+    ],
+    "parentIds": [
+      "root-c5",
+      "root-c6"
+    ],
+    "branchIds": [],
+    "course": [
+      "In the posterior triangle, above the clavicle."
+    ],
+    "motorIds": [],
+    "sensory": [],
+    "lesionIds": []
+  },
+  {
+    "id": "middle-trunk",
+    "name": "Middle trunk",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Shoulder girdle",
+    "description": "",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Plexus level": "Trunk"
+    },
+    "rootValues": [
+      "C7"
+    ],
+    "parentIds": [
+      "root-c7"
+    ],
+    "branchIds": [],
+    "course": [
+      "In the posterior triangle, above the clavicle."
+    ],
+    "motorIds": [],
+    "sensory": [],
+    "lesionIds": []
+  },
+  {
+    "id": "lower-trunk",
+    "name": "Lower trunk",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Shoulder girdle",
+    "description": "",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Plexus level": "Trunk"
+    },
+    "rootValues": [
+      "C8",
+      "T1"
+    ],
+    "parentIds": [
+      "root-c8",
+      "root-t1"
+    ],
+    "branchIds": [],
+    "course": [
+      "In the posterior triangle, above the clavicle."
+    ],
+    "motorIds": [],
+    "sensory": [],
+    "lesionIds": []
+  },
+  {
+    "id": "upper-anterior-division",
+    "name": "Upper anterior division",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Shoulder girdle",
+    "description": "",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Plexus level": "Division"
+    },
+    "rootValues": [
+      "C5",
+      "C6"
+    ],
+    "parentIds": [
+      "upper-trunk"
+    ],
+    "branchIds": [],
+    "course": [
+      "Behind the clavicle."
+    ],
+    "motorIds": [],
+    "sensory": [],
+    "lesionIds": []
+  },
+  {
+    "id": "upper-posterior-division",
+    "name": "Upper posterior division",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Shoulder girdle",
+    "description": "",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Plexus level": "Division"
+    },
+    "rootValues": [
+      "C5",
+      "C6"
+    ],
+    "parentIds": [
+      "upper-trunk"
+    ],
+    "branchIds": [],
+    "course": [
+      "Behind the clavicle."
+    ],
+    "motorIds": [],
+    "sensory": [],
+    "lesionIds": []
+  },
+  {
+    "id": "middle-anterior-division",
+    "name": "Middle anterior division",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Shoulder girdle",
+    "description": "",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Plexus level": "Division"
+    },
+    "rootValues": [
+      "C7"
+    ],
+    "parentIds": [
+      "middle-trunk"
+    ],
+    "branchIds": [],
+    "course": [
+      "Behind the clavicle."
+    ],
+    "motorIds": [],
+    "sensory": [],
+    "lesionIds": []
+  },
+  {
+    "id": "middle-posterior-division",
+    "name": "Middle posterior division",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Shoulder girdle",
+    "description": "",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Plexus level": "Division"
+    },
+    "rootValues": [
+      "C7"
+    ],
+    "parentIds": [
+      "middle-trunk"
+    ],
+    "branchIds": [],
+    "course": [
+      "Behind the clavicle."
+    ],
+    "motorIds": [],
+    "sensory": [],
+    "lesionIds": []
+  },
+  {
+    "id": "lower-anterior-division",
+    "name": "Lower anterior division",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Shoulder girdle",
+    "description": "",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Plexus level": "Division"
+    },
+    "rootValues": [
+      "C8",
+      "T1"
+    ],
+    "parentIds": [
+      "lower-trunk"
+    ],
+    "branchIds": [],
+    "course": [
+      "Behind the clavicle."
+    ],
+    "motorIds": [],
+    "sensory": [],
+    "lesionIds": []
+  },
+  {
+    "id": "lower-posterior-division",
+    "name": "Lower posterior division",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Shoulder girdle",
+    "description": "",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Plexus level": "Division"
+    },
+    "rootValues": [
+      "C8",
+      "T1"
+    ],
+    "parentIds": [
+      "lower-trunk"
+    ],
+    "branchIds": [],
+    "course": [
+      "Behind the clavicle."
+    ],
+    "motorIds": [],
+    "sensory": [],
+    "lesionIds": []
+  },
+  {
+    "id": "lateral-cord",
+    "name": "Lateral cord",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Shoulder girdle",
+    "description": "",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Plexus level": "Cord"
+    },
+    "rootValues": [
+      "C5",
+      "C6",
+      "C7"
+    ],
+    "parentIds": [
+      "upper-anterior-division",
+      "middle-anterior-division"
+    ],
+    "branchIds": [],
+    "course": [
+      "In the axilla, named relative to the second part of the axillary artery."
+    ],
+    "motorIds": [],
+    "sensory": [],
+    "lesionIds": []
+  },
+  {
+    "id": "posterior-cord",
+    "name": "Posterior cord",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Shoulder girdle",
+    "description": "",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Plexus level": "Cord"
+    },
+    "rootValues": [
+      "C5",
+      "C6",
+      "C7",
+      "C8",
+      "T1"
+    ],
+    "parentIds": [
+      "upper-posterior-division",
+      "middle-posterior-division",
+      "lower-posterior-division"
+    ],
+    "branchIds": [],
+    "course": [
+      "In the axilla, named relative to the second part of the axillary artery."
+    ],
+    "motorIds": [],
+    "sensory": [],
+    "lesionIds": []
+  },
+  {
+    "id": "medial-cord",
+    "name": "Medial cord",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Shoulder girdle",
+    "description": "",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Plexus level": "Cord"
+    },
+    "rootValues": [
+      "C8",
+      "T1"
+    ],
+    "parentIds": [
+      "lower-anterior-division"
+    ],
+    "branchIds": [],
+    "course": [
+      "In the axilla, named relative to the second part of the axillary artery."
+    ],
+    "motorIds": [],
+    "sensory": [],
+    "lesionIds": []
+  },
+  {
+    "id": "musculocutaneous-nerve",
+    "name": "Musculocutaneous nerve",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Arm",
+    "description": "Elbow flexion and supination weakness; sensory loss on lateral forearm",
+    "sourceIds": [
+      "plexus",
+      "musculocutaneous"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Root values": [
+        "C5",
+        "C6",
+        "C7"
+      ],
+      "Course": [
+        "Pierces coracobrachialis",
+        "Descends between biceps and brachialis",
+        "Emerges lateral to biceps tendon",
+        "Continues as lateral cutaneous nerve of forearm"
+      ],
+      "Sensory territory": "Lateral forearm",
+      "Lesion effects": "Elbow flexion and supination weakness; sensory loss on lateral forearm"
+    },
+    "rootValues": [
+      "C5",
+      "C6",
+      "C7"
+    ],
+    "parentIds": [
+      "lateral-cord"
+    ],
+    "branchIds": [],
+    "course": [
+      "Pierces coracobrachialis",
+      "Descends between biceps and brachialis",
+      "Emerges lateral to biceps tendon",
+      "Continues as lateral cutaneous nerve of forearm"
+    ],
+    "motorIds": [],
+    "sensory": [
+      "Lateral forearm"
+    ],
+    "lesionIds": []
+  },
+  {
+    "id": "axillary-nerve",
+    "name": "Axillary nerve",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Shoulder",
+    "description": "Weak abduction and deltoid wasting after surgical-neck fracture or anterior shoulder dislocation",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Root values": [
+        "C5",
+        "C6"
+      ],
+      "Course": [
+        "Passes through quadrangular space with posterior circumflex humeral artery",
+        "Winds around surgical neck of humerus",
+        "Supplies deltoid and teres minor"
+      ],
+      "Sensory territory": "Superolateral arm over lower deltoid (regimental badge area)",
+      "Lesion effects": "Weak abduction and deltoid wasting after surgical-neck fracture or anterior shoulder dislocation"
+    },
+    "rootValues": [
+      "C5",
+      "C6"
+    ],
+    "parentIds": [
+      "posterior-cord"
+    ],
+    "branchIds": [],
+    "course": [
+      "Passes through quadrangular space with posterior circumflex humeral artery",
+      "Winds around surgical neck of humerus",
+      "Supplies deltoid and teres minor"
+    ],
+    "motorIds": [],
+    "sensory": [
+      "Superolateral arm over lower deltoid (regimental badge area)"
+    ],
+    "lesionIds": []
+  },
+  {
+    "id": "radial-nerve",
+    "name": "Radial nerve",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Arm",
+    "description": "High lesions cause wrist and finger extension weakness; deficit depends on lesion level",
+    "sourceIds": [
+      "plexus",
+      "radial"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Root values": [
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "T1"
+      ],
+      "Course": [
+        "Leaves axilla through triangular interval with profunda brachii",
+        "Runs in radial groove between triceps heads",
+        "Pierces lateral intermuscular septum",
+        "Passes anterior to lateral epicondyle",
+        "Divides into superficial and deep branches near the elbow"
+      ],
+      "Sensory territory": "Posterior arm and forearm; dorsolateral hand, with first dorsal web space a useful autonomous zone",
+      "Lesion effects": "High lesions cause wrist and finger extension weakness; deficit depends on lesion level"
+    },
+    "rootValues": [
+      "C5",
+      "C6",
+      "C7",
+      "C8",
+      "T1"
+    ],
+    "parentIds": [
+      "posterior-cord"
+    ],
+    "branchIds": [],
+    "course": [
+      "Leaves axilla through triangular interval with profunda brachii",
+      "Runs in radial groove between triceps heads",
+      "Pierces lateral intermuscular septum",
+      "Passes anterior to lateral epicondyle",
+      "Divides into superficial and deep branches near the elbow"
+    ],
+    "motorIds": [],
+    "sensory": [
+      "Posterior arm and forearm; dorsolateral hand, with first dorsal web space a useful autonomous zone"
+    ],
+    "lesionIds": []
+  },
+  {
+    "id": "median-nerve",
+    "name": "Median nerve",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Forearm",
+    "description": "Proximal injury impairs pronation and selected finger flexion; carpal tunnel usually spares sensation over thenar eminence",
+    "sourceIds": [
+      "plexus",
+      "median"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Root values": [
+        "C6",
+        "C7",
+        "C8",
+        "T1"
+      ],
+      "Course": [
+        "Forms from lateral and medial roots around axillary artery",
+        "Initially lateral to brachial artery then crosses anteriorly to its medial side",
+        "Passes through cubital fossa medial to brachial artery",
+        "Enters between pronator teres heads",
+        "Passes between FDS and FDP",
+        "Enters carpal tunnel deep to flexor retinaculum"
+      ],
+      "Sensory territory": "Palmar lateral 3½ digits and their dorsal distal tips; thenar palm via palmar cutaneous branch",
+      "Lesion effects": "Proximal injury impairs pronation and selected finger flexion; carpal tunnel usually spares sensation over thenar eminence"
+    },
+    "rootValues": [
+      "C6",
+      "C7",
+      "C8",
+      "T1"
+    ],
+    "parentIds": [
+      "lateral-cord",
+      "medial-cord"
+    ],
+    "branchIds": [],
+    "course": [
+      "Forms from lateral and medial roots around axillary artery",
+      "Initially lateral to brachial artery then crosses anteriorly to its medial side",
+      "Passes through cubital fossa medial to brachial artery",
+      "Enters between pronator teres heads",
+      "Passes between FDS and FDP",
+      "Enters carpal tunnel deep to flexor retinaculum"
+    ],
+    "motorIds": [],
+    "sensory": [
+      "Palmar lateral 3½ digits and their dorsal distal tips; thenar palm via palmar cutaneous branch"
+    ],
+    "lesionIds": []
+  },
+  {
+    "id": "ulnar-nerve",
+    "name": "Ulnar nerve",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Forearm",
+    "description": "Intrinsic weakness and clawing of digits 4–5; proximal lesions may claw less because medial FDP is also weak",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Root values": [
+        "C8",
+        "T1"
+      ],
+      "Course": [
+        "Descends on medial arm",
+        "Passes posterior to medial epicondyle",
+        "Enters cubital tunnel",
+        "Passes between FCU heads",
+        "Descends with ulnar artery distally",
+        "Enters Guyon canal superficial to flexor retinaculum"
+      ],
+      "Sensory territory": "Medial 1½ digits and adjacent palm and dorsum; dorsal territory may be spared in Guyon canal lesions",
+      "Lesion effects": "Intrinsic weakness and clawing of digits 4–5; proximal lesions may claw less because medial FDP is also weak"
+    },
+    "rootValues": [
+      "C8",
+      "T1"
+    ],
+    "parentIds": [
+      "medial-cord"
+    ],
+    "branchIds": [],
+    "course": [
+      "Descends on medial arm",
+      "Passes posterior to medial epicondyle",
+      "Enters cubital tunnel",
+      "Passes between FCU heads",
+      "Descends with ulnar artery distally",
+      "Enters Guyon canal superficial to flexor retinaculum"
+    ],
+    "motorIds": [],
+    "sensory": [
+      "Medial 1½ digits and adjacent palm and dorsum; dorsal territory may be spared in Guyon canal lesions"
+    ],
+    "lesionIds": []
+  },
+  {
+    "id": "dorsal-scapular-nerve",
+    "name": "Dorsal scapular nerve",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Shoulder girdle",
+    "description": "Weak scapular retraction",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Root values": [
+        "C5"
+      ],
+      "Course": [
+        "Usually pierces middle scalene",
+        "Descends along medial scapular border deep to levator scapulae"
+      ],
+      "Sensory territory": "No cutaneous territory",
+      "Lesion effects": "Weak scapular retraction"
+    },
+    "rootValues": [
+      "C5"
+    ],
+    "parentIds": [
+      "root-c5"
+    ],
+    "branchIds": [],
+    "course": [
+      "Usually pierces middle scalene",
+      "Descends along medial scapular border deep to levator scapulae"
+    ],
+    "motorIds": [],
+    "sensory": [
+      "No cutaneous territory"
+    ],
+    "lesionIds": []
+  },
+  {
+    "id": "long-thoracic-nerve",
+    "name": "Long thoracic nerve",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Shoulder girdle",
+    "description": "Serratus anterior paralysis produces medial scapular winging and impaired upward rotation",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Root values": [
+        "C5",
+        "C6",
+        "C7"
+      ],
+      "Course": [
+        "Descends on superficial surface of serratus anterior along lateral chest wall"
+      ],
+      "Sensory territory": "No cutaneous territory",
+      "Lesion effects": "Serratus anterior paralysis produces medial scapular winging and impaired upward rotation"
+    },
+    "rootValues": [
+      "C5",
+      "C6",
+      "C7"
+    ],
+    "parentIds": [
+      "root-c5",
+      "root-c6",
+      "root-c7"
+    ],
+    "branchIds": [],
+    "course": [
+      "Descends on superficial surface of serratus anterior along lateral chest wall"
+    ],
+    "motorIds": [],
+    "sensory": [
+      "No cutaneous territory"
+    ],
+    "lesionIds": []
+  },
+  {
+    "id": "suprascapular-nerve",
+    "name": "Suprascapular nerve",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Shoulder",
+    "description": "Suprascapular-notch lesion weakens abduction and external rotation; spinoglenoid lesion predominantly affects infraspinatus",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Root values": [
+        "C5",
+        "C6"
+      ],
+      "Course": [
+        "Passes beneath superior transverse scapular ligament at suprascapular notch",
+        "Supplies supraspinatus",
+        "Traverses spinoglenoid notch to infraspinatus"
+      ],
+      "Sensory territory": "Articular branches, no usual cutaneous territory",
+      "Lesion effects": "Suprascapular-notch lesion weakens abduction and external rotation; spinoglenoid lesion predominantly affects infraspinatus"
+    },
+    "rootValues": [
+      "C5",
+      "C6"
+    ],
+    "parentIds": [
+      "upper-trunk"
+    ],
+    "branchIds": [],
+    "course": [
+      "Passes beneath superior transverse scapular ligament at suprascapular notch",
+      "Supplies supraspinatus",
+      "Traverses spinoglenoid notch to infraspinatus"
+    ],
+    "motorIds": [],
+    "sensory": [
+      "Articular branches, no usual cutaneous territory"
+    ],
+    "lesionIds": []
+  },
+  {
+    "id": "nerve-to-subclavius",
+    "name": "Nerve to subclavius",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Shoulder girdle",
+    "description": "Weak stabilization of clavicle",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Root values": [
+        "C5",
+        "C6"
+      ],
+      "Course": [
+        "Descends anterior to subclavian vessels to subclavius"
+      ],
+      "Sensory territory": "No cutaneous territory",
+      "Lesion effects": "Weak stabilization of clavicle"
+    },
+    "rootValues": [
+      "C5",
+      "C6"
+    ],
+    "parentIds": [
+      "upper-trunk"
+    ],
+    "branchIds": [],
+    "course": [
+      "Descends anterior to subclavian vessels to subclavius"
+    ],
+    "motorIds": [],
+    "sensory": [
+      "No cutaneous territory"
+    ],
+    "lesionIds": []
+  },
+  {
+    "id": "lateral-pectoral-nerve",
+    "name": "Lateral pectoral nerve",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Shoulder girdle",
+    "description": "Pectoral weakness",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Root values": [
+        "C5",
+        "C6",
+        "C7"
+      ],
+      "Course": [
+        "Pierces clavipectoral fascia to deep surface of pectoralis major"
+      ],
+      "Sensory territory": "No cutaneous territory",
+      "Lesion effects": "Pectoral weakness"
+    },
+    "rootValues": [
+      "C5",
+      "C6",
+      "C7"
+    ],
+    "parentIds": [
+      "lateral-cord"
+    ],
+    "branchIds": [],
+    "course": [
+      "Pierces clavipectoral fascia to deep surface of pectoralis major"
+    ],
+    "motorIds": [],
+    "sensory": [
+      "No cutaneous territory"
+    ],
+    "lesionIds": []
+  },
+  {
+    "id": "medial-pectoral-nerve",
+    "name": "Medial pectoral nerve",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Shoulder girdle",
+    "description": "Pectoral weakness",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Root values": [
+        "C8",
+        "T1"
+      ],
+      "Course": [
+        "Passes through pectoralis minor and supplies it and pectoralis major"
+      ],
+      "Sensory territory": "No cutaneous territory",
+      "Lesion effects": "Pectoral weakness"
+    },
+    "rootValues": [
+      "C8",
+      "T1"
+    ],
+    "parentIds": [
+      "medial-cord"
+    ],
+    "branchIds": [],
+    "course": [
+      "Passes through pectoralis minor and supplies it and pectoralis major"
+    ],
+    "motorIds": [],
+    "sensory": [
+      "No cutaneous territory"
+    ],
+    "lesionIds": []
+  },
+  {
+    "id": "upper-subscapular-nerve",
+    "name": "Upper subscapular nerve",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Shoulder",
+    "description": "Reduced subscapularis contribution to medial rotation",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Root values": [
+        "C5",
+        "C6"
+      ],
+      "Course": [
+        "Short branch to superior part of subscapularis"
+      ],
+      "Sensory territory": "No cutaneous territory",
+      "Lesion effects": "Reduced subscapularis contribution to medial rotation"
+    },
+    "rootValues": [
+      "C5",
+      "C6"
+    ],
+    "parentIds": [
+      "posterior-cord"
+    ],
+    "branchIds": [],
+    "course": [
+      "Short branch to superior part of subscapularis"
+    ],
+    "motorIds": [],
+    "sensory": [
+      "No cutaneous territory"
+    ],
+    "lesionIds": []
+  },
+  {
+    "id": "thoracodorsal-nerve",
+    "name": "Thoracodorsal nerve",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Shoulder girdle",
+    "description": "Weak extension and adduction during climbing or pulling",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Root values": [
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "Course": [
+        "Descends on posterior axillary wall with thoracodorsal vessels to latissimus dorsi"
+      ],
+      "Sensory territory": "No cutaneous territory",
+      "Lesion effects": "Weak extension and adduction during climbing or pulling"
+    },
+    "rootValues": [
+      "C6",
+      "C7",
+      "C8"
+    ],
+    "parentIds": [
+      "posterior-cord"
+    ],
+    "branchIds": [],
+    "course": [
+      "Descends on posterior axillary wall with thoracodorsal vessels to latissimus dorsi"
+    ],
+    "motorIds": [],
+    "sensory": [
+      "No cutaneous territory"
+    ],
+    "lesionIds": []
+  },
+  {
+    "id": "lower-subscapular-nerve",
+    "name": "Lower subscapular nerve",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Shoulder",
+    "description": "Weak medial rotation and adduction",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Root values": [
+        "C5",
+        "C6"
+      ],
+      "Course": [
+        "Descends to lower subscapularis and teres major"
+      ],
+      "Sensory territory": "No cutaneous territory",
+      "Lesion effects": "Weak medial rotation and adduction"
+    },
+    "rootValues": [
+      "C5",
+      "C6"
+    ],
+    "parentIds": [
+      "posterior-cord"
+    ],
+    "branchIds": [],
+    "course": [
+      "Descends to lower subscapularis and teres major"
+    ],
+    "motorIds": [],
+    "sensory": [
+      "No cutaneous territory"
+    ],
+    "lesionIds": []
+  },
+  {
+    "id": "medial-cutaneous-nerve-of-arm",
+    "name": "Medial cutaneous nerve of arm",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Arm",
+    "description": "Sensory loss on medial arm",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Root values": [
+        "C8",
+        "T1"
+      ],
+      "Course": [
+        "Descends in axilla and medial arm",
+        "Communicates with intercostobrachial nerve"
+      ],
+      "Sensory territory": "Medial arm",
+      "Lesion effects": "Sensory loss on medial arm"
+    },
+    "rootValues": [
+      "C8",
+      "T1"
+    ],
+    "parentIds": [
+      "medial-cord"
+    ],
+    "branchIds": [],
+    "course": [
+      "Descends in axilla and medial arm",
+      "Communicates with intercostobrachial nerve"
+    ],
+    "motorIds": [],
+    "sensory": [
+      "Medial arm"
+    ],
+    "lesionIds": []
+  },
+  {
+    "id": "medial-cutaneous-nerve-of-forearm",
+    "name": "Medial cutaneous nerve of forearm",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Forearm",
+    "description": "Sensory loss on medial forearm",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Root values": [
+        "C8",
+        "T1"
+      ],
+      "Course": [
+        "Descends with axillary and brachial vessels",
+        "Becomes superficial with basilic vein"
+      ],
+      "Sensory territory": "Medial forearm",
+      "Lesion effects": "Sensory loss on medial forearm"
+    },
+    "rootValues": [
+      "C8",
+      "T1"
+    ],
+    "parentIds": [
+      "medial-cord"
+    ],
+    "branchIds": [],
+    "course": [
+      "Descends with axillary and brachial vessels",
+      "Becomes superficial with basilic vein"
+    ],
+    "motorIds": [],
+    "sensory": [
+      "Medial forearm"
+    ],
+    "lesionIds": []
+  },
+  {
+    "id": "lateral-cutaneous-nerve-of-forearm",
+    "name": "Lateral cutaneous nerve of forearm",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Forearm",
+    "description": "Sensory loss without intrinsic hand weakness",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Root values": [
+        "C5",
+        "C6",
+        "C7"
+      ],
+      "Course": [
+        "Continuation of musculocutaneous nerve lateral to biceps tendon"
+      ],
+      "Sensory territory": "Lateral forearm",
+      "Lesion effects": "Sensory loss without intrinsic hand weakness"
+    },
+    "rootValues": [
+      "C5",
+      "C6",
+      "C7"
+    ],
+    "parentIds": [
+      "musculocutaneous-nerve"
+    ],
+    "branchIds": [],
+    "course": [
+      "Continuation of musculocutaneous nerve lateral to biceps tendon"
+    ],
+    "motorIds": [],
+    "sensory": [
+      "Lateral forearm"
+    ],
+    "lesionIds": []
+  },
+  {
+    "id": "superior-lateral-cutaneous-nerve-of-arm",
+    "name": "Superior lateral cutaneous nerve of arm",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Arm",
+    "description": "Regimental-badge sensory loss",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Root values": [
+        "C5",
+        "C6"
+      ],
+      "Course": [
+        "Cutaneous continuation of posterior branch of axillary nerve"
+      ],
+      "Sensory territory": "Skin over inferior deltoid",
+      "Lesion effects": "Regimental-badge sensory loss"
+    },
+    "rootValues": [
+      "C5",
+      "C6"
+    ],
+    "parentIds": [
+      "axillary-nerve"
+    ],
+    "branchIds": [],
+    "course": [
+      "Cutaneous continuation of posterior branch of axillary nerve"
+    ],
+    "motorIds": [],
+    "sensory": [
+      "Skin over inferior deltoid"
+    ],
+    "lesionIds": []
+  },
+  {
+    "id": "superficial-radial-nerve",
+    "name": "Superficial radial nerve",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Forearm",
+    "description": "Sensory deficit; no motor paralysis",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Root values": [
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "Course": [
+        "Descends deep to brachioradialis",
+        "Passes dorsally near distal radius"
+      ],
+      "Sensory territory": "Dorsolateral hand, excluding most fingertips",
+      "Lesion effects": "Sensory deficit; no motor paralysis"
+    },
+    "rootValues": [
+      "C6",
+      "C7",
+      "C8"
+    ],
+    "parentIds": [
+      "radial-nerve"
+    ],
+    "branchIds": [],
+    "course": [
+      "Descends deep to brachioradialis",
+      "Passes dorsally near distal radius"
+    ],
+    "motorIds": [],
+    "sensory": [
+      "Dorsolateral hand, excluding most fingertips"
+    ],
+    "lesionIds": []
+  },
+  {
+    "id": "deep-branch-radial-nerve",
+    "name": "Deep branch radial nerve",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Elbow",
+    "description": "Finger extension weakness; wrist extension may persist with radial deviation",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Root values": [
+        "C7",
+        "C8"
+      ],
+      "Course": [
+        "Passes through supinator",
+        "Supplies supinator and usually ECRB",
+        "Continues as posterior interosseous nerve after emerging"
+      ],
+      "Sensory territory": "No cutaneous territory",
+      "Lesion effects": "Finger extension weakness; wrist extension may persist with radial deviation"
+    },
+    "rootValues": [
+      "C7",
+      "C8"
+    ],
+    "parentIds": [
+      "radial-nerve"
+    ],
+    "branchIds": [],
+    "course": [
+      "Passes through supinator",
+      "Supplies supinator and usually ECRB",
+      "Continues as posterior interosseous nerve after emerging"
+    ],
+    "motorIds": [],
+    "sensory": [
+      "No cutaneous territory"
+    ],
+    "lesionIds": []
+  },
+  {
+    "id": "posterior-interosseous-nerve",
+    "name": "Posterior interosseous nerve",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Forearm",
+    "description": "Finger and thumb extension weakness with preserved skin sensation; complete wrist drop is not typical",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Root values": [
+        "C7",
+        "C8"
+      ],
+      "Course": [
+        "Emerges from supinator",
+        "Descends in posterior forearm along interosseous membrane"
+      ],
+      "Sensory territory": "No cutaneous territory; articular sensory fibers",
+      "Lesion effects": "Finger and thumb extension weakness with preserved skin sensation; complete wrist drop is not typical"
+    },
+    "rootValues": [
+      "C7",
+      "C8"
+    ],
+    "parentIds": [
+      "deep-branch-radial-nerve"
+    ],
+    "branchIds": [],
+    "course": [
+      "Emerges from supinator",
+      "Descends in posterior forearm along interosseous membrane"
+    ],
+    "motorIds": [],
+    "sensory": [
+      "No cutaneous territory; articular sensory fibers"
+    ],
+    "lesionIds": []
+  },
+  {
+    "id": "anterior-interosseous-nerve",
+    "name": "Anterior interosseous nerve",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Forearm",
+    "description": "Weak FPL and lateral FDP cause an abnormal tip-to-tip OK sign without cutaneous sensory loss",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Root values": [
+        "C8",
+        "T1"
+      ],
+      "Course": [
+        "Branches from proximal median nerve",
+        "Descends with anterior interosseous artery on membrane to pronator quadratus"
+      ],
+      "Sensory territory": "No cutaneous territory; articular sensory fibers",
+      "Lesion effects": "Weak FPL and lateral FDP cause an abnormal tip-to-tip OK sign without cutaneous sensory loss"
+    },
+    "rootValues": [
+      "C8",
+      "T1"
+    ],
+    "parentIds": [
+      "median-nerve"
+    ],
+    "branchIds": [],
+    "course": [
+      "Branches from proximal median nerve",
+      "Descends with anterior interosseous artery on membrane to pronator quadratus"
+    ],
+    "motorIds": [],
+    "sensory": [
+      "No cutaneous territory; articular sensory fibers"
+    ],
+    "lesionIds": []
+  },
+  {
+    "id": "recurrent-median-nerve",
+    "name": "Recurrent median nerve",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Hand",
+    "description": "Loss of opposition with preserved digital sensation in an isolated lesion",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Root values": [
+        "C8",
+        "T1"
+      ],
+      "Course": [
+        "Usually arises distal to flexor retinaculum",
+        "Turns proximally into thenar muscles"
+      ],
+      "Sensory territory": "No cutaneous territory",
+      "Lesion effects": "Loss of opposition with preserved digital sensation in an isolated lesion"
+    },
+    "rootValues": [
+      "C8",
+      "T1"
+    ],
+    "parentIds": [
+      "median-nerve"
+    ],
+    "branchIds": [],
+    "course": [
+      "Usually arises distal to flexor retinaculum",
+      "Turns proximally into thenar muscles"
+    ],
+    "motorIds": [],
+    "sensory": [
+      "No cutaneous territory"
+    ],
+    "lesionIds": []
+  },
+  {
+    "id": "palmar-cutaneous-median-nerve",
+    "name": "Palmar cutaneous median nerve",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Wrist",
+    "description": "Usually spared in carpal tunnel syndrome",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Root values": [
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "Course": [
+        "Branches proximal to wrist",
+        "Passes superficial to flexor retinaculum"
+      ],
+      "Sensory territory": "Thenar eminence and adjacent central palm",
+      "Lesion effects": "Usually spared in carpal tunnel syndrome"
+    },
+    "rootValues": [
+      "C6",
+      "C7",
+      "C8"
+    ],
+    "parentIds": [
+      "median-nerve"
+    ],
+    "branchIds": [],
+    "course": [
+      "Branches proximal to wrist",
+      "Passes superficial to flexor retinaculum"
+    ],
+    "motorIds": [],
+    "sensory": [
+      "Thenar eminence and adjacent central palm"
+    ],
+    "lesionIds": []
+  },
+  {
+    "id": "median-digital-nerves",
+    "name": "Median digital nerves",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Hand",
+    "description": "Digital numbness; branches also supply lateral lumbricals",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Root values": [
+        "C6",
+        "C7",
+        "C8",
+        "T1"
+      ],
+      "Course": [
+        "Common and proper palmar digital branches beyond carpal tunnel"
+      ],
+      "Sensory territory": "Palmar lateral 3½ digits and dorsal fingertips",
+      "Lesion effects": "Digital numbness; branches also supply lateral lumbricals"
+    },
+    "rootValues": [
+      "C6",
+      "C7",
+      "C8",
+      "T1"
+    ],
+    "parentIds": [
+      "median-nerve"
+    ],
+    "branchIds": [],
+    "course": [
+      "Common and proper palmar digital branches beyond carpal tunnel"
+    ],
+    "motorIds": [],
+    "sensory": [
+      "Palmar lateral 3½ digits and dorsal fingertips"
+    ],
+    "lesionIds": []
+  },
+  {
+    "id": "superficial-ulnar-nerve",
+    "name": "Superficial ulnar nerve",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Hand",
+    "description": "Predominantly sensory deficits with isolated superficial branch injury",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Root values": [
+        "C8",
+        "T1"
+      ],
+      "Course": [
+        "Superficial branch in Guyon canal",
+        "Supplies palmaris brevis and digital branches"
+      ],
+      "Sensory territory": "Palmar medial 1½ digits",
+      "Lesion effects": "Predominantly sensory deficits with isolated superficial branch injury"
+    },
+    "rootValues": [
+      "C8",
+      "T1"
+    ],
+    "parentIds": [
+      "ulnar-nerve"
+    ],
+    "branchIds": [],
+    "course": [
+      "Superficial branch in Guyon canal",
+      "Supplies palmaris brevis and digital branches"
+    ],
+    "motorIds": [],
+    "sensory": [
+      "Palmar medial 1½ digits"
+    ],
+    "lesionIds": []
+  },
+  {
+    "id": "deep-ulnar-nerve",
+    "name": "Deep ulnar nerve",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Hand",
+    "description": "Interosseous and adductor pollicis weakness, impaired finger spread and pinch",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Root values": [
+        "C8",
+        "T1"
+      ],
+      "Course": [
+        "Turns around hook of hamate",
+        "Crosses deep palm with deep palmar arch"
+      ],
+      "Sensory territory": "No cutaneous territory",
+      "Lesion effects": "Interosseous and adductor pollicis weakness, impaired finger spread and pinch"
+    },
+    "rootValues": [
+      "C8",
+      "T1"
+    ],
+    "parentIds": [
+      "ulnar-nerve"
+    ],
+    "branchIds": [],
+    "course": [
+      "Turns around hook of hamate",
+      "Crosses deep palm with deep palmar arch"
+    ],
+    "motorIds": [],
+    "sensory": [
+      "No cutaneous territory"
+    ],
+    "lesionIds": []
+  },
+  {
+    "id": "dorsal-cutaneous-ulnar-nerve",
+    "name": "Dorsal cutaneous ulnar nerve",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Wrist",
+    "description": "Often spared in Guyon canal lesions",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Root values": [
+        "C8",
+        "T1"
+      ],
+      "Course": [
+        "Arises proximal to wrist",
+        "Passes to dorsomedial hand outside Guyon canal"
+      ],
+      "Sensory territory": "Dorsomedial hand and proximal medial digits",
+      "Lesion effects": "Often spared in Guyon canal lesions"
+    },
+    "rootValues": [
+      "C8",
+      "T1"
+    ],
+    "parentIds": [
+      "ulnar-nerve"
+    ],
+    "branchIds": [],
+    "course": [
+      "Arises proximal to wrist",
+      "Passes to dorsomedial hand outside Guyon canal"
+    ],
+    "motorIds": [],
+    "sensory": [
+      "Dorsomedial hand and proximal medial digits"
+    ],
+    "lesionIds": []
+  },
+  {
+    "id": "intercostobrachial-nerve",
+    "name": "Intercostobrachial nerve",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Shoulder girdle",
+    "description": "Can be injured in axillary surgery; not a brachial plexus branch",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Root values": [
+        "T2"
+      ],
+      "Course": [
+        "Lateral cutaneous branch of second intercostal nerve",
+        "Crosses axilla to medial upper arm"
+      ],
+      "Sensory territory": "Axilla and upper medial arm",
+      "Lesion effects": "Can be injured in axillary surgery; not a brachial plexus branch"
+    },
+    "rootValues": [
+      "T2"
+    ],
+    "parentIds": [],
+    "branchIds": [],
+    "course": [
+      "Lateral cutaneous branch of second intercostal nerve",
+      "Crosses axilla to medial upper arm"
+    ],
+    "motorIds": [],
+    "sensory": [
+      "Axilla and upper medial arm"
+    ],
+    "lesionIds": []
+  },
+  {
+    "id": "accessory-nerve",
+    "name": "Accessory nerve",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Shoulder girdle",
+    "description": "Shoulder droop, weak shrug and impaired upward rotation",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Root values": [
+        "CN XI"
+      ],
+      "Course": [
+        "Spinal accessory nerve crosses posterior triangle to deep trapezius"
+      ],
+      "Sensory territory": "No cutaneous territory",
+      "Lesion effects": "Shoulder droop, weak shrug and impaired upward rotation"
+    },
+    "rootValues": [
+      "CN XI"
+    ],
+    "parentIds": [],
+    "branchIds": [],
+    "course": [
+      "Spinal accessory nerve crosses posterior triangle to deep trapezius"
+    ],
+    "motorIds": [],
+    "sensory": [
+      "No cutaneous territory"
+    ],
+    "lesionIds": []
+  },
+  {
+    "id": "cervical-muscular-branches",
+    "name": "Cervical muscular branches",
+    "aliases": [],
+    "system": "nerve",
+    "region": "Shoulder girdle",
+    "description": "Contributions outside the brachial plexus",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Root values": [
+        "C3",
+        "C4"
+      ],
+      "Course": [
+        "Direct cervical plexus branches to levator scapulae and proprioceptive input to trapezius"
+      ],
+      "Sensory territory": "No mapped cutaneous territory here",
+      "Lesion effects": "Contributions outside the brachial plexus"
+    },
+    "rootValues": [
+      "C3",
+      "C4"
+    ],
+    "parentIds": [],
+    "branchIds": [],
+    "course": [
+      "Direct cervical plexus branches to levator scapulae and proprioceptive input to trapezius"
+    ],
+    "motorIds": [],
+    "sensory": [
+      "No mapped cutaneous territory here"
+    ],
+    "lesionIds": []
+  },
+  {
+    "id": "subclavian-artery",
+    "name": "Subclavian artery",
+    "aliases": [],
+    "system": "artery",
+    "region": "Shoulder girdle",
+    "description": "Entry vessel to upper limb",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Continues as axillary artery at lateral border of first rib"
+      ],
+      "Supply and relations": "Entry vessel to upper limb"
+    },
+    "parentIds": [],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Continues as axillary artery at lateral border of first rib"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "thyrocervical-trunk",
+    "name": "Thyrocervical trunk",
+    "aliases": [],
+    "system": "artery",
+    "region": "Shoulder girdle",
+    "description": "Neck and scapular collateral supply",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Arises from first part of subclavian artery"
+      ],
+      "Supply and relations": "Neck and scapular collateral supply"
+    },
+    "parentIds": [
+      "subclavian-artery"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Arises from first part of subclavian artery"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "suprascapular-artery",
+    "name": "Suprascapular artery",
+    "aliases": [],
+    "system": "artery",
+    "region": "Shoulder",
+    "description": "Scapular anastomosis",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Usually passes above superior transverse scapular ligament",
+        "Courses to supra- and infraspinous fossae"
+      ],
+      "Supply and relations": "Scapular anastomosis"
+    },
+    "parentIds": [
+      "thyrocervical-trunk"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [
+      "dorsal-scapular-artery",
+      "circumflex-scapular-artery"
+    ],
+    "course": [
+      "Usually passes above superior transverse scapular ligament",
+      "Courses to supra- and infraspinous fossae"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "transverse-cervical-artery",
+    "name": "Transverse cervical artery",
+    "aliases": [],
+    "system": "artery",
+    "region": "Shoulder girdle",
+    "description": "Superficial branch supplies trapezius",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Crosses posterior triangle toward trapezius"
+      ],
+      "Supply and relations": "Superficial branch supplies trapezius"
+    },
+    "parentIds": [
+      "thyrocervical-trunk"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Crosses posterior triangle toward trapezius"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "dorsal-scapular-artery",
+    "name": "Dorsal scapular artery",
+    "aliases": [],
+    "system": "artery",
+    "region": "Shoulder girdle",
+    "description": "May arise as a deep branch of transverse cervical artery",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Descends near medial scapular border"
+      ],
+      "Supply and relations": "May arise as a deep branch of transverse cervical artery"
+    },
+    "parentIds": [
+      "subclavian-artery"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [
+      "suprascapular-artery",
+      "circumflex-scapular-artery"
+    ],
+    "course": [
+      "Descends near medial scapular border"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "axillary-artery",
+    "name": "Axillary artery",
+    "aliases": [],
+    "system": "artery",
+    "region": "Shoulder girdle",
+    "description": "Axilla, shoulder and chest wall",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Lateral first rib to inferior teres major border",
+        "Pectoralis minor divides it into three parts"
+      ],
+      "Supply and relations": "Axilla, shoulder and chest wall"
+    },
+    "parentIds": [
+      "subclavian-artery"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Lateral first rib to inferior teres major border",
+      "Pectoralis minor divides it into three parts"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "superior-thoracic-artery",
+    "name": "Superior thoracic artery",
+    "aliases": [],
+    "system": "artery",
+    "region": "Shoulder girdle",
+    "description": "Upper thoracic wall",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "First part of axillary artery"
+      ],
+      "Supply and relations": "Upper thoracic wall"
+    },
+    "parentIds": [
+      "axillary-artery"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "First part of axillary artery"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "thoracoacromial-trunk",
+    "name": "Thoracoacromial trunk",
+    "aliases": [],
+    "system": "artery",
+    "region": "Shoulder girdle",
+    "description": "Pectoral, acromial, clavicular and deltoid branches",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Second part of axillary artery",
+        "Pierces clavipectoral fascia"
+      ],
+      "Supply and relations": "Pectoral, acromial, clavicular and deltoid branches"
+    },
+    "parentIds": [
+      "axillary-artery"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Second part of axillary artery",
+      "Pierces clavipectoral fascia"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "lateral-thoracic-artery",
+    "name": "Lateral thoracic artery",
+    "aliases": [],
+    "system": "artery",
+    "region": "Shoulder girdle",
+    "description": "Serratus anterior, pectoral region and lateral chest wall",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Second part of axillary artery",
+        "Descends along lateral border of pectoralis minor"
+      ],
+      "Supply and relations": "Serratus anterior, pectoral region and lateral chest wall"
+    },
+    "parentIds": [
+      "axillary-artery"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Second part of axillary artery",
+      "Descends along lateral border of pectoralis minor"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "subscapular-artery",
+    "name": "Subscapular artery",
+    "aliases": [],
+    "system": "artery",
+    "region": "Shoulder",
+    "description": "Posterior axillary wall",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Third part of axillary artery",
+        "Divides into circumflex scapular and thoracodorsal branches"
+      ],
+      "Supply and relations": "Posterior axillary wall"
+    },
+    "parentIds": [
+      "axillary-artery"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Third part of axillary artery",
+      "Divides into circumflex scapular and thoracodorsal branches"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "anterior-circumflex-humeral-artery",
+    "name": "Anterior circumflex humeral artery",
+    "aliases": [],
+    "system": "artery",
+    "region": "Shoulder",
+    "description": "Humeral head and shoulder region",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Third part of axillary artery",
+        "Passes anterior to surgical neck"
+      ],
+      "Supply and relations": "Humeral head and shoulder region"
+    },
+    "parentIds": [
+      "axillary-artery"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Third part of axillary artery",
+      "Passes anterior to surgical neck"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "posterior-circumflex-humeral-artery",
+    "name": "Posterior circumflex humeral artery",
+    "aliases": [],
+    "system": "artery",
+    "region": "Shoulder",
+    "description": "Deltoid and humeral head",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Third part of axillary artery",
+        "Passes through quadrangular space with axillary nerve"
+      ],
+      "Supply and relations": "Deltoid and humeral head"
+    },
+    "parentIds": [
+      "axillary-artery"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Third part of axillary artery",
+      "Passes through quadrangular space with axillary nerve"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "circumflex-scapular-artery",
+    "name": "Circumflex scapular artery",
+    "aliases": [],
+    "system": "artery",
+    "region": "Shoulder",
+    "description": "Scapular anastomosis",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Passes through triangular space to posterior scapula"
+      ],
+      "Supply and relations": "Scapular anastomosis"
+    },
+    "parentIds": [
+      "subscapular-artery"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [
+      "suprascapular-artery",
+      "dorsal-scapular-artery"
+    ],
+    "course": [
+      "Passes through triangular space to posterior scapula"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "thoracodorsal-artery",
+    "name": "Thoracodorsal artery",
+    "aliases": [],
+    "system": "artery",
+    "region": "Shoulder girdle",
+    "description": "Latissimus dorsi and related thoracic wall",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Descends with thoracodorsal nerve"
+      ],
+      "Supply and relations": "Latissimus dorsi and related thoracic wall"
+    },
+    "parentIds": [
+      "subscapular-artery"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Descends with thoracodorsal nerve"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "brachial-artery",
+    "name": "Brachial artery",
+    "aliases": [],
+    "system": "artery",
+    "region": "Arm",
+    "description": "Arm; terminal branches radial and ulnar",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Begins at inferior border of teres major",
+        "Descends in medial bicipital groove",
+        "Passes deep to bicipital aponeurosis",
+        "Divides near neck of radius in cubital fossa"
+      ],
+      "Supply and relations": "Arm; terminal branches radial and ulnar"
+    },
+    "parentIds": [
+      "axillary-artery"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Begins at inferior border of teres major",
+      "Descends in medial bicipital groove",
+      "Passes deep to bicipital aponeurosis",
+      "Divides near neck of radius in cubital fossa"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "profunda-brachii-artery",
+    "name": "Profunda brachii artery",
+    "aliases": [],
+    "system": "artery",
+    "region": "Arm",
+    "description": "Posterior arm and elbow collateral network",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Enters triangular interval with radial nerve",
+        "Courses in radial groove"
+      ],
+      "Supply and relations": "Posterior arm and elbow collateral network"
+    },
+    "parentIds": [
+      "brachial-artery"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Enters triangular interval with radial nerve",
+      "Courses in radial groove"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "superior-ulnar-collateral-artery",
+    "name": "Superior ulnar collateral artery",
+    "aliases": [],
+    "system": "artery",
+    "region": "Elbow",
+    "description": "Elbow collateral circulation",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Descends with ulnar nerve behind medial epicondyle"
+      ],
+      "Supply and relations": "Elbow collateral circulation"
+    },
+    "parentIds": [
+      "brachial-artery"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [
+      "posterior-ulnar-recurrent-artery"
+    ],
+    "course": [
+      "Descends with ulnar nerve behind medial epicondyle"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "inferior-ulnar-collateral-artery",
+    "name": "Inferior ulnar collateral artery",
+    "aliases": [],
+    "system": "artery",
+    "region": "Elbow",
+    "description": "Elbow collateral circulation",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Arises proximal to elbow",
+        "Branches anterior and posterior to medial epicondyle"
+      ],
+      "Supply and relations": "Elbow collateral circulation"
+    },
+    "parentIds": [
+      "brachial-artery"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [
+      "anterior-ulnar-recurrent-artery"
+    ],
+    "course": [
+      "Arises proximal to elbow",
+      "Branches anterior and posterior to medial epicondyle"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "radial-collateral-artery",
+    "name": "Radial collateral artery",
+    "aliases": [],
+    "system": "artery",
+    "region": "Elbow",
+    "description": "Anastomoses with radial recurrent artery",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Descends toward anterior lateral elbow"
+      ],
+      "Supply and relations": "Anastomoses with radial recurrent artery"
+    },
+    "parentIds": [
+      "profunda-brachii-artery"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [
+      "radial-recurrent-artery"
+    ],
+    "course": [
+      "Descends toward anterior lateral elbow"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "middle-collateral-artery",
+    "name": "Middle collateral artery",
+    "aliases": [],
+    "system": "artery",
+    "region": "Elbow",
+    "description": "Anastomoses with interosseous recurrent artery",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Descends toward posterior lateral elbow"
+      ],
+      "Supply and relations": "Anastomoses with interosseous recurrent artery"
+    },
+    "parentIds": [
+      "profunda-brachii-artery"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [
+      "interosseous-recurrent-artery"
+    ],
+    "course": [
+      "Descends toward posterior lateral elbow"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "radial-artery",
+    "name": "Radial artery",
+    "aliases": [],
+    "system": "artery",
+    "region": "Forearm",
+    "description": "Major contributor to deep palmar arch",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Descends under brachioradialis",
+        "Palpable lateral to FCR tendon distally",
+        "Crosses anatomical snuffbox",
+        "Passes between first dorsal interosseous heads into deep palm"
+      ],
+      "Supply and relations": "Major contributor to deep palmar arch"
+    },
+    "parentIds": [
+      "brachial-artery"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [
+      "superficial-palmar-arch"
+    ],
+    "course": [
+      "Descends under brachioradialis",
+      "Palpable lateral to FCR tendon distally",
+      "Crosses anatomical snuffbox",
+      "Passes between first dorsal interosseous heads into deep palm"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "radial-recurrent-artery",
+    "name": "Radial recurrent artery",
+    "aliases": [],
+    "system": "artery",
+    "region": "Elbow",
+    "description": "Anastomoses with radial collateral artery",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Ascends anterior to lateral epicondyle"
+      ],
+      "Supply and relations": "Anastomoses with radial collateral artery"
+    },
+    "parentIds": [
+      "radial-artery"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [
+      "radial-collateral-artery"
+    ],
+    "course": [
+      "Ascends anterior to lateral epicondyle"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "ulnar-artery",
+    "name": "Ulnar artery",
+    "aliases": [],
+    "system": "artery",
+    "region": "Forearm",
+    "description": "Major contributor to superficial palmar arch",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Passes deep to proximal flexor muscles",
+        "Distally accompanies ulnar nerve",
+        "Enters hand superficial to flexor retinaculum via Guyon region"
+      ],
+      "Supply and relations": "Major contributor to superficial palmar arch"
+    },
+    "parentIds": [
+      "brachial-artery"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [
+      "deep-palmar-arch"
+    ],
+    "course": [
+      "Passes deep to proximal flexor muscles",
+      "Distally accompanies ulnar nerve",
+      "Enters hand superficial to flexor retinaculum via Guyon region"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "anterior-ulnar-recurrent-artery",
+    "name": "Anterior ulnar recurrent artery",
+    "aliases": [],
+    "system": "artery",
+    "region": "Elbow",
+    "description": "Anastomoses with inferior ulnar collateral artery",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Ascends anterior to medial epicondyle"
+      ],
+      "Supply and relations": "Anastomoses with inferior ulnar collateral artery"
+    },
+    "parentIds": [
+      "ulnar-artery"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [
+      "inferior-ulnar-collateral-artery"
+    ],
+    "course": [
+      "Ascends anterior to medial epicondyle"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "posterior-ulnar-recurrent-artery",
+    "name": "Posterior ulnar recurrent artery",
+    "aliases": [],
+    "system": "artery",
+    "region": "Elbow",
+    "description": "Anastomoses with superior ulnar collateral artery",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Ascends posterior to medial epicondyle"
+      ],
+      "Supply and relations": "Anastomoses with superior ulnar collateral artery"
+    },
+    "parentIds": [
+      "ulnar-artery"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [
+      "superior-ulnar-collateral-artery"
+    ],
+    "course": [
+      "Ascends posterior to medial epicondyle"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "common-interosseous-artery",
+    "name": "Common interosseous artery",
+    "aliases": [],
+    "system": "artery",
+    "region": "Forearm",
+    "description": "Deep forearm",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Short proximal branch dividing into anterior and posterior interosseous arteries"
+      ],
+      "Supply and relations": "Deep forearm"
+    },
+    "parentIds": [
+      "ulnar-artery"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Short proximal branch dividing into anterior and posterior interosseous arteries"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "anterior-interosseous-artery",
+    "name": "Anterior interosseous artery",
+    "aliases": [],
+    "system": "artery",
+    "region": "Forearm",
+    "description": "Deep anterior forearm",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Descends on anterior interosseous membrane with AIN"
+      ],
+      "Supply and relations": "Deep anterior forearm"
+    },
+    "parentIds": [
+      "common-interosseous-artery"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Descends on anterior interosseous membrane with AIN"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "posterior-interosseous-artery",
+    "name": "Posterior interosseous artery",
+    "aliases": [],
+    "system": "artery",
+    "region": "Forearm",
+    "description": "Posterior forearm",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Passes into posterior compartment and descends among extensors"
+      ],
+      "Supply and relations": "Posterior forearm"
+    },
+    "parentIds": [
+      "common-interosseous-artery"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Passes into posterior compartment and descends among extensors"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "interosseous-recurrent-artery",
+    "name": "Interosseous recurrent artery",
+    "aliases": [],
+    "system": "artery",
+    "region": "Elbow",
+    "description": "Anastomoses with middle collateral artery",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Ascends posterior to lateral epicondyle"
+      ],
+      "Supply and relations": "Anastomoses with middle collateral artery"
+    },
+    "parentIds": [
+      "posterior-interosseous-artery"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [
+      "middle-collateral-artery"
+    ],
+    "course": [
+      "Ascends posterior to lateral epicondyle"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "superficial-palmar-arch",
+    "name": "Superficial palmar arch",
+    "aliases": [],
+    "system": "artery",
+    "region": "Hand",
+    "description": "Predominantly ulnar, often completed by superficial radial contribution; variable completeness",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Deep to palmar aponeurosis and superficial to long flexor tendons"
+      ],
+      "Supply and relations": "Predominantly ulnar, often completed by superficial radial contribution; variable completeness"
+    },
+    "parentIds": [
+      "ulnar-artery"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [
+      "radial-artery"
+    ],
+    "course": [
+      "Deep to palmar aponeurosis and superficial to long flexor tendons"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "deep-palmar-arch",
+    "name": "Deep palmar arch",
+    "aliases": [],
+    "system": "artery",
+    "region": "Hand",
+    "description": "Predominantly radial, completed by deep ulnar contribution",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Across metacarpal bases deep to flexor tendons"
+      ],
+      "Supply and relations": "Predominantly radial, completed by deep ulnar contribution"
+    },
+    "parentIds": [
+      "radial-artery"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [
+      "ulnar-artery"
+    ],
+    "course": [
+      "Across metacarpal bases deep to flexor tendons"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "princeps-pollicis-artery",
+    "name": "Princeps pollicis artery",
+    "aliases": [],
+    "system": "artery",
+    "region": "Hand",
+    "description": "Thumb; origin varies",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Arises near first intermetacarpal space",
+        "Descends along thumb"
+      ],
+      "Supply and relations": "Thumb; origin varies"
+    },
+    "parentIds": [
+      "radial-artery"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Arises near first intermetacarpal space",
+      "Descends along thumb"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "radialis-indicis-artery",
+    "name": "Radialis indicis artery",
+    "aliases": [],
+    "system": "artery",
+    "region": "Hand",
+    "description": "Radial index finger; origin varies",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Courses along radial side of index finger"
+      ],
+      "Supply and relations": "Radial index finger; origin varies"
+    },
+    "parentIds": [
+      "radial-artery"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Courses along radial side of index finger"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "common-palmar-digital-artery-1",
+    "name": "Common palmar digital artery 1",
+    "aliases": [],
+    "system": "artery",
+    "region": "Hand",
+    "description": "",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {},
+    "parentIds": [
+      "superficial-palmar-arch"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Runs toward interdigital web 2."
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "proper-palmar-digital-artery-digit-2-ulnar",
+    "name": "Proper palmar digital artery · digit 2 ulnar",
+    "aliases": [],
+    "system": "artery",
+    "region": "Hand",
+    "description": "",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {},
+    "parentIds": [
+      "common-palmar-digital-artery-1"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Along ulnar side of digit 2."
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "proper-palmar-digital-artery-digit-3-radial",
+    "name": "Proper palmar digital artery · digit 3 radial",
+    "aliases": [],
+    "system": "artery",
+    "region": "Hand",
+    "description": "",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {},
+    "parentIds": [
+      "common-palmar-digital-artery-1"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Along radial side of digit 3."
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "common-palmar-digital-artery-2",
+    "name": "Common palmar digital artery 2",
+    "aliases": [],
+    "system": "artery",
+    "region": "Hand",
+    "description": "",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {},
+    "parentIds": [
+      "superficial-palmar-arch"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Runs toward interdigital web 3."
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "proper-palmar-digital-artery-digit-3-ulnar",
+    "name": "Proper palmar digital artery · digit 3 ulnar",
+    "aliases": [],
+    "system": "artery",
+    "region": "Hand",
+    "description": "",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {},
+    "parentIds": [
+      "common-palmar-digital-artery-2"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Along ulnar side of digit 3."
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "proper-palmar-digital-artery-digit-4-radial",
+    "name": "Proper palmar digital artery · digit 4 radial",
+    "aliases": [],
+    "system": "artery",
+    "region": "Hand",
+    "description": "",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {},
+    "parentIds": [
+      "common-palmar-digital-artery-2"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Along radial side of digit 4."
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "common-palmar-digital-artery-3",
+    "name": "Common palmar digital artery 3",
+    "aliases": [],
+    "system": "artery",
+    "region": "Hand",
+    "description": "",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {},
+    "parentIds": [
+      "superficial-palmar-arch"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Runs toward interdigital web 4."
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "proper-palmar-digital-artery-digit-4-ulnar",
+    "name": "Proper palmar digital artery · digit 4 ulnar",
+    "aliases": [],
+    "system": "artery",
+    "region": "Hand",
+    "description": "",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {},
+    "parentIds": [
+      "common-palmar-digital-artery-3"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Along ulnar side of digit 4."
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "proper-palmar-digital-artery-digit-5-radial",
+    "name": "Proper palmar digital artery · digit 5 radial",
+    "aliases": [],
+    "system": "artery",
+    "region": "Hand",
+    "description": "",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {},
+    "parentIds": [
+      "common-palmar-digital-artery-3"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Along radial side of digit 5."
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "proper-palmar-digital-artery-little-finger-ulnar",
+    "name": "Proper palmar digital artery · little finger ulnar",
+    "aliases": [],
+    "system": "artery",
+    "region": "Hand",
+    "description": "",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {},
+    "parentIds": [
+      "superficial-palmar-arch"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Along ulnar border of little finger."
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "subclavian-vein",
+    "name": "Subclavian vein",
+    "aliases": [],
+    "system": "vein",
+    "region": "Shoulder girdle",
+    "description": "",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Receives axillary vein at lateral first rib"
+      ],
+      "Layer": "Deep",
+      "Clinical significance": "Venous drainage toward the heart."
+    },
+    "parentIds": [],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Receives axillary vein at lateral first rib"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "axillary-vein",
+    "name": "Axillary vein",
+    "aliases": [],
+    "system": "vein",
+    "region": "Shoulder girdle",
+    "description": "",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Formed near inferior teres major border by basilic and brachial veins",
+        "Lies medial to axillary artery"
+      ],
+      "Layer": "Deep",
+      "Clinical significance": "Venous drainage toward the heart."
+    },
+    "parentIds": [
+      "subclavian-vein"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Formed near inferior teres major border by basilic and brachial veins",
+      "Lies medial to axillary artery"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "cephalic-vein",
+    "name": "Cephalic vein",
+    "aliases": [],
+    "system": "vein",
+    "region": "Arm",
+    "description": "",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Ascends from lateral dorsal venous network",
+        "Runs in lateral forearm and arm",
+        "Enters deltopectoral groove",
+        "Pierces clavipectoral fascia into axillary vein"
+      ],
+      "Layer": "Superficial",
+      "Clinical significance": "Venous drainage toward the heart."
+    },
+    "parentIds": [
+      "axillary-vein"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Ascends from lateral dorsal venous network",
+      "Runs in lateral forearm and arm",
+      "Enters deltopectoral groove",
+      "Pierces clavipectoral fascia into axillary vein"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "basilic-vein",
+    "name": "Basilic vein",
+    "aliases": [],
+    "system": "vein",
+    "region": "Arm",
+    "description": "",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Ascends medially from hand",
+        "Pierces brachial fascia in arm",
+        "Joins brachial veins"
+      ],
+      "Layer": "Superficial then deep",
+      "Clinical significance": "Venous drainage toward the heart."
+    },
+    "parentIds": [
+      "axillary-vein"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Ascends medially from hand",
+      "Pierces brachial fascia in arm",
+      "Joins brachial veins"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "median-cubital-vein",
+    "name": "Median cubital vein",
+    "aliases": [],
+    "system": "vein",
+    "region": "Elbow",
+    "description": "",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Common oblique communication from cephalic to basilic vein",
+        "Superficial to bicipital aponeurosis"
+      ],
+      "Layer": "Superficial; pattern varies",
+      "Clinical significance": "Common venipuncture site; bicipital aponeurosis separates it from deeper brachial artery and median nerve. Venous anatomy varies."
+    },
+    "parentIds": [
+      "basilic-vein"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Common oblique communication from cephalic to basilic vein",
+      "Superficial to bicipital aponeurosis"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "median-antebrachial-vein",
+    "name": "Median antebrachial vein",
+    "aliases": [],
+    "system": "vein",
+    "region": "Forearm",
+    "description": "",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Ascends anterior forearm",
+        "Termination into basilic or median cubital system varies"
+      ],
+      "Layer": "Superficial; variable",
+      "Clinical significance": "Venous drainage toward the heart."
+    },
+    "parentIds": [
+      "basilic-vein"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Ascends anterior forearm",
+      "Termination into basilic or median cubital system varies"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "brachial-veins",
+    "name": "Brachial veins",
+    "aliases": [],
+    "system": "vein",
+    "region": "Arm",
+    "description": "",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Paired venae comitantes accompanying brachial artery"
+      ],
+      "Layer": "Deep",
+      "Clinical significance": "Venous drainage toward the heart."
+    },
+    "parentIds": [
+      "axillary-vein"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Paired venae comitantes accompanying brachial artery"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "radial-venae-comitantes",
+    "name": "Radial venae comitantes",
+    "aliases": [],
+    "system": "vein",
+    "region": "Forearm",
+    "description": "",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Paired veins accompanying radial artery"
+      ],
+      "Layer": "Deep",
+      "Clinical significance": "Venous drainage toward the heart."
+    },
+    "parentIds": [
+      "brachial-veins"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Paired veins accompanying radial artery"
+    ],
+    "supplyIds": []
+  },
+  {
+    "id": "ulnar-venae-comitantes",
+    "name": "Ulnar venae comitantes",
+    "aliases": [],
+    "system": "vein",
+    "region": "Forearm",
+    "description": "",
+    "sourceIds": [
+      "bp3d"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Course": [
+        "Paired veins accompanying ulnar artery"
+      ],
+      "Layer": "Deep",
+      "Clinical significance": "Venous drainage toward the heart."
+    },
+    "parentIds": [
+      "brachial-veins"
+    ],
+    "branchIds": [],
+    "anastomosisIds": [],
+    "course": [
+      "Paired veins accompanying ulnar artery"
+    ],
+    "supplyIds": []
+  }
+]

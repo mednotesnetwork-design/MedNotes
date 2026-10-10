@@ -1,0 +1,2542 @@
+[
+  {
+    "id": "anterior-sternoclavicular-ligament",
+    "name": "Anterior sternoclavicular ligament",
+    "aliases": [],
+    "system": "ligament",
+    "region": "Shoulder girdle",
+    "description": "Anterior SC capsule reinforcement",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "attaches to",
+        "targetId": "clavicle"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "sternum"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Attachment structures": [
+        "Clavicle",
+        "Sternum"
+      ],
+      "Role": "Anterior SC capsule reinforcement"
+    }
+  },
+  {
+    "id": "posterior-sternoclavicular-ligament",
+    "name": "Posterior sternoclavicular ligament",
+    "aliases": [],
+    "system": "ligament",
+    "region": "Shoulder girdle",
+    "description": "Posterior SC capsule reinforcement",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "attaches to",
+        "targetId": "clavicle"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "sternum"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Attachment structures": [
+        "Clavicle",
+        "Sternum"
+      ],
+      "Role": "Posterior SC capsule reinforcement"
+    }
+  },
+  {
+    "id": "interclavicular-ligament",
+    "name": "Interclavicular ligament",
+    "aliases": [],
+    "system": "ligament",
+    "region": "Shoulder girdle",
+    "description": "Connects sternal ends of clavicles across jugular notch",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "attaches to",
+        "targetId": "clavicle"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "sternum"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Attachment structures": [
+        "Clavicle",
+        "Sternum"
+      ],
+      "Role": "Connects sternal ends of clavicles across jugular notch"
+    }
+  },
+  {
+    "id": "costoclavicular-ligament",
+    "name": "Costoclavicular ligament",
+    "aliases": [],
+    "system": "ligament",
+    "region": "Shoulder girdle",
+    "description": "Anchors inferior medial clavicle to first rib and cartilage",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "attaches to",
+        "targetId": "clavicle"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "ribs"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Attachment structures": [
+        "Clavicle",
+        "Ribs"
+      ],
+      "Role": "Anchors inferior medial clavicle to first rib and cartilage"
+    }
+  },
+  {
+    "id": "acromioclavicular-ligament",
+    "name": "Acromioclavicular ligament",
+    "aliases": [],
+    "system": "ligament",
+    "region": "Shoulder girdle",
+    "description": "Reinforces AC capsule, contributing to horizontal stability",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "attaches to",
+        "targetId": "clavicle"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "scapula"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Attachment structures": [
+        "Clavicle",
+        "Scapula"
+      ],
+      "Role": "Reinforces AC capsule, contributing to horizontal stability"
+    }
+  },
+  {
+    "id": "conoid-ligament",
+    "name": "Conoid ligament",
+    "aliases": [],
+    "system": "ligament",
+    "region": "Shoulder girdle",
+    "description": "Medial component of coracoclavicular ligament: coracoid base to conoid tubercle",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "attaches to",
+        "targetId": "clavicle"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "scapula"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Attachment structures": [
+        "Clavicle",
+        "Scapula"
+      ],
+      "Role": "Medial component of coracoclavicular ligament: coracoid base to conoid tubercle"
+    }
+  },
+  {
+    "id": "trapezoid-ligament",
+    "name": "Trapezoid ligament",
+    "aliases": [],
+    "system": "ligament",
+    "region": "Shoulder girdle",
+    "description": "Lateral component of coracoclavicular ligament: coracoid to trapezoid line",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "attaches to",
+        "targetId": "clavicle"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "scapula"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Attachment structures": [
+        "Clavicle",
+        "Scapula"
+      ],
+      "Role": "Lateral component of coracoclavicular ligament: coracoid to trapezoid line"
+    }
+  },
+  {
+    "id": "coracoacromial-ligament",
+    "name": "Coracoacromial ligament",
+    "aliases": [],
+    "system": "ligament",
+    "region": "Shoulder",
+    "description": "Spans coracoid and acromion; forms coracoacromial arch",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "attaches to",
+        "targetId": "scapula"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Attachment structures": [
+        "Scapula"
+      ],
+      "Role": "Spans coracoid and acromion; forms coracoacromial arch"
+    }
+  },
+  {
+    "id": "superior-transverse-scapular-ligament",
+    "name": "Superior transverse scapular ligament",
+    "aliases": [],
+    "system": "ligament",
+    "region": "Shoulder",
+    "description": "Bridges suprascapular notch; suprascapular nerve passes beneath it",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "attaches to",
+        "targetId": "scapula"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Attachment structures": [
+        "Scapula"
+      ],
+      "Role": "Bridges suprascapular notch; suprascapular nerve passes beneath it"
+    }
+  },
+  {
+    "id": "superior-glenohumeral-ligament",
+    "name": "Superior glenohumeral ligament",
+    "aliases": [],
+    "system": "ligament",
+    "region": "Shoulder",
+    "description": "Superior anterior capsule reinforcement; limits inferior translation in adduction with coracohumeral support",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "attaches to",
+        "targetId": "scapula"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "humerus"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Attachment structures": [
+        "Scapula",
+        "Humerus"
+      ],
+      "Role": "Superior anterior capsule reinforcement; limits inferior translation in adduction with coracohumeral support"
+    }
+  },
+  {
+    "id": "middle-glenohumeral-ligament",
+    "name": "Middle glenohumeral ligament",
+    "aliases": [],
+    "system": "ligament",
+    "region": "Shoulder",
+    "description": "Anterior capsule reinforcement; anatomically variable",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "attaches to",
+        "targetId": "scapula"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "humerus"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Attachment structures": [
+        "Scapula",
+        "Humerus"
+      ],
+      "Role": "Anterior capsule reinforcement; anatomically variable"
+    }
+  },
+  {
+    "id": "inferior-glenohumeral-ligament-complex",
+    "name": "Inferior glenohumeral ligament complex",
+    "aliases": [],
+    "system": "ligament",
+    "region": "Shoulder",
+    "description": "Anterior and posterior bands with axillary pouch; major stabilizer in abduction",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "attaches to",
+        "targetId": "scapula"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "humerus"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Attachment structures": [
+        "Scapula",
+        "Humerus"
+      ],
+      "Role": "Anterior and posterior bands with axillary pouch; major stabilizer in abduction"
+    }
+  },
+  {
+    "id": "coracohumeral-ligament",
+    "name": "Coracohumeral ligament",
+    "aliases": [],
+    "system": "ligament",
+    "region": "Shoulder",
+    "description": "Coracoid to humeral tubercles; supports rotator interval",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "attaches to",
+        "targetId": "scapula"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "humerus"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Attachment structures": [
+        "Scapula",
+        "Humerus"
+      ],
+      "Role": "Coracoid to humeral tubercles; supports rotator interval"
+    }
+  },
+  {
+    "id": "transverse-humeral-ligament",
+    "name": "Transverse humeral ligament",
+    "aliases": [],
+    "system": "ligament",
+    "region": "Shoulder",
+    "description": "Traditional term for tissue bridging the intertubercular groove; the biceps pulley is a more complex restraint",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "attaches to",
+        "targetId": "humerus"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Attachment structures": [
+        "Humerus"
+      ],
+      "Role": "Traditional term for tissue bridging the intertubercular groove; the biceps pulley is a more complex restraint"
+    }
+  },
+  {
+    "id": "glenoid-labrum",
+    "name": "Glenoid labrum",
+    "aliases": [],
+    "system": "ligament",
+    "region": "Shoulder",
+    "description": "Fibrocartilaginous rim deepening the glenoid; not a ligament",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "attaches to",
+        "targetId": "scapula"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Attachment structures": [
+        "Scapula"
+      ],
+      "Role": "Fibrocartilaginous rim deepening the glenoid; not a ligament"
+    }
+  },
+  {
+    "id": "ulnar-collateral-ligament-of-elbow",
+    "name": "Ulnar collateral ligament of elbow",
+    "aliases": [],
+    "system": "ligament",
+    "region": "Elbow",
+    "description": "Anterior, posterior and transverse bundles; anterior bundle is a major valgus restraint",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "attaches to",
+        "targetId": "humerus"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "ulna"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Attachment structures": [
+        "Humerus",
+        "Ulna"
+      ],
+      "Role": "Anterior, posterior and transverse bundles; anterior bundle is a major valgus restraint"
+    }
+  },
+  {
+    "id": "radial-collateral-ligament-complex",
+    "name": "Radial collateral ligament complex",
+    "aliases": [],
+    "system": "ligament",
+    "region": "Elbow",
+    "description": "Lateral collateral complex supports varus and posterolateral stability",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "attaches to",
+        "targetId": "humerus"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "ulna"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Attachment structures": [
+        "Humerus",
+        "Ulna"
+      ],
+      "Role": "Lateral collateral complex supports varus and posterolateral stability"
+    }
+  },
+  {
+    "id": "lateral-ulnar-collateral-ligament",
+    "name": "Lateral ulnar collateral ligament",
+    "aliases": [],
+    "system": "ligament",
+    "region": "Elbow",
+    "description": "Lateral epicondyle to supinator crest; limits posterolateral rotatory instability",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "attaches to",
+        "targetId": "humerus"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "ulna"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Attachment structures": [
+        "Humerus",
+        "Ulna"
+      ],
+      "Role": "Lateral epicondyle to supinator crest; limits posterolateral rotatory instability"
+    }
+  },
+  {
+    "id": "annular-ligament-of-radius",
+    "name": "Annular ligament of radius",
+    "aliases": [],
+    "system": "ligament",
+    "region": "Elbow",
+    "description": "Attaches to anterior and posterior margins of ulnar radial notch and encircles radial head",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "attaches to",
+        "targetId": "ulna"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "radius"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Attachment structures": [
+        "Ulna",
+        "Radius"
+      ],
+      "Role": "Attaches to anterior and posterior margins of ulnar radial notch and encircles radial head"
+    }
+  },
+  {
+    "id": "interosseous-membrane",
+    "name": "Interosseous membrane",
+    "aliases": [],
+    "system": "ligament",
+    "region": "Forearm",
+    "description": "Fibrous radioulnar connection; transfers load and provides muscle attachment",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "attaches to",
+        "targetId": "radius"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "ulna"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Attachment structures": [
+        "Radius",
+        "Ulna"
+      ],
+      "Role": "Fibrous radioulnar connection; transfers load and provides muscle attachment"
+    }
+  },
+  {
+    "id": "oblique-cord",
+    "name": "Oblique cord",
+    "aliases": [],
+    "system": "ligament",
+    "region": "Forearm",
+    "description": "Small proximal band between ulna and radius; variable",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "attaches to",
+        "targetId": "radius"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "ulna"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Attachment structures": [
+        "Radius",
+        "Ulna"
+      ],
+      "Role": "Small proximal band between ulna and radius; variable"
+    }
+  },
+  {
+    "id": "flexor-retinaculum",
+    "name": "Flexor retinaculum",
+    "aliases": [],
+    "system": "ligament",
+    "region": "Wrist",
+    "description": "Roof of carpal tunnel: scaphoid/trapezium tubercles to pisiform/hook of hamate",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "attaches to",
+        "targetId": "scaphoid"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "trapezium"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "pisiform"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "hamate"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Attachment structures": [
+        "Scaphoid",
+        "Trapezium",
+        "Pisiform",
+        "Hamate"
+      ],
+      "Role": "Roof of carpal tunnel: scaphoid/trapezium tubercles to pisiform/hook of hamate"
+    }
+  },
+  {
+    "id": "extensor-retinaculum",
+    "name": "Extensor retinaculum",
+    "aliases": [],
+    "system": "ligament",
+    "region": "Wrist",
+    "description": "Retains extensor tendons in six dorsal compartments",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "attaches to",
+        "targetId": "radius"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "ulna"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Attachment structures": [
+        "Radius",
+        "Ulna"
+      ],
+      "Role": "Retains extensor tendons in six dorsal compartments"
+    }
+  },
+  {
+    "id": "palmar-radiocarpal-ligaments",
+    "name": "Palmar radiocarpal ligaments",
+    "aliases": [],
+    "system": "ligament",
+    "region": "Wrist",
+    "description": "Extrinsic palmar wrist stabilizers",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "attaches to",
+        "targetId": "radius"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "scaphoid"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "lunate"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "capitate"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Attachment structures": [
+        "Radius",
+        "Scaphoid",
+        "Lunate",
+        "Capitate"
+      ],
+      "Role": "Extrinsic palmar wrist stabilizers"
+    }
+  },
+  {
+    "id": "dorsal-radiocarpal-ligament",
+    "name": "Dorsal radiocarpal ligament",
+    "aliases": [],
+    "system": "ligament",
+    "region": "Wrist",
+    "description": "Extrinsic dorsal wrist stabilizer",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "attaches to",
+        "targetId": "radius"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "triquetrum"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Attachment structures": [
+        "Radius",
+        "Triquetrum"
+      ],
+      "Role": "Extrinsic dorsal wrist stabilizer"
+    }
+  },
+  {
+    "id": "scapholunate-interosseous-ligament",
+    "name": "Scapholunate interosseous ligament",
+    "aliases": [],
+    "system": "ligament",
+    "region": "Wrist",
+    "description": "Coordinates scaphoid and lunate motion; injury can produce carpal instability",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "attaches to",
+        "targetId": "scaphoid"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "lunate"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Attachment structures": [
+        "Scaphoid",
+        "Lunate"
+      ],
+      "Role": "Coordinates scaphoid and lunate motion; injury can produce carpal instability"
+    }
+  },
+  {
+    "id": "lunotriquetral-interosseous-ligament",
+    "name": "Lunotriquetral interosseous ligament",
+    "aliases": [],
+    "system": "ligament",
+    "region": "Wrist",
+    "description": "Stabilizes ulnar part of proximal carpal row",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "attaches to",
+        "targetId": "lunate"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "triquetrum"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Attachment structures": [
+        "Lunate",
+        "Triquetrum"
+      ],
+      "Role": "Stabilizes ulnar part of proximal carpal row"
+    }
+  },
+  {
+    "id": "triangular-fibrocartilage-complex",
+    "name": "Triangular fibrocartilage complex",
+    "aliases": [],
+    "system": "ligament",
+    "region": "Wrist",
+    "description": "Ulnar-sided fibrocartilaginous stabilizing complex; includes DRUJ radioulnar ligaments",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "attaches to",
+        "targetId": "radius"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "ulna"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Attachment structures": [
+        "Radius",
+        "Ulna"
+      ],
+      "Role": "Ulnar-sided fibrocartilaginous stabilizing complex; includes DRUJ radioulnar ligaments"
+    }
+  },
+  {
+    "id": "palmar-radioulnar-ligament",
+    "name": "Palmar radioulnar ligament",
+    "aliases": [],
+    "system": "ligament",
+    "region": "Wrist",
+    "description": "Part of TFCC, stabilizes distal radioulnar joint",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "attaches to",
+        "targetId": "radius"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "ulna"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Attachment structures": [
+        "Radius",
+        "Ulna"
+      ],
+      "Role": "Part of TFCC, stabilizes distal radioulnar joint"
+    }
+  },
+  {
+    "id": "dorsal-radioulnar-ligament",
+    "name": "Dorsal radioulnar ligament",
+    "aliases": [],
+    "system": "ligament",
+    "region": "Wrist",
+    "description": "Part of TFCC, stabilizes distal radioulnar joint",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "attaches to",
+        "targetId": "radius"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "ulna"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Attachment structures": [
+        "Radius",
+        "Ulna"
+      ],
+      "Role": "Part of TFCC, stabilizes distal radioulnar joint"
+    }
+  },
+  {
+    "id": "deep-transverse-metacarpal-ligaments",
+    "name": "Deep transverse metacarpal ligaments",
+    "aliases": [],
+    "system": "ligament",
+    "region": "Hand",
+    "description": "Connect palmar plates of MCP joints 2–5",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "attaches to",
+        "targetId": "metacarpal-2"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "metacarpal-3"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "metacarpal-4"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "metacarpal-5"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Attachment structures": [
+        "Metacarpal 2",
+        "Metacarpal 3",
+        "Metacarpal 4",
+        "Metacarpal 5"
+      ],
+      "Role": "Connect palmar plates of MCP joints 2–5"
+    }
+  },
+  {
+    "id": "collateral-ligaments-of-digits",
+    "name": "Collateral ligaments of digits",
+    "aliases": [],
+    "system": "ligament",
+    "region": "Hand",
+    "description": "Paired collateral restraints at MCP and IP joints of every digit",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "attaches to",
+        "targetId": "proximal-phalanx-2"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "middle-phalanx-2"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Attachment structures": [
+        "Proximal phalanx 2",
+        "Middle phalanx 2"
+      ],
+      "Role": "Paired collateral restraints at MCP and IP joints of every digit"
+    }
+  },
+  {
+    "id": "palmar-plates",
+    "name": "Palmar plates",
+    "aliases": [],
+    "system": "ligament",
+    "region": "Hand",
+    "description": "Fibrocartilaginous restraints to hyperextension at MCP and IP joints",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "attaches to",
+        "targetId": "proximal-phalanx-2"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "middle-phalanx-2"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Attachment structures": [
+        "Proximal phalanx 2",
+        "Middle phalanx 2"
+      ],
+      "Role": "Fibrocartilaginous restraints to hyperextension at MCP and IP joints"
+    }
+  },
+  {
+    "id": "thumb-ulnar-collateral-ligament",
+    "name": "Thumb ulnar collateral ligament",
+    "aliases": [],
+    "system": "ligament",
+    "region": "Hand",
+    "description": "Ulnar restraint at thumb MCP; injured by forced abduction",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "attaches to",
+        "targetId": "metacarpal-1"
+      },
+      {
+        "type": "attaches to",
+        "targetId": "proximal-phalanx-1"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Attachment structures": [
+        "Metacarpal 1",
+        "Proximal phalanx 1"
+      ],
+      "Role": "Ulnar restraint at thumb MCP; injured by forced abduction"
+    }
+  },
+  {
+    "id": "sternoclavicular-joint",
+    "name": "Sternoclavicular joint",
+    "aliases": [],
+    "system": "joint",
+    "region": "Shoulder girdle",
+    "description": "Saddle with articular disc",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "stabilized by",
+        "targetId": "anterior-sternoclavicular-ligament"
+      },
+      {
+        "type": "stabilized by",
+        "targetId": "posterior-sternoclavicular-ligament"
+      },
+      {
+        "type": "stabilized by",
+        "targetId": "interclavicular-ligament"
+      },
+      {
+        "type": "stabilized by",
+        "targetId": "costoclavicular-ligament"
+      },
+      {
+        "type": "permits",
+        "targetId": "scapular-elevation"
+      },
+      {
+        "type": "permits",
+        "targetId": "scapular-depression"
+      },
+      {
+        "type": "permits",
+        "targetId": "scapular-protraction"
+      },
+      {
+        "type": "permits",
+        "targetId": "scapular-retraction"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Type": "Synovial",
+      "Classification": "Saddle with articular disc",
+      "Articulating surfaces": [
+        "Sternal end of clavicle",
+        "Clavicular notch of manubrium",
+        "First costal cartilage"
+      ],
+      "Capsule": "Fibrous capsule enclosing joint and disc",
+      "Degrees of freedom": "3",
+      "Common injury patterns": "SC dislocation; posterior displacement threatens mediastinal structures"
+    },
+    "jointType": "Synovial",
+    "classification": "Saddle with articular disc",
+    "surfaces": [
+      "Sternal end of clavicle",
+      "Clavicular notch of manubrium",
+      "First costal cartilage"
+    ],
+    "capsule": "Fibrous capsule enclosing joint and disc",
+    "ligamentIds": [
+      "anterior-sternoclavicular-ligament",
+      "posterior-sternoclavicular-ligament",
+      "interclavicular-ligament",
+      "costoclavicular-ligament"
+    ],
+    "movementIds": [
+      "scapular-elevation",
+      "scapular-depression",
+      "scapular-protraction",
+      "scapular-retraction"
+    ],
+    "degreesOfFreedom": 3,
+    "stabilizerIds": [
+      "subclavius"
+    ],
+    "injuryIds": [],
+    "tests": []
+  },
+  {
+    "id": "acromioclavicular-joint",
+    "name": "Acromioclavicular joint",
+    "aliases": [],
+    "system": "joint",
+    "region": "Shoulder girdle",
+    "description": "Plane",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "stabilized by",
+        "targetId": "acromioclavicular-ligament"
+      },
+      {
+        "type": "stabilized by",
+        "targetId": "conoid-ligament"
+      },
+      {
+        "type": "stabilized by",
+        "targetId": "trapezoid-ligament"
+      },
+      {
+        "type": "permits",
+        "targetId": "scapular-upward-rotation"
+      },
+      {
+        "type": "permits",
+        "targetId": "scapular-downward-rotation"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Type": "Synovial",
+      "Classification": "Plane",
+      "Articulating surfaces": [
+        "Acromial end of clavicle",
+        "Medial acromion"
+      ],
+      "Capsule": "Fibrous capsule",
+      "Degrees of freedom": "3",
+      "Common injury patterns": "AC separation; deformity depends on ligament disruption"
+    },
+    "jointType": "Synovial",
+    "classification": "Plane",
+    "surfaces": [
+      "Acromial end of clavicle",
+      "Medial acromion"
+    ],
+    "capsule": "Fibrous capsule",
+    "ligamentIds": [
+      "acromioclavicular-ligament",
+      "conoid-ligament",
+      "trapezoid-ligament"
+    ],
+    "movementIds": [
+      "scapular-upward-rotation",
+      "scapular-downward-rotation"
+    ],
+    "degreesOfFreedom": 3,
+    "stabilizerIds": [
+      "trapezius",
+      "deltoid"
+    ],
+    "injuryIds": [],
+    "tests": []
+  },
+  {
+    "id": "scapulothoracic-articulation",
+    "name": "Scapulothoracic articulation",
+    "aliases": [],
+    "system": "joint",
+    "region": "Shoulder girdle",
+    "description": "Physiological articulation; not a synovial joint",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "permits",
+        "targetId": "scapular-elevation"
+      },
+      {
+        "type": "permits",
+        "targetId": "scapular-depression"
+      },
+      {
+        "type": "permits",
+        "targetId": "scapular-protraction"
+      },
+      {
+        "type": "permits",
+        "targetId": "scapular-retraction"
+      },
+      {
+        "type": "permits",
+        "targetId": "scapular-upward-rotation"
+      },
+      {
+        "type": "permits",
+        "targetId": "scapular-downward-rotation"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Type": "Functional",
+      "Classification": "Physiological articulation; not a synovial joint",
+      "Articulating surfaces": [
+        "Costal scapular surface with subscapularis",
+        "Thoracic wall with serratus anterior"
+      ],
+      "Capsule": "No true joint capsule",
+      "Degrees of freedom": "3",
+      "Common injury patterns": "Scapular dyskinesis and winging"
+    },
+    "jointType": "Functional",
+    "classification": "Physiological articulation; not a synovial joint",
+    "surfaces": [
+      "Costal scapular surface with subscapularis",
+      "Thoracic wall with serratus anterior"
+    ],
+    "capsule": "No true joint capsule",
+    "ligamentIds": [],
+    "movementIds": [
+      "scapular-elevation",
+      "scapular-depression",
+      "scapular-protraction",
+      "scapular-retraction",
+      "scapular-upward-rotation",
+      "scapular-downward-rotation"
+    ],
+    "degreesOfFreedom": 3,
+    "stabilizerIds": [
+      "serratus-anterior",
+      "trapezius",
+      "rhomboid-major"
+    ],
+    "injuryIds": [],
+    "tests": []
+  },
+  {
+    "id": "glenohumeral-joint",
+    "name": "Glenohumeral joint",
+    "aliases": [],
+    "system": "joint",
+    "region": "Shoulder",
+    "description": "Ball-and-socket",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "stabilized by",
+        "targetId": "superior-glenohumeral-ligament"
+      },
+      {
+        "type": "stabilized by",
+        "targetId": "middle-glenohumeral-ligament"
+      },
+      {
+        "type": "stabilized by",
+        "targetId": "inferior-glenohumeral-ligament-complex"
+      },
+      {
+        "type": "stabilized by",
+        "targetId": "coracohumeral-ligament"
+      },
+      {
+        "type": "stabilized by",
+        "targetId": "glenoid-labrum"
+      },
+      {
+        "type": "permits",
+        "targetId": "shoulder-flexion"
+      },
+      {
+        "type": "permits",
+        "targetId": "shoulder-extension"
+      },
+      {
+        "type": "permits",
+        "targetId": "shoulder-abduction"
+      },
+      {
+        "type": "permits",
+        "targetId": "shoulder-adduction"
+      },
+      {
+        "type": "permits",
+        "targetId": "shoulder-medial-rotation"
+      },
+      {
+        "type": "permits",
+        "targetId": "shoulder-lateral-rotation"
+      },
+      {
+        "type": "permits",
+        "targetId": "shoulder-circumduction"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Type": "Synovial",
+      "Classification": "Ball-and-socket",
+      "Articulating surfaces": [
+        "Head of humerus",
+        "Glenoid cavity and labrum"
+      ],
+      "Capsule": "Relatively lax capsule from glenoid margin to anatomical neck, with inferior recess",
+      "Degrees of freedom": "3",
+      "Common injury patterns": "Anterior dislocation; cuff injury; capsular restriction"
+    },
+    "jointType": "Synovial",
+    "classification": "Ball-and-socket",
+    "surfaces": [
+      "Head of humerus",
+      "Glenoid cavity and labrum"
+    ],
+    "capsule": "Relatively lax capsule from glenoid margin to anatomical neck, with inferior recess",
+    "ligamentIds": [
+      "superior-glenohumeral-ligament",
+      "middle-glenohumeral-ligament",
+      "inferior-glenohumeral-ligament-complex",
+      "coracohumeral-ligament",
+      "glenoid-labrum"
+    ],
+    "movementIds": [
+      "shoulder-flexion",
+      "shoulder-extension",
+      "shoulder-abduction",
+      "shoulder-adduction",
+      "shoulder-medial-rotation",
+      "shoulder-lateral-rotation",
+      "shoulder-circumduction"
+    ],
+    "degreesOfFreedom": 3,
+    "stabilizerIds": [
+      "supraspinatus",
+      "infraspinatus",
+      "teres-minor",
+      "subscapularis"
+    ],
+    "injuryIds": [],
+    "tests": []
+  },
+  {
+    "id": "humeroulnar-joint",
+    "name": "Humeroulnar joint",
+    "aliases": [],
+    "system": "joint",
+    "region": "Elbow",
+    "description": "Hinge",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "stabilized by",
+        "targetId": "ulnar-collateral-ligament-of-elbow"
+      },
+      {
+        "type": "stabilized by",
+        "targetId": "radial-collateral-ligament-complex"
+      },
+      {
+        "type": "permits",
+        "targetId": "elbow-flexion"
+      },
+      {
+        "type": "permits",
+        "targetId": "elbow-extension"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Type": "Synovial",
+      "Classification": "Hinge",
+      "Articulating surfaces": [
+        "Trochlea of humerus",
+        "Trochlear notch of ulna"
+      ],
+      "Capsule": "Shared elbow capsule",
+      "Degrees of freedom": "1",
+      "Common injury patterns": "Dislocation and collateral ligament injury"
+    },
+    "jointType": "Synovial",
+    "classification": "Hinge",
+    "surfaces": [
+      "Trochlea of humerus",
+      "Trochlear notch of ulna"
+    ],
+    "capsule": "Shared elbow capsule",
+    "ligamentIds": [
+      "ulnar-collateral-ligament-of-elbow",
+      "radial-collateral-ligament-complex"
+    ],
+    "movementIds": [
+      "elbow-flexion",
+      "elbow-extension"
+    ],
+    "degreesOfFreedom": 1,
+    "stabilizerIds": [
+      "brachialis",
+      "triceps-brachii"
+    ],
+    "injuryIds": [],
+    "tests": []
+  },
+  {
+    "id": "humeroradial-joint",
+    "name": "Humeroradial joint",
+    "aliases": [],
+    "system": "joint",
+    "region": "Elbow",
+    "description": "Functionally participates in hinge and rotation",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "stabilized by",
+        "targetId": "radial-collateral-ligament-complex"
+      },
+      {
+        "type": "stabilized by",
+        "targetId": "annular-ligament-of-radius"
+      },
+      {
+        "type": "permits",
+        "targetId": "elbow-flexion"
+      },
+      {
+        "type": "permits",
+        "targetId": "elbow-extension"
+      },
+      {
+        "type": "permits",
+        "targetId": "pronation"
+      },
+      {
+        "type": "permits",
+        "targetId": "supination"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Type": "Synovial",
+      "Classification": "Functionally participates in hinge and rotation",
+      "Articulating surfaces": [
+        "Capitulum of humerus",
+        "Fovea of radial head"
+      ],
+      "Capsule": "Shared elbow capsule",
+      "Degrees of freedom": "2",
+      "Common injury patterns": "Radial head fracture"
+    },
+    "jointType": "Synovial",
+    "classification": "Functionally participates in hinge and rotation",
+    "surfaces": [
+      "Capitulum of humerus",
+      "Fovea of radial head"
+    ],
+    "capsule": "Shared elbow capsule",
+    "ligamentIds": [
+      "radial-collateral-ligament-complex",
+      "annular-ligament-of-radius"
+    ],
+    "movementIds": [
+      "elbow-flexion",
+      "elbow-extension",
+      "pronation",
+      "supination"
+    ],
+    "degreesOfFreedom": 2,
+    "stabilizerIds": [
+      "biceps-brachii",
+      "brachioradialis"
+    ],
+    "injuryIds": [],
+    "tests": []
+  },
+  {
+    "id": "proximal-radioulnar-joint",
+    "name": "Proximal radioulnar joint",
+    "aliases": [],
+    "system": "joint",
+    "region": "Elbow",
+    "description": "Pivot",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "stabilized by",
+        "targetId": "annular-ligament-of-radius"
+      },
+      {
+        "type": "permits",
+        "targetId": "pronation"
+      },
+      {
+        "type": "permits",
+        "targetId": "supination"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Type": "Synovial",
+      "Classification": "Pivot",
+      "Articulating surfaces": [
+        "Circumference of radial head",
+        "Radial notch of ulna and annular ligament"
+      ],
+      "Capsule": "Shares elbow capsule",
+      "Degrees of freedom": "1",
+      "Common injury patterns": "Radial head subluxation and Monteggia injury"
+    },
+    "jointType": "Synovial",
+    "classification": "Pivot",
+    "surfaces": [
+      "Circumference of radial head",
+      "Radial notch of ulna and annular ligament"
+    ],
+    "capsule": "Shares elbow capsule",
+    "ligamentIds": [
+      "annular-ligament-of-radius"
+    ],
+    "movementIds": [
+      "pronation",
+      "supination"
+    ],
+    "degreesOfFreedom": 1,
+    "stabilizerIds": [
+      "supinator",
+      "pronator-teres"
+    ],
+    "injuryIds": [],
+    "tests": []
+  },
+  {
+    "id": "distal-radioulnar-joint",
+    "name": "Distal radioulnar joint",
+    "aliases": [],
+    "system": "joint",
+    "region": "Wrist",
+    "description": "Pivot",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "stabilized by",
+        "targetId": "triangular-fibrocartilage-complex"
+      },
+      {
+        "type": "stabilized by",
+        "targetId": "palmar-radioulnar-ligament"
+      },
+      {
+        "type": "stabilized by",
+        "targetId": "dorsal-radioulnar-ligament"
+      },
+      {
+        "type": "permits",
+        "targetId": "pronation"
+      },
+      {
+        "type": "permits",
+        "targetId": "supination"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Type": "Synovial",
+      "Classification": "Pivot",
+      "Articulating surfaces": [
+        "Head of ulna",
+        "Ulnar notch of radius"
+      ],
+      "Capsule": "Lax capsule; TFCC separates it from radiocarpal joint",
+      "Degrees of freedom": "1",
+      "Common injury patterns": "Galeazzi injury and DRUJ instability"
+    },
+    "jointType": "Synovial",
+    "classification": "Pivot",
+    "surfaces": [
+      "Head of ulna",
+      "Ulnar notch of radius"
+    ],
+    "capsule": "Lax capsule; TFCC separates it from radiocarpal joint",
+    "ligamentIds": [
+      "triangular-fibrocartilage-complex",
+      "palmar-radioulnar-ligament",
+      "dorsal-radioulnar-ligament"
+    ],
+    "movementIds": [
+      "pronation",
+      "supination"
+    ],
+    "degreesOfFreedom": 1,
+    "stabilizerIds": [
+      "pronator-quadratus"
+    ],
+    "injuryIds": [],
+    "tests": []
+  },
+  {
+    "id": "radiocarpal-joint",
+    "name": "Radiocarpal joint",
+    "aliases": [],
+    "system": "joint",
+    "region": "Wrist",
+    "description": "Ellipsoid / condyloid",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "stabilized by",
+        "targetId": "palmar-radiocarpal-ligaments"
+      },
+      {
+        "type": "stabilized by",
+        "targetId": "dorsal-radiocarpal-ligament"
+      },
+      {
+        "type": "stabilized by",
+        "targetId": "triangular-fibrocartilage-complex"
+      },
+      {
+        "type": "permits",
+        "targetId": "wrist-flexion"
+      },
+      {
+        "type": "permits",
+        "targetId": "wrist-extension"
+      },
+      {
+        "type": "permits",
+        "targetId": "radial-deviation"
+      },
+      {
+        "type": "permits",
+        "targetId": "ulnar-deviation"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Type": "Synovial",
+      "Classification": "Ellipsoid / condyloid",
+      "Articulating surfaces": [
+        "Distal radius and articular disc",
+        "Scaphoid, lunate and triquetrum"
+      ],
+      "Capsule": "Fibrous capsule strengthened by radiocarpal ligaments",
+      "Degrees of freedom": "2",
+      "Common injury patterns": "Distal radius fracture and ligament injury"
+    },
+    "jointType": "Synovial",
+    "classification": "Ellipsoid / condyloid",
+    "surfaces": [
+      "Distal radius and articular disc",
+      "Scaphoid, lunate and triquetrum"
+    ],
+    "capsule": "Fibrous capsule strengthened by radiocarpal ligaments",
+    "ligamentIds": [
+      "palmar-radiocarpal-ligaments",
+      "dorsal-radiocarpal-ligament",
+      "triangular-fibrocartilage-complex"
+    ],
+    "movementIds": [
+      "wrist-flexion",
+      "wrist-extension",
+      "radial-deviation",
+      "ulnar-deviation"
+    ],
+    "degreesOfFreedom": 2,
+    "stabilizerIds": [
+      "flexor-carpi-radialis",
+      "flexor-carpi-ulnaris",
+      "extensor-carpi-radialis-brevis",
+      "extensor-carpi-ulnaris"
+    ],
+    "injuryIds": [],
+    "tests": []
+  },
+  {
+    "id": "midcarpal-joints",
+    "name": "Midcarpal joints",
+    "aliases": [],
+    "system": "joint",
+    "region": "Wrist",
+    "description": "Compound articulation",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "stabilized by",
+        "targetId": "scapholunate-interosseous-ligament"
+      },
+      {
+        "type": "stabilized by",
+        "targetId": "lunotriquetral-interosseous-ligament"
+      },
+      {
+        "type": "permits",
+        "targetId": "wrist-flexion"
+      },
+      {
+        "type": "permits",
+        "targetId": "wrist-extension"
+      },
+      {
+        "type": "permits",
+        "targetId": "radial-deviation"
+      },
+      {
+        "type": "permits",
+        "targetId": "ulnar-deviation"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Type": "Synovial",
+      "Classification": "Compound articulation",
+      "Articulating surfaces": [
+        "Proximal carpal row",
+        "Distal carpal row"
+      ],
+      "Capsule": "Complex capsule and intercarpal ligaments",
+      "Degrees of freedom": "2",
+      "Common injury patterns": "Carpal instability"
+    },
+    "jointType": "Synovial",
+    "classification": "Compound articulation",
+    "surfaces": [
+      "Proximal carpal row",
+      "Distal carpal row"
+    ],
+    "capsule": "Complex capsule and intercarpal ligaments",
+    "ligamentIds": [
+      "scapholunate-interosseous-ligament",
+      "lunotriquetral-interosseous-ligament"
+    ],
+    "movementIds": [
+      "wrist-flexion",
+      "wrist-extension",
+      "radial-deviation",
+      "ulnar-deviation"
+    ],
+    "degreesOfFreedom": 2,
+    "stabilizerIds": [],
+    "injuryIds": [],
+    "tests": []
+  },
+  {
+    "id": "intercarpal-joints",
+    "name": "Intercarpal joints",
+    "aliases": [],
+    "system": "joint",
+    "region": "Wrist",
+    "description": "Plane (individual articulations)",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "stabilized by",
+        "targetId": "scapholunate-interosseous-ligament"
+      },
+      {
+        "type": "stabilized by",
+        "targetId": "lunotriquetral-interosseous-ligament"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Type": "Synovial",
+      "Classification": "Plane (individual articulations)",
+      "Articulating surfaces": [
+        "Adjacent carpal bones"
+      ],
+      "Capsule": "Short capsules reinforced by interosseous ligaments",
+      "Degrees of freedom": "Limited coupled glides; no independent major axis assigned",
+      "Common injury patterns": "Ligament tears; limited coupled glides rather than independent major axes"
+    },
+    "jointType": "Synovial",
+    "classification": "Plane (individual articulations)",
+    "surfaces": [
+      "Adjacent carpal bones"
+    ],
+    "capsule": "Short capsules reinforced by interosseous ligaments",
+    "ligamentIds": [
+      "scapholunate-interosseous-ligament",
+      "lunotriquetral-interosseous-ligament"
+    ],
+    "movementIds": [],
+    "degreesOfFreedom": 0,
+    "stabilizerIds": [],
+    "injuryIds": [],
+    "tests": []
+  },
+  {
+    "id": "carpometacarpal-joints",
+    "name": "Carpometacarpal joints",
+    "aliases": [],
+    "system": "joint",
+    "region": "Hand",
+    "description": "Plane, digits 2–5",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Type": "Synovial",
+      "Classification": "Plane, digits 2–5",
+      "Articulating surfaces": [
+        "Distal carpal row",
+        "Bases of metacarpals 2–5"
+      ],
+      "Capsule": "Reinforced by dorsal, palmar and interosseous ligaments",
+      "Degrees of freedom": "Limited coupled glides; no independent major axis assigned",
+      "Common injury patterns": "CMC fracture-dislocation; fourth/fifth rays more mobile than second/third"
+    },
+    "jointType": "Synovial",
+    "classification": "Plane, digits 2–5",
+    "surfaces": [
+      "Distal carpal row",
+      "Bases of metacarpals 2–5"
+    ],
+    "capsule": "Reinforced by dorsal, palmar and interosseous ligaments",
+    "ligamentIds": [],
+    "movementIds": [],
+    "degreesOfFreedom": 0,
+    "stabilizerIds": [],
+    "injuryIds": [],
+    "tests": []
+  },
+  {
+    "id": "thumb-carpometacarpal-joint",
+    "name": "Thumb carpometacarpal joint",
+    "aliases": [],
+    "system": "joint",
+    "region": "Hand",
+    "description": "Saddle",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "permits",
+        "targetId": "thumb-flexion"
+      },
+      {
+        "type": "permits",
+        "targetId": "thumb-extension"
+      },
+      {
+        "type": "permits",
+        "targetId": "thumb-abduction"
+      },
+      {
+        "type": "permits",
+        "targetId": "thumb-adduction"
+      },
+      {
+        "type": "permits",
+        "targetId": "thumb-opposition"
+      },
+      {
+        "type": "permits",
+        "targetId": "thumb-reposition"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Type": "Synovial",
+      "Classification": "Saddle",
+      "Articulating surfaces": [
+        "Trapezium",
+        "Base of first metacarpal"
+      ],
+      "Capsule": "Lax capsule permits coupled rotation",
+      "Degrees of freedom": "2",
+      "Common injury patterns": "Osteoarthritis and base-of-thumb fractures"
+    },
+    "jointType": "Synovial",
+    "classification": "Saddle",
+    "surfaces": [
+      "Trapezium",
+      "Base of first metacarpal"
+    ],
+    "capsule": "Lax capsule permits coupled rotation",
+    "ligamentIds": [],
+    "movementIds": [
+      "thumb-flexion",
+      "thumb-extension",
+      "thumb-abduction",
+      "thumb-adduction",
+      "thumb-opposition",
+      "thumb-reposition"
+    ],
+    "degreesOfFreedom": 2,
+    "stabilizerIds": [
+      "opponens-pollicis"
+    ],
+    "injuryIds": [],
+    "tests": []
+  },
+  {
+    "id": "intermetacarpal-joints",
+    "name": "Intermetacarpal joints",
+    "aliases": [],
+    "system": "joint",
+    "region": "Hand",
+    "description": "Plane",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Type": "Synovial",
+      "Classification": "Plane",
+      "Articulating surfaces": [
+        "Adjacent metacarpal bases 2–5"
+      ],
+      "Capsule": "Dorsal, palmar and interosseous reinforcement",
+      "Degrees of freedom": "Limited coupled glides; no independent major axis assigned",
+      "Common injury patterns": "Base fracture-dislocation"
+    },
+    "jointType": "Synovial",
+    "classification": "Plane",
+    "surfaces": [
+      "Adjacent metacarpal bases 2–5"
+    ],
+    "capsule": "Dorsal, palmar and interosseous reinforcement",
+    "ligamentIds": [],
+    "movementIds": [],
+    "degreesOfFreedom": 0,
+    "stabilizerIds": [],
+    "injuryIds": [],
+    "tests": []
+  },
+  {
+    "id": "metacarpophalangeal-joints",
+    "name": "Metacarpophalangeal joints",
+    "aliases": [],
+    "system": "joint",
+    "region": "Hand",
+    "description": "Condyloid",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "stabilized by",
+        "targetId": "collateral-ligaments-of-digits"
+      },
+      {
+        "type": "stabilized by",
+        "targetId": "palmar-plates"
+      },
+      {
+        "type": "stabilized by",
+        "targetId": "deep-transverse-metacarpal-ligaments"
+      },
+      {
+        "type": "permits",
+        "targetId": "finger-mcp-flexion"
+      },
+      {
+        "type": "permits",
+        "targetId": "finger-mcp-extension"
+      },
+      {
+        "type": "permits",
+        "targetId": "finger-abduction"
+      },
+      {
+        "type": "permits",
+        "targetId": "finger-adduction"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Type": "Synovial",
+      "Classification": "Condyloid",
+      "Articulating surfaces": [
+        "Metacarpal heads",
+        "Proximal phalangeal bases"
+      ],
+      "Capsule": "Capsules with collateral ligaments and palmar plates",
+      "Degrees of freedom": "2",
+      "Common injury patterns": "Collateral sprain and dislocation"
+    },
+    "jointType": "Synovial",
+    "classification": "Condyloid",
+    "surfaces": [
+      "Metacarpal heads",
+      "Proximal phalangeal bases"
+    ],
+    "capsule": "Capsules with collateral ligaments and palmar plates",
+    "ligamentIds": [
+      "collateral-ligaments-of-digits",
+      "palmar-plates",
+      "deep-transverse-metacarpal-ligaments"
+    ],
+    "movementIds": [
+      "finger-mcp-flexion",
+      "finger-mcp-extension",
+      "finger-abduction",
+      "finger-adduction"
+    ],
+    "degreesOfFreedom": 2,
+    "stabilizerIds": [
+      "lumbrical-1",
+      "dorsal-interosseous-1"
+    ],
+    "injuryIds": [],
+    "tests": []
+  },
+  {
+    "id": "proximal-interphalangeal-joints",
+    "name": "Proximal interphalangeal joints",
+    "aliases": [],
+    "system": "joint",
+    "region": "Hand",
+    "description": "Hinge",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "stabilized by",
+        "targetId": "collateral-ligaments-of-digits"
+      },
+      {
+        "type": "stabilized by",
+        "targetId": "palmar-plates"
+      },
+      {
+        "type": "permits",
+        "targetId": "finger-ip-flexion"
+      },
+      {
+        "type": "permits",
+        "targetId": "finger-ip-extension"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Type": "Synovial",
+      "Classification": "Hinge",
+      "Articulating surfaces": [
+        "Proximal phalangeal heads",
+        "Middle phalangeal bases"
+      ],
+      "Capsule": "Reinforced by collateral ligaments and volar plate",
+      "Degrees of freedom": "1",
+      "Common injury patterns": "Central slip injury and volar plate injury"
+    },
+    "jointType": "Synovial",
+    "classification": "Hinge",
+    "surfaces": [
+      "Proximal phalangeal heads",
+      "Middle phalangeal bases"
+    ],
+    "capsule": "Reinforced by collateral ligaments and volar plate",
+    "ligamentIds": [
+      "collateral-ligaments-of-digits",
+      "palmar-plates"
+    ],
+    "movementIds": [
+      "finger-ip-flexion",
+      "finger-ip-extension"
+    ],
+    "degreesOfFreedom": 1,
+    "stabilizerIds": [
+      "flexor-digitorum-superficialis",
+      "extensor-digitorum"
+    ],
+    "injuryIds": [],
+    "tests": []
+  },
+  {
+    "id": "distal-interphalangeal-joints",
+    "name": "Distal interphalangeal joints",
+    "aliases": [],
+    "system": "joint",
+    "region": "Hand",
+    "description": "Hinge",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "stabilized by",
+        "targetId": "collateral-ligaments-of-digits"
+      },
+      {
+        "type": "stabilized by",
+        "targetId": "palmar-plates"
+      },
+      {
+        "type": "permits",
+        "targetId": "finger-ip-flexion"
+      },
+      {
+        "type": "permits",
+        "targetId": "finger-ip-extension"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Type": "Synovial",
+      "Classification": "Hinge",
+      "Articulating surfaces": [
+        "Middle phalangeal heads",
+        "Distal phalangeal bases"
+      ],
+      "Capsule": "Reinforced by collateral ligaments and volar plate",
+      "Degrees of freedom": "1",
+      "Common injury patterns": "Mallet finger or FDP avulsion"
+    },
+    "jointType": "Synovial",
+    "classification": "Hinge",
+    "surfaces": [
+      "Middle phalangeal heads",
+      "Distal phalangeal bases"
+    ],
+    "capsule": "Reinforced by collateral ligaments and volar plate",
+    "ligamentIds": [
+      "collateral-ligaments-of-digits",
+      "palmar-plates"
+    ],
+    "movementIds": [
+      "finger-ip-flexion",
+      "finger-ip-extension"
+    ],
+    "degreesOfFreedom": 1,
+    "stabilizerIds": [
+      "flexor-digitorum-profundus",
+      "extensor-digitorum"
+    ],
+    "injuryIds": [],
+    "tests": []
+  },
+  {
+    "id": "thumb-interphalangeal-joint",
+    "name": "Thumb interphalangeal joint",
+    "aliases": [],
+    "system": "joint",
+    "region": "Hand",
+    "description": "Hinge",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "stabilized by",
+        "targetId": "collateral-ligaments-of-digits"
+      },
+      {
+        "type": "stabilized by",
+        "targetId": "palmar-plates"
+      },
+      {
+        "type": "permits",
+        "targetId": "thumb-flexion"
+      },
+      {
+        "type": "permits",
+        "targetId": "thumb-extension"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Type": "Synovial",
+      "Classification": "Hinge",
+      "Articulating surfaces": [
+        "Head of thumb proximal phalanx",
+        "Base of thumb distal phalanx"
+      ],
+      "Capsule": "Reinforced by collateral ligaments and palmar plate",
+      "Degrees of freedom": "1",
+      "Common injury patterns": "Tendon avulsion or collateral injury"
+    },
+    "jointType": "Synovial",
+    "classification": "Hinge",
+    "surfaces": [
+      "Head of thumb proximal phalanx",
+      "Base of thumb distal phalanx"
+    ],
+    "capsule": "Reinforced by collateral ligaments and palmar plate",
+    "ligamentIds": [
+      "collateral-ligaments-of-digits",
+      "palmar-plates"
+    ],
+    "movementIds": [
+      "thumb-flexion",
+      "thumb-extension"
+    ],
+    "degreesOfFreedom": 1,
+    "stabilizerIds": [
+      "flexor-pollicis-longus",
+      "extensor-pollicis-longus"
+    ],
+    "injuryIds": [],
+    "tests": []
+  },
+  {
+    "id": "axilla",
+    "name": "Axilla",
+    "aliases": [],
+    "system": "space",
+    "region": "Shoulder girdle",
+    "description": "Neurovascular passage to the upper limb. Lymph nodes and fat are additional contents; lymphatic meshes are not provided.",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "contains or bounds",
+        "targetId": "axillary-artery"
+      },
+      {
+        "type": "contains or bounds",
+        "targetId": "axillary-vein"
+      },
+      {
+        "type": "contains or bounds",
+        "targetId": "lateral-cord"
+      },
+      {
+        "type": "contains or bounds",
+        "targetId": "medial-cord"
+      },
+      {
+        "type": "contains or bounds",
+        "targetId": "posterior-cord"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Boundaries": [
+        "Apex: clavicle, first rib and superior scapular border",
+        "Base: skin, subcutaneous tissue and axillary fascia",
+        "Anterior wall: pectoralis major/minor and clavipectoral fascia",
+        "Posterior wall: subscapularis, teres major and latissimus dorsi",
+        "Medial wall: upper thoracic wall and serratus anterior",
+        "Lateral wall: intertubercular region of humerus"
+      ],
+      "Clinical significance": "Neurovascular passage to the upper limb. Lymph nodes and fat are additional contents; lymphatic meshes are not provided."
+    }
+  },
+  {
+    "id": "quadrangular-space",
+    "name": "Quadrangular space",
+    "aliases": [],
+    "system": "space",
+    "region": "Shoulder",
+    "description": "Axillary neurovascular relationship at the surgical neck.",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "contains or bounds",
+        "targetId": "axillary-nerve"
+      },
+      {
+        "type": "contains or bounds",
+        "targetId": "posterior-circumflex-humeral-artery"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Boundaries": [
+        "Superior: teres minor posteriorly and subscapularis anteriorly",
+        "Inferior: teres major",
+        "Medial: long head of triceps",
+        "Lateral: surgical neck of humerus"
+      ],
+      "Clinical significance": "Axillary neurovascular relationship at the surgical neck."
+    }
+  },
+  {
+    "id": "triangular-space",
+    "name": "Triangular space",
+    "aliases": [],
+    "system": "space",
+    "region": "Shoulder",
+    "description": "Passage to scapular collateral circulation.",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "contains or bounds",
+        "targetId": "circumflex-scapular-artery"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Boundaries": [
+        "Superior: teres minor",
+        "Inferior: teres major",
+        "Lateral: long head of triceps"
+      ],
+      "Clinical significance": "Passage to scapular collateral circulation."
+    }
+  },
+  {
+    "id": "triangular-interval",
+    "name": "Triangular interval",
+    "aliases": [],
+    "system": "space",
+    "region": "Arm",
+    "description": "Radial nerve enters the posterior arm through this interval.",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "contains or bounds",
+        "targetId": "radial-nerve"
+      },
+      {
+        "type": "contains or bounds",
+        "targetId": "profunda-brachii-artery"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Boundaries": [
+        "Superior: teres major",
+        "Medial: long head of triceps",
+        "Lateral: humerus/lateral head of triceps"
+      ],
+      "Clinical significance": "Radial nerve enters the posterior arm through this interval."
+    }
+  },
+  {
+    "id": "cubital-fossa",
+    "name": "Cubital fossa",
+    "aliases": [],
+    "system": "space",
+    "region": "Elbow",
+    "description": "Central lateral-to-medial order: biceps tendon, brachial artery, median nerve (TAN). Radial nerve lies farther laterally under brachioradialis. Median cubital vein is in the superficial roof.",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "contains or bounds",
+        "targetId": "biceps-brachii"
+      },
+      {
+        "type": "contains or bounds",
+        "targetId": "brachial-artery"
+      },
+      {
+        "type": "contains or bounds",
+        "targetId": "median-nerve"
+      },
+      {
+        "type": "contains or bounds",
+        "targetId": "radial-nerve"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Boundaries": [
+        "Superior: line between epicondyles",
+        "Medial: pronator teres",
+        "Lateral: brachioradialis",
+        "Floor: brachialis and supinator",
+        "Roof: fascia and bicipital aponeurosis"
+      ],
+      "Clinical significance": "Central lateral-to-medial order: biceps tendon, brachial artery, median nerve (TAN). Radial nerve lies farther laterally under brachioradialis. Median cubital vein is in the superficial roof."
+    }
+  },
+  {
+    "id": "carpal-tunnel",
+    "name": "Carpal tunnel",
+    "aliases": [],
+    "system": "space",
+    "region": "Wrist",
+    "description": "Contains median nerve and nine tendons: four FDS, four FDP, one FPL. FCR has a separate canal; palmaris longus and ulnar neurovascular bundle are outside.",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "contains or bounds",
+        "targetId": "median-nerve"
+      },
+      {
+        "type": "contains or bounds",
+        "targetId": "flexor-digitorum-superficialis"
+      },
+      {
+        "type": "contains or bounds",
+        "targetId": "flexor-digitorum-profundus"
+      },
+      {
+        "type": "contains or bounds",
+        "targetId": "flexor-pollicis-longus"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Boundaries": [
+        "Roof: flexor retinaculum",
+        "Floor and sides: concave carpal arch"
+      ],
+      "Clinical significance": "Contains median nerve and nine tendons: four FDS, four FDP, one FPL. FCR has a separate canal; palmaris longus and ulnar neurovascular bundle are outside."
+    }
+  },
+  {
+    "id": "guyon-canal",
+    "name": "Guyon canal",
+    "aliases": [],
+    "system": "space",
+    "region": "Wrist",
+    "description": "Superficial to flexor retinaculum. Motor versus sensory deficits depend on the involved zone.",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "contains or bounds",
+        "targetId": "ulnar-nerve"
+      },
+      {
+        "type": "contains or bounds",
+        "targetId": "ulnar-artery"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Boundaries": [
+        "Medial: pisiform",
+        "Lateral: hook of hamate",
+        "Roof: palmar carpal ligament/palmaris brevis",
+        "Floor includes flexor retinaculum and pisohamate ligament"
+      ],
+      "Clinical significance": "Superficial to flexor retinaculum. Motor versus sensory deficits depend on the involved zone."
+    }
+  },
+  {
+    "id": "anatomical-snuffbox",
+    "name": "Anatomical snuffbox",
+    "aliases": [],
+    "system": "space",
+    "region": "Wrist",
+    "description": "Radial artery traverses the floor. Cephalic vein and superficial radial nerve are in the roof. Tenderness suggests possible scaphoid injury.",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "contains or bounds",
+        "targetId": "abductor-pollicis-longus"
+      },
+      {
+        "type": "contains or bounds",
+        "targetId": "extensor-pollicis-brevis"
+      },
+      {
+        "type": "contains or bounds",
+        "targetId": "extensor-pollicis-longus"
+      },
+      {
+        "type": "contains or bounds",
+        "targetId": "radial-artery"
+      },
+      {
+        "type": "contains or bounds",
+        "targetId": "scaphoid"
+      },
+      {
+        "type": "contains or bounds",
+        "targetId": "trapezium"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Boundaries": [
+        "Radial boundary: APL and EPB tendons",
+        "Ulnar boundary: EPL tendon",
+        "Floor: scaphoid and trapezium"
+      ],
+      "Clinical significance": "Radial artery traverses the floor. Cephalic vein and superficial radial nerve are in the roof. Tenderness suggests possible scaphoid injury."
+    }
+  }
+]
