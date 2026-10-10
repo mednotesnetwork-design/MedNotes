@@ -8,6 +8,7 @@ import {appendLecturePage,createLectureJob,getLectureJob,startLectureJob,type Le
 import {LessonJourney,type LearningTab} from './LessonJourney';
 import {ClinicalTeachingLayers} from './ClinicalTeachingLayers';
 import {MedicalAtlasLayouts} from './MedicalAtlasLayouts';
+import {NeuroVisualLab,availableNeuroFigures} from './NeuroVisualLab';
 import type {Explanation} from './types';
 import {type MainConcept,validateConceptGrouping,conceptBranches,conceptCards,conceptSourceIds,
  findConceptIndex,provisionalConcepts} from '../../lib/lecture-concepts';
@@ -481,6 +482,13 @@ export function LectureCourse(){
  const warnings=[...course.pages.flatMap(p=>(p.warnings||[]).map(w=>`صفحة ${p.number}: ${w}`)),...(course.planningNotices||[])];
  const conceptLessons=conceptCardsCurrent.map(c=>course.lessons[c.id+':'+course.mode]).filter((l):l is Explanation=>!!l);
  const conceptDone=concept&&conceptLessons.length===conceptCardsCurrent.length;
+ const conceptRawText=points.filter(p=>conceptSourceSet.has(p.id)).map(p=>p.text).join(' ').slice(0,18000);
+ // Immediate PDF-text-only visual, independent of a slow or failed AI lesson.
+ const sourceOnlyLesson:Explanation={
+  explanation:conceptRawText,high_yield:[],terms:[],clarifications:[],mechanism:[],
+  summary:[],questions:[],source_quotes:[],visual:{kind:'none',title:'',caption:'',labels:[],source_quotes:[]}
+ };
+ const sourceNeuroFigures=availableNeuroFigures(sourceOnlyLesson,conceptRawText);
  if(!ready)return <div className="study-page" role="status">فتح مساحة المحاضرة…</div>;
  return <div className="study-page course-page" dir="rtl">
   <header className="study-title"><div><span className="study-badge">INTERACTIVE LECTURE EXPLAINER</span><h1>{course.plan?.title||'من المحاضرة إلى الفهم'}</h1><p>{course.name||'اقرئي المحاضرة أولًا، ثم استكشفي مفاهيمها.'}</p></div>
@@ -588,6 +596,8 @@ export function LectureCourse(){
        <h3>{busy?'جارٍ إعداد هذا السلايد ومراجعته…':'هذا السلايد بانتظار الشرح الطبي'}</h3>
        <p>{studyTab==='quiz'?'أسئلة Quiz ستظهر بعد إنشاء شرح مراجَع لهذا السلايد.':studyTab==='visual'?'الرسوم والجداول الموثقة ستظهر بعد اكتمال التوليد.':studyTab==='3d'?'الربط بأطلس 3D يتطلب تركيبًا مطابقًا ومراجعًا.':'المحاضرة محفوظة، لكن هذا السلايد لم يحصل على شرح Gemini معتمد بعد.'}</p>
        {!busy&&<button className="primary" onClick={()=>void work(signal=>teach(signal))}>إنشاء شرح هذا السلايد</button>}
+       {studyTab==='visual'&&(sourceNeuroFigures.potential||sourceNeuroFigures.neuron)&&
+        <NeuroVisualLab lesson={sourceOnlyLesson} slide={conceptRawText}/>}
        <details className="course-pending-source" open={!busy}><summary>محتوى المحاضرة الأصلي · {cardPoints.length} نقاط</summary>
         {cardPoints.length?cardPoints.map(p=><div key={p.id} className="course-source-item"><small>صفحة {p.page} · {p.kind}</small><p dir="auto">{p.text}</p></div>):<p>تعذر ربط النقاط بهذا السلايد؛ راجعي خريطة التغطية.</p>}
        </details>
