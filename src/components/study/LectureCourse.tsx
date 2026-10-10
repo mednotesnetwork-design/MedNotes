@@ -319,6 +319,35 @@ export function LectureCourse(){
   const overview:Explanation={...response.lesson,id:crypto.randomUUID(),source_mode:state.mode};
   await save({...current.current,conceptOverviews:{...current.current.conceptOverviews,[key]:overview}});
  }
+ async function rebuildEditorialVisual(signal:AbortSignal){
+  const state=current.current,card=state.plan?.units.flatMap(u=>u.cards)[state.active];
+  if(!card)return;
+  const key=card.id+':'+state.mode;
+  const points=state.pages.flatMap(p=>p.points||[]).filter(p=>card.source_ids.includes(p.id));
+  if(!points.length)throw new Error('لا توجد نقاط مصدر موثّقة لهذه الفكرة.');
+  setBusy('إعادة بناء الشرح البصري بأسلوب المرجع الطبي ومراجعة كل عنصر…');
+  const response=await request({operation:'teach',
+   title:state.name+' · '+(state.concepts?.[state.activeConcept||0]?.title||card.title),
+   points,source_mode:state.mode,requested_tool:'visual',
+   question:'قدمي مخططًا طبيًا تعليميًا مستندًا للمحاضرة بأسلوب textbook editorial: خريطة شعاعية للعلاقات المستقلة، شجرة تصنيف للتفرعات، أسهم مرقمة للآلية السببية المصرح بها، مقارنة منظمة أو طبقات عند ملاءمتها. استخدمي فقط العناصر التي تذكرها المحاضرة ولا تبتكري حقائق أو تشخيصات.'},signal);
+  signal.throwIfAborted();
+  const revised=response.lesson as Explanation;
+  const old=current.current.lessons[key];
+  // Reviewed visual fields replace only visual fields; prior explanations,
+  // quizzes, corrections and student notes are retained unchanged.
+  const merged:Explanation=old?{
+   ...old,
+   textbook_layouts:revised.textbook_layouts?.length?revised.textbook_layouts:old.textbook_layouts,
+   clinical_callouts:revised.clinical_callouts?.length?revised.clinical_callouts:old.clinical_callouts,
+   visual:revised.visual?.kind!=='none'?revised.visual:old.visual,
+   clinical_layers:old.clinical_layers?{
+    ...old.clinical_layers,
+    visual_cues:revised.clinical_layers?.visual_cues?.length?revised.clinical_layers.visual_cues:old.clinical_layers.visual_cues
+   }:revised.clinical_layers,
+   source_registry:revised.source_registry||old.source_registry
+  }:{...revised,id:crypto.randomUUID(),source_mode:state.mode};
+  await save({...current.current,lessons:{...current.current.lessons,[key]:merged}});
+ }
  async function changeConcept(index:number){
   const state=current.current,concept=state.concepts?.[index];
   if(!concept||control.current||!state.plan)return;
@@ -480,6 +509,11 @@ export function LectureCourse(){
  </section>
  <div className="concept-active-branch"><span>التفرع التعليمي المختار</span>
  <h3>{card.title}</h3><small>المصدر: {sourcePages.map(n=>'ص '+n).join(' · ')}</small></div>
+     {studyTab==='visual'&&<div className="course-visual-rebuild">
+       <span>MEDICAL TEXTBOOK VISUAL</span>
+       <p>للسلايدات القديمة: أعيدي توليد المخطط الطبي المتصل وفق المرجع، من النقاط الأصلية دون حذف الشرح المحفوظ.</p>
+       <button disabled={!!busy} onClick={()=>void work(rebuildEditorialVisual)}>إعادة بناء الرسم بصريًا</button>
+      </div>}
      {studyTab==='notes'&&<section className="course-slide-notes" data-no-swipe><h3>ملاحظاتي · {card.title}</h3><textarea rows={10} aria-label="ملاحظات هذا السلايد" placeholder="دوّني ما فهمتِه بطريقتك…" value={course.notes?.[card.id]||''} onChange={event=>{const notes={...current.current.notes,[card.id]:event.target.value};void save({...current.current,notes});}}/><small>محفوظة على جهازك ضمن هذه المحاضرة.</small></section>}
      {studyTab!=='notes'&&(lesson?<><LessonJourney key={key+':'+studyTab} view={studyTab} lesson={lesson} sourceImages={course.pages.filter(p=>sourcePages.includes(p.number)).map(p=>({page:p.number,image:p.image}))} slide={cardPoints.map(p=>p.text).join('\n')} answers={course.answers} onAnswer={answer} prefix={key} busy={!!busy} onAsk={ask}/>{studyTab==='explain'&&<details className="course-details"><summary>شرح جميع نقاط هذه الفكرة · {lesson.coverage?.length||0} نقاط</summary>{lesson.coverage?.map(item=><section key={item.source_id}><p dir="auto">{item.explanation}</p><small>من صفحة {points.find(p=>p.id===item.source_id)?.page}</small></section>)}</details>}</>:<section className="course-pending-lesson" role="status" aria-label="حالة إنشاء سلايد الشرح">
        <h3>{busy?'جارٍ إعداد هذا السلايد ومراجعته…':'هذا السلايد بانتظار الشرح الطبي'}</h3>
