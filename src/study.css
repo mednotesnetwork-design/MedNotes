@@ -595,3 +595,19 @@
  }
  .atlas-editorial .atlas-radial-branch:nth-child(odd)::before{left:auto;right:-10px}
 }
+
+/* Explicit regeneration path for a legacy lesson: no automatic content replacement. */
+.course-page .course-visual-rebuild{
+ display:flex;flex-wrap:wrap;gap:8px 13px;align-items:center;min-width:0;
+ border-bottom:1px solid var(--mn-border);padding:10px 2px 16px;margin-bottom:16px;
+}
+.course-page .course-visual-rebuild>span{
+ color:var(--mn-mint);font-size:10px;font-weight:750;letter-spacing:.055em;white-space:nowrap;
+}
+.course-page .course-visual-rebuild>p{
+ font-size:12px;color:var(--mn-muted);line-height:1.8;flex:1 1 240px;margin:0;
+}
+.course-page .course-visual-rebuild>button{
+ min-height:44px;font-size:12px;padding:9px 13px;border:1px solid var(--mn-mint);
+ background:var(--mn-selection);color:var(--mn-mint);border-radius:8px;white-space:normal;
+}
