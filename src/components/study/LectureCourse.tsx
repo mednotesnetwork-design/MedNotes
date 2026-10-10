@@ -339,7 +339,7 @@ export function LectureCourse(){
    ...old,
    textbook_layouts:revised.textbook_layouts?.length?revised.textbook_layouts:old.textbook_layouts,
    clinical_callouts:revised.clinical_callouts?.length?revised.clinical_callouts:old.clinical_callouts,
-   visual:revised.visual?.kind!=='none'?revised.visual:old.visual,
+   visual:revised.visual&&revised.visual.kind!=='none'?revised.visual:old.visual,
    clinical_layers:old.clinical_layers?{
     ...old.clinical_layers,
     visual_cues:revised.clinical_layers?.visual_cues?.length?revised.clinical_layers.visual_cues:old.clinical_layers.visual_cues
