@@ -1,11 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createServer} from 'vite';
+import react from '@vitejs/plugin-react';
 import React from 'react';
 import {renderToStaticMarkup} from 'react-dom/server';
 
 test('Fast literal PDF extraction retains all text and builds fully traced source cards without Gemini',async()=>{
- const vite=await createServer({configFile:false,appType:'custom',server:{middlewareMode:true}});
+ const vite=await createServer({configFile:false,appType:'custom',plugins:[react()],server:{middlewareMode:true}});
  try{
   const {extractTextPoints,buildFastSourcePlan}=await vite.ssrLoadModule('/src/lib/lecture-fast.ts');
   const pages=Array.from({length:43},(_,index)=>{
@@ -28,7 +29,7 @@ test('Fast literal PDF extraction retains all text and builds fully traced sourc
 });
 
 test('Interactive neuron and action potential diagrams show verified terms but not unsupported measurements',async()=>{
- const vite=await createServer({configFile:false,appType:'custom',server:{middlewareMode:true}});
+ const vite=await createServer({configFile:false,appType:'custom',plugins:[react()],server:{middlewareMode:true}});
  try{
   const {availableNeuroFigures,NeuroVisualLab}=await vite.ssrLoadModule('/src/components/study/NeuroVisualLab.tsx');
   const lesson={
