@@ -5,6 +5,7 @@ import type {Explanation,StudyQuestion,Basis} from './types';
 import {ClinicalTeachingLayers,type OriginalSourceImage} from './ClinicalTeachingLayers';
 import {MedicalAtlasLayouts} from './MedicalAtlasLayouts';
 import {SourceAwareNMJ} from './SourceAwareNMJ';
+import {NeuroVisualLab,availableNeuroFigures} from './NeuroVisualLab';
 const InlineAnatomy=lazy(()=>import('./InlineAnatomy'));
 const basisText=(basis?:Basis)=>basis==='additional'?'توضيح إضافي خارج المحاضرة':'شرح مستند للمحاضرة';
 
@@ -48,6 +49,7 @@ export function LessonJourney({lesson,slide,answers,onAnswer,prefix,onAsk,busy,v
  const [revealed,setRevealed]=useState(false),[modelOpen,setModelOpen]=useState(false);
  const showExplain=view==='all'||view==='explain';
  const showVisual=view==='all'||view==='visual';
+ const neuroFigures=availableNeuroFigures(lesson,slide);
  const showQuiz=view==='all'||view==='quiz';
  const supportedVisuals=lesson.textbook_layouts?.length?lesson.textbook_layouts:
   lesson.clinical_layers?.mechanism.steps.length&&lesson.clinical_layers.mechanism.steps.length>=2?
@@ -73,11 +75,12 @@ export function LessonJourney({lesson,slide,answers,onAnswer,prefix,onAsk,busy,v
   {showExplain&&hasOpening&&<section className="case-opening"><span className="lesson-basis"><Lightbulb size={15}/>{opening.kind==='case'?'حالة تعليمية افتراضية':'فكّري أولًا'} · {basisText(opening.basis)}</span>{opening.scene&&<p>{opening.scene}</p>}<h3>{opening.prompt}</h3><button aria-expanded={revealed} onClick={()=>setRevealed(v=>!v)}>{revealed?'إخفاء التفسير':'اكشفي التفسير خطوة بخطوة'}</button>{revealed&&<p className="opening-answer">{opening.answer}</p>}</section>}
   {<>
    {showExplain&&lesson.clinical_layers&&<ClinicalTeachingLayers layers={lesson.clinical_layers} registry={lesson.source_registry} sourceImages={sourceImages} view="explain"/>}
+  {showVisual&&(neuroFigures.potential||neuroFigures.neuron)&&<NeuroVisualLab lesson={lesson} slide={slide}/>}
   {(showExplain||showVisual)&&<MedicalAtlasLayouts layouts={supportedVisuals} callouts={lesson.clinical_callouts} registry={lesson.source_registry} sourceImages={sourceImages} view={showVisual&&!showExplain?'visual':'explain'}/>}
   {showVisual&&!supportedVisuals.length&&lesson.clinical_layers&&<ClinicalTeachingLayers layers={lesson.clinical_layers} registry={lesson.source_registry} sourceImages={sourceImages} view="visual"/>}
 
   {showExplain&&!lesson.clinical_layers&&<section className="lesson-core"><h3>ما الذي يجب أن أفهمه؟</h3><p className="preserve" dir="auto">{lesson.explanation}</p>{lesson.terms.length>0&&<div className="lesson-terms">{lesson.terms.map((t,i)=><details key={i}><summary>{t.term}</summary><p>{t.meaning}</p><button disabled={busy} onClick={()=>onAsk('اشرح المصطلح: '+t.term)}>بسّطي هذا المصطلح</button></details>)}</div>}</section>}
-   {showVisual&&<ConceptVisual lesson={lesson}/>}
+   {showVisual&&!neuroFigures.potential&&!neuroFigures.neuron&&<ConceptVisual lesson={lesson}/>}
   {view==='visual'&&!(lesson.mechanism?.length||lesson.visual?.labels?.length)&&(!lesson.visual||lesson.visual.kind==='none')&&<p className="lesson-basis">لا يتضمن هذا الجزء رسمًا يمكن إنشاؤه من مصدر المحاضرة بدقة.</p>}
    {showAnatomy&&(view==='3d'?matches.length>0:anatomyRelevant)&&<section className="anatomy-in-context"><h3>أين تقع هذه العلاقة؟</h3><p>استكشفي التركيب مع إبقاء السلايد والشرح أمامك.</p>{view!=='3d'&&<button aria-expanded={modelOpen} onClick={()=>setModelOpen(v=>!v)}><Box size={16}/>{modelOpen?'إغلاق النموذج':'فتح 3D داخل الشرح'}</button>}{(modelOpen||view==='3d')&&<Suspense fallback={<p role="status">فتح النموذج…</p>}><InlineAnatomy ids={matches.map(e=>e.id)} supplemental={supplemental}/></Suspense>}</section>}
    {view==='3d'&&!matches.length&&<p className="lesson-basis">لا يوجد تركيب مطابق في أطلس 3D لهذا السلايد؛ لن نعرض تشريحًا غير موثّق.</p>}
