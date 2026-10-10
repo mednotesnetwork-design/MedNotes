@@ -204,22 +204,55 @@ def prepare_course(data):
             # above result in original page order in the final request.
             try:
                 output=provider.complete(EXTRACT,{'pages':[{'number':p['number'],'raw_text':p['text'],'has_image':bool(p.get('image'))} for p in pages]})
-                records=output.get('pages',[])
-                require(isinstance(records,list) and len(records)==len(pages) and all(isinstance(r,dict) for r in records) and sorted(r.get('number',0) for r in records)==sorted(numbers),'Incomplete page extraction','COURSE_EXTRACTION_FAILED',422)
+                # Providers sometimes return otherwise useful page data with
+                # incomplete/malformed optional diagrams or bounding boxes.
+                # Save valid transcription and original text; flag uncertainty
+                # rather than rejecting an entire three-page inference batch.
+                records=output.get('pages',[]) if isinstance(output,dict) else []
+                require(isinstance(records,list),'Invalid page extraction result','COURSE_EXTRACTION_FAILED',422)
+                indexed={}
+                for record in records:
+                    if isinstance(record,dict) and type(record.get('number')) is int and record['number'] in numbers:
+                        indexed.setdefault(record['number'],record)
                 result=[]
                 for page in pages:
-                    r=next(r for r in records if r['number']==page['number'])
-                    title=r.get('title','');visual=r.get('visual_points',[]);warnings=r.get('warnings',[])
-                    require(isinstance(title,str) and len(title)<=500 and isinstance(visual,list) and len(visual)<=80 and isinstance(warnings,list) and len(warnings)<=30 and all(isinstance(w,str) and len(w)<=2000 for w in warnings),'Invalid extraction','COURSE_EXTRACTION_FAILED',422)
+                    r=indexed.get(page['number'])
+                    warnings=[]
                     atoms=text_points(page['number'],page['text'])
-                    for i,v in enumerate(visual):
-                        require(isinstance(v,dict) and v.get('kind') in ('heading','diagram','table','definition','mechanism','example','note','clinical','text') and isinstance(v.get('text'),str) and 0<len(v['text'])<=1800,'Invalid visual extraction','COURSE_EXTRACTION_FAILED',422)
+                    if not r:
+                        warnings.append('لم يرجع نموذج الرؤية بيانات مؤكدة لهذه الصفحة. النص الأصلي محفوظ؛ راجعي الصورة الأصلية.')
+                        result.append(dict(number=page['number'],title='',points=atoms,warnings=warnings))
+                        continue
+                    title=r.get('title','')
+                    if not isinstance(title,str) or len(title)>500:
+                        warnings.append('عنوان الصفحة غير موثوق؛ تم الاحتفاظ بالنص الأصلي.')
+                        title=''
+                    visual=r.get('visual_points',[])
+                    if not isinstance(visual,list):
+                        warnings.append('تعذر تفسير بنية الرسومات؛ تفاصيلها تحتاج مراجعة.')
+                        visual=[]
+                    if len(visual)>80:
+                        warnings.append('التفاصيل البصرية كثيرة؛ تعذر توثيق ما يتجاوز 80 نقطة مرئية.')
+                    claimed_warnings=r.get('warnings',[])
+                    if isinstance(claimed_warnings,list):
+                        warnings.extend(w[:2000] for w in claimed_warnings[:30] if isinstance(w,str) and w)
+                    else:
+                        warnings.append('تحذيرات الرؤية غير متاحة؛ راجعي رسم الصفحة الأصلي.')
+                    for i,v in enumerate(visual[:80]):
+                        if not (isinstance(v,dict) and v.get('kind') in
+                            ('heading','diagram','table','definition','mechanism','example','note','clinical','text')
+                            and isinstance(v.get('text'),str) and 0<len(v['text'])<=1800):
+                            warnings.append(f'العنصر المرئي {i+1} غير قابل للتحقق؛ راجعي الرسم الأصلي.')
+                            continue
                         point_id=f"p{page['number']}-v{i+1}"
-                        bbox=validate_bbox(v.get('bbox'))
+                        try:bbox=validate_bbox(v.get('bbox'))
+                        except MentorError:
+                            bbox=None
+                            warnings.append(f'موضع العنصر المرئي {i+1} غير دقيق؛ بقي نصه محفوظًا.')
                         atoms.append(dict(id=point_id,page=page['number'],kind=v['kind'],text=v['text'],
                                           origin='image',bbox=bbox,**source_metadata(point_id,page['number'],v['kind'])))
-                    if not atoms:warnings.append('لم يتم استخراج نقاط من هذه الصفحة؛ راجعي الأصل.')
-                    result.append(dict(number=page['number'],title=title,points=atoms,warnings=warnings))
+                    if not atoms:warnings.append('لم يتم استخراج نقاط موثوقة من هذه الصفحة؛ راجعي صورتها الأصلية.')
+                    result.append(dict(number=page['number'],title=title,points=atoms,warnings=warnings[:80]))
                 return {'pages':result}
             finally:provider.opener=original
         return extract
