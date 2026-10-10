@@ -611,3 +611,34 @@
  min-height:44px;font-size:12px;padding:9px 13px;border:1px solid var(--mn-mint);
  background:var(--mn-selection);color:var(--mn-mint);border-radius:8px;white-space:normal;
 }
+
+/* Distinct neurophysiology figures: not stock diagrams or generic color boxes.
+   All phase/structure text is evidence-gated by the supplied medical lecture. */
+.neuro-lab-module{margin:16px 0 24px;border-radius:15px;overflow:hidden;border:1px solid #bad8cf;background:#f7faf8;direction:rtl;color:#193b35;min-width:0;box-shadow:0 6px 25px #031c1a20}
+.neuro-lab-topbar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 17px;background:#e2f2ec;border-bottom:1px solid #bbd7cc;flex-wrap:wrap}
+.neuro-lab-topbar>strong{font:700 10px/1.6 Arial,sans-serif;letter-spacing:.12em;color:#318274}
+.neuro-lab-topbar>div{display:flex;align-items:center;gap:6px}
+.course-page .neuro-lab-topbar button{min-height:35px;border:1px solid #8ebab1;background:#fff;color:#27665c;font-size:11px;padding:6px 10px;border-radius:7px}
+.course-page .neuro-lab-topbar button[aria-pressed="true"]{background:#1b8277;border-color:#1b8277;color:#fff}
+.neuro-editorial-lab{padding:clamp(13px,2.5vw,26px);min-width:0}
+.neuro-lab-kicker{color:#217a72;letter-spacing:.1em;font:bold 10px/1.5 Arial,sans-serif;margin-bottom:9px}
+.neuro-editorial-lab h3{color:#193c35!important;font-size:clamp(17px,3vw,25px)!important;font-weight:700;margin:0 0 7px!important}
+.neuro-editorial-lab .neuro-lab-lead{color:#53756b;line-height:1.9;margin:0 0 13px;font-size:13px}
+.neuro-editorial-lab svg{display:block;max-width:100%;width:100%;height:auto;background:#fff;border:1px solid #d9e6df;border-radius:13px}
+.neuro-phase-controls{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:thin;padding:12px 0}
+.course-page .neuro-phase-controls button{flex:1 1 105px;white-space:normal;min-width:104px;min-height:48px;display:flex;align-items:center;gap:8px;border:1px solid #b8d7cb;border-radius:9px;color:#315d55;background:#fff;padding:7px 10px;font-size:12px;line-height:1.3;scroll-snap-align:start}
+.course-page .neuro-phase-controls button span{display:grid;place-items:center;width:23px;height:23px;flex:0 0 23px;background:#e5f4ee;border-radius:50%;color:#227e74;font-size:11px}
+.course-page .neuro-phase-controls button[aria-pressed="true"]{background:#d3eee4;border-color:#1a988c;color:#145d54;font-weight:700}
+.neuro-phase-explanation{padding:13px 17px;border-inline-start:4px solid #17978b;background:#e9f4ee;border-radius:7px;line-height:1.9;min-width:0}
+.neuro-phase-explanation strong{font-size:14px;color:#126f63}
+.neuro-phase-explanation p{font-size:13px;line-height:1.9;margin:4px 0;white-space:pre-wrap;overflow-wrap:anywhere;color:#244c41}
+.neuro-editorial-lab figcaption{font-size:11px;color:#728c81;line-height:1.7;padding:12px 0 0;border-top:1px solid #dbe9e2;margin-top:12px}
+.lecture-library-actions{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:8px;min-width:0}
+.lecture-saved-library{margin:12px 0 25px;padding:18px;border:1px solid var(--mn-border);border-radius:12px;background:var(--mn-surface);display:grid;gap:8px}
+.lecture-saved-library h2{font-size:20px;color:var(--mn-sand);margin:0}
+.lecture-saved-library p{color:var(--mn-muted);font-size:13px;line-height:1.8}
+.course-page .lecture-saved-library button{display:flex;flex-direction:column;align-items:flex-start;text-align:start;gap:3px;width:100%;min-width:0;border-radius:8px;padding:9px 13px}
+.lecture-saved-library button strong{max-width:100%;overflow-wrap:anywhere;font-size:14px;color:var(--mn-text)}
+.lecture-saved-library button small{font-size:11px;color:var(--mn-muted)}
+.course-page .lecture-saved-library button[aria-current="page"]{border-color:var(--mn-mint);background:var(--mn-selection)}
+@media(max-width:650px){.neuro-editorial-lab{padding:12px}.neuro-phase-controls button{flex:0 0 132px}.course-page .study-title>.lecture-library-actions{padding:0}.lecture-library-actions{justify-content:stretch}.lecture-library-actions button{flex:1 0 auto}}
