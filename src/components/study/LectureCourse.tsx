@@ -1,5 +1,7 @@
 import {useEffect,useRef,useState,type TouchEvent,type KeyboardEvent} from 'react';
 import {pdfjs} from 'react-pdf';
+import {readPowerPoint} from '../../lib/lecture-pptx';
+import {MechanismPlayer} from './MechanismPlayer';
 import {BookOpen,Upload,ChevronLeft,ChevronRight,Sparkles} from 'lucide-react';
 import {studyRequest,saveLectureRecord,loadActiveLecture,listSavedLectures,loadSavedLecture,saveLectureOriginal,loadLectureOriginal,
  type SavedLectureMeta} from '../../lib/study-store';
@@ -14,14 +16,14 @@ import {type MainConcept,validateConceptGrouping,conceptBranches,conceptCards,co
  findConceptIndex,provisionalConcepts} from '../../lib/lecture-concepts';
 
 type Point={id:string;page:number;kind:string;text:string;origin:string;item_id?:string;page_number?:number;content_type?:string;source_ref?:string;bbox?:number[]};
-type SourcePage={number:number;text:string;image?:string;title?:string;points?:Point[];warnings?:string[]};
+type SourcePage={number:number;text:string;image?:string;title?:string;points?:Point[];warnings?:string[];visionChecked?:boolean};
 type Card={id:string;title:string;source_ids:string[]};
 type Unit={id:string;title:string;objective:string;cards:Card[]};
 type Plan={title:string;units:Unit[]};
 type Turn={question:string;lesson:Explanation};
 type StudyTab=LearningTab|'notes';
 type Stage='queued'|'extracting'|'structuring'|'generating'|'validating'|'retrying'|'failed'|'ready';
-type Course={id?:string;name:string;pages:SourcePage[];plan?:Plan;concepts?:MainConcept[];semanticClustering?:boolean;activeConcept?:number;conceptOverviews?:Record<string,Explanation>;remote?:LectureJobHandle;remoteProgress?:string;planning?:{next:number;units:Unit[]};planningNotices?:string[];phase?:Stage;active:number;mode:string;lessons:Record<string,Explanation>;turns:Record<string,Turn[]>;answers:Record<string,number>;notes?:Record<string,string>};
+type Course={id?:string;name:string;pages:SourcePage[];ingestComplete?:boolean;plan?:Plan;concepts?:MainConcept[];semanticClustering?:boolean;activeConcept?:number;conceptOverviews?:Record<string,Explanation>;remote?:LectureJobHandle;remoteProgress?:string;planning?:{next:number;units:Unit[]};planningNotices?:string[];phase?:Stage;active:number;mode:string;lessons:Record<string,Explanation>;turns:Record<string,Turn[]>;answers:Record<string,number>;notes?:Record<string,string>};
 const empty:Course={name:'',pages:[],active:0,mode:'lecture_only',phase:'queued',lessons:{},turns:{},answers:{}};
 function jpeg(canvas:HTMLCanvasElement){
  let result=canvas.toDataURL('image/jpeg',.87);
@@ -43,8 +45,9 @@ export function LectureCourse(){
  const current=useRef(course),control=useRef<AbortController|null>(null),fileInput=useRef<HTMLInputElement>(null),lastRequest=useRef(0);
  function update(value:Course){current.current=value;setCourse(value);}
  async function save(value:Course){
-  const saved=await saveLectureRecord(value);
-  update(saved);
+  const next={...value,id:value.id||crypto.randomUUID()};
+  update(next);
+  await saveLectureRecord(next);
  }
  useEffect(()=>{
   let live=true;
@@ -104,7 +107,7 @@ export function LectureCourse(){
   // Only the current read-only AI call is retried; saved PDF and teaching
   // checkpoints are never cleared or silently marked complete.
   const wait=async(ms:number)=>{
-   if(ms<=0)return;
+   signal.throwIfAborted();if(ms<=0)return;
    await new Promise<void>((resolve,reject)=>{
     const abort=()=>{clearTimeout(timer);reject(new DOMException('Stopped','AbortError'));};
     const timer=setTimeout(()=>{signal.removeEventListener('abort',abort);resolve();},ms);
@@ -118,7 +121,7 @@ export function LectureCourse(){
    catch(err){
     const code=(err as Error&{code?:string}).code;
     if(attempt===2||!['PROVIDER_FAILURE','PROVIDER_BUSY','STUDY_TIMEOUT'].includes(code||''))throw err;
-    setBusy(`Gemini أرسل ردًا غير مكتمل؛ إعادة محاولة ${attempt+1} من 2 دون فقد التقدم…`);
+    setBusy(`وصل رد غير مكتمل؛ إعادة محاولة ${attempt+1} من 2 دون فقد التقدم…`);
     await wait(900*(2**attempt)+Math.floor(Math.random()*450));
    }
   }
@@ -151,7 +154,7 @@ export function LectureCourse(){
   const byId=new Map(all.map(p=>[p.id,p]));
   const sourceUnits=units.map(u=>{
    const sample=u.cards.flatMap(c=>c.source_ids).map(id=>byId.get(id)?.text||'')
-    .filter(Boolean).join(' · ').slice(0,350);
+    .filter(Boolean).join(' · ').slice(0,4000);
    return {id:u.id,title:u.title,objective:u.objective,sample};
   });
   setBusy(`دمج ${units.length} وحدة فرعية في مفاهيم رئيسية مترابطة…`);
@@ -180,10 +183,36 @@ export function LectureCourse(){
   const activeConcept=selectedCard?findConceptIndex(concepts,units,selectedCard.id):0;
   await save({...current.current,concepts,semanticClustering:semantic,activeConcept,
      planningNotices:[...(current.current.planningNotices||[]),...(!semantic?
-      ['التجميع الحالي مؤقت ويحافظ على جميع المصادر؛ لم ينجح Gemini في تصنيف المفاهيم دلاليًا.']:[])]});
+      ['التجميع الحالي مؤقت ويحافظ على جميع المصادر؛ لم ينجح تصنيف المفاهيم دلاليًا.']:[])]});
  }
  async function organize(signal:AbortSignal){
   let state=current.current;
+  if(state.ingestComplete===false&&state.id){
+   const original=await loadLectureOriginal(state.id);
+   if(!original)throw new Error('لم يُعثر على الأصل المحفوظ لاستكمال القراءة.');
+   await ingestFile(original as File,signal,state.id);return;
+  }
+  // Read every available page image before final semantic organization.
+  const unread=state.pages.filter(p=>p.image&&!p.visionChecked);
+  for(let offset=0;offset<unread.length;){
+   signal.throwIfAborted();const batch:SourcePage[]=[];let bytes=0;
+   while(offset<unread.length&&batch.length<4){const p=unread[offset];if(batch.length&&bytes+(p.image?.length||0)>2600000)break;batch.push(p);bytes+=p.image?.length||0;offset++;}
+   setBusy(`تحليل الرسومات والجداول مع سياقها · ${offset} / ${unread.length} صفحات`);
+   const result=await request({operation:'extract',pages:batch.map(p=>({number:p.number,text:p.text,image:p.image}))},signal);
+   signal.throwIfAborted();
+   state={...current.current,pages:current.current.pages.map(p=>{
+    const found=(result.pages as SourcePage[]).find(r=>r.number===p.number);
+    return found?{...p,...found,visionChecked:true,warnings:[...(p.warnings||[]).filter(w=>!w.includes('تنتظر')&&!w.includes('لم تُراجع')), ...(found.warnings||[])]}:p;
+   })};
+   // New visual facts invalidate the map only before a lecture has been taught.
+   if(!Object.keys(state.lessons).length)state={...state,plan:undefined,concepts:undefined};
+   else if(state.plan){
+    const assigned=new Set(state.plan.units.flatMap(u=>u.cards.flatMap(c=>c.source_ids)));
+    const additions=buildFastSourcePlan(state.pages.map(p=>({...p,points:(p.points||[]).filter(x=>!assigned.has(x.id))})),state.name).units;
+    if(additions.length)state={...state,concepts:undefined,plan:{...state.plan,units:[...state.plan.units,...additions.map((u,i)=>({...u,id:'vision-'+state.plan!.units.length+'-'+i,cards:u.cards.map((c,j)=>({...c,id:'vision-'+state.plan!.units.length+'-'+i+'-'+j}))}))]}};
+   }
+   await save(state);
+  }
   if(state.plan){
    if(!state.concepts?.length)await consolidateConcepts(signal);
    // Each major concept gets a first-principles introduction, independently
@@ -234,7 +263,7 @@ export function LectureCourse(){
   if(textPages%6)await save(state);
   const points=state.pages.flatMap(p=>p.points||[]);
   if(!points.length)throw new Error('لم يظهر محتوى قابل للاستخراج. راجعي الملف الأصلي.');
-  setBusy('بناء خريطة المصادر دون انتظار عشرات طلبات Gemini…');
+  setBusy('بناء خريطة المصادر دون انتظار عشرات طلبات الذكاء الاصطناعي…');
   // One source-safe local pass replaces 10–40 per-chunk curriculum requests.
   // Semantic AI then groups these exact source IDs into few major concepts.
   const fastPlan=buildFastSourcePlan(state.pages,state.name);
@@ -250,28 +279,31 @@ export function LectureCourse(){
   }
   await save({...current.current,phase:'ready'});
  }
- async function openFile(file:File){await work(async signal=>{
+ async function openFile(file:File){await work(signal=>ingestFile(file,signal));}
+ async function ingestFile(file:File,signal:AbortSignal,resumeId?:string){
   if(file.size>30*1024*1024)throw new Error('الحد الأقصى للملف 30 MB.');
-  const id=crypto.randomUUID(),pages:SourcePage[]=[];
+  const id=resumeId||crypto.randomUUID(),pages:SourcePage[]=[];
+  const previous=resumeId?current.current.pages:[];
   // Save the source as a single Blob, separately from the lesson checkpoints.
   // Previous lectures stay in the library rather than being overwritten.
   await saveLectureOriginal(id,file);
-  await save({...empty,id,name:file.name,pages:[],phase:'extracting'});
+  if(!resumeId)await save({...empty,id,name:file.name,pages:[],phase:'extracting',ingestComplete:false});
   setLibraryOpen(false);setSources(false);
   setBusy('فتح المحاضرة وحفظ نصوص صفحاتها مباشرة…');
-  if(file.type==='application/pdf'||/\\.pdf$/i.test(file.name)){
+  if(file.type==='application/pdf'||/\.pdf$/i.test(file.name)){
    const pdf=await pdfjs.getDocument({data:await file.arrayBuffer()}).promise;
    try{
     if(pdf.numPages>300)throw new Error('الحد الأقصى 300 صفحة. قسّمي المحاضرة إلى ملفات.');
     for(let n=1;n<=pdf.numPages;n++){
      signal.throwIfAborted();
-     setBusy(`قراءة النص الفوري · صفحة ${n} من ${pdf.numPages}`);
+     setBusy(`قراءة وحفظ صفحة ${n} من ${pdf.numPages}`);
+     const cached=previous.find(p=>p.number===n&&p.image);if(cached){pages.push(cached);continue;}
      const page=await pdf.getPage(n),content=await page.getTextContent();
-     const text=content.items.map(x=>'str'in x?x.str+(x.hasEOL?'\\n':' '):'').join('');
+     const text=content.items.map(x=>'str'in x?x.str+(x.hasEOL?'\n':' '):'').join('');
      if(text.length>40000)throw new Error(`الصفحة ${n} تتجاوز حد النص؛ لم يتم حذف أي جزء منها.`);
      let image:string|undefined;
-     if(text.trim().length<80){
-      // Image-only pages need a bounded vision call later; render those only.
+     {
+      // All pages carry visual evidence, including text-bearing diagrams and tables.
       const raw=page.getViewport({scale:1}),viewport=page.getViewport({scale:Math.min(2,1500/Math.max(raw.width,raw.height))});
       const canvas=document.createElement('canvas');
       canvas.width=Math.ceil(viewport.width);canvas.height=Math.ceil(viewport.height);
@@ -279,13 +311,15 @@ export function LectureCourse(){
       image=jpeg(canvas);canvas.width=0;canvas.height=0;
      }
      const quick=text.trim().length>=80;
-     pages.push({number:n,text,image,title:text.split(/\\n/).map(t=>t.trim()).find(t=>t.length>=6)?.slice(0,180),
+     pages.push({number:n,text,image,title:text.split(/\n/).map(t=>t.trim()).find(t=>t.length>=6)?.slice(0,180),
       points:quick?extractTextPoints(n,text):undefined,
       warnings:quick?['طبقة نص PDF مقروءة؛ الرسومات غير المستخرجة نصيًا تنتظر فحصًا بصريًا مستقلًا.']:[]});
      page.cleanup();
-     if(n%6===0)await save({...current.current,pages:[...pages],phase:'extracting'});
+     if(n%3===0)await save({...current.current,pages:[...pages],phase:'extracting'});
     }
    }finally{await pdf.destroy();}
+  }else if(/\.pptx$/i.test(file.name)){
+   await readPowerPoint(file,signal,async(page,total)=>{pages.push(previous.find(p=>p.number===page.number)||page);setBusy(`قراءة PowerPoint · ${page.number} / ${total}`);await save({...current.current,pages:[...pages],phase:'extracting'});});
   }else if(file.type.startsWith('image/')){
    const bitmap=await createImageBitmap(file);
    try{
@@ -296,21 +330,15 @@ export function LectureCourse(){
     context.drawImage(bitmap,0,0,canvas.width,canvas.height);
     pages.push({number:1,text:'',image:jpeg(canvas)});
    }finally{bitmap.close();}
-  }else if(/\\.txt$/i.test(file.name)){
+  }else if(/\.txt$/i.test(file.name)){
    pages.push(...textPages(await file.text()).map(p=>({...p,points:extractTextPoints(p.number,p.text)})));
-  }else throw new Error('اختاري PDF أو صورة أو ملف TXT.');
+  }else throw new Error('اختاري PDF أو PowerPoint بصيغة PPTX أو صورة أو TXT. صيغة PPT القديمة تحتاج تصديرًا إلى PDF.');
   signal.throwIfAborted();
-  await save({...current.current,pages,phase:'extracting'});
-  // Server jobs remain optional until a real database is provisioned. Fast
-  // source ingestion always works offline in the same Safari library.
-  try{await submitRemote(pages,signal);}
-  catch(error){
-   const code=(error as Error&{code?:string}).code;
-   if(code!=='DATABASE_NOT_CONFIGURED')throw error;
-   setNotice('تم حفظ المحاضرة في Safari فقط. لا توجد بعد قاعدة بيانات خادم للمزامنة بين الأجهزة.');
-   await organize(signal);
-  }
- });}
+  await save({...current.current,pages,phase:'extracting',ingestComplete:true});
+  // Local durable checkpoints are the configured path. Do not attempt an
+  // unconfigured queue/database on each upload.
+  await organize(signal);
+ }
  function textPages(text:string){const parts=text.split(/\n\s*---\s*\n/);if(!text.trim()||parts.length>300||parts.some(t=>t.length>40000))throw new Error('النص فارغ أو يتجاوز حدود الصفحات؛ افصلي الصفحات بسطر --- .');return parts.map((text,i)=>({number:i+1,text}));}
  async function teach(signal:AbortSignal,followup=''){
   const state=current.current,all=state.plan?.units.flatMap(u=>u.cards)||[],card=all[state.active];if(!card)return;
@@ -504,14 +532,15 @@ export function LectureCourse(){
     <strong dir="auto">{item.name}</strong><small>{item.pages} صفحة · {item.ready?'جاهزة':'تحت المعالجة'}</small></button>):
     <p>لم تُحفظ محاضرات في هذا المتصفح بعد.</p>}
   </section>}
-  <input ref={fileInput} hidden type="file" accept="application/pdf,image/*,.txt" onChange={e=>{const f=e.target.files?.[0];if(f)void openFile(f);e.target.value='';}}/>
+  <input ref={fileInput} hidden type="file" accept="application/pdf,application/vnd.openxmlformats-officedocument.presentationml.presentation,image/*,.pptx,.txt" onChange={e=>{const f=e.target.files?.[0];if(f)void openFile(f);e.target.value='';}}/>
   {busy&&<><p className="course-state" role="status">{({queued:'بانتظار المعالجة',extracting:'استخراج',structuring:'تنظيم',generating:'إنشاء ومراجعة',validating:'تدقيق',retrying:'إعادة المحاولة تلقائيًا',failed:'فشلت المعالجة',ready:'جاهزة'} as Record<Stage,string>)[course.phase||'queued']} · المحاضرة محفوظة ويمكن استكمالها بعد إعادة التحميل</p><Progress message={busy} cancel={()=>control.current?.abort()}/></>}
   {course.remote&&course.phase!=='ready'&&<div className="course-state" role="status">المعالجة الخلفية على الخادم · {({queued:'بانتظار التنفيذ',extracting:'استخراج المحتوى',structuring:'بناء الوحدات',generating:'إنشاء الشرح المراجع',validating:'التحقق',retrying:'إعادة محاولة تلقائية',failed:'توقفت المهمة',ready:'اكتملت'} as Record<Stage,string>)[course.phase||'queued']} · {course.remoteProgress||'تم حفظ المهمة'} · يمكنكِ مغادرة الصفحة والعودة لاحقًا</div>}
   {notice&&<p className="course-local-notice" role="status">{notice}</p>}
    {error&&<div className="study-error" role="alert">{error}<p>الصفحات والنقاط المكتملة محفوظة. لا تعيدي رفع الملف.</p>
-    {!!course.pages.length&&!busy&&!course.remote&&<button className="primary" onClick={()=>void work(organize)}>إعادة المحاولة من آخر خطوة محفوظة</button>}
+    {(!!course.pages.length||course.ingestComplete===false)&&!busy&&!course.remote&&<button className="primary" onClick={()=>void work(organize)}>إعادة المحاولة من آخر خطوة محفوظة</button>}
    </div>}
-  {!course.pages.length&&!busy&&<section className="lecture-welcome"><BookOpen size={42}/><h2>افهمي الفكرة، ثم اختبري فهمك</h2><p>نص وشرح بصري في كل وحدة. السلايدات الأصلية متاحة للرجوع إليها.</p><button className="primary" onClick={()=>fileInput.current?.click()}>ارفعي المحاضرة · PDF أو صور</button><small>حتى 30 MB · لا تُحسب الأجزاء غير المقروءة كتغطية مكتملة</small><details><summary>أو الصقي نص المحاضرة</summary><textarea aria-label="نص المحاضرة" value={pasted} onChange={e=>setPasted(e.target.value)} rows={6}/><button disabled={!pasted.trim()} onClick={()=>void work(async signal=>{await save({...empty,name:'محاضرة نصية',pages:textPages(pasted),phase:'extracting'});await organize(signal);})}>ابدئي التعلم</button></details></section>}
+  {course.ingestComplete===false&&!busy&&<section className="study-card"><h2>لم تكتمل قراءة الملف المحفوظ</h2><button onClick={()=>void work(organize)}>استكمال القراءة من الملف المحفوظ</button></section>}
+  {!course.pages.length&&!busy&&course.ingestComplete!==false&&<section className="lecture-welcome"><BookOpen size={42}/><h2>افهمي الفكرة، ثم اختبري فهمك</h2><p>نص وشرح بصري في كل وحدة. السلايدات الأصلية متاحة للرجوع إليها.</p><button className="primary" onClick={()=>fileInput.current?.click()}>ارفعي المحاضرة · PDF أو PowerPoint أو صور</button><small>حتى 30 MB · لا تُحسب الأجزاء غير المقروءة كتغطية مكتملة</small><details><summary>أو الصقي نص المحاضرة</summary><textarea aria-label="نص المحاضرة" value={pasted} onChange={e=>setPasted(e.target.value)} rows={6}/><button disabled={!pasted.trim()} onClick={()=>void work(async signal=>{await save({...empty,name:'محاضرة نصية',pages:textPages(pasted),phase:'extracting'});await organize(signal);})}>ابدئي التعلم</button></details></section>}
   {!!course.pages.length&&<>
    <div className="course-toolbar"><span>{course.pages.filter(p=>p.points).length} / {course.pages.length} صفحات مقروءة · {planned.size} / {points.length} نقاط منظمة · {covered.size} / {points.length} نقاط شُرحت ورُوجعت</span><button aria-expanded={sources} onClick={()=>setSources(v=>!v)}>{sources?'إخفاء المرجع':'المحاضرة الأصلية وخريطة التغطية'}</button><select aria-label="مصدر الشرح" disabled={!!busy} value={course.mode} onChange={e=>void change(course.active,e.target.value)}><option value="lecture_only">Lecture only · المحاضرة فقط</option><option value="supplemental">المحاضرة + توضيح إضافي</option></select></div>
    {!!warnings.length&&<details className="study-warning"><summary>{warnings.length} ملاحظات على القراءة تحتاج مراجعتك</summary>{warnings.map((w,i)=><p key={i}>{w}</p>)}</details>}
@@ -591,10 +620,11 @@ export function LectureCourse(){
        <p>للسلايدات القديمة: أعيدي توليد المخطط الطبي المتصل وفق المرجع، من النقاط الأصلية دون حذف الشرح المحفوظ.</p>
        <button disabled={!!busy} onClick={()=>void work(rebuildEditorialVisual)}>إعادة بناء الرسم بصريًا</button>
       </div>}
-     {studyTab==='notes'&&<section className="course-slide-notes" data-no-swipe><h3>ملاحظاتي · {card.title}</h3><textarea rows={10} aria-label="ملاحظات هذا السلايد" placeholder="دوّني ما فهمتِه بطريقتك…" value={course.notes?.[card.id]||''} onChange={event=>{const notes={...current.current.notes,[card.id]:event.target.value};void save({...current.current,notes});}}/><small>محفوظة على جهازك ضمن هذه المحاضرة.</small></section>}
+     {studyTab==='notes'&&<section className="course-slide-notes" data-no-swipe><h3>ملاحظاتي · {card.title}</h3><textarea rows={10} aria-label="ملاحظات هذا السلايد" placeholder="دوّني ما فهمتِه بطريقتك…" value={course.notes?.[card.id]||''} onChange={event=>{const notes={...current.current.notes,[card.id]:event.target.value};void save({...current.current,notes}).catch(()=>setError('لم تُحفظ الملاحظة؛ تحققي من مساحة المتصفح.'));}}/><small>محفوظة على جهازك ضمن هذه المحاضرة.</small></section>}
+     {studyTab==='explain'&&!lesson&&<MechanismPlayer source={conceptRawText}/> }
      {studyTab!=='notes'&&(lesson?<><LessonJourney key={key+':'+studyTab} view={studyTab} lesson={lesson} sourceImages={course.pages.filter(p=>sourcePages.includes(p.number)).map(p=>({page:p.number,image:p.image}))} slide={cardPoints.map(p=>p.text).join('\n')} answers={course.answers} onAnswer={answer} prefix={key} busy={!!busy} onAsk={ask}/>{studyTab==='explain'&&<details className="course-details"><summary>شرح جميع نقاط هذه الفكرة · {lesson.coverage?.length||0} نقاط</summary>{lesson.coverage?.map(item=><section key={item.source_id}><p dir="auto">{item.explanation}</p><small>من صفحة {points.find(p=>p.id===item.source_id)?.page}</small></section>)}</details>}</>:<section className="course-pending-lesson" role="status" aria-label="حالة إنشاء سلايد الشرح">
        <h3>{busy?'جارٍ إعداد هذا السلايد ومراجعته…':'هذا السلايد بانتظار الشرح الطبي'}</h3>
-       <p>{studyTab==='quiz'?'أسئلة Quiz ستظهر بعد إنشاء شرح مراجَع لهذا السلايد.':studyTab==='visual'?'الرسوم والجداول الموثقة ستظهر بعد اكتمال التوليد.':studyTab==='3d'?'الربط بأطلس 3D يتطلب تركيبًا مطابقًا ومراجعًا.':'المحاضرة محفوظة، لكن هذا السلايد لم يحصل على شرح Gemini معتمد بعد.'}</p>
+       <p>{studyTab==='quiz'?'أسئلة Quiz ستظهر بعد إنشاء شرح مراجَع لهذا السلايد.':studyTab==='visual'?'الرسوم والجداول الموثقة ستظهر بعد اكتمال التوليد.':studyTab==='3d'?'الربط بأطلس 3D يتطلب تركيبًا مطابقًا ومراجعًا.':'المحاضرة محفوظة، لكن هذا السلايد لم يحصل على شرح مراجع بعد.'}</p>
        {!busy&&<button className="primary" onClick={()=>void work(signal=>teach(signal))}>إنشاء شرح هذا السلايد</button>}
        {studyTab==='visual'&&(sourceNeuroFigures.potential||sourceNeuroFigures.neuron)&&
         <NeuroVisualLab lesson={sourceOnlyLesson} slide={conceptRawText}/>}

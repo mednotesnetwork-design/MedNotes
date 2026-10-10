@@ -1,3 +1,4 @@
+import {MechanismPlayer} from './MechanismPlayer';
 import {lazy,Suspense,useState} from 'react';
 import {ChevronLeft,ChevronRight,Lightbulb,Layers3,Box} from 'lucide-react';
 import {entities} from '@atlas/lib/anatomy';
@@ -48,7 +49,7 @@ export type LearningTab='explain'|'visual'|'quiz'|'3d';
 export function LessonJourney({lesson,slide,answers,onAnswer,prefix,onAsk,busy,view='all',sourceImages=[]}:{lesson:Explanation;slide:string;answers:Record<string,number>;onAnswer:(key:string,value?:number)=>void;prefix:string;onAsk:(q:string)=>void;busy:boolean;view?:LearningTab|'all';sourceImages?:OriginalSourceImage[]}){
  const [revealed,setRevealed]=useState(false),[modelOpen,setModelOpen]=useState(false);
  const showExplain=view==='all'||view==='explain';
- const showVisual=view==='all'||view==='visual';
+ const showVisual=view==='all'||view==='visual'||view==='explain';
  const neuroFigures=availableNeuroFigures(lesson,slide);
  const showQuiz=view==='all'||view==='quiz';
  const supportedVisuals=lesson.textbook_layouts?.length?lesson.textbook_layouts:
@@ -63,7 +64,7 @@ export function LessonJourney({lesson,slide,answers,onAnswer,prefix,onAsk,busy,v
     nodes:lesson.clinical_layers.visual_cues.map(cue=>({
      label:cue.label,detail:cue.detail,source_item_ids_used:cue.source_item_ids_used
     }))}]:[];
- const showAnatomy=view==='all'||view==='3d';
+ const showAnatomy=view==='all'||view==='3d'||view==='explain';
  const opening=lesson.opening,hasOpening=opening&&opening.kind!=='none'&&opening.prompt;
  const supplemental=lesson.source_mode==='supplemental';
  const source=(slide+' '+lesson.explanation).toLowerCase();
@@ -74,6 +75,7 @@ export function LessonJourney({lesson,slide,answers,onAnswer,prefix,onAsk,busy,v
   {lesson.review_note&&<p className="lesson-basis">{lesson.review_note}</p>}
   {showExplain&&hasOpening&&<section className="case-opening"><span className="lesson-basis"><Lightbulb size={15}/>{opening.kind==='case'?'حالة تعليمية افتراضية':'فكّري أولًا'} · {basisText(opening.basis)}</span>{opening.scene&&<p>{opening.scene}</p>}<h3>{opening.prompt}</h3><button aria-expanded={revealed} onClick={()=>setRevealed(v=>!v)}>{revealed?'إخفاء التفسير':'اكشفي التفسير خطوة بخطوة'}</button>{revealed&&<p className="opening-answer">{opening.answer}</p>}</section>}
   {<>
+   {(showExplain||showVisual)&&<MechanismPlayer source={slide} lesson={lesson}/>}
    {showExplain&&lesson.clinical_layers&&<ClinicalTeachingLayers layers={lesson.clinical_layers} registry={lesson.source_registry} sourceImages={sourceImages} view="explain"/>}
   {showVisual&&(neuroFigures.potential||neuroFigures.neuron)&&<NeuroVisualLab lesson={lesson} slide={slide}/>}
   {(showExplain||showVisual)&&<MedicalAtlasLayouts layouts={supportedVisuals} callouts={lesson.clinical_callouts} registry={lesson.source_registry} sourceImages={sourceImages} view={showVisual&&!showExplain?'visual':'explain'}/>}
