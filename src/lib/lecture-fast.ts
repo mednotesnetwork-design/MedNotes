@@ -3,7 +3,7 @@
  * Diagrams not represented in the PDF text layer remain explicitly unverified.
  */
 export type FastPoint={id:string;page:number;kind:'text';text:string;origin:'text';item_id:string;page_number:number;content_type:'text';source_ref:string};
-export type FastPage={number:number;text:string;image?:string;title?:string;points?:FastPoint[];warnings?:string[]};
+export type FastPage={number:number;text:string;image?:string;title?:string;points?:Array<{id:string;page:number;text:string}>;warnings?:string[]};
 export type FastCard={id:string;title:string;source_ids:string[]};
 export type FastUnit={id:string;title:string;objective:string;cards:FastCard[]};
 export function extractTextPoints(page:number,text:string):FastPoint[]{
