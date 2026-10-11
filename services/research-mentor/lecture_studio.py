@@ -299,5 +299,8 @@ def run_studio(provider,data):
     op=data.get('operation')
     if op=='outline':return _outline(provider,data)
     if op=='lesson':return _lesson(provider,data)
+    if op=='simulation':
+        from clinical_simulation import run_simulation
+        return run_simulation(provider,data)
     if op=='vision':return _vision(provider,data)
     raise MentorError('INVALID_REQUEST','Unknown studio operation',400)
