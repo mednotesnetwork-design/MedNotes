@@ -74,6 +74,7 @@ export function TeachingStage({lesson,sources,onExit}:{lesson:TeachingChapter;so
    </div>
    {item.kind==='mechanism'&&<div className="mn4-mech-context"><FlaskConical size={17}/><p>Micro-step {item.index+1} / {lesson.mechanism.length} · تابعي التركيب المميز بصريًا، والحركة الناتجة، ثم انتقلي للخطوة التالية بالترتيب السببي.</p></div>}
    {item.kind==='foundation'&&lesson.opening&&<div className="mn4-think"><Lightbulb size={18}/><p>{lesson.opening}</p></div>}
+   {item.kind==='clinical-overview'&&lesson.high_yield?.length>0&&<section className="mn4-clinical-pearls"><strong>Clinical Pearls · أهم النقاط الطبية</strong>{lesson.high_yield.map((pearl,i)=><p key={i}>{pearl}</p>)}</section>}
   </>}
   {!!item.source_ids.length&&<button type="button" className="mn4-source-trigger" onClick={()=>setSourceOpen(v=>!v)}><FileSearch size={16}/>{sourceOpen?'إخفاء المرجع':'التحقق من المصدر'} <span>صفحات {pagesLabel(item.source_ids,sources)||'المحاضرة'}</span></button>}
   {sourceOpen&&<div className="mn4-source-drawer">{sourceItems.map(s=><details key={s.id}><summary>الشريحة الأصلية {s.page} — {s.title}</summary>{s.image&&<img src={s.image} alt={'الشريحة الأصلية '+s.page} loading="lazy"/>}<p>{s.text}</p>{s.warnings.map((x,i)=><small key={i}>{x}</small>)}</details>)}</div>}
