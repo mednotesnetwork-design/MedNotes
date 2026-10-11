@@ -118,13 +118,13 @@ def publish_lecture(data, curator_key):
         from psycopg.types.json import Jsonb
         cur.execute("""INSERT INTO mednote_shared_lectures
           (scope,digest_kind,digest,title,snapshot,status,rights_basis,curator_id)
-          VALUES (%s,%s,%s,%s,%s,'approved',%s,%s)
+          VALUES (%s,%s,%s,%s,%s,'pending',%s,%s)
           ON CONFLICT (scope,digest_kind,digest) DO UPDATE
-          SET title=EXCLUDED.title,snapshot=EXCLUDED.snapshot,status='approved',
+          SET title=EXCLUDED.title,snapshot=EXCLUDED.snapshot,status='pending',
               rights_basis=EXCLUDED.rights_basis,curator_id=EXCLUDED.curator_id,
               content_version=mednote_shared_lectures.content_version+1,updated_at=now()""",
           (scope,digest_kind,digest,snapshot["name"] or "Shared lecture",Jsonb(snapshot),rights,curator))
-    return {"published": True, "digest": digest, "scope": scope, "review_state": "educational_unreviewed"}
+    return {"staged": True, "approved": False, "digest": digest, "scope": scope, "review_state": "educational_unreviewed"}
 
 def publish_media(data, curator_key):
     verify_curator(curator_key)
