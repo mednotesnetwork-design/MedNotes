@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import {Activity,ArrowLeftRight,BrainCircuit,FlaskConical} from 'lucide-react';
 import type {Source,TeachingChapter} from './studio-types';
+import {Axon3D} from './Axon3D';
 
 type MicroStep=TeachingChapter['mechanism'][number];
 function visualPhase(text:string,kind:VisualKind){
@@ -90,7 +91,7 @@ export function MedicalVisual({context,sources,step}:{context:string;sources:Sou
  const sourceText=sources.map(s=>s.text+' '+(s.observations||[]).map(o=>o.text).join(' ')).join(' ');
  // The current micro-step drives the figure, not a global lecture keyword.
  const kind=visualKindFor(context)!=='source'?visualKindFor(context):visualKindFor(sourceText.slice(0,2000));
- const display=kind==='axon'?<AxonVisual step={step}/>:kind==='nmj'?<NmjVisual step={step}/>:kind==='action-potential'?<ActionPotentialVisual step={step}/>:null;
+ const display=kind==='axon'?<Axon3D mode={step&&visualPhase([step.title,step.visual_focus,step.motion].join(' '),'axon')===1?'retrograde':'anterograde'}/>:kind==='nmj'?<NmjVisual step={step}/>:kind==='action-potential'?<ActionPotentialVisual step={step}/>:null;
  const p=sources.find(s=>s.image&&s.observations?.some(o=>o.kind==='diagram'||o.kind==='table'))||sources.find(s=>s.image);
  if(!display&&!p)return step?<div className="mn4-mechanism-brief" aria-label="تعليمات الحركة العلمية"><strong>المشهد العلمي لهذا الجزء</strong><p>{step.detail}</p></div>:null;
  return <div className="mn4-visual-stack">
@@ -98,7 +99,7 @@ export function MedicalVisual({context,sources,step}:{context:string;sources:Sou
   {step&&(step.visual_focus||step.motion)&&<div className="mn4-visual-direction" aria-label="إخراج الخطوة في الرسوم العلمية">
     {step.visual_focus&&<div><span>FOCUS · التركيب المهم</span><strong>{step.visual_focus}</strong></div>}
     {step.motion&&<div><span>MOTION · ما الذي يتحرك أو يتغير؟</span><p>{step.motion}</p></div>}
-    <small>زاوية التصوير المقترحة: {step.camera_view||'2D'} · إرشادات تصوير علمية، وليست فيديو مولّدًا</small>
+    <small>زاوية العرض: {kind==='axon'?'3D تفاعلي':step.camera_view||'2D'} · مشهد تعليمي وليس تصويرًا طبيًا تشخيصيًا</small>
     {step.next_transition&&<p className="mn4-next-transition">انتقال المشهد: {step.next_transition}</p>}
    </div>}
  </div>;
