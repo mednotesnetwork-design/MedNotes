@@ -5,7 +5,7 @@ import re
 import json
 from v1server.contracts import require, MentorError
 
-OUTLINE = """You are a senior medical curriculum architect. Convert an uploaded medical lecture
+OUTLINE = """You are MedNote Core AI, a professor of medicine and expert medical instructional designer. Convert an uploaded medical lecture
 into a NEW teaching journey, not a slide summary. Read supplied page headings, excerpts and
 visual observations, grouping by genuine scientific ideas instead of page counts. Create 3-10
 logical chapters (fewer for short lectures), moving from definitions and prerequisites to
@@ -19,7 +19,7 @@ scene names describe real subtopics from the lecture, NOT generic "Step 1".
 Arabic student-facing prose with medically correct English terminology.
 Never invent facts absent from the input. Return only JSON."""
 
-LESSON = """You are a medical professor, medical illustrator and curriculum designer.
+LESSON = """You are MedNote Core AI, a professor of medicine, medical physiologist, medical illustrator and expert instructional designer.
 Generate the actual content for ONE NEW teaching chapter based on ORIGINAL EVIDENCE.
 Explain everything from first principles, then mechanisms and clinical significance.
 Do NOT merely paraphrase PDF bullets. Every clinical assertion must be grounded by
@@ -31,7 +31,7 @@ is missing, say so clearly in the corresponding section.
 Return JSON with exactly these public components:
 {headline:string, opening:string, foundation:{title:string,body:string},
 scenes:[{title:string,body:string,source_ids:[string]}],
-mechanism:[{title:string,detail:string,source_ids:[string]}],
+mechanism:[{title:string,detail:string,visual_focus:string,motion:string,camera_view:"2D"|"3D",next_transition:string,source_ids:[string]}],
 clinical:{title:string,scenario:string,reasoning:string,source_ids:[string],
 shots:[{description:string,clinical_cue:string}]} or null,
 visual:{title:string,caption:string,shot_prompts:[string]},
@@ -40,7 +40,7 @@ why:[string],source_ids:[string]}],
 uncertainties:[string]}.
 Every scene/mechanism/clinical/quiz item references source_ids that appear in input.
 No fake source IDs. At most 5 scenes, 9 mechanism steps, 5 shots, 3 MCQs.
-Mechanism ONLY if source explicitly supports the causal ORDER; do not sequence
+Mechanism steps must each show a distinct chronological micro-event, identify the precise structure/ion/channel/receptor to visually HIGHLIGHT and the exact motion/change, specify 2D or 3D framing and the visual transition to the NEXT step. In particular, never skip the causal connection between action potential arrival, calcium-channel opening, vesicle fusion, neurotransmitter release, receptor activation and postsynaptic response WHEN the supplied source actually supports these events. Do NOT invent events, motor proteins, channel directions, clinical claims, or quantitative parameters absent from source evidence. The next_transition for the final step must be "نهاية الآلية". If the source does not provide a sequence, return mechanism: []. No generic text-only animation labels. Mechanism ONLY if source explicitly supports the causal ORDER; do not sequence
 unrelated clinical findings. Clinical scene ONLY if there are genuine clinical
 findings in the source; do not force a case for an abstract physiology topic.
 Clinical shots describe a hypothetical cinematic SCRIPT/STORYBOARD, not generated video.
@@ -54,7 +54,7 @@ source fact, exception, qualifier and number. No HTML, URLs, markdown code or sc
 
 REVIEW = """Independently medically audit the candidate JSON against the supplied SOURCE.
 Return JSON {approved:boolean,issues:[string]}. Reject unsupported medical assertions,
-unwarranted mechanisms, clinical signs or treatment, incorrect sequence or anatomy,
+unwarranted mechanisms, clinical signs or treatment, incorrect sequence or anatomy, erroneous ion movements, unsupported 3D motion details or visual_focus, wrong chronological micro-step transitions,
 incomplete coverage, fabricated source citations and wrong MCQ answers.
 An omitted clinical scene is acceptable when source lacks clinical findings.
 Do not accept a plausible statement just because it is common textbook knowledge
@@ -136,11 +136,23 @@ def _lesson(provider,data):
     for key,maximum in (('scenes',6),('mechanism',10),('quiz',3)):
         require(isinstance(draft.get(key),list) and len(draft[key])<=maximum,
                 'Malformed '+key,'STUDIO_INVALID_OUTPUT',422)
-    for row in draft['scenes']+draft['mechanism']:
+    for row in draft['scenes']:
         require(isinstance(row,dict) and _text(row.get('title'),180) and
-                _text(row.get('body',row.get('detail')),3000),
-                'Invalid lesson section','STUDIO_INVALID_OUTPUT',422)
+                _text(row.get('body'),3000),
+                'Invalid teaching slide','STUDIO_INVALID_OUTPUT',422)
         _ids(row.get('source_ids'),allowed)
+    for row in draft['mechanism']:
+        require(isinstance(row,dict) and _text(row.get('title'),180) and
+                _text(row.get('detail'),2300) and
+                _text(row.get('visual_focus'),500) and
+                _text(row.get('motion'),850) and
+                row.get('camera_view') in ('2D','3D') and
+                _text(row.get('next_transition'),500),
+                'Invalid mechanism animation step','STUDIO_INVALID_OUTPUT',422)
+        _ids(row.get('source_ids'),allowed)
+    if draft['mechanism']:
+        require(draft['mechanism'][-1]['next_transition']=='نهاية الآلية',
+                'Mechanism must end at a defined step','STUDIO_INVALID_OUTPUT',422)
     case=draft.get('clinical')
     if case is not None:
         require(isinstance(case,dict) and _text(case.get('title'),180) and
@@ -178,6 +190,39 @@ def _lesson(provider,data):
     draft['reviewed']=True
     draft['media']={'clinical_video':'not_generated','mechanism_video':'not_generated',
                     'note':'Scripts are illustrative plans; no playback or images are claimed.'}
+    # Public MedNote Core AI JSON contract; derived ONLY from medically audited
+    # components and evidence-backed source IDs, without a second unchecked LLM.
+    registry={row['id']:row['page'] for row in sources}
+    refs=lambda ids:[{'source_id':x,'page':registry[x]} for x in ids if x in registry]
+    draft['module']={
+      'module_title':draft['headline'],
+      'progress_steps':[{'name':'extraction','status':'complete','page_count':len(sources)},
+                        {'name':'pedagogical_restructuring','status':'complete','pillar':chapter['title']},
+                        {'name':'medical_review','status':'approved'}],
+      'teaching_slides':[
+          {'title':draft['foundation']['title'],'explanation':draft['foundation']['body'],
+           'key_takeaway':draft['opening'],'source_refs':refs([x['id'] for x in sources])}]
+          + [{'title':x['title'],'explanation':x['body'],'key_takeaway':x['title'],
+              'source_refs':refs(x['source_ids'])} for x in draft['scenes']],
+      'clinical_simulation_prompt':None if draft.get('clinical') is None else {
+          'title':draft['clinical']['title'],'scenario':draft['clinical']['scenario'],
+          'symptom_timeline':draft['clinical']['shots'],
+          'source_refs':refs(draft['clinical']['source_ids']),
+          'generation_status':'script_only'},
+      'mechanism_animation_steps':[
+          {'step':i+1,'title':x['title'],'explanation':x['detail'],
+           'visual_highlight':x['visual_focus'],'motion':x['motion'],
+           'camera_view':x['camera_view'],'next_transition':x['next_transition'],
+           'source_refs':refs(x['source_ids']),'generation_status':'animation_plan_only'}
+          for i,x in enumerate(draft['mechanism'])],
+      'checkpoint_quiz':[
+          {'question':x['question'],'options':x['options'],
+           'correct_answer_index':x['answer_index'],
+           'clinical_rationale':x['why'][x['answer_index']],
+           'why_not_other_options':x['why'],'source_refs':refs(x['source_ids'])}
+          for x in draft['quiz']],
+      'clinical_pearls':draft['high_yield']
+    }
     return {'lesson':draft}
 
 def _vision(provider,data):
