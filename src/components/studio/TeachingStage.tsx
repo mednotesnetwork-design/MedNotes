@@ -10,7 +10,7 @@ function clinicalIsGenuine(c:TeachingChapter['clinical']){
  if(!c||!c.shots?.length)return false;
  const text=[c.title,c.scenario,...c.shots.map(s=>s.description)].join(' ');
  if(/تخيلية|افتراضي.*مختبر|مخطط|تمثيل.*جزيئ|حركة.*حويصل|رسم.*توضيح|laboratory.*diagram|molecular diagram/i.test(text))return false;
- return /patient|مريض|مريضة|طفل|شخص|سيدة|رجل|clinical presentation|الأعراض|symptoms|pain|rash|swelling|fever|ضعف|شلل|ألم|تورم|حمى|طفح|خدر|ضيق التنفس|اختناق/i.test(text);
+ return /patient|woman|man|child|female|male|مريض|مريضة|طفل|شخص|سيدة|رجل|clinical presentation|anaphylax|allergic reaction|asthma|fracture|trauma|shock|wheezing|dyspnea|hypotension|sepsis|الأعراض|symptoms|pain|rash|swelling|fever|ضعف|شلل|ألم|تورم|حمى|طفح|خدر|ضيق التنفس|اختناق|التأق|الربو|الكسر|صدمة/i.test(text);
 }
 function pagesLabel(ids:string[],sources:Source[]){
  const pageNos=ids.map(id=>sources.find(s=>s.id===id)?.page).filter((n):n is number=>Number.isInteger(n));
