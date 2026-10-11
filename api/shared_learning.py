@@ -24,8 +24,11 @@ class handler(BaseHTTPRequestHandler):
             raise LibraryError(403,"FORBIDDEN")
         # Mirrors existing MedNote private preview restriction. Public student
         # access needs real account auth/tenant authorisation before rollout.
-        if os.environ.get("VERCEL_ENV")!="preview" or not self.headers.get("x-vercel-oidc-token"):
-            raise LibraryError(503,"PREVIEW_IDENTITY_UNAVAILABLE")
+        # Vercel's protected preview enforces SSO before the function.
+        # Browsers cannot prove identity via their own OIDC headers.
+        # Shared access stays opt-in and disabled in production.
+        if os.environ.get("VERCEL_ENV")!="preview" or os.environ.get("MEDNOTE_SHARED_LIBRARY_ACCESS")!="on":
+            raise LibraryError(503,"SHARED_LIBRARY_PREVIEW_DISABLED")
 
     def execute(self, method):
         try:
