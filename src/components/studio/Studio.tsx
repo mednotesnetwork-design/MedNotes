@@ -3,6 +3,7 @@ import {UploadCloud,BookOpenText,RefreshCw,Library,AlertTriangle,ArrowLeft,FileT
 import {readStudy,writeStudy,studyRequest} from '../../lib/study-store';
 import {ingestLecture} from './ingest';
 import {StudioCanvas} from './StudioCanvas';
+import {lookupSharedLecture,sha256Bytes} from '../../lib/shared-learning';
 import type {StudioRecord,StudioMeta,Source,Chapter,TeachingChapter,ClinicalFilm} from './studio-types';
 import './studio.css';
 import './studio-layout.css';
@@ -80,6 +81,20 @@ export function Studio(){
  }
  async function upload(file:File){
   await run(async signal=>{
+   setBusy('فحص مكتبة الشروحات المعتمدة…');
+   const exactDigest=await sha256Bytes(await file.arrayBuffer());
+   signal.throwIfAborted();
+   const reused=await lookupSharedLecture('file',exactDigest,signal);
+   if(reused?.outline&&reused.sources.length){
+    const id=crypto.randomUUID(),now=Date.now();
+    await writeStudy('mednote-studio-v3:original:'+id,file);
+    const record:StudioRecord={id,name:file.name,created:now,updated:now,
+      stage:'ready',sources:reused.sources.map(p=>({...p,image:undefined})),
+      outline:reused.outline,chapters:reused.chapters,simulations:reused.simulations,
+      selected:0,visionOffset:0};
+    await save(record);setLibraryOpen(false);setProgress(100);
+    return;
+   }
    const init:StudioRecord={id:crypto.randomUUID(),name:file.name,created:Date.now(),updated:Date.now(),stage:'extracting',sources:[],chapters:{},selected:0,visionOffset:0};
    await save(init);await writeStudy('mednote-studio-v3:original:'+init.id,file);
    setLibraryOpen(false);setBusy('استخراج شرائح المحاضرة الأصلية…');setProgress(0);
