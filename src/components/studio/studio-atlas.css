@@ -71,3 +71,30 @@
 .mn3 :is(.mn3-source-toggle,.mn3-top-actions button,.mn3-primary,.mn3-chapter-link,.mn3-inline-jump button):hover:not(:disabled){border-color:var(--mn-mint)}
 .mn3 .mn3-top-actions button:hover:not(:disabled){background:var(--mn-selection)}
 @media(prefers-reduced-motion:reduce){.mn3 .mn3-orbit-inner{animation:none}}
+
+/* Navigation belongs to the single MedNote shell; the studio has no second header. */
+.mn3 .mn3-lecture-actions{
+ display:grid;grid-template-columns:1fr;gap:7px;
+ padding:15px 8px;border-bottom:1px solid var(--mn-border);
+}
+.mn3 .mn3-lecture-actions button,.mn3 .mn3-library-link{
+ display:inline-flex;align-items:center;justify-content:flex-start;gap:9px;
+ min-height:38px;border:1px solid var(--mn-border-strong);
+ background:var(--mn-surface-raised);color:var(--mn-mint);
+ border-radius:var(--mn-radius);padding:9px 12px;
+ font-size:12px;font-weight:500;text-align:start;
+}
+.mn3 .mn3-lecture-actions button:hover:not(:disabled),.mn3 .mn3-library-link:hover:not(:disabled){
+ background:var(--mn-selection);border-color:var(--mn-mint);
+}
+.mn3 .mn3-library-link{margin-top:3px}
+.mn3 .mn3-library{
+ top:auto;left:auto;right:clamp(12px,3vw,45px);
+ margin:12px 0 0;max-width:calc(100vw - 24px);
+}
+@media(max-width:760px){
+ .mn3 .mn3-lecture-actions{
+  display:flex;flex-wrap:wrap;width:100%;padding:8px 6px;gap:8px;
+ }
+ .mn3 .mn3-lecture-actions button{flex:1;min-width:130px}
+}
