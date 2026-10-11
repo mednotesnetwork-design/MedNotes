@@ -1,4 +1,5 @@
-import {useState} from 'react';
+import {useEffect,useState} from 'react';
+import {clinicalConceptKey,findSharedMedia,type SharedMedia} from '../../lib/shared-learning';
 import {ArrowLeft,ArrowRight,BookOpen,Check,UploadCloud,Library,ChevronLeft,ChevronRight,FileSearch,Layers,Sparkles} from 'lucide-react';
 import {TeachingStage} from './TeachingStage';
 import type {StudioRecord,Source} from './studio-types';
@@ -8,9 +9,14 @@ function SourcesShelf({sources}:{sources:Source[]}){
 }
 export function StudioCanvas({record,busy,onNew,onLibrary,onGo,onResume,onGenerate,onRegenerate,onSimulate}:{record:StudioRecord;busy:boolean;onNew:()=>void;onLibrary:()=>void;onGo:(index:number)=>void;onResume:()=>void;onGenerate:()=>void;onRegenerate:()=>void;onSimulate:()=>void}){
  const [sourceOpen,setSourceOpen]=useState(false),[navOpen,setNavOpen]=useState(false);
+ const [sharedMedia,setSharedMedia]=useState<SharedMedia[]>([]);
  const outline=record.outline,chapters=outline?.chapters||[],index=record.selected;
  const chapter=chapters[index],lesson=record.chapters[index],srcIds=new Set(chapter?.source_ids||[]);
  const sources=record.sources.filter(p=>srcIds.has(p.id));
+ const conceptKey=clinicalConceptKey(chapter?.title||'')||clinicalConceptKey(lesson?.clinical?.title||'');
+ useEffect(()=>{let live=true;setSharedMedia([]);if(conceptKey){
+  void findSharedMedia(conceptKey).then(result=>{if(live)setSharedMedia(result)});
+ }return()=>{live=false};},[conceptKey]);
  return <div className="mn3-workspace mn4-workspace" dir="rtl">
   <aside className={'mn3-chapter-nav mn4-chapters '+(navOpen?'mn4-nav-open':'')}>
    <div className="mn3-nav-title"><span>LEARNING PATH</span><h2>{outline?.title||record.name.replace(/\.pdf$/i,'')}</h2><p>{record.sources.length} صفحة في المحاضرة الأصلية</p></div>
@@ -24,7 +30,7 @@ export function StudioCanvas({record,busy,onNew,onLibrary,onGo,onResume,onGenera
    {!chapter?<div className="mn3-unbuilt"><Layers size={46}/><span>LECTURE UNDERSTANDING</span><h2>يجري تنظيم المحاضرة إلى مفاهيم</h2><p>نُرتب الأفكار حسب متطلبات الفهم، مع الاحتفاظ بكل صفحة من المصدر الأصلي.</p>{!busy&&<button className="mn3-primary" onClick={onResume}>استكمال بناء المحاضرة <ArrowLeft size={16}/></button>}</div>:
    <><header className="mn4-chapter-heading"><div><span className="mn3-overline">CONCEPT {String(index+1).padStart(2,'0')} / {String(chapters.length).padStart(2,'0')}</span><h1>{chapter.title}</h1><p>{chapter.goal}</p></div></header>
     {!lesson?<div className="mn3-not-ready"><Sparkles size={37}/><h3>هذا المفهوم جاهز لبناء الدرس</h3><p>سيبدأ الدرس من الأساسيات ويُدخل الرسوم، والشرح السببي، والأسئلة في مواضعها التعليمية.</p><button disabled={busy} className="mn3-primary" onClick={onGenerate}><Sparkles size={17}/> إنشاء هذا الدرس</button></div>:
-     <><TeachingStage key={record.id+'-'+index} lesson={lesson} sources={sources} clinicalFilm={record.simulations?.[index]} busy={busy} onSimulate={onSimulate}/>{(!lesson.module||!lesson.learning_layers||!lesson.clinical_trust)&&<div className="mn4-upgrade-lesson"><p>هذا الدرس محفوظ بالمحرك السابق. تحديثه سيعيد إنشاء الخطوات وتركيز الحركة بصريًا من المحاضرة الأصلية.</p><button disabled={busy} onClick={onRegenerate}><Sparkles size={17}/> إعادة بناء هذا المفهوم بمحرك MedNote Core AI</button></div>}</>}
+     <><TeachingStage key={record.id+'-'+index} lesson={lesson} sources={sources} clinicalFilm={record.simulations?.[index]} busy={busy} onSimulate={onSimulate} media={sharedMedia}/>{(!lesson.module||!lesson.learning_layers||!lesson.clinical_trust)&&<div className="mn4-upgrade-lesson"><p>هذا الدرس محفوظ بالمحرك السابق. تحديثه سيعيد إنشاء الخطوات وتركيز الحركة بصريًا من المحاضرة الأصلية.</p><button disabled={busy} onClick={onRegenerate}><Sparkles size={17}/> إعادة بناء هذا المفهوم بمحرك MedNote Core AI</button></div>}</>}
     <footer className="mn4-chapter-footer"><button disabled={index===0||busy} onClick={()=>{setSourceOpen(false);onGo(index-1)}}><ArrowRight size={16}/> المفهوم السابق</button><button onClick={()=>setSourceOpen(v=>!v)}><FileSearch size={17}/> المحاضرة الأصلية</button><button disabled={index===chapters.length-1||busy} onClick={()=>{setSourceOpen(false);onGo(index+1)}}>المفهوم التالي <ArrowLeft size={16}/></button></footer>
     {sourceOpen&&<SourcesShelf sources={sources}/>}
    </>}
