@@ -11,7 +11,7 @@ const modules = [
 ];
 export function Layout({ children }: { children: ReactNode }) {
   const [location] = useLocation();
-  const isStudy = ['/anatomy','/lectures','/research'].includes(location);
+  const isStudy = ['/anatomy','/lectures','/research','/membership'].includes(location);
   return <div className={'mednote-shell '+(isStudy?'study-shell':'community-shell')}>
     <a className="mednote-skip-link" href="#main-content">انتقلي إلى المحتوى</a>
     <Header/><StudyNav/>
