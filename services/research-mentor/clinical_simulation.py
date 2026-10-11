@@ -156,6 +156,18 @@ def _clinical_script(provider,data):
     timeline=draft.get("timeline")
     require(isinstance(timeline,list) and len(timeline)==4,
             "Incomplete four-phase cinematic sequence","SIMULATION_INVALID",422)
+    frequency_evidence={
+       "common":re.compile(r"\b(common|typical|typically|usually|frequent)\b|شائع|غالباً|غالبًا|عادة",re.I),
+       "rare":re.compile(r"\b(rare|uncommon|infrequent)\b|نادر",re.I),
+       "variable":re.compile(r"\b(variable|varies|may|can|some patients|occasionally)\b|قد|يتفاوت|تختلف|بعض",re.I),
+    }
+    severe_evidence=re.compile(r"\b(severe|critical|shock|cyanosis|hypoxia|"
+                               r"collapse|respiratory distress|hypotension|life.threatening)\b|"
+                               r"شديد|حرج|صدمة|زرقة|نقص الأكسج|انخفاض الضغط|اختناق",re.I)
+    if timeline[3].get("status")!="not_applicable":
+        require(any(severe_evidence.search(row["text"]) for row in relevant),
+                "Critical clinical phase has no source support",
+                "SIMULATION_UNVERIFIED_CRITICAL",422)
     for index,phase in enumerate(timeline):
         require(isinstance(phase,dict) and type(phase.get("phase")) is int
                 and phase["phase"]==index and phase.get("phase_name")==PHASES[index]
@@ -178,6 +190,11 @@ def _clinical_script(provider,data):
                     and sign.get("evidence_id") in allowed
                     and sign["evidence_id"] in clinical["source_ids"],
                     "Unsupported clinical sign","SIMULATION_INVALID",422)
+            if sign["frequency"]!="unknown":
+                require(bool(frequency_evidence[sign["frequency"]].search(
+                    source_map[sign["evidence_id"]]["text"])),
+                    "Symptom prevalence label missing from source",
+                    "SIMULATION_UNVERIFIED_FREQUENCY",422)
         seen=set()
         for vital in phase["vitals"]:
             require(isinstance(vital,dict) and vital.get("metric") in VITALS
