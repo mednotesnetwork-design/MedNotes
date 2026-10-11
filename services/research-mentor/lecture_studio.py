@@ -30,6 +30,7 @@ is missing, say so clearly in the corresponding section.
 
 Return JSON with exactly these public components:
 {headline:string, opening:string, foundation:{title:string,body:string},
+learning_layers:{foundation:{title:string,explanation:string,source_ids:[string],coverage:"supported"|"not_in_source"},anatomy:{title:string,explanation:string,source_ids:[string],coverage:"supported"|"not_in_source"},mechanism:{title:string,explanation:string,source_ids:[string],coverage:"supported"|"not_in_source"},clinical:{title:string,explanation:string,source_ids:[string],coverage:"supported"|"not_in_source"}},
 scenes:[{title:string,body:string,source_ids:[string]}],
 mechanism:[{title:string,detail:string,visual_focus:string,motion:string,camera_view:"2D"|"3D",next_transition:string,source_ids:[string]}],
 clinical:{title:string,scenario:string,reasoning:string,source_ids:[string],
@@ -40,6 +41,7 @@ why:[string],source_ids:[string]}],
 uncertainties:[string]}.
 Every scene/mechanism/clinical/quiz item references source_ids that appear in input.
 No fake source IDs. At most 5 scenes, 9 mechanism steps, 5 shots, 3 MCQs.
+The four mandatory learning_layers go from zero to expert: foundation (what/why/what happens if it fails), anatomy (cellular/macroscopic structure and visual orientation), mechanism (what changes in causal order), clinical (clinical correlate/high-yield). EACH layer must include title, explanation, coverage and source_ids, and have a concise explanation (maximum 900 characters). For a truly unsupported layer set coverage="not_in_source", source_ids=[], explanation="غير مذكور في المحاضرة" (rather than inventing anatomy, mechanisms, pathology, symptoms or numbers). Every supported layer must have grounded source_ids. Retain ALL source numerical values, equations, negations and exact medical terminology without changing units. No unguided external textbook facts.
 Mechanism steps must each show a distinct chronological micro-event, identify the precise structure/ion/channel/receptor to visually HIGHLIGHT and the exact motion/change, specify 2D or 3D framing and the visual transition to the NEXT step. In particular, never skip the causal connection between action potential arrival, calcium-channel opening, vesicle fusion, neurotransmitter release, receptor activation and postsynaptic response WHEN the supplied source actually supports these events. Do NOT invent events, motor proteins, channel directions, clinical claims, or quantitative parameters absent from source evidence. The next_transition for the final step must be "نهاية الآلية". If the source does not provide a sequence, return mechanism: []. No generic text-only animation labels. Mechanism ONLY if source explicitly supports the causal ORDER; do not sequence
 unrelated clinical findings. Clinical scene ONLY if there are genuine clinical
 findings in the source; do not force a case for an abstract physiology topic.
@@ -49,14 +51,15 @@ patients; never portray one sequence as universal. Avoid sensational or misleadi
 visual details. Every quiz has 3-4 options, one defendable answer, and an explanation
 for EACH option; use exactly matching array sizes.
 Student-facing text in fluent academic Arabic with English terms preserved.
+The "source_registry" means ONLY the provided lecture; separate approved reference excerpts are verification evidence and do not authorize adding facts absent from the lecture. Reject any unsupported number, drug dose, timing or definite clinical management advice. Clinical video scripts are not medical advice.
 Use concise readable paragraphs, not generic cards; preserve every clinically relevant
 source fact, exception, qualifier and number. No HTML, URLs, markdown code or scripts."""
 
-REVIEW = """Independently medically audit the candidate JSON against the supplied SOURCE.
+REVIEW = """Independently medically audit the candidate JSON against the supplied SOURCE and optional CURATOR-APPROVED MEDICAL REFERENCES.
 Return JSON {approved:boolean,issues:[string]}. Reject unsupported medical assertions,
 unwarranted mechanisms, clinical signs or treatment, incorrect sequence or anatomy, erroneous ion movements, unsupported 3D motion details or visual_focus, wrong chronological micro-step transitions,
 incomplete coverage, fabricated source citations and wrong MCQ answers.
-An omitted clinical scene is acceptable when source lacks clinical findings.
+Verify each learning layer is covered by its source IDs and no numerical value or equation is invented. An omitted clinical scene is acceptable when source lacks clinical findings. Curator-approved references may expose contradictions but MUST NOT be treated as human approval or license for unsupported lecture facts.
 Do not accept a plausible statement just because it is common textbook knowledge
 if the original lecture does not support it. Output only JSON."""
 
@@ -125,11 +128,28 @@ def _lesson(provider,data):
     require(set(chapter['source_ids'])==allowed,'Chapter sources not aligned')
     require(len(json.dumps(sources,ensure_ascii=False))<=50000,
             'Chapter too large; split the topic','REQUEST_TOO_LARGE',413)
-    payload={'chapter':chapter,'original_pages':sources,'mode':'source_grounded'}
+    from medical_evidence import retrieve
+    reference_evidence=retrieve(chapter['title'],"\n".join(row['text'][:500] for row in sources))
+    payload={'chapter':chapter,'original_pages':sources,'mode':'source_grounded',
+             'reference_verification':{'status':reference_evidence['status'],
+                                       'citations':reference_evidence['references']}}
     draft=provider.complete(LESSON,payload)
     require(isinstance(draft,dict),'Invalid generated chapter','STUDIO_INVALID_OUTPUT',422)
     for key in ('headline','opening'):
         require(_text(draft.get(key),1800),'Invalid lesson '+key,'STUDIO_INVALID_OUTPUT',422)
+    layers=draft.get('learning_layers')
+    require(isinstance(layers,dict) and set(layers)=={'foundation','anatomy','mechanism','clinical'},
+            'Missing four teaching layers','STUDIO_INVALID_OUTPUT',422)
+    for name in ('foundation','anatomy','mechanism','clinical'):
+        layer=layers[name]
+        require(isinstance(layer,dict) and _text(layer.get('title'),150) and
+                _text(layer.get('explanation'),900) and
+                layer.get('coverage') in ('supported','not_in_source'),
+                'Invalid educational layer','STUDIO_INVALID_OUTPUT',422)
+        _ids(layer.get('source_ids'),allowed,required=layer['coverage']=='supported')
+        if layer['coverage']=='not_in_source':
+            require(not layer['source_ids'] and layer['explanation']=='غير مذكور في المحاضرة',
+                    'Unsupported material cannot be generated','STUDIO_INVALID_OUTPUT',422)
     foundation=draft.get('foundation')
     require(isinstance(foundation,dict) and _text(foundation.get('title'),180)
             and _text(foundation.get('body'),3500),'Invalid foundation','STUDIO_INVALID_OUTPUT',422)
@@ -182,12 +202,22 @@ def _lesson(provider,data):
         require(isinstance(draft.get(key),list) and len(draft[key])<=12 and
                 all(_text(x,800) for x in draft[key]),'Invalid '+key,'STUDIO_INVALID_OUTPUT',422)
     # A separate model call rejects scientific inaccuracies before user-facing output.
-    check=provider.complete(REVIEW,{'source':sources,'candidate':draft})
+    check=provider.complete(REVIEW,{'source':sources,'approved_reference_evidence':reference_evidence['references'],
+                                    'evidence_status':reference_evidence['status'],'candidate':draft})
     require(isinstance(check,dict) and check.get('approved') is True and
             check.get('issues')==[],
             'Medical source review failed','STUDIO_REVIEW_FAILED',422)
     draft['source_registry']=[{'id':row['id'],'page':row['page']} for row in sources]
-    draft['reviewed']=True
+    draft['reviewed']=True  # Automated source check only, NEVER a human clinical approval.
+    draft['clinical_trust']={
+        'mode':'educational_unreviewed',
+        'model_source_review':'passed',
+        'external_reference_status':reference_evidence['status'],
+        'external_references':[{'id':r['id'],'title':r['title'],'publisher':r['publisher'],
+                                'version':r['version'],'url':r['url'],'locator':r['locator']}
+                               for r in reference_evidence['references']],
+        'human_review':'pending', 'clinical_approval':False,
+        'high_stakes_recommendations':'blocked'}
     draft['media']={'clinical_video':'not_generated','mechanism_video':'not_generated',
                     'note':'Scripts are illustrative plans; no playback or images are claimed.'}
     # Public MedNote Core AI JSON contract; derived ONLY from medically audited
@@ -196,6 +226,8 @@ def _lesson(provider,data):
     refs=lambda ids:[{'source_id':x,'page':registry[x]} for x in ids if x in registry]
     draft['module']={
       'module_title':draft['headline'],
+      'learning_layers':draft['learning_layers'],
+      'clinical_trust':draft['clinical_trust'],
       'progress_steps':[{'name':'extraction','status':'complete','page_count':len(sources)},
                         {'name':'pedagogical_restructuring','status':'complete','pillar':chapter['title']},
                         {'name':'medical_review','status':'approved'}],
