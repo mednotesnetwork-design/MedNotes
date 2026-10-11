@@ -8,6 +8,7 @@ import './studio.css';
 import './studio-layout.css';
 import './studio-editorial.css';
 import './studio-media.css';
+import './studio-atlas.css';
 
 const INDEX='mednote-studio-v3:index',ACTIVE='mednote-studio-v3:active';
 const key=(id:string)=>'mednote-studio-v3:lecture:'+id;
