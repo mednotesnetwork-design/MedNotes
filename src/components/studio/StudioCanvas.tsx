@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {ArrowLeft,ArrowRight,BookOpen,Check,ChevronLeft,ChevronRight,ClipboardCheck,FileSearch,FlaskConical,Layers,Lightbulb,Play,ShieldCheck,Sparkles,Stethoscope,VideoOff} from 'lucide-react';
+import {ArrowLeft,ArrowRight,BookOpen,Check,UploadCloud,Library,ChevronLeft,ChevronRight,ClipboardCheck,FileSearch,FlaskConical,Layers,Lightbulb,Play,ShieldCheck,Sparkles,Stethoscope,VideoOff} from 'lucide-react';
 import {ClinicalPanel,QuizPanel} from './ClinicalPanels';
 import {MechanismTheatre} from './MechanismTheatre';
 import type {StudioRecord,Source} from './studio-types';
@@ -8,7 +8,7 @@ type Tab='learn'|'mechanism'|'clinical'|'quiz'|'sources';
 function OriginalSources({sources}:{sources:Source[]}){
  return <div className="mn3-source-list">{sources.map(page=><details key={page.id}><summary><span>PAGE {String(page.page).padStart(2,'0')}</span>{page.title}</summary>{page.image&&<img src={page.image} loading="lazy" alt={'المحاضرة الأصلية، صفحة '+page.page}/>}<p dir="auto">{page.text}</p>{page.observations?.map((o,i)=><p key={i}><strong>{o.kind} · </strong>{o.text}</p>)}{page.warnings.map((s,i)=><small key={i}>{s}</small>)}</details>)}</div>;
 }
-export function StudioCanvas({record,busy,onGo,onResume,onGenerate}:{record:StudioRecord;busy:boolean;onGo:(index:number)=>void;onResume:()=>void;onGenerate:()=>void}){
+export function StudioCanvas({record,busy,onNew,onLibrary,onGo,onResume,onGenerate}:{record:StudioRecord;busy:boolean;onNew:()=>void;onLibrary:()=>void;onGo:(index:number)=>void;onResume:()=>void;onGenerate:()=>void}){
  const [tab,setTab]=useState<Tab>('learn'),[showSources,setShowSources]=useState(false);
  const outline=record.outline,chapters=outline?.chapters||[],index=record.selected;
  const chapter=chapters[index],lesson=record.chapters[index],srcIds=new Set(chapter?.source_ids||[]);
@@ -17,6 +17,7 @@ export function StudioCanvas({record,busy,onGo,onResume,onGenerate}:{record:Stud
  return <div className="mn3-workspace">
   <aside className="mn3-chapter-nav">
    <div className="mn3-nav-title"><span>YOUR LEARNING PATH</span><h2>{outline?.title||record.name}</h2><p>{record.sources.length} صفحة أصلية</p></div>
+   <div className="mn3-lecture-actions" aria-label="أدوات المحاضرات"><button type="button" onClick={onLibrary} title="محاضراتي المحفوظة"><Library size={16}/> محاضراتي</button><button type="button" onClick={onNew} disabled={busy} title="رفع محاضرة جديدة"><UploadCloud size={16}/> رفع محاضرة</button></div>
    <div className="mn3-stage-list"><div className="done"><Check size={14}/> استخراج المحاضرة</div><div className={record.stage==='extracting'?'active':record.stage==='failed'?'':'done'}><Check size={14}/> فهم الصور والجداول</div><div className={outline?'done':'active'}><Check size={14}/> تنظيم المفاهيم</div><div className={covered?'done':''}><Sparkles size={14}/> بناء الشرح التعليمي</div></div>
    <div className="mn3-navigation-caption">MAIN CONCEPTS {chapters.length?('· '+chapters.length):''}</div>
    {chapters.map((x,i)=><button key={i} className={'mn3-chapter-link '+(i===index?'active':'')} onClick={()=>{setTab('learn');onGo(i);}}><span>{String(i+1).padStart(2,'0')}</span><strong>{x.title}</strong>{record.chapters[i]?<Check size={14}/>:null}</button>)}
