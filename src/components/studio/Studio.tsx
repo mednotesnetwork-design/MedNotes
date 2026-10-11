@@ -19,6 +19,39 @@ export function Studio(){
  const [libraryOpen,setLibraryOpen]=useState(false),[progress,setProgress]=useState(0);
  const current=useRef<StudioRecord|null>(null),abort=useRef<AbortController|null>(null),fileRef=useRef<HTMLInputElement>(null);
  const libRef=useRef<StudioMeta[]>([]);
+ const lastStudioRequest=useRef(0);
+ // The private API admits six requests per rolling minute. A full PDF needs
+ // many vision batches; pace them proactively and recover once a slot frees.
+ async function waitForStudio(ms:number,signal:AbortSignal){
+  signal.throwIfAborted();
+  if(ms<=0)return;
+  await new Promise<void>((resolve,reject)=>{
+   const timer=window.setTimeout(()=>{signal.removeEventListener('abort',cancel);resolve();},ms);
+   const cancel=()=>{window.clearTimeout(timer);reject(new DOMException('تم إيقاف المعالجة','AbortError'));};
+   signal.addEventListener('abort',cancel,{once:true});
+  });
+ }
+ async function studioRequest(body:unknown,signal:AbortSignal,activity:string){
+  const minimumSpacing=13000; // at most five requests/minute even for small PDFs
+  for(let attempt=0;attempt<4;attempt++){
+   const gap=lastStudioRequest.current+minimumSpacing-Date.now();
+   if(gap>500){
+    setBusy(activity+' · تنظيم معدل الطلبات، انتظري '+Math.ceil(gap/1000)+' ثانية');
+    await waitForStudio(gap,signal);
+   }
+   signal.throwIfAborted();
+   setBusy(activity);lastStudioRequest.current=Date.now();
+   try{return await studyRequest('studio',body,signal);}
+   catch(err){
+    const status=(err as Error&{status?:number;code?:string}).status;
+    if(status!==429||attempt===3)throw err;
+    const delay=65000+attempt*30000;
+    setBusy('خدمة الذكاء الاصطناعي مشغولة مؤقتًا · سيتم الاستئناف من آخر صفحة تلقائيًا بعد '+Math.ceil(delay/1000)+' ثانية');
+    await waitForStudio(delay,signal);
+   }
+  }
+  throw new Error('تعذر استئناف التحليل بعد انتهاء محاولات الانتظار.');
+ }
  async function save(next:StudioRecord){
   const record={...next,updated:Date.now()};
   await writeStudy(key(record.id),record);
@@ -61,7 +94,7 @@ export function Studio(){
    signal.throwIfAborted();const batch=state.sources.filter(p=>!p.visionDone&&p.image).slice(0,3);
    setBusy('فهم الرسومات والجداول · صفحة '+batch[0].page+' إلى '+batch[batch.length-1].page);
    await save({...state,stage:'reading_visuals'});
-   const result=await studyRequest('studio',{operation:'vision',pages:batch.map(p=>({page:p.page,text:p.text.slice(0,6000),image:p.image}))},signal);
+   const result=await studioRequest({operation:'vision',pages:batch.map(p=>({page:p.page,text:p.text.slice(0,6000),image:p.image}))},signal,'فحص الرسومات والجداول · الصفحات '+batch[0].page+'–'+batch[batch.length-1].page);
    const records=result.pages as {page:number;observations:{kind:string;text:string}[];warnings:string[]}[];
    const updated=current.current!.sources.map(p=>{const v=records.find(x=>x.page===p.page);return v?{...p,observations:v.observations,visionDone:true,warnings:[...p.warnings,...v.warnings]}:p;});
    state={...current.current!,sources:updated,stage:'reading_visuals'};
@@ -70,7 +103,7 @@ export function Studio(){
   }
   signal.throwIfAborted();setBusy('إعادة بناء تسلسل الأفكار العلمية…');setProgress(0);
   await save({...current.current!,stage:'outlining'});
-  const res=await studyRequest('studio',{operation:'outline',title:current.current!.name,sources:current.current!.sources.map(bundle)},signal);
+  const res=await studioRequest({operation:'outline',title:current.current!.name,sources:current.current!.sources.map(bundle)},signal,'تنظيم المحاضرة إلى مفاهيم رئيسية');
   const outline=res as {title:string;chapters:Chapter[];source_count:number};
   await save({...current.current!,outline,stage:'ready',selected:0,error:undefined});
   setBusy('إنشاء أول درس طبي…');await generate(0,signal);
@@ -81,7 +114,7 @@ export function Studio(){
   if(state.chapters[index])return;
   setBusy('الأستاذ الذكي يبني '+chapter.title+' ويراجع محتواه العلمي…');
   const ids=new Set(chapter.source_ids),sources=state.sources.filter(p=>ids.has(p.id)).map(bundle);
-  const result=await studyRequest('studio',{operation:'lesson',chapter,sources},signal);
+  const result=await studioRequest({operation:'lesson',chapter,sources},signal,'إنشاء الشرح الطبي ومراجعته · '+chapter.title);
   await save({...current.current!,stage:'ready',chapters:{...current.current!.chapters,[index]:(result.lesson as TeachingChapter)}});
  }
  async function go(index:number){
