@@ -1,0 +1,71 @@
+/* MedNote Clinical Film: director workspace inside existing lesson, not a separate website. */
+.mn3 .mn5-prepare{margin:10px 0;padding:24px;border:1px solid var(--mn-border);border-radius:var(--mn-radius);background:var(--mn-surface-raised)}
+.mn3 .mn5-prepare>span,.mn3 .mn5-title>span{color:var(--mn-mint);font-size:11px;font-weight:750;letter-spacing:.7px;display:flex;align-items:center;gap:9px}
+.mn3 .mn5-prepare h3{font-size:21px;color:var(--mn-sand);line-height:1.5;margin:12px 0}
+.mn3 .mn5-prepare p{font-size:13px;line-height:1.9;color:var(--mn-muted);margin-bottom:20px}
+.mn3 .mn5-prepare button{background:var(--mn-mint);color:var(--mn-background);border:1px solid var(--mn-mint);padding:11px 16px;border-radius:var(--mn-radius);font-size:13px;font-weight:700}
+.mn3 .mn5-film{width:100%;color:var(--mn-text);min-width:0;margin-top:13px}
+.mn3 .mn5-title{display:grid;gap:7px;padding:15px 0 19px}
+.mn3 .mn5-title strong{font-size:clamp(22px,2.6vw,30px);color:var(--mn-sand);font-weight:600;line-height:1.4}
+.mn3 .mn5-title p{color:var(--mn-muted);font-size:13px;line-height:1.8;margin:0}
+.mn3 .mn5-setting{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:18px;background:var(--mn-surface-raised);border:1px solid var(--mn-border);border-radius:var(--mn-radius);padding:20px;margin-bottom:12px}
+.mn3 .mn5-setting>div>span{font-size:10px;letter-spacing:.6px;color:var(--mn-mint);font-weight:700}
+.mn3 .mn5-setting h3{font-size:19px;color:var(--mn-sand);line-height:1.4;margin:6px 0}
+.mn3 .mn5-setting p{font-size:12px;color:var(--mn-text);line-height:1.8;margin:0}
+.mn3 .mn5-setting dl{margin:0;display:grid;gap:8px}
+.mn3 .mn5-setting dl div{display:grid;grid-template-columns:105px 1fr;gap:9px;border-bottom:1px solid var(--mn-border);padding-bottom:7px;font-size:11px}
+.mn3 .mn5-setting dt{color:var(--mn-muted)}.mn3 .mn5-setting dd{color:var(--mn-text);margin:0}
+.mn3 .mn5-film-warning{display:flex;align-items:flex-start;gap:9px;color:var(--mn-sand);border-right:3px solid var(--mn-rose);background:var(--mn-surface-raised);padding:12px;font-size:12px;line-height:1.8;margin:12px 0}
+.mn3 .mn5-film-warning svg{color:var(--mn-rose);margin-top:4px;flex-shrink:0}
+.mn3 .mn5-film-timeline{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;margin:15px 0 0}
+.mn3 .mn5-film-timeline button{min-width:0;text-align:start;padding:11px 9px;border:1px solid var(--mn-border);background:var(--mn-surface-raised);border-radius:var(--mn-radius) var(--mn-radius) 0 0;display:flex;flex-direction:column;gap:4px}
+.mn3 .mn5-film-timeline button[aria-current=step]{border-color:var(--mn-mint);border-bottom-color:transparent;background:var(--mn-selection)}
+.mn3 .mn5-film-timeline button>span{font-size:10px;font-variant-numeric:tabular-nums;color:var(--mn-mint)}
+.mn3 .mn5-film-timeline button>strong{font-size:12px;color:var(--mn-text);font-weight:650;line-height:1.5}
+.mn3 .mn5-film-timeline button>small{font-size:10px;color:var(--mn-muted);line-height:1.45}
+.mn3 .mn5-film-screen{min-height:260px;background:linear-gradient(145deg,#0e2528,#164443);border:1px solid var(--mn-border);border-radius:0 0 var(--mn-radius) var(--mn-radius);color:white;padding:clamp(15px,2vw,24px);display:flex;flex-direction:column;justify-content:space-between;gap:20px}
+.mn3 .mn5-film-screen-top{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:11px;letter-spacing:.5px}
+.mn3 .mn5-film-screen-top>span{display:flex;align-items:center;gap:7px;color:#c3e0d5}
+.mn3 .mn5-film-scene .mn5-scene-kicker{color:#b7d8bc;font-size:10px;letter-spacing:1px;font-weight:700}
+.mn3 .mn5-film-scene h3{font-size:clamp(19px,2.4vw,29px);color:#e6cfb7;font-weight:600;line-height:1.5;margin:8px 0 12px}
+.mn3 .mn5-film-scene p{font-size:15px;color:#e8f0eb;line-height:1.95;margin:0 0 15px}
+.mn3 .mn5-director-notes{display:grid;grid-template-columns:70px minmax(0,1fr);gap:8px 12px;padding-top:12px;border-top:1px solid #85c5b14a;font-size:12px}
+.mn3 .mn5-director-notes strong{color:#8dd3b3;font-size:10px;letter-spacing:.8px}
+.mn3 .mn5-director-notes span{color:#d1ded9;line-height:1.75}
+.mn3 .mn5-no-critical{display:grid;justify-items:center;text-align:center;gap:10px;padding:32px 16px}
+.mn3 .mn5-no-critical>svg{color:#e6cfb7}.mn3 .mn5-no-critical h3{font-size:20px;color:#e6cfb7;margin:0}
+.mn3 .mn5-no-critical p{font-size:13px;color:#c7ded5;line-height:1.8;margin:0}
+.mn3 .mn5-monitor{border:1px solid var(--mn-border);background:var(--mn-background);border-radius:var(--mn-radius);margin:12px 0;overflow:hidden}
+.mn3 .mn5-monitor-header{padding:10px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--mn-border)}
+.mn3 .mn5-monitor-header>span{color:var(--mn-mint);font-weight:700;font-size:10px;letter-spacing:.7px}
+.mn3 .mn5-monitor-header>small{color:var(--mn-muted);font-size:10px;margin-right:auto}
+.mn3 .mn5-vital-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:1px;background:var(--mn-border)}
+.mn3 .mn5-vital{background:var(--mn-background);padding:12px;display:flex;flex-direction:column;align-items:flex-start;gap:2px}
+.mn3 .mn5-vital small{color:var(--mn-muted);font-size:11px}
+.mn3 .mn5-vital strong{font-size:30px;font-weight:500;line-height:1.4;color:var(--mn-mint)}
+.mn3 .mn5-vital span{color:var(--mn-text);font-size:12px}
+.mn3 .mn5-vital em{color:var(--mn-muted);font-size:10px;font-style:normal}
+.mn3 .mn5-monitor-empty{padding:15px;color:var(--mn-muted);font-size:12px;line-height:1.8;margin:0}
+.mn3 .mn5-signs{padding:13px 16px;border:1px solid var(--mn-border);border-radius:var(--mn-radius);margin:12px 0}
+.mn3 .mn5-signs h4{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mn-sand);margin:0 0 9px;font-weight:650}
+.mn3 .mn5-sign-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--mn-border);font-size:12px}
+.mn3 .mn5-sign-row span{color:var(--mn-text);flex:1;min-width:130px}
+.mn3 .mn5-sign-row small{color:var(--mn-sand);font-size:11px}
+.mn3 .mn5-sign-row em{color:var(--mn-muted);font-size:10px;font-style:normal}
+.mn3 .mn5-signs>p{color:var(--mn-muted);font-size:12px}
+.mn3 .mn5-meaning{padding:13px 17px;background:var(--mn-surface-raised);border-right:3px solid var(--mn-mint);margin:15px 0}
+.mn3 .mn5-meaning h4{color:var(--mn-mint);font-size:11px;letter-spacing:.5px;margin:0 0 7px}
+.mn3 .mn5-meaning p{color:var(--mn-text);font-size:13px;line-height:1.9;margin:0}
+.mn3 .mn5-film-controls{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:20px 0}
+.mn3 .mn5-film-controls button{display:flex;align-items:center;gap:7px;padding:10px 14px;border-radius:var(--mn-radius);border:1px solid var(--mn-border-strong);background:var(--mn-surface-raised);color:var(--mn-mint);font-size:12px}
+.mn3 .mn5-film-controls span{font-variant-numeric:tabular-nums;font-size:11px;color:var(--mn-muted)}
+.mn3 .mn5-medical-caveats{border:1px solid var(--mn-border);padding:13px 16px;border-radius:var(--mn-radius);color:var(--mn-muted);margin:16px 0}
+.mn3 .mn5-medical-caveats summary{cursor:pointer;color:var(--mn-sand);font-size:12px}
+.mn3 .mn5-medical-caveats p{font-size:12px;line-height:1.85;color:var(--mn-muted);margin:9px 0}
+.mn3 .mn5-prompt{background:var(--mn-surface-raised);border:1px solid var(--mn-border);padding:16px;border-radius:var(--mn-radius);display:flex;align-items:center;flex-wrap:wrap;gap:11px}
+.mn3 .mn5-prompt>div{flex:1;min-width:180px}.mn3 .mn5-prompt strong{color:var(--mn-sand);font-size:11px;letter-spacing:.5px}
+.mn3 .mn5-prompt p{color:var(--mn-muted);font-size:11px;line-height:1.75;margin:5px 0 0}
+.mn3 .mn5-prompt button{display:flex;align-items:center;gap:7px;border:1px solid var(--mn-border-strong);background:var(--mn-surface);border-radius:var(--mn-radius);padding:10px 12px;font-size:11px;color:var(--mn-mint)}
+.mn3 .mn5-prompt textarea{flex:1 1 100%;resize:vertical;min-width:0;border:1px solid var(--mn-border);background:var(--mn-background);color:var(--mn-text);border-radius:var(--mn-radius);padding:14px;font-size:12px;line-height:1.85}
+.mn3 .mn5-disclaimer{color:var(--mn-muted);font-size:11px;line-height:1.8;margin:12px 0}
+@media(max-width:760px){.mn3 .mn5-setting{grid-template-columns:1fr;padding:13px;gap:10px}.mn3 .mn5-setting dl div{grid-template-columns:85px 1fr}.mn3 .mn5-film-timeline{gap:3px}.mn3 .mn5-film-timeline button{padding:8px 5px}.mn3 .mn5-film-timeline button>strong{font-size:10px}.mn3 .mn5-film-timeline button>small{font-size:9px}.mn3 .mn5-film-screen{padding:13px;min-height:240px}.mn3 .mn5-prompt{padding:12px}}
