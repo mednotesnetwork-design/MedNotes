@@ -15,8 +15,8 @@ a normalized-text-identical lecture; reuse medically approved concept media
 - Approved assets are indexed independently by medical concept. Only assets
   marked `clinician_approved` with verified rights can be streamed in a
   clinical scene. A generated *script* does not masquerade as a produced video.
-- A curated SQL schema includes student-plan **candidates**: free, 9 SAR/month
-  and 19 SAR/month. Billing is disabled. No checkout, webhook, or student
+- A curated SQL schema includes student-plan **candidates**: free, 15 SAR/60 days
+  and 29 SAR/60 days. Billing is disabled. No checkout, webhook, or student
   entitlement is claimed until verified identity, compliant payment provider,
   contracts and usage caps exist.
 
@@ -56,8 +56,9 @@ processing. Medical media is reused by medical concept rather than university.
 Source-checked followup questions remain private to each student's browser.
 Identical text is not enough to reuse altered anatomy figures safely.
 
-The schema proposes free, 9 SAR/month, and 19 SAR/month subscriptions but
-NO checkout or paid entitlements are enabled. The database is NOT currently
+The schema proposes free, 15 SAR/60 days, and 29 SAR/60 days subscriptions but
+NO checkout, auto-renewal, or paid entitlements are enabled. The fixed
+60-day duration is intended to cover one approximately two-month module. The database is NOT currently
 provisioned in Vercel; the published code is integration infrastructure,
 not yet a cross-account working library. Real video generation, licensed media,
 authorized student identities, and billing webhooks are not connected.
