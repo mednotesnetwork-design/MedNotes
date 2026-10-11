@@ -26,8 +26,11 @@ class SharedLibraryTests(unittest.TestCase):
     def test_student_plans_do_not_charge(self):
         plans=candidate_plans()
         self.assertFalse(plans["billing_enabled"])
+        self.assertFalse(plans["auto_renewal"])
+        self.assertEqual(plans["access_duration_days"],60)
+        self.assertTrue(all(p["access_duration_days"]==60 for p in plans["plans"]))
         self.assertEqual({p["code"]:p["price_halalas"] for p in plans["plans"]},
-            {"free":0,"student":900,"student_plus":1900})
+            {"free":0,"student":1500,"student_plus":2900})
     def test_no_private_images_or_unknown_user_fields_in_snapshot(self):
         snapshot={"name":"Nerve Lecture","student_email":"private@example.test",
           "sources":[{"id":"p1","page":1,"title":"Neuron","text":"Sodium movement",
