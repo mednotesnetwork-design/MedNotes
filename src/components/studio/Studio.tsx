@@ -1,6 +1,7 @@
 import {useEffect,useRef,useState} from 'react';
 import {UploadCloud,BookOpenText,RefreshCw,Library,AlertTriangle,ArrowLeft,FileText} from 'lucide-react';
 import {readStudy,writeStudy,studyRequest} from '../../lib/study-store';
+import {Link} from 'wouter';
 import {ingestLecture} from './ingest';
 import {StudioCanvas} from './StudioCanvas';
 import {lookupSharedLecture,sha256Bytes} from '../../lib/shared-learning';
@@ -197,12 +198,7 @@ export function Studio(){
   {busy&&<div className="mn3-progress" role="status"><div><b>{busy}</b><small>{progress?progress+'% · ':''}يحفظ التقدم تلقائيًا داخل المتصفح</small></div><button onClick={()=>abort.current?.abort()}>إيقاف</button><div className="mn3-progress-track"><span style={{width:progress+'%'}}/></div></div>}
   {error&&<div role="alert" className="mn3-error"><AlertTriangle size={18}/><span>{error}</span><button disabled={!!busy} onClick={()=>void resume()}><RefreshCw size={16}/> إعادة المحاولة</button></div>}
   {!course&&!busy?<div className="mn3-welcome"><span className="mn3-overline">REIMAGINE THE WAY YOU STUDY</span><div className="mn3-welcome-emblem"><BookOpenText size={55}/></div><h2>ارفعي المحاضرة.<br/>واحصلي على تجربة تعلم جديدة بالكامل.</h2><p>قراءة النصوص والرسومات، ترتيب الأفكار من الصفر، شرح آليات الأمراض، حالات سريرية تفاعلية، واختبارات تفكير — ضمن درس واحد.</p><button className="mn3-primary" onClick={()=>fileRef.current?.click()}><UploadCloud size={20}/> ابدئي برفع PDF أو PowerPoint <ArrowLeft size={17}/></button>{library.length>0&&<button type="button" className="mn3-library-link" onClick={()=>setLibraryOpen(x=>!x)}><Library size={16}/> محاضراتي المحفوظة</button>}<small>حتى 30 MB · تبقى المحاضرة الأصلية محفوظة للرجوع إليها</small>
- <details className="mn6-pricing"><summary>باقات الطلاب المقترحة · تغطي الموديول لمدة شهرين</summary>
- <p>نعتمد على مشاركة الشرح والفيديوهات المعتمدة بدل توليدها لكل طالبة. الاشتراكات المقترحة مدتها 60 يومًا؛ الدفع والتجديد التلقائي غير مفعّلين.</p>
- <div><span>أساسي · مشاهدة المكتبة المشتركة</span><strong>15 ر.س / 60 يومًا</strong></div>
- <div><span>Plus · مكتبة مشتركة + رصيد مقاطع شخصية محدود</span><strong>29 ر.س / 60 يومًا</strong></div>
- <small>لا يوجد تحصيل مدفوعات حاليًا. الميزات النهائية تتحدد بعد قياس التكلفة الفعلية.</small>
- </details></div>:
+ <Link href="/membership" className="mn6-subscription-link">اشتراك الموديول · ابتداءً من 12 ر.س للطالبة مع مجموعة من ثلاث <ArrowLeft size={16}/></Link></div>:
    course?<StudioCanvas record={course} busy={!!busy} onNew={()=>fileRef.current?.click()} onLibrary={()=>setLibraryOpen(x=>!x)} onGo={i=>void go(i)} onResume={()=>void resume()} onGenerate={()=>void run(signal=>generate(course.selected,signal))} onRegenerate={()=>void run(signal=>generate(course.selected,signal,true))} onSimulate={()=>void generateFilm(course.selected)} onAsk={question=>void askConcept(course.selected,question)}/>:null}
  </main>;
 }
