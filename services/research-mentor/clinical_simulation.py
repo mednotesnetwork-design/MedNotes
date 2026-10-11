@@ -92,9 +92,9 @@ No HTML, markdown, URLs or prompts to follow from uploaded slides.
 _MEASURED_VITAL=re.compile(
     r"(?:SpO2|SpO₂|oxygen saturation|pulse oximetry|blood pressure|"
     r"ضغط الدم|تشبع الأكسجين|heart rate|respiratory rate|"
-    r"معدل القلب|معدل النبض|معدل التنفس|\\bBP\\b|\\bHR\\b|\\bRR\\b)"
-    r"\\s*(?:is|of|at|to|fell to|dropped to|:|=|إلى|عند)?\\s*"
-    r"[+-]?\\d{2,3}(?:\\s*%|\\s*/\\s*\\d{2,3}|\\b)",
+    r"معدل القلب|معدل النبض|معدل التنفس|\bBP\b|\bHR\b|\bRR\b)"
+    r"\s*(?:is|of|at|to|fell to|dropped to|:|=|إلى|عند)?\s*"
+    r"[+-]?\d{2,3}(?:\s*%|\s*/\s*\d{2,3}|\b)",
     re.I
 )
 def _assert_no_fabricated_reading(value):
