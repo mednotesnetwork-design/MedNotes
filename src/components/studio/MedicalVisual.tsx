@@ -1,7 +1,7 @@
-import {useState} from 'react';
+import {lazy,Suspense,useState} from 'react';
 import {Activity,ArrowLeftRight,BrainCircuit,FlaskConical} from 'lucide-react';
 import type {Source,TeachingChapter} from './studio-types';
-import {Axon3D} from './Axon3D';
+const Axon3D=lazy(()=>import('./Axon3D').then(mod=>({default:mod.Axon3D})));
 
 type MicroStep=TeachingChapter['mechanism'][number];
 function visualPhase(text:string,kind:VisualKind){
@@ -91,7 +91,7 @@ export function MedicalVisual({context,sources,step}:{context:string;sources:Sou
  const sourceText=sources.map(s=>s.text+' '+(s.observations||[]).map(o=>o.text).join(' ')).join(' ');
  // The current micro-step drives the figure, not a global lecture keyword.
  const kind=visualKindFor(context)!=='source'?visualKindFor(context):visualKindFor(sourceText.slice(0,2000));
- const display=kind==='axon'?<Axon3D mode={step&&visualPhase([step.title,step.visual_focus,step.motion].join(' '),'axon')===1?'retrograde':'anterograde'}/>:kind==='nmj'?<NmjVisual step={step}/>:kind==='action-potential'?<ActionPotentialVisual step={step}/>:null;
+ const display=kind==='axon'?<Suspense fallback={<p className="mn8-axon-caption">يجري تجهيز المجسم ثلاثي الأبعاد…</p>}><Axon3D mode={step&&visualPhase([step.title,step.visual_focus,step.motion].join(' '),'axon')===1?'retrograde':'anterograde'}/></Suspense>:kind==='nmj'?<NmjVisual step={step}/>:kind==='action-potential'?<ActionPotentialVisual step={step}/>:null;
  const p=sources.find(s=>s.image&&s.observations?.some(o=>o.kind==='diagram'||o.kind==='table'))||sources.find(s=>s.image);
  if(!display&&!p)return step?<div className="mn4-mechanism-brief" aria-label="تعليمات الحركة العلمية"><strong>المشهد العلمي لهذا الجزء</strong><p>{step.detail}</p></div>:null;
  return <div className="mn4-visual-stack">
