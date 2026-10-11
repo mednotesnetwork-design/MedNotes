@@ -69,3 +69,21 @@ CREATE INDEX IF NOT EXISTS mednote_shared_media_review_lookup
  ON mednote_shared_media_approval_audit(media_id,reviewed_at DESC);
 -- Publishing privileges are restricted to trusted offline curator and clinician
 -- roles. Server-side API identity does not grant billing or medical approval.
+
+CREATE TABLE IF NOT EXISTS mednote_shared_lecture_review_audit (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  scope text NOT NULL CHECK(scope IN ('uqu','global')),
+  digest_kind text NOT NULL CHECK(digest_kind IN ('file','text')),
+  digest char(64) NOT NULL CHECK(digest ~ '^[a-f0-9]{64}$'),
+  action text NOT NULL CHECK(action IN ('approved','rejected','withdrawn')),
+  reviewer_id text NOT NULL CHECK(length(reviewer_id) BETWEEN 5 AND 180),
+  rights_checked boolean NOT NULL,
+  curriculum_version_checked boolean NOT NULL,
+  review_notes text NOT NULL CHECK(length(review_notes) BETWEEN 20 AND 5000),
+  reviewed_at timestamptz NOT NULL DEFAULT now(),
+  FOREIGN KEY (scope,digest_kind,digest) REFERENCES mednote_shared_lectures(scope,digest_kind,digest)
+);
+CREATE INDEX IF NOT EXISTS mednote_shared_lecture_review_lookup
+ ON mednote_shared_lecture_review_audit(scope,digest_kind,digest,reviewed_at DESC);
+-- A version changed after a previous approval is returned to pending. The
+-- web runtime may SELECT approved content but may never grant approvals.
