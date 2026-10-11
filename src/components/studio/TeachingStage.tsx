@@ -1,6 +1,7 @@
 import {useEffect,useMemo,useState} from 'react';
 import {ArrowLeft,ArrowRight,BookOpen,ChevronLeft,ChevronRight,CheckCircle2,ClipboardCheck,FileSearch,FlaskConical,GraduationCap,Lightbulb,Play,RotateCcw,Stethoscope,Volume2} from 'lucide-react';
-import type {TeachingChapter,Source} from './studio-types';
+import type {TeachingChapter,Source,ClinicalFilm} from './studio-types';
+import {ClinicalFilmStage} from './ClinicalFilmStage';
 import {MedicalVisual} from './MedicalVisual';
 import {QuizPanel} from './ClinicalPanels';
 
@@ -36,22 +37,8 @@ export function sceneList(lesson:TeachingChapter):SceneView[]{
  if(lesson.quiz?.length)scenes.push({kind:'quiz',title:'تأكدي من فهمك',body:'فكري بالإجابة قبل فتح التفسير، ثم راجعي لماذا بقية الخيارات غير صحيحة.',source_ids:[],section:'تطبيق وتفكير',index:0});
  return scenes.length?scenes:[{kind:'foundation',title:lesson.foundation.title,body:lesson.foundation.body,source_ids:lesson.source_registry.map(x=>x.id),section:'الأساسيات',index:0}];
 }
-function ClinicalEncounter({lesson}:{lesson:TeachingChapter}){
- const c=lesson.clinical;
- const [shot,setShot]=useState(0);
- useEffect(()=>setShot(0),[lesson]);
- if(!c||!clinicalIsGenuine(c))return null;
- const current=c.shots[shot];
- return <div className="mn4-case">
-  <div className="mn4-case-heading"><Stethoscope size={18}/><span>CLINICAL CASE</span><small>حالة تعليمية افتراضية</small></div>
-  <div className="mn4-case-main">
-   <div className="mn4-case-moment"><span>SCENE {String(shot+1).padStart(2,'0')} / {c.shots.length}</span><h3>{current.clinical_cue}</h3><p>{current.description}</p></div>
-   <div className="mn4-case-order">{c.shots.map((s,i)=><button key={i} title={s.clinical_cue} aria-current={i===shot?'step':undefined} onClick={()=>setShot(i)}>{String(i+1).padStart(2,'0')}</button>)}</div>
-  </div>
-  <details className="mn4-case-reveal"><summary>لماذا ظهرت هذه العلامات؟ <ArrowLeft size={16}/></summary><p>{c.reasoning}</p></details>
- </div>;
-}
-export function TeachingStage({lesson,sources,onExit}:{lesson:TeachingChapter;sources:Source[];onExit?:()=>void}){
+
+export function TeachingStage({lesson,sources,clinicalFilm,busy=false,onSimulate,onExit}:{lesson:TeachingChapter;sources:Source[];clinicalFilm?:ClinicalFilm;busy?:boolean;onSimulate?:()=>void;onExit?:()=>void}){
  const all=useMemo(()=>sceneList(lesson),[lesson]);
  const [frame,setFrame]=useState(0),[showFull,setShowFull]=useState(false),[sourceOpen,setSourceOpen]=useState(false);
  useEffect(()=>{setFrame(0);setShowFull(false);setSourceOpen(false)},[lesson]);
@@ -66,12 +53,12 @@ export function TeachingStage({lesson,sources,onExit}:{lesson:TeachingChapter;so
   <div className="mn4-scene-heading"><span>{item.section}</span><h2>{item.title}</h2></div>
   {item.kind==='quiz'?<QuizPanel lesson={lesson}/>:
   <>
-   <MedicalVisual context={item.title+' '+item.body} sources={item.source_ids.length?sources.filter(p=>item.source_ids.includes(p.id)):sources} step={item.kind==='mechanism'?lesson.mechanism[item.index]:undefined}/>
-   {item.kind==='clinical'?<ClinicalEncounter lesson={lesson}/>:null}
-   <div className="mn4-teaching-copy">
+   {item.kind!=='clinical'&&<MedicalVisual context={item.title+' '+item.body} sources={item.source_ids.length?sources.filter(p=>item.source_ids.includes(p.id)):sources} step={item.kind==='mechanism'?lesson.mechanism[item.index]:undefined}/>}
+   {item.kind==='clinical'&&(clinicalFilm?<ClinicalFilmStage film={clinicalFilm}/>:<section className="mn5-prepare"><span>CLINICAL SIMULATION DIRECTOR</span><h3>إنتاج سيناريو تصوير طبي لهذا المفهوم</h3><p>سيتحقق المحرك من أعراض الحالة في صفحات محاضرتك، ثم ينشئ أربع مراحل تصويرية مع توجيه الكاميرا ومؤشرات حيوية موثقة، ويُراجع المحتوى قبل عرضه. لا يتم إنشاء فيديو فعلي في هذه المرحلة.</p><button type="button" disabled={busy||!onSimulate} onClick={onSimulate}>{busy?'تجري المعالجة…':'إنشاء سيناريو المحاكاة السريرية'}</button></section>)}
+   {item.kind!=='clinical'&&<div className="mn4-teaching-copy">
     <div className="mn4-copy-title"><BookOpen size={16}/><span>الفكرة الأساسية</span></div>
     {shouldChunk&&!showFull?<><p>{chunk.slice(0,2).join(' ')}</p><button className="mn4-expand" onClick={()=>setShowFull(true)}>تابعي الشرح <ChevronLeft size={16}/></button></>:<p>{item.body}</p>}
-   </div>
+   </div>}
    {item.kind==='mechanism'&&<div className="mn4-mech-context"><FlaskConical size={17}/><p>Micro-step {item.index+1} / {lesson.mechanism.length} · تابعي التركيب المميز بصريًا، والحركة الناتجة، ثم انتقلي للخطوة التالية بالترتيب السببي.</p></div>}
    {item.kind==='foundation'&&lesson.opening&&<div className="mn4-think"><Lightbulb size={18}/><p>{lesson.opening}</p></div>}
    {item.kind==='clinical-overview'&&lesson.high_yield?.length>0&&<section className="mn4-clinical-pearls"><strong>Clinical Pearls · أهم النقاط الطبية</strong>{lesson.high_yield.map((pearl,i)=><p key={i}>{pearl}</p>)}</section>}
