@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {BookOpen,Expand,ImageOff,Lightbulb,Maximize2,RotateCcw,ZoomIn} from 'lucide-react';
+import {BookOpen,ImageOff,Lightbulb,Maximize2} from 'lucide-react';
 import {References,type OriginalSourceImage} from './ClinicalTeachingLayers';
 import type {Explanation} from './types';
 
@@ -13,10 +13,22 @@ const NMJ_FIGURE:CuratedFigure={
  licenseUrl:'https://creativecommons.org/licenses/by/4.0/',
  pageUrl:'https://commons.wikimedia.org/wiki/File:Neuro_Muscular_Junction.png'
 };
+const NEURON_FIGURE:CuratedFigure={
+ src:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Neuron_-_Nerve_Cell_01.png/1280px-Neuron_-_Nerve_Cell_01.png',
+ title:'Multipolar neuron — cell body, dendrites and axon',
+ credit:'Doctor Jana / DrJanaOfficial, Wikimedia Commons',
+ license:'CC BY 4.0',
+ licenseUrl:'https://creativecommons.org/licenses/by/4.0/',
+ pageUrl:'https://commons.wikimedia.org/wiki/File:Neuron_-_Nerve_Cell_01.png'
+};
 export function findTeachingFigure(source:string):CuratedFigure|undefined{
  // Only use a curated medical figure when the current source identifies the
  // corresponding anatomy; never assume that another synapse is an NMJ.
- return /neuromuscular junction|neuromuscular transmission|\bNMJ\b|الوصلة العصبية العضلية|المشبك العصبي العضلي/i.test(source)?NMJ_FIGURE:undefined;
+
+ if(/neuromuscular junction|neuromuscular transmission|\bNMJ\b|الوصلة العصبية العضلية|المشبك العصبي العضلي/i.test(source))return NMJ_FIGURE;
+ if(/(?:\bneuron\b|\bneurons\b|عصبون|الخلية العصبية|خلايا عصبية)/i.test(source)
+   &&/axon|dendrit|soma|myelin|cell body|المحور|الزوائد الشجرية|جسم الخلية|ميالين/i.test(source))return NEURON_FIGURE;
+ return undefined;
 }
 function availableSteps(lesson:Explanation){
  const intro=lesson.clinical_layers?.core_concept?.text||lesson.explanation||'';
@@ -49,7 +61,7 @@ export function IllustratedMedicalSlide({lesson,slide,sourceImages=[]}:Props){
  const original=!!imageFromLecture?.image;
  if(!curated&&!original)return null;
  const useSource=(showOriginal||failed)&&original||!curated;
- const url=useSource?imageFromLecture?.image:curated?.src;
+ const url=failed&&!original?undefined:useSource?imageFromLecture?.image:curated?.src;
  const phases=availableSteps(lesson);
  const active=phases[Math.min(step,Math.max(0,phases.length-1))];
  const sourceAttribution=useSource?'Original uploaded lecture · Page '+imageFromLecture?.page:
