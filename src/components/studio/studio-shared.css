@@ -5,3 +5,14 @@
 .mn3 .mn6-shared-media video,.mn3 .mn6-shared-media img{display:block;width:100%;max-height:400px;object-fit:contain;background:var(--mn-background);border-radius:var(--mn-radius)}
 .mn3 .mn6-shared-media p,.mn3 .mn6-shared-media small{color:var(--mn-muted);font-size:12px;line-height:1.8}
 .mn3 .mn6-shared-media a{color:var(--mn-mint)}
+
+.mn3 .mn6-followup{margin:22px 0 5px;border-top:1px solid var(--mn-border);padding:20px 0 0}
+.mn3 .mn6-followup h3{font-size:16px;color:var(--mn-sand);margin:0 0 8px}
+.mn3 .mn6-followup>p{font-size:12px;line-height:1.8;color:var(--mn-muted)}
+.mn3 .mn6-turn{background:var(--mn-surface-raised);padding:12px;margin:11px 0;border-radius:var(--mn-radius);border:1px solid var(--mn-border)}
+.mn3 .mn6-turn strong{font-size:13px;color:var(--mn-sand)}
+.mn3 .mn6-turn p{font-size:13px;color:var(--mn-text);line-height:1.9;margin:9px 0;white-space:pre-line}
+.mn3 .mn6-turn small{color:var(--mn-muted);font-size:11px}
+.mn3 .mn6-followup form{display:grid;gap:9px}
+.mn3 .mn6-followup textarea{width:100%;border:1px solid var(--mn-border-strong);background:var(--mn-background);border-radius:var(--mn-radius);padding:12px;color:var(--mn-text);font:inherit;font-size:13px;resize:vertical}
+.mn3 .mn6-followup form button{justify-self:start;background:var(--mn-mint);border:1px solid var(--mn-mint);color:var(--mn-background);padding:9px 15px;border-radius:var(--mn-radius);font-size:12px;font-weight:700}
