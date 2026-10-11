@@ -7,7 +7,7 @@ import {MedicalVisual} from './MedicalVisual';
 import {MechanismCinema} from './MechanismCinema';
 import {QuizPanel} from './ClinicalPanels';
 
-export type SceneView={kind:'foundation'|'anatomy'|'concept'|'mechanism-overview'|'mechanism'|'clinical-overview'|'clinical'|'quiz';title:string;body:string;source_ids:string[];section:string;index:number};
+export type SceneView={kind:'intro'|'foundation'|'anatomy'|'concept'|'mechanism-overview'|'mechanism'|'clinical-overview'|'clinical'|'quiz';title:string;body:string;source_ids:string[];section:string;index:number};
 function clinicalIsGenuine(c:TeachingChapter['clinical']){
  if(!c||!c.shots?.length)return false;
  const text=[c.title,c.scenario,...c.shots.map(s=>s.description)].join(' ');
@@ -18,9 +18,25 @@ function pagesLabel(ids:string[],sources:Source[]){
  const pageNos=ids.map(id=>sources.find(s=>s.id===id)?.page).filter((n):n is number=>Number.isInteger(n));
  return [...new Set(pageNos)].sort((a,b)=>a-b).join('، ');
 }
+function beginnerIntro(lesson:TeachingChapter):SceneView|null{
+ const q=[lesson.headline,lesson.foundation.title,...(lesson.source_registry||[]).map(x=>x.id)].join(' ').toLowerCase();
+ const raw=lesson.headline.toLowerCase();
+ const axon=/axonal transport|النقل المحوري|نقل محوري/.test(q);
+ const nmj=/neuromuscular junction|الوصلة العصبية العضلية|الاتصال العصبي العضلي/.test(q);
+ const ap=/action potential|جهد الفعل/.test(q);
+ if(axon)return {kind:'intro',title:'ما هو النقل المحوري (Axonal Transport)؟',section:'ابدئي من الصفر · التعريف أولًا',index:0,source_ids:[],
+ body:'الخلية العصبية (Neuron) هي خلية متخصصة في إرسال الإشارات. يخرج من جسمها امتداد يسمى المحور العصبي (Axon)، وقد يمتد لمسافة طويلة حتى يصل إلى النهايات العصبية. النقل المحوري (Axonal Transport) هو حركة مواد داخل هذا المحور، مثل الحويصلات والبروتينات، بين جسم الخلية والنهايات. سنتعرف أولًا على هذه الأجزاء، ثم نفهم كيف تتحرك المواد وما الفرق بين اتجاهي النقل.'};
+ if(nmj)return {kind:'intro',title:'ما هي الوصلة العصبية العضلية؟',section:'ابدئي من الصفر · التعريف أولًا',index:0,source_ids:[],
+ body:'العضلة تحتاج إشارة لتبدأ الانقباض. العصب الحركي (Motor Neuron) يحمل هذه الإشارة، وعند نهايته يقترب من غشاء الليف العضلي دون أن يندمج معه. منطقة الاتصال بينهما تسمى الوصلة العصبية العضلية (Neuromuscular Junction). سنعرّف أجزاءها أولًا، ثم نتتبع انتقال الإشارة من العصب إلى العضلة.'};
+ if(ap)return {kind:'intro',title:'ما هو جهد الفعل (Action Potential)؟',section:'ابدئي من الصفر · التعريف أولًا',index:0,source_ids:[],
+ body:'غشاء الخلية يفصل بين الوسط داخلها وخارجها، ويوجد بين الجانبين فرق في الجهد الكهربائي. جهد الفعل (Action Potential) هو تغير سريع ومؤقت في جهد الغشاء يحدث في الخلايا القابلة للاستثارة مثل الخلايا العصبية. قبل شرح مراحل الصعود والهبوط، سنفهم معنى جهد الراحة والأيونات والقنوات.'};
+ return null;
+}
 export function sceneList(lesson:TeachingChapter):SceneView[]{
  const layers=lesson.learning_layers;
  const scenes:SceneView[]=[];
+ const intro=beginnerIntro(lesson);
+ if(intro)scenes.push(intro);
  const pushLayer=(kind:SceneView['kind'],key:'foundation'|'anatomy'|'mechanism'|'clinical',section:string)=>{
   const v=layers?.[key];
   if(v?.coverage==='supported')scenes.push({kind,title:v.title,body:v.explanation,source_ids:v.source_ids,section,index:0});
@@ -60,8 +76,9 @@ export function TeachingStage({lesson,sources,clinicalFilm,media=[],followups=[]
    </article>)}</section>}
   {item.kind==='quiz'?<QuizPanel lesson={lesson}/>:
   <>
-   {item.kind!=='clinical'&&(lesson.mechanism.length&&(item.kind==='mechanism'||item.kind==='mechanism-overview')?<MechanismCinema lesson={lesson} sources={sources} start={item.kind==='mechanism'?item.index:0}/>:<MedicalVisual context={item.title+' '+item.body} sources={item.source_ids.length?sources.filter(p=>item.source_ids.includes(p.id)):sources} step={undefined}/>)}
+   {item.kind!=='clinical'&&item.kind!=='intro'&&(lesson.mechanism.length&&(item.kind==='mechanism'||item.kind==='mechanism-overview')?<MechanismCinema lesson={lesson} sources={sources} start={item.kind==='mechanism'?item.index:0}/>:<MedicalVisual context={item.title+' '+item.body} sources={item.source_ids.length?sources.filter(p=>item.source_ids.includes(p.id)):sources} step={undefined}/>)}
    {item.kind==='clinical'&&(clinicalFilm?<ClinicalFilmStage film={clinicalFilm}/>:<section className="mn5-prepare"><span>CLINICAL SIMULATION DIRECTOR</span><h3>إنتاج سيناريو تصوير طبي لهذا المفهوم</h3><p>سيتحقق المحرك من أعراض الحالة في صفحات محاضرتك، ثم ينشئ أربع مراحل تصويرية مع توجيه الكاميرا ومؤشرات حيوية موثقة، ويُراجع المحتوى قبل عرضه. لا يتم إنشاء فيديو فعلي في هذه المرحلة.</p><button type="button" disabled={busy||!onSimulate} onClick={onSimulate}>{busy?'تجري المعالجة…':'إنشاء سيناريو المحاكاة السريرية'}</button></section>)}
+   {item.kind==='intro'&&<div className="mn9-start-note">الآن نعرّف المصطلحات الأساسية. الرسوم والخطوات التفصيلية تبدأ بعد هذا التمهيد، ولا يُفترض أنكِ درستِ الموضوع مسبقًا.</div>}
    {item.kind!=='clinical'&&<div className="mn4-teaching-copy">
     <div className="mn4-copy-title"><BookOpen size={16}/><span>الفكرة الأساسية</span></div>
     {shouldChunk&&!showFull?<><p>{chunk.slice(0,2).join(' ')}</p><button className="mn4-expand" onClick={()=>setShowFull(true)}>تابعي الشرح <ChevronLeft size={16}/></button></>:<p>{item.body}</p>}
