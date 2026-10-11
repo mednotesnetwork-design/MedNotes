@@ -209,15 +209,18 @@ def _lesson(provider,data):
             'Medical source review failed','STUDIO_REVIEW_FAILED',422)
     draft['source_registry']=[{'id':row['id'],'page':row['page']} for row in sources]
     draft['reviewed']=True  # Automated source check only, NEVER a human clinical approval.
+    from clinical_review import status as human_review_status
+    reviewer=human_review_status(sources,draft)
     draft['clinical_trust']={
-        'mode':'educational_unreviewed',
+        'mode':'clinical_reviewed' if reviewer['clinical_approval'] else 'educational_unreviewed',
         'model_source_review':'passed',
         'external_reference_status':reference_evidence['status'],
         'external_references':[{'id':r['id'],'title':r['title'],'publisher':r['publisher'],
                                 'version':r['version'],'url':r['url'],'locator':r['locator']}
                                for r in reference_evidence['references']],
-        'human_review':'pending', 'clinical_approval':False,
-        'high_stakes_recommendations':'blocked'}
+        'human_review':reviewer['human_review'], 'clinical_approval':reviewer['clinical_approval'],
+        'module_digest':reviewer['module_digest'],'reviewed_at':reviewer['reviewed_at'],
+        'high_stakes_recommendations':'reviewed_reference_only' if reviewer['clinical_approval'] else 'blocked'}
     draft['media']={'clinical_video':'not_generated','mechanism_video':'not_generated',
                     'note':'Scripts are illustrative plans; no playback or images are claimed.'}
     # Public MedNote Core AI JSON contract; derived ONLY from medically audited
