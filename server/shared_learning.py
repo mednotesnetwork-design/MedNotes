@@ -134,14 +134,14 @@ def publish_media(data, curator_key):
         raise LibraryError(400, "INVALID_MEDIA")
     if not isinstance(url, str) or len(url)>1500 or urlparse(url).scheme != "https" or not urlparse(url).hostname:
         raise LibraryError(400, "INVALID_MEDIA_URL")
-    if not isinstance(rights,str) or not 20<=len(rights)<=1000 or not isinstance(reviewer,str) or not 3<=len(reviewer)<=180:
-        raise LibraryError(400,"REVIEW_AND_RIGHTS_REQUIRED")
+    if not isinstance(rights,str) or not 20<=len(rights)<=1000:
+        raise LibraryError(400,"MEDIA_RIGHTS_REQUIRED")
     title = str(data.get("title", concept))[:200]
     description = str(data.get("description", ""))[:1000]
     with connect() as db, db.cursor() as cur:
         cur.execute("""INSERT INTO mednote_shared_media
-          (concept_key,kind,version,title,url,description,status,rights_basis,medical_review,reviewer_id)
+          (concept_key,kind,version,title,url,description,status,rights_basis,medical_review)
           VALUES (%s,%s,COALESCE((SELECT max(version)+1 FROM mednote_shared_media WHERE concept_key=%s AND kind=%s),1),
-          %s,%s,%s,'approved',%s,'clinician_approved',%s)""",
-          (concept,kind,concept,kind,title,url,description,rights,reviewer))
-    return {"published": True, "concept_key": concept, "kind": kind}
+          %s,%s,%s,'pending',%s,'pending')""",
+          (concept,kind,concept,kind,title,url,description,rights))
+    return {"staged": True, "approved": False, "concept_key": concept, "kind": kind}
