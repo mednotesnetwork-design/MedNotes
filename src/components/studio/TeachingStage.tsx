@@ -2,6 +2,7 @@ import {useEffect,useMemo,useState} from 'react';
 import {ArrowLeft,ArrowRight,BookOpen,ChevronLeft,ChevronRight,CheckCircle2,ClipboardCheck,FileSearch,FlaskConical,GraduationCap,Lightbulb,Play,RotateCcw,Stethoscope,Volume2} from 'lucide-react';
 import type {TeachingChapter,Source,ClinicalFilm} from './studio-types';
 import {ClinicalFilmStage} from './ClinicalFilmStage';
+import type {SharedMedia} from '../../lib/shared-learning';
 import {MedicalVisual} from './MedicalVisual';
 import {QuizPanel} from './ClinicalPanels';
 
@@ -38,7 +39,7 @@ export function sceneList(lesson:TeachingChapter):SceneView[]{
  return scenes.length?scenes:[{kind:'foundation',title:lesson.foundation.title,body:lesson.foundation.body,source_ids:lesson.source_registry.map(x=>x.id),section:'الأساسيات',index:0}];
 }
 
-export function TeachingStage({lesson,sources,clinicalFilm,busy=false,onSimulate,onExit}:{lesson:TeachingChapter;sources:Source[];clinicalFilm?:ClinicalFilm;busy?:boolean;onSimulate?:()=>void;onExit?:()=>void}){
+export function TeachingStage({lesson,sources,clinicalFilm,media=[],busy=false,onSimulate,onExit}:{lesson:TeachingChapter;sources:Source[];clinicalFilm?:ClinicalFilm;media?:SharedMedia[];busy?:boolean;onSimulate?:()=>void;onExit?:()=>void}){
  const all=useMemo(()=>sceneList(lesson),[lesson]);
  const [frame,setFrame]=useState(0),[showFull,setShowFull]=useState(false),[sourceOpen,setSourceOpen]=useState(false);
  useEffect(()=>{setFrame(0);setShowFull(false);setSourceOpen(false)},[lesson]);
@@ -51,6 +52,11 @@ export function TeachingStage({lesson,sources,clinicalFilm,busy=false,onSimulate
   {lesson.clinical_trust&&<div className="mn4-evidence-banner" role="status"><span>{lesson.clinical_trust.clinical_approval?'تم تسجيل مراجعة طبية بشرية':'محتوى تعليمي · بانتظار مراجعة طبية بشرية'}</span><small>{lesson.clinical_trust.external_reference_status==='retrieved'?'مراجع خارجية موثقة متاحة':'التحقق بالمراجع الخارجية غير متاح أو لم يجد نتيجة'} · تدقيق المصدر آلي</small></div>}
   <div className="mn4-progress">{all.map((s,i)=><button key={i} title={s.title} aria-label={'افتحي '+s.title} className={i===frame?'current':i<frame?'past':''} onClick={()=>{setFrame(i);setShowFull(false);setSourceOpen(false)}}/>)}</div>
   <div className="mn4-scene-heading"><span>{item.section}</span><h2>{item.title}</h2></div>
+  {(item.kind==='clinical'||item.kind==='mechanism')&&media.length>0&&<section className="mn6-shared-media" aria-label="مكتبة الوسائط الطبية"><h3>وسائط طبية معتمدة من مكتبة MedNote</h3>
+   {media.filter(m=>m.kind==='video'||m.kind==='image'||(item.kind==='mechanism'&&m.kind==='interactive3d')).map(m=><article key={m.id}><strong>{m.title}</strong>
+    {m.kind==='video'?<video src={m.url} controls playsInline preload="metadata" aria-label={m.title}/>:m.kind==='image'?<img src={m.url} loading="lazy" alt={m.title}/>:<a href={m.url} target="_blank" rel="noopener noreferrer">افتحي نموذج 3D المعتمد</a>}
+    {m.description&&<p>{m.description}</p>}<small>مادة مشتركة معتمدة · الإصدار {m.version}</small>
+   </article>)}</section>}
   {item.kind==='quiz'?<QuizPanel lesson={lesson}/>:
   <>
    {item.kind!=='clinical'&&<MedicalVisual context={item.title+' '+item.body} sources={item.source_ids.length?sources.filter(p=>item.source_ids.includes(p.id)):sources} step={item.kind==='mechanism'?lesson.mechanism[item.index]:undefined}/>}
