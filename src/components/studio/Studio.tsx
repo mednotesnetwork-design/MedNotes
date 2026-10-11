@@ -9,6 +9,8 @@ import './studio-layout.css';
 import './studio-editorial.css';
 import './studio-media.css';
 import './studio-atlas.css';
+import './studio-stage.css';
+import './studio-visual.css';
 
 const INDEX='mednote-studio-v3:index',ACTIVE='mednote-studio-v3:active';
 const key=(id:string)=>'mednote-studio-v3:lecture:'+id;
@@ -108,10 +110,10 @@ export function Studio(){
   await save({...current.current!,outline,stage:'ready',selected:0,error:undefined});
   setBusy('إنشاء أول درس طبي…');await generate(0,signal);
  }
- async function generate(index:number,signal:AbortSignal){
+ async function generate(index:number,signal:AbortSignal,force=false){
   const state=current.current,chapter=state?.outline?.chapters[index];
   if(!state||!chapter)throw new Error('هذا المفهوم غير موجود.');
-  if(state.chapters[index])return;
+  if(state.chapters[index]&&!force)return;
   setBusy('الأستاذ الذكي يبني '+chapter.title+' ويراجع محتواه العلمي…');
   const ids=new Set(chapter.source_ids),sources=state.sources.filter(p=>ids.has(p.id)).map(bundle);
   const result=await studioRequest({operation:'lesson',chapter,sources},signal,'إنشاء الشرح الطبي ومراجعته · '+chapter.title);
@@ -143,6 +145,6 @@ export function Studio(){
   {busy&&<div className="mn3-progress" role="status"><div><b>{busy}</b><small>{progress?progress+'% · ':''}يحفظ التقدم تلقائيًا داخل المتصفح</small></div><button onClick={()=>abort.current?.abort()}>إيقاف</button><div className="mn3-progress-track"><span style={{width:progress+'%'}}/></div></div>}
   {error&&<div role="alert" className="mn3-error"><AlertTriangle size={18}/><span>{error}</span><button disabled={!!busy} onClick={()=>void resume()}><RefreshCw size={16}/> إعادة المحاولة</button></div>}
   {!course&&!busy?<div className="mn3-welcome"><span className="mn3-overline">REIMAGINE THE WAY YOU STUDY</span><div className="mn3-welcome-emblem"><BookOpenText size={55}/></div><h2>ارفعي المحاضرة.<br/>واحصلي على تجربة تعلم جديدة بالكامل.</h2><p>قراءة النصوص والرسومات، ترتيب الأفكار من الصفر، شرح آليات الأمراض، حالات سريرية تفاعلية، واختبارات تفكير — ضمن درس واحد.</p><button className="mn3-primary" onClick={()=>fileRef.current?.click()}><UploadCloud size={20}/> ابدئي برفع PDF أو PowerPoint <ArrowLeft size={17}/></button>{library.length>0&&<button type="button" className="mn3-library-link" onClick={()=>setLibraryOpen(x=>!x)}><Library size={16}/> محاضراتي المحفوظة</button>}<small>حتى 30 MB · تبقى المحاضرة الأصلية محفوظة للرجوع إليها</small></div>:
-   course?<StudioCanvas record={course} busy={!!busy} onNew={()=>fileRef.current?.click()} onLibrary={()=>setLibraryOpen(x=>!x)} onGo={i=>void go(i)} onResume={()=>void resume()} onGenerate={()=>void run(signal=>generate(course.selected,signal))}/>:null}
+   course?<StudioCanvas record={course} busy={!!busy} onNew={()=>fileRef.current?.click()} onLibrary={()=>setLibraryOpen(x=>!x)} onGo={i=>void go(i)} onResume={()=>void resume()} onGenerate={()=>void run(signal=>generate(course.selected,signal))} onRegenerate={()=>void run(signal=>generate(course.selected,signal,true))}/>:null}
  </main>;
 }
