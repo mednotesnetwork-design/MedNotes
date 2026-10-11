@@ -4,7 +4,7 @@ import os
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs
 from server.shared_learning import (LibraryError, lookup_lecture, media_for_concept,
-                                    candidate_plans, publish_lecture, publish_media)
+                                    candidate_plans, group_prices, publish_lecture, publish_media)
 
 class handler(BaseHTTPRequestHandler):
     def reply(self, status, body):
@@ -16,7 +16,7 @@ class handler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(data)
 
-    def allowed(self):
+    def allowed(self,action):
         origin=self.headers.get("Origin")
         if origin and urlparse(origin).netloc!=self.headers.get("Host"):
             raise LibraryError(403,"FORBIDDEN")
@@ -27,20 +27,26 @@ class handler(BaseHTTPRequestHandler):
         # Vercel's protected preview enforces SSO before the function.
         # Browsers cannot prove identity via their own OIDC headers.
         # Shared access stays opt-in and disabled in production.
+        if action=="group_prices":
+            # Public product pricing only. No student identity, lecture data,
+            # invite, shared media or payment state is exposed.
+            return
         if os.environ.get("VERCEL_ENV")!="preview" or os.environ.get("MEDNOTE_SHARED_LIBRARY_ACCESS")!="on":
             raise LibraryError(503,"SHARED_LIBRARY_PREVIEW_DISABLED")
 
     def execute(self, method):
         try:
-            self.allowed()
             args=parse_qs(urlparse(self.path).query)
             action=(args.get("action") or [""])[0]
+            self.allowed(action)
             if method=="GET":
                 if action=="lecture":
                     return self.reply(200,lookup_lecture((args.get("digest_kind") or [""])[0],
                       (args.get("digest") or [""])[0],(args.get("scope") or ["uqu"])[0]))
                 if action=="media":
                     return self.reply(200,media_for_concept((args.get("concept") or [""])[0]))
+                if action=="group_prices":
+                    return self.reply(200,group_prices())
                 if action=="plans":
                     return self.reply(200,candidate_plans())
                 raise LibraryError(400,"INVALID_ACTION")
