@@ -191,9 +191,13 @@ def _vision(provider,data):
                 len(page['image'])<=650000,'Invalid visual source','REQUEST_TOO_LARGE',413)
     # Provider.complete understands slide payload via input rich content only where configured.
     # Transport validation below prevents unverified observations being marked reviewed.
-    from lecture_workflow import SlideTransport
-    transport=SlideTransport(provider)
-    result=transport.complete(VISION,{'pages':pages})
+    from studio_vision import StudioImageTransport
+    previous=provider.opener
+    provider.opener=StudioImageTransport(previous,[p['image'] for p in pages])
+    try:
+        result=provider.complete(VISION,{'pages':[{'page':p['page'],'text':p['text']} for p in pages]})
+    finally:
+        provider.opener=previous
     records=result.get('pages') if isinstance(result,dict) else None
     require(isinstance(records,list) and len(records)==len(pages),
             'Incomplete visual extraction','STUDIO_INVALID_OUTPUT',422)
