@@ -9,10 +9,12 @@ from v1server.contracts import MentorError,require,string,empty_state,validate_p
 from v1server.engine import Engine
 from lecture_workflow import prepare_lecture
 from course_workflow import prepare_course
+from lecture_studio import run_studio
 from study_routing import run_study
 
 def execute_study(module,data):
     require(isinstance(data,dict),'Invalid request')
+    if module=='studio':return run_study({},lambda provider:run_studio(provider,data),module='lecture')
     if module=='lecture':return run_study({},prepare_course(data) if data.get('operation') else prepare_lecture(data),module='lecture')
     require(module=='student','Invalid module')
     require(len(json.dumps(data).encode())<=100000,'Research request too large','REQUEST_TOO_LARGE',413)
