@@ -52,13 +52,13 @@ export function TeachingStage({lesson,sources,onExit}:{lesson:TeachingChapter;so
   <div className="mn4-scene-heading"><span>{item.section}</span><h2>{item.title}</h2></div>
   {item.kind==='quiz'?<QuizPanel lesson={lesson}/>:
   <>
-   <MedicalVisual context={item.title+' '+item.body} sources={item.source_ids.length?sources.filter(p=>item.source_ids.includes(p.id)):sources}/>
+   <MedicalVisual context={item.title+' '+item.body} sources={item.source_ids.length?sources.filter(p=>item.source_ids.includes(p.id)):sources} step={item.kind==='mechanism'?lesson.mechanism[item.index]:undefined}/>
    {item.kind==='clinical'?<ClinicalEncounter lesson={lesson}/>:null}
    <div className="mn4-teaching-copy">
     <div className="mn4-copy-title"><BookOpen size={16}/><span>الفكرة الأساسية</span></div>
     {shouldChunk&&!showFull?<><p>{chunk.slice(0,2).join(' ')}</p><button className="mn4-expand" onClick={()=>setShowFull(true)}>تابعي الشرح <ChevronLeft size={16}/></button></>:<p>{item.body}</p>}
    </div>
-   {item.kind==='mechanism'&&<div className="mn4-mech-context"><FlaskConical size={17}/><p>تتبعي الخطوات بالتنقل؛ يتغير الشرح مع كل مرحلة، بينما يظل التمثيل البصري مرجعًا للعملية.</p></div>}
+   {item.kind==='mechanism'&&<div className="mn4-mech-context"><FlaskConical size={17}/><p>Micro-step {item.index+1} / {lesson.mechanism.length} · تابعي التركيب المميز بصريًا، والحركة الناتجة، ثم انتقلي للخطوة التالية بالترتيب السببي.</p></div>}
    {item.kind==='foundation'&&lesson.opening&&<div className="mn4-think"><Lightbulb size={18}/><p>{lesson.opening}</p></div>}
   </>}
   {!!item.source_ids.length&&<button type="button" className="mn4-source-trigger" onClick={()=>setSourceOpen(v=>!v)}><FileSearch size={16}/>{sourceOpen?'إخفاء المرجع':'التحقق من المصدر'} <span>صفحات {pagesLabel(item.source_ids,sources)||'المحاضرة'}</span></button>}
