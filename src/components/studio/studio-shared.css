@@ -58,3 +58,21 @@
 .mn3 .mn7-cinema .mn4-med-svg circle[r="5"][fill="#e6cfb7"]{animation:mn7-arrive 1.7s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center}
 .mn3 .mn7-cinema .mn4-med-svg circle[r="12"][fill="#e6cfb7"]{animation:mn7-flicker 1.2s ease-in-out infinite}
 @media(prefers-reduced-motion:reduce){.mn3 .mn7-cinema .mn4-med-svg circle,.mn3 .mn7-cinema .mn4-atlas,.mn3 .mn7-cinema .mn4-original-diagram{animation:none}}
+
+/* Pedagogical foundation first: definition precedes diagrams and causal conclusions. */
+.mn3 .mn9-start-note{color:var(--mn-mint);font-size:12px;line-height:1.9;padding:13px 16px;border-right:3px solid var(--mn-mint);background:var(--mn-surface-raised);margin:6px 0 15px}
+.mn3 .mn8-axon3d{background:#0d2227;border:1px solid var(--mn-border);border-radius:12px;overflow:hidden;margin:6px 0 12px}
+.mn3 .mn8-viewport{position:relative;height:clamp(300px,42vw,455px);touch-action:pan-y;cursor:grab;overflow:hidden;min-height:290px;background:radial-gradient(ellipse at 42% 45%,#2e595f,#0d2227 70%);}
+.mn3 .mn8-viewport:active{cursor:grabbing}
+.mn3 .mn8-viewport canvas{width:100%;height:100%;display:block;touch-action:none}
+.mn3 .mn8-model-stamp{position:absolute;top:14px;left:15px;color:var(--mn-sand);font-size:10px;letter-spacing:1px;pointer-events:none}
+.mn3 .mn8-model-labels{position:absolute;bottom:17px;right:15px;left:15px;display:flex;justify-content:space-between;gap:9px;pointer-events:none;flex-wrap:wrap}
+.mn3 .mn8-model-labels span{font-family:var(--mn-font);border:1px solid #537973;background:#0f3033cc;color:#d5e5df;padding:7px 10px;border-radius:5px;font-size:10px;letter-spacing:.2px}
+.mn3 .mn8-actions{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;background:var(--mn-surface-raised)}
+.mn3 .mn8-actions>span{font-size:12px;color:var(--mn-sand);line-height:1.5}
+.mn3 .mn8-actions>div{display:flex;gap:6px;align-items:center}
+.mn3 .mn8-actions button{padding:8px 10px;border:1px solid var(--mn-border-strong);background:var(--mn-background);color:var(--mn-mint);border-radius:6px;font-size:12px;cursor:pointer}
+.mn3 .mn8-actions button:hover{border-color:var(--mn-mint)}
+.mn3 .mn8-axon-caption{color:var(--mn-muted);font-size:11px;line-height:1.8;margin:0;padding:10px 14px}
+.mn3 .mn8-nogl{color:var(--mn-sand);margin:70px auto;text-align:center;font-size:13px;padding:16px}
+@media(max-width:620px){.mn3 .mn8-viewport{height:340px;touch-action:pan-y}.mn3 .mn8-model-stamp{font-size:9px}.mn3 .mn8-model-labels{bottom:10px;gap:4px}.mn3 .mn8-model-labels span{font-size:9px;padding:6px}.mn3 .mn8-actions>span{font-size:11px}}
