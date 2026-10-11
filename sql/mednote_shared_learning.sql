@@ -52,3 +52,20 @@ INSERT INTO mednote_student_plans(code,price_halalas,shared_access,monthly_custo
 VALUES ('free',0,true,0,false),('student',900,true,0,false),('student_plus',1900,true,2,false)
 ON CONFLICT (code) DO NOTHING;
 -- Private subscriber records and webhooks must not be simulated without auth.
+
+-- Human clinical approval is a separate offline audit action; the curator
+-- merely stages an asset, and the student-facing API never has approval rights.
+CREATE TABLE IF NOT EXISTS mednote_shared_media_approval_audit(
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  media_id uuid NOT NULL REFERENCES mednote_shared_media(id),
+  action text NOT NULL CHECK (action IN ('approved','rejected','withdrawn')),
+  clinician_id text NOT NULL CHECK(length(clinician_id) BETWEEN 5 AND 180),
+  clinician_credential text NOT NULL CHECK(length(clinician_credential) BETWEEN 5 AND 180),
+  media_sha256 char(64) NOT NULL CHECK(media_sha256 ~ '^[a-f0-9]{64}$'),
+  clinical_notes text NOT NULL CHECK(length(clinical_notes) BETWEEN 20 AND 5000),
+  reviewed_at timestamptz NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS mednote_shared_media_review_lookup
+ ON mednote_shared_media_approval_audit(media_id,reviewed_at DESC);
+-- Publishing privileges are restricted to trusted offline curator and clinician
+-- roles. Server-side API identity does not grant billing or medical approval.
