@@ -77,6 +77,23 @@ visual details. Every quiz has 3-4 options, one defendable answer, and an explan
 for EACH option; use exactly matching array sizes.
 Student-facing text in fluent academic Arabic with English terms preserved.
 The "source_registry" means ONLY the provided lecture; separate approved reference excerpts are verification evidence and do not authorize adding facts absent from the lecture. Reject any unsupported number, drug dose, timing or definite clinical management advice. Clinical video scripts are not medical advice.
+PEDAGOGY PROFILE: The input teaching_profile selects a subject-specific sequence.
+Follow teaching_profile.teaching_order in logical concept order. It is an
+editorial format guide ONLY: do not add any fact, anatomical part, clinical
+finding, normal value, or mechanism unless the provided lecture supports it.
+For physiology use causal sequences and clarify the baseline/stimulus/change.
+For pathology distinguish etiology, pathogenesis, morphology and manifestation.
+For anatomy orient planes and body region before names, then trace relations.
+For pharmacology define drug targets before drug effects and only discuss
+source-supported adverse effects; never invent doses.
+For biochemistry present the substrate → enzyme → product progression.
+For histology identify tissue levels and distinguishing microscopic features.
+For microbiology/immunology distinguish organism or immune-cell identity,
+interactions and consequences. In every subject start with a definition before
+using jargon or explaining a consequence. Adapt visuals to teaching_profile.visual_priority.
+Make the learning journey readable as one natural guided explanation, not a
+stack of formulaic boxes or generic numbered sections. Do not copy or mimic any
+individual educator's video, signature phrases, lesson transcript or identity.
 Use concise readable paragraphs, not generic cards; preserve every clinically relevant
 source fact, exception, qualifier and number. No HTML, URLs, markdown code or scripts."""
 
@@ -84,7 +101,7 @@ REVIEW = """Independently medically audit the candidate JSON against the supplie
 Return JSON {approved:boolean,issues:[string]}. Reject unsupported medical assertions,
 unwarranted mechanisms, clinical signs or treatment, incorrect sequence or anatomy, erroneous ion movements, unsupported 3D motion details or visual_focus, wrong chronological micro-step transitions,
 incomplete coverage, fabricated source citations and wrong MCQ answers.
-Verify each learning layer is covered by its source IDs and no numerical value or equation is invented. Reject foundation explanations that assume familiarity with their topic, open with a causal clause (e.g. "نظرًا لأن"), mention mechanisms before defining the subject, or use technical terminology without introducing it. Require a basic definition, where/what, and motivation before mechanistic detail. An omitted clinical scene is acceptable when source lacks clinical findings. Curator-approved references may expose contradictions but MUST NOT be treated as human approval or license for unsupported lecture facts.
+Verify each learning layer is covered by its source IDs and no numerical value or equation is invented. Reject foundation explanations that assume familiarity with their topic, open with a causal clause (e.g. "نظرًا لأن"), mention mechanisms before defining the subject, or use technical terminology without introducing it. Audit chapter organization against the subject-specific teaching_profile: physiology must explain baseline then cause then response; pathology must distinguish mechanisms and morphologic findings; anatomy must orient the region and relationships before lists. A profile NEVER licenses unsupported facts or content copied from a teacher. Require a basic definition, where/what, and motivation before mechanistic detail. An omitted clinical scene is acceptable when source lacks clinical findings. Curator-approved references may expose contradictions but MUST NOT be treated as human approval or license for unsupported lecture facts.
 Do not accept a plausible statement just because it is common textbook knowledge
 if the original lecture does not support it. Output only JSON."""
 
@@ -154,8 +171,11 @@ def _lesson(provider,data):
     require(len(json.dumps(sources,ensure_ascii=False))<=50000,
             'Chapter too large; split the topic','REQUEST_TOO_LARGE',413)
     from medical_evidence import retrieve
+    from teaching_methods import choose_teaching_profile
     reference_evidence=retrieve(chapter['title'],"\n".join(row['text'][:500] for row in sources))
+    teaching_profile=choose_teaching_profile(chapter,sources)
     payload={'chapter':chapter,'original_pages':sources,'mode':'source_grounded',
+             'teaching_profile':teaching_profile,
              'reference_verification':{'status':reference_evidence['status'],
                                        'citations':reference_evidence['references']}}
     draft=provider.complete(LESSON,payload)
@@ -227,7 +247,7 @@ def _lesson(provider,data):
         require(isinstance(draft.get(key),list) and len(draft[key])<=12 and
                 all(_text(x,800) for x in draft[key]),'Invalid '+key,'STUDIO_INVALID_OUTPUT',422)
     # A separate model call rejects scientific inaccuracies before user-facing output.
-    check=provider.complete(REVIEW,{'source':sources,'approved_reference_evidence':reference_evidence['references'],
+    check=provider.complete(REVIEW,{'source':sources,'teaching_profile':teaching_profile,'approved_reference_evidence':reference_evidence['references'],
                                     'evidence_status':reference_evidence['status'],'candidate':draft})
     require(isinstance(check,dict) and check.get('approved') is True and
             check.get('issues')==[],
@@ -248,7 +268,8 @@ def _lesson(provider,data):
         'high_stakes_recommendations':'reviewed_reference_only' if reviewer['clinical_approval'] else 'blocked'}
     # A semantic marker lets the UI distinguish newly beginner-reviewed chapters
     # from previously cached chapters created with older pedagogical instructions.
-    draft['pedagogy_version']=2
+    draft['pedagogy_version']=3
+    draft['teaching_subject']=teaching_profile['subject']
     draft['media']={'clinical_video':'not_generated','mechanism_video':'not_generated',
                     'note':'Scripts are illustrative plans; no playback or images are claimed.'}
     # Public MedNote Core AI JSON contract; derived ONLY from medically audited
