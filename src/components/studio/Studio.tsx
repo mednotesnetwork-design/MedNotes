@@ -11,6 +11,7 @@ import './studio-media.css';
 import './studio-atlas.css';
 import './studio-stage.css';
 import './studio-visual.css';
+import './studio-clinical-film.css';
 
 const INDEX='mednote-studio-v3:index',ACTIVE='mednote-studio-v3:active';
 const key=(id:string)=>'mednote-studio-v3:lecture:'+id;
