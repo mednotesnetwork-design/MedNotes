@@ -648,3 +648,68 @@
 
 /* Completion remains part of the current lecture, including on narrow screens. */
 .course-completion-tools{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem;padding:1rem;border:1px solid #385657;border-radius:14px;background:#132829;margin:1rem 0}.course-completion-tools>div{flex:1;min-width:190px}.course-completion-tools p{color:#b3c9c3;font-size:.85rem;margin:.4rem 0}.course-completion-tools button{background:#193334;color:#8dd3b3;border:1px solid #385657;border-radius:9px;padding:.7rem 1rem}.course-completion-tools small{width:100%;color:#b3c9c3}.unit-terms{display:grid;gap:.7rem}.unit-terms>div{border-inline-start:2px solid #8dd3b3;padding-inline-start:.8rem}.unit-terms dt{font-weight:700;color:#e6cfb7}.unit-terms dd{margin:.35rem 0;color:#c4d5d0}.lecture-library-actions{flex-wrap:wrap}
+
+/* MEDNOTE / textbook figure-led learning plate — visually grounded medical
+   art takes precedence over abstract SVG and repetitive explanatory cards. */
+.medplate{position:relative;min-width:0;margin:20px 0 28px;border:1px solid #cfddd9;border-radius:15px;background:#fff;color:#1e3e3a;box-shadow:0 9px 30px #051d1e20;overflow:hidden}
+.medplate-header{display:flex;align-items:start;justify-content:space-between;gap:13px;flex-wrap:wrap;padding:22px clamp(16px,2.5vw,29px) 15px}
+.medplate-kicker{font:700 10px/1.4 Arial,sans-serif;letter-spacing:.17em;color:#1b8678}
+.medplate-heading h3{font-size:clamp(19px,2.5vw,27px)!important;color:#203a38!important;line-height:1.38;margin:6px 0 7px!important}
+.medplate-heading p{color:#60746f;font-size:13px;line-height:1.7;margin:0}
+.medplate-counter{font:700 10px/1.8 Arial,sans-serif;white-space:nowrap;color:#4c7872;background:#edf6f2;padding:7px 10px;border-radius:7px}
+.medplate-timeline{display:flex;gap:8px;padding:9px clamp(15px,2.5vw,29px) 16px;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:thin;min-width:0}
+.course-page .medplate-phase{flex:1 0 min(140px,30vw);display:flex;align-items:center;gap:8px;min-height:60px;text-align:start;padding:10px 12px;border:1px solid #d8e3df;background:#f8faf8;color:#425d58;border-radius:9px;scroll-snap-align:start;white-space:normal}
+.medplate-phase>span{display:grid;place-items:center;flex:0 0 25px;height:25px;border-radius:50%;background:#e0efea;color:#287c70;font-weight:700;font-size:11px}
+.medplate-phase strong{font-size:12px;line-height:1.5;overflow-wrap:anywhere}
+.course-page .medplate-phase[aria-pressed="true"]{background:#08796f;color:#fff;border-color:#08796f;box-shadow:0 5px 12px #08796f22}
+.medplate-phase[aria-pressed="true"]>span{background:#c6ebe0;color:#08796f}
+.medplate-body{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(280px,.88fr);gap:0;border-top:1px solid #dee8e5;direction:ltr}
+.medplate-figure{min-width:0;display:flex;flex-direction:column;align-items:stretch;justify-content:space-between;margin:0;background:linear-gradient(150deg,#f8fbfb,#edf5f2);border-inline-end:1px solid #dae5e1;direction:rtl}
+.medplate-figure-tools{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 15px;background:#ecf3f1}
+.medplate-figure-tools>span{font:700 10px/1.6 Arial,sans-serif;letter-spacing:.11em;color:#5a8479}
+.medplate-figure-tools>div{display:flex;align-items:center;gap:6px}
+.course-page .medplate-figure-tools button{display:inline-flex;align-items:center;gap:5px;min-height:33px;font-size:11px;color:#236c64;border:1px solid #c7ded6;background:#fff;padding:6px 9px;border-radius:7px}
+.medplate-figure>img{display:block;object-fit:contain;object-position:center;max-width:100%;width:100%;height:auto;max-height:470px;min-height:240px;padding:12px 10px;box-sizing:border-box}
+.medplate-figure figcaption{font-size:10px;line-height:1.55;padding:12px 14px;color:#66827a;background:#f2f8f5;overflow-wrap:anywhere}
+.medplate-figure figcaption a{color:#266f67;text-decoration:underline}
+.medplate-missing{min-height:225px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:28px;color:#77978a}
+.medplate-explanation{display:flex;flex-direction:column;min-width:0;padding:clamp(15px,2vw,25px);background:#fff;direction:rtl}
+.medplate-step-heading{display:flex;gap:11px;align-items:center;color:#214842}
+.medplate-step-heading>span{flex:0 0 33px;width:33px;height:33px;border-radius:50%;display:grid;place-items:center;background:#0a867a;color:#fff;font-size:12px;font-weight:700}
+.medplate-step-heading h4{font-size:16px;line-height:1.55;color:#24433e;font-weight:750;margin:0}
+.medplate-step-copy{color:#324f48;font-size:14px;line-height:1.95;overflow-wrap:anywhere;white-space:pre-wrap;margin:16px 0}
+.medplate-evidence{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding-top:7px;border-top:1px solid #e5efeb;color:#5c8076;font-size:11px}
+.medplate-takeaway{display:flex;gap:10px;padding:12px;margin:16px 0;background:#fff6e9;border:1px solid #fae5c5;border-radius:9px;color:#b77e2b}
+.medplate-takeaway strong{font-size:13px;color:#ac7828}
+.medplate-takeaway p{font-size:12px;line-height:1.8;margin:4px 0;color:#685543}
+.medplate-clinical{padding:12px 13px;margin-top:10px;border-inline-start:3px solid #c87d89;background:#fff3f3;border-radius:5px}
+.medplate-clinical strong{font-size:12px;color:#a35969}
+.medplate-clinical p{color:#744a52;font-size:12px;line-height:1.8;margin:4px 0}
+.medplate-step-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:14px;margin-top:auto;border-top:1px solid #e5ece9}
+.medplate-step-nav span{font-size:12px;color:#6c8078}
+.course-page .medplate-step-nav button{border:1px solid #c5dcd4;background:#f5faf8;color:#246b61;min-height:39px;border-radius:7px;padding:8px 13px}
+.medplate-case{display:grid;gap:5px;padding:16px 25px;border-top:1px solid #ecddd9;background:#fff8f7;line-height:1.8}
+.medplate-case span{color:#bb6e7c;letter-spacing:.09em;font-size:10px;font-weight:750}
+.medplate-case p{color:#4a4d47;font-size:13px;margin:0}
+.medplate-case strong{color:#234a44;font-size:13px}
+.medplate-case small{color:#7f817b;font-size:11px}
+.medplate-zoom-overlay{position:fixed;inset:0;z-index:10010;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:45px 12px 15px;background:#08191bf2}
+.medplate-zoom-overlay img{width:auto;max-width:98%;max-height:90%;object-fit:contain}
+.course-page .medplate-zoom-overlay button{position:absolute;top:20px;right:15px;background:#fff;color:#183e38;border-radius:8px;padding:10px 18px}
+@media(max-width:890px){
+ .medplate-body{grid-template-columns:1fr}
+ .medplate-figure{border-inline-end:0;border-bottom:1px solid #dae5e1}
+ .medplate-figure>img{max-height:375px}
+ .medplate-counter{display:none}
+ .medplate-timeline{padding-bottom:11px}
+ .course-page .medplate-phase{flex:0 0 135px;min-height:52px}
+ .medplate-explanation{padding:19px}
+}
+@media(max-width:430px){
+ .medplate{margin:14px 0;border-radius:11px}
+ .medplate-header{padding:15px}
+ .medplate-timeline{padding-inline:12px}
+ .medplate-figure>img{min-height:170px;max-height:275px}
+ .medplate-figure-tools{padding:8px}
+ .medplate-figure-tools>span{font-size:9px}
+}
