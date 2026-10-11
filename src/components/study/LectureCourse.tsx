@@ -46,8 +46,11 @@ export function LectureCourse(){
  function update(value:Course){current.current=value;setCourse(value);}
  async function save(value:Course){
   const next={...value,id:value.id||crypto.randomUUID()};
-  update(next);
-  await saveLectureRecord(next);
+  // Treat IndexedDB commit, not optimistic React state, as the save checkpoint.
+  // If Safari runs out of quota, retain the previous known-good state and
+  // surface the real storage failure rather than saying the lecture was saved.
+  const committed=await saveLectureRecord(next);
+  update(committed);
  }
  useEffect(()=>{
   let live=true;
