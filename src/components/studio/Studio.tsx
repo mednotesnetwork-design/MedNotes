@@ -149,6 +149,28 @@ export function Studio(){
    await save({...current.current!,simulations:{...current.current!.simulations,[index]:saved}});
   },true);
  }
+ async function askConcept(index:number,question:string){
+  const state=current.current,chapter=state?.outline?.chapters[index],lesson=state?.chapters[index];
+  if(!state||!chapter||!lesson||!question.trim())return;
+  await run(async signal=>{
+   const existing=current.current!.followups?.[index]||[];
+   const ids=new Set(chapter.source_ids);
+   const sources=current.current!.sources.filter(p=>ids.has(p.id)).map(bundle);
+   const response=await studioRequest({
+     operation:'followup',chapter,sources,question:question.trim().slice(0,1200),
+     lesson:{headline:lesson.headline,foundation:lesson.foundation,
+       scenes:lesson.scenes.slice(0,5),mechanism:lesson.mechanism.slice(0,9)},
+     history:existing.slice(-4).map(item=>({question:item.question,answer:item.answer}))
+   },signal,'إعداد إجابة مرتبطة بمصادر هذه المحاضرة…');
+   if(!response||typeof response.answer!=='string'||!Array.isArray(response.source_ids)){
+     throw new Error('الإجابة المستلمة غير مكتملة.');
+   }
+   const turn={question:question.trim().slice(0,1200),answer:response.answer,
+     source_ids:response.source_ids as string[]};
+   await save({...current.current!,followups:{...current.current!.followups,
+     [index]:[...existing,turn]}});
+  },true);
+ }
  async function go(index:number){
   const state=current.current;if(!state?.outline||index<0||index>=state.outline.chapters.length)return;
   await save({...state,selected:index});
@@ -175,6 +197,6 @@ export function Studio(){
   {busy&&<div className="mn3-progress" role="status"><div><b>{busy}</b><small>{progress?progress+'% · ':''}يحفظ التقدم تلقائيًا داخل المتصفح</small></div><button onClick={()=>abort.current?.abort()}>إيقاف</button><div className="mn3-progress-track"><span style={{width:progress+'%'}}/></div></div>}
   {error&&<div role="alert" className="mn3-error"><AlertTriangle size={18}/><span>{error}</span><button disabled={!!busy} onClick={()=>void resume()}><RefreshCw size={16}/> إعادة المحاولة</button></div>}
   {!course&&!busy?<div className="mn3-welcome"><span className="mn3-overline">REIMAGINE THE WAY YOU STUDY</span><div className="mn3-welcome-emblem"><BookOpenText size={55}/></div><h2>ارفعي المحاضرة.<br/>واحصلي على تجربة تعلم جديدة بالكامل.</h2><p>قراءة النصوص والرسومات، ترتيب الأفكار من الصفر، شرح آليات الأمراض، حالات سريرية تفاعلية، واختبارات تفكير — ضمن درس واحد.</p><button className="mn3-primary" onClick={()=>fileRef.current?.click()}><UploadCloud size={20}/> ابدئي برفع PDF أو PowerPoint <ArrowLeft size={17}/></button>{library.length>0&&<button type="button" className="mn3-library-link" onClick={()=>setLibraryOpen(x=>!x)}><Library size={16}/> محاضراتي المحفوظة</button>}<small>حتى 30 MB · تبقى المحاضرة الأصلية محفوظة للرجوع إليها</small></div>:
-   course?<StudioCanvas record={course} busy={!!busy} onNew={()=>fileRef.current?.click()} onLibrary={()=>setLibraryOpen(x=>!x)} onGo={i=>void go(i)} onResume={()=>void resume()} onGenerate={()=>void run(signal=>generate(course.selected,signal))} onRegenerate={()=>void run(signal=>generate(course.selected,signal,true))} onSimulate={()=>void generateFilm(course.selected)}/>:null}
+   course?<StudioCanvas record={course} busy={!!busy} onNew={()=>fileRef.current?.click()} onLibrary={()=>setLibraryOpen(x=>!x)} onGo={i=>void go(i)} onResume={()=>void resume()} onGenerate={()=>void run(signal=>generate(course.selected,signal))} onRegenerate={()=>void run(signal=>generate(course.selected,signal,true))} onSimulate={()=>void generateFilm(course.selected)} onAsk={question=>void askConcept(course.selected,question)}/>:null}
  </main>;
 }
