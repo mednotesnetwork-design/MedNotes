@@ -18,7 +18,7 @@ export function MechanismCinema({lesson,sources,start=0}:{lesson:TeachingChapter
  function move(n:number){setActive((n+steps.length)%steps.length);setPlaying(false)}
  return <section className="mn7-cinema" dir="rtl" aria-label="مشاهد ميكانيزم تفاعلية">
   <div className="mn7-top"><span><Clapperboard size={17}/> MEDICAL MOTION STUDIO</span><small>{active+1} / {steps.length} · 2D SCIENTIFIC STORYBOARD</small></div>
-  <div className="mn7-screen"><MedicalVisual context={lesson.headline+' '+current.title+' '+current.detail} sources={local.length?local:sources} step={current}/>
+  <div className="mn7-screen"><MedicalVisual key={active} context={lesson.headline+' '+current.title+' '+current.detail} sources={local.length?local:sources} step={current}/>
    <div className="mn7-screen-bottom"><span>{current.visual_focus||current.title}</span><span>{playing?'● AUTO PLAY':'Ⅱ MANUAL'}</span></div>
   </div>
   <div className="mn7-controls"><button type="button" onClick={()=>setPlaying(v=>!v)}>{playing?<Pause size={17}/>:<Play size={17}/>} {playing?'إيقاف':'تشغيل التسلسل'}</button>
