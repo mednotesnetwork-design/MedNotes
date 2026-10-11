@@ -1,0 +1,39 @@
+
+/* Educational visuals are scientifically labeled SVGs, not decorative cards. */
+.mn3 .mn4-atlas{margin:10px 0 0;border:1px solid var(--mn-border);border-radius:var(--mn-radius);background:var(--mn-background);overflow:hidden}
+.mn3 .mn4-atlas-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 16px}
+.mn3 .mn4-atlas-top>span:first-child{color:var(--mn-sand);font-size:11px;letter-spacing:.8px;font-weight:700;display:flex;align-items:center;gap:8px}
+.mn3 .mn4-atlas-legend,.mn3 .mn4-atlas-top small{font-size:11px;color:var(--mn-muted)}
+.mn3 .mn4-segment,.mn3 .mn4-phase-choices{display:flex;gap:6px;flex-wrap:wrap}
+.mn3 .mn4-segment button,.mn3 .mn4-phase-choices button{border:1px solid var(--mn-border-strong);background:var(--mn-surface-raised);color:var(--mn-muted);border-radius:var(--mn-radius);padding:7px 11px;font-size:11px}
+.mn3 .mn4-segment button[aria-pressed=true],.mn3 .mn4-phase-choices button[aria-pressed=true]{background:var(--mn-selection);border-color:var(--mn-mint);color:var(--mn-mint)}
+.mn3 .mn4-med-svg{display:block;width:100%;max-height:390px;aspect-ratio:760/330;height:auto}
+.mn3 .mn4-atlas-caption{border-top:1px solid var(--mn-border);display:flex;align-items:flex-start;gap:10px;color:var(--mn-muted);font-size:12px;padding:12px 15px;line-height:1.8}
+.mn3 .mn4-atlas-caption svg{color:var(--mn-mint);flex-shrink:0;margin-top:3px}
+.mn3 .mn4-phase-choices{padding:10px 15px 13px;justify-content:space-between}
+.mn3 .mn4-phase-choices button{display:flex;flex-direction:column;gap:4px;align-items:flex-start;flex:1;min-width:108px;text-align:start}
+.mn3 .mn4-phase-choices small{font-size:10px;opacity:.7}
+.mn3 .mn4-phase-choices strong{font-size:11px;font-weight:600}
+.mn3 .mn4-original-diagram{margin:5px 0 0;border:1px solid var(--mn-border);border-radius:var(--mn-radius);padding:10px;background:var(--mn-background)}
+.mn3 .mn4-original-diagram img{display:block;max-width:100%;max-height:350px;object-fit:contain;margin:0 auto}
+.mn3 .mn4-original-diagram figcaption{font-size:11px;color:var(--mn-muted);text-align:center;margin-top:9px}
+.mn3 .mn4-case{border:1px solid var(--mn-border);border-radius:var(--mn-radius);margin:15px 0;background:var(--mn-background);overflow:hidden}
+.mn3 .mn4-case-heading{display:flex;align-items:center;gap:8px;padding:13px 15px;border-bottom:1px solid var(--mn-border);color:var(--mn-rose);font-size:12px;font-weight:700}
+.mn3 .mn4-case-heading small{margin-right:auto;color:var(--mn-muted);font-size:10px}
+.mn3 .mn4-case-main{padding:18px 18px 14px;min-height:140px}
+.mn3 .mn4-case-moment span{font-size:10px;letter-spacing:1.1px;color:var(--mn-mint)}
+.mn3 .mn4-case-moment h3{font-size:clamp(16px,1.7vw,22px);margin:9px 0;color:var(--mn-sand)}
+.mn3 .mn4-case-moment p{font-size:14px;color:var(--mn-text);line-height:1.85}
+.mn3 .mn4-case-order{display:flex;gap:7px}
+.mn3 .mn4-case-order button{height:31px;min-width:38px;background:var(--mn-surface-raised);color:var(--mn-muted);border:1px solid var(--mn-border);border-radius:var(--mn-radius)}
+.mn3 .mn4-case-order button[aria-current=step]{border-color:var(--mn-mint);color:var(--mn-mint)}
+.mn3 .mn4-case-reveal{border-top:1px solid var(--mn-border);padding:13px 17px;color:var(--mn-muted);font-size:13px}
+.mn3 .mn4-case-reveal summary{display:flex;align-items:center;gap:8px;cursor:pointer;color:var(--mn-mint)}
+.mn3 .mn4-case-reveal p{font-size:13px;line-height:1.9;margin:10px 0 0;color:var(--mn-text)}
+.mn3 .mn4-quiz-block{margin-top:10px}
+@keyframes mn4-cargo-anterograde{0%{transform:translateX(0)}100%{transform:translateX(365px)}}
+@keyframes mn4-cargo-retrograde{0%{transform:translateX(0)}100%{transform:translateX(-360px)}}
+.mn3 .mn4-vesicle-forward{animation:mn4-cargo-anterograde 5s linear infinite}
+.mn3 .mn4-vesicle-back{animation:mn4-cargo-retrograde 5s linear infinite}
+@media(prefers-reduced-motion:reduce){.mn3 .mn4-vesicle-forward,.mn3 .mn4-vesicle-back{animation:none}}
+@media(max-width:760px){.mn3 .mn4-atlas-top{padding:10px}.mn3 .mn4-atlas-top>span:first-child{font-size:10px}.mn3 .mn4-phase-choices button{min-width:42%}.mn3 .mn4-atlas-caption{padding:10px;font-size:11px}}
