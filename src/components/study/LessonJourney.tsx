@@ -47,7 +47,7 @@ function ConceptVisual({lesson}:{lesson:Explanation}){
 }
 
 export type LearningTab='explain'|'visual'|'quiz'|'3d';
-export function LessonJourney({lesson,slide,answers,onAnswer,prefix,onAsk,busy,view='all',sourceImages=[]}:{lesson:Explanation;slide:string;answers:Record<string,number>;onAnswer:(key:string,value?:number)=>void;prefix:string;onAsk:(q:string)=>void;busy:boolean;view?:LearningTab|'all';sourceImages?:OriginalSourceImage[]}){
+export function LessonJourney({lesson,slide,answers,onAnswer,prefix,onAsk,busy,view='all',sourceImages=[],onToolSelect}:{lesson:Explanation;slide:string;answers:Record<string,number>;onAnswer:(key:string,value?:number)=>void;prefix:string;onAsk:(q:string)=>void;busy:boolean;view?:LearningTab|'all';sourceImages?:OriginalSourceImage[];onToolSelect?:(tab:'quiz'|'3d')=>void}){
  const [revealed,setRevealed]=useState(false),[modelOpen,setModelOpen]=useState(false);
  const showExplain=view==='all'||view==='explain';
  const showVisual=view==='all'||view==='visual'||view==='explain';
@@ -75,10 +75,11 @@ export function LessonJourney({lesson,slide,answers,onAnswer,prefix,onAsk,busy,v
  return <article className="lesson-journey">
   <div className="journey-meta">{supplemental?'المحاضرة + إضافات موسومة':'Lecture only · المحاضرة فقط'}</div>
   {lesson.review_note&&<p className="lesson-basis">{lesson.review_note}</p>}
-  {showExplain&&hasOpening&&<section className="case-opening"><span className="lesson-basis"><Lightbulb size={15}/>{opening.kind==='case'?'حالة تعليمية افتراضية':'فكّري أولًا'} · {basisText(opening.basis)}</span>{opening.scene&&<p>{opening.scene}</p>}<h3>{opening.prompt}</h3><button aria-expanded={revealed} onClick={()=>setRevealed(v=>!v)}>{revealed?'إخفاء التفسير':'اكشفي التفسير خطوة بخطوة'}</button>{revealed&&<p className="opening-answer">{opening.answer}</p>}</section>}
   {<>
-   {(showExplain||showVisual)&&usesTextbookPlate&&<IllustratedMedicalSlide lesson={lesson} slide={slide} sourceImages={sourceImages}/>}
+   {(showExplain||showVisual)&&usesTextbookPlate&&<IllustratedMedicalSlide lesson={lesson} slide={slide} sourceImages={sourceImages} onToolSelect={onToolSelect} anatomyAvailable={matches.length>0}/>}
    {(showExplain||showVisual)&&!usesTextbookPlate&&<MechanismPlayer source={slide} lesson={lesson}/>}
+  {showExplain&&hasOpening&&<section className="case-opening"><span className="lesson-basis"><Lightbulb size={15}/>{opening.kind==='case'?'حالة تعليمية افتراضية':'فكّري أولًا'} · {basisText(opening.basis)}</span>{opening.scene&&<p>{opening.scene}</p>}<h3>{opening.prompt}</h3><button aria-expanded={revealed} onClick={()=>setRevealed(v=>!v)}>{revealed?'إخفاء التفسير':'اكشفي التفسير خطوة بخطوة'}</button>{revealed&&<p className="opening-answer">{opening.answer}</p>}</section>}
+
    {showExplain&&lesson.clinical_layers&&(usesTextbookPlate?
      <details className="medplate-supplemental"><summary>الشرح الطبي التفصيلي ومراجع المصدر</summary>
       <ClinicalTeachingLayers layers={lesson.clinical_layers} registry={lesson.source_registry} sourceImages={sourceImages} view="explain"/></details>:
