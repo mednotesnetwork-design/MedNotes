@@ -60,13 +60,31 @@ def media_for_concept(concept_key):
     return {"concept_key": concept_key, "media": list(unique.values())}
 
 def candidate_plans():
-    # Billing stays disabled regardless of DB contents until authenticated
-    # webhook-driven subscription verification has been implemented.
-    return {"billing_enabled": False, "currency": "SAR", "access_duration_days": 60, "auto_renewal": False, "plans": [
-        {"code": "free", "price_halalas": 0, "shared_access": True, "custom_videos": 0, "access_duration_days": 60},
-        {"code": "student", "price_halalas": 1500, "shared_access": True, "custom_videos": 0, "access_duration_days": 60},
-        {"code": "student_plus", "price_halalas": 2900, "shared_access": True, "custom_videos": 2, "access_duration_days": 60},
-    ]}
+    """Public, read-only prices for the single 60-day MedNote pass."""
+    # The old Student/Plus plan table is deprecated. No checkout is connected.
+    return {"billing_enabled": False, "auto_renewal": False,
+            "duration_days": 60, "currency": "SAR",
+            "plan": {"code": "student", "name": "MedNote Student",
+                     "included_features": "shared_lessons_and_media_with_private_ai_followups"},
+            "tiers": [
+                {"size": 1, "price_per_student_halalas": 1800},
+                {"size": 2, "price_per_student_halalas": 1500},
+                {"size": 3, "price_per_student_halalas": 1200},
+            ]}
+
+def group_prices():
+    """Return published non-checkout tiers from the actual Neon database."""
+    with connect() as db,db.cursor() as cur:
+        cur.execute("""SELECT tier_size,price_per_student_halalas,access_days
+                       FROM mednote_group_price_tiers ORDER BY tier_size""")
+        rows=cur.fetchall()
+    if len(rows)!=3 or [x[0] for x in rows]!=[1,2,3]:
+        raise LibraryError(503, "INCOMPLETE_PRICE_TIERS")
+    return {"billing_enabled": False, "auto_renewal": False,"currency":"SAR",
+            "plan":"MedNote Student",
+            "tiers":[{"size":size,"price_per_student_halalas":halalas,
+                      "access_days":days} for size,halalas,days in rows]}
+
 
 def clean_snapshot(snapshot):
     if not isinstance(snapshot, dict):
