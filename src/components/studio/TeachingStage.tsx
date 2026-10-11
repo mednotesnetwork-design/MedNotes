@@ -4,6 +4,7 @@ import type {TeachingChapter,Source,ClinicalFilm} from './studio-types';
 import {ClinicalFilmStage} from './ClinicalFilmStage';
 import type {SharedMedia} from '../../lib/shared-learning';
 import {MedicalVisual} from './MedicalVisual';
+import {MechanismCinema} from './MechanismCinema';
 import {QuizPanel} from './ClinicalPanels';
 
 export type SceneView={kind:'foundation'|'anatomy'|'concept'|'mechanism-overview'|'mechanism'|'clinical-overview'|'clinical'|'quiz';title:string;body:string;source_ids:string[];section:string;index:number};
@@ -59,7 +60,7 @@ export function TeachingStage({lesson,sources,clinicalFilm,media=[],followups=[]
    </article>)}</section>}
   {item.kind==='quiz'?<QuizPanel lesson={lesson}/>:
   <>
-   {item.kind!=='clinical'&&<MedicalVisual context={item.title+' '+item.body} sources={item.source_ids.length?sources.filter(p=>item.source_ids.includes(p.id)):sources} step={item.kind==='mechanism'?lesson.mechanism[item.index]:undefined}/>}
+   {item.kind!=='clinical'&&(lesson.mechanism.length&&(item.kind==='mechanism'||item.kind==='mechanism-overview')?<MechanismCinema lesson={lesson} sources={sources} start={item.kind==='mechanism'?item.index:0}/>:<MedicalVisual context={item.title+' '+item.body} sources={item.source_ids.length?sources.filter(p=>item.source_ids.includes(p.id)):sources} step={undefined}/>)}
    {item.kind==='clinical'&&(clinicalFilm?<ClinicalFilmStage film={clinicalFilm}/>:<section className="mn5-prepare"><span>CLINICAL SIMULATION DIRECTOR</span><h3>إنتاج سيناريو تصوير طبي لهذا المفهوم</h3><p>سيتحقق المحرك من أعراض الحالة في صفحات محاضرتك، ثم ينشئ أربع مراحل تصويرية مع توجيه الكاميرا ومؤشرات حيوية موثقة، ويُراجع المحتوى قبل عرضه. لا يتم إنشاء فيديو فعلي في هذه المرحلة.</p><button type="button" disabled={busy||!onSimulate} onClick={onSimulate}>{busy?'تجري المعالجة…':'إنشاء سيناريو المحاكاة السريرية'}</button></section>)}
    {item.kind!=='clinical'&&<div className="mn4-teaching-copy">
     <div className="mn4-copy-title"><BookOpen size={16}/><span>الفكرة الأساسية</span></div>
