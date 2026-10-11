@@ -9,12 +9,14 @@ export function mechanismSteps(source:string,lesson?:Explanation):MechanismStep[
   ['influx','الكالسيوم في النهاية العصبية',/(?:calcium|Ca²?\+?).*(?:enter|influx|terminal)|(?:دخول|يدخل).*كالسيوم/i,1],
   ['release','إفراز Acetylcholine',/(?:acetylcholine|\bACh\b).*(?:releas|secret)|(?:releas|secret).*(?:acetylcholine|\bACh\b)|إفراز.*(?:أستيل|استيل)/i,2],
   ['receptor','الارتباط بالمستقبلات',/(?:acetylcholine|\bACh\b).*(?:bind|receptor)|(?:يرتبط|ارتباط).*(?:مستقبل|أستيل)/i,3],
-  ['tubule','انتقال الإشارة داخل الليف',/t[ -]?tubul|الأنابيب المستعرضة/i,4],
-  ['sr','الكالسيوم داخل الليف العضلي',/sarcoplasmic reticulum.*(?:releas|calcium)|(?:releas|calcium).*sarcoplasmic reticulum|الشبكة الساركوبلازمية/i,5],
-  ['troponin','تنظيم الخيوط العضلية',/troponin|tropomyosin|تروبونين|تروبومايوسين/i,6],
-  ['bridge','الجسور العرضية',/cross[ -]?bridge|myosin.*(?:actin|ATP)|الجسور العرضية/i,7],
-  ['slide','انزلاق الخيوط',/sliding|filaments.*slide|sarcomere.*shorten|انزلاق الخيوط/i,8],
-  ['reset','إنهاء الإشارة والارتخاء',/acetylcholinesterase|SERCA|relaxation|ارتخاء/i,9]
+  ['endplate','إزالة استقطاب اللوحة الحركية',/end[ -]?plate potential|end[ -]?plate depolari[sz]|motor end[ -]?plate depolari[sz]|جهد اللوحة الحركية|إزالة استقطاب اللوحة الحركية/i,4],
+  ['muscleap','جهد الفعل العضلي',/muscle (?:action potential|AP)|muscle membrane depolari[sz]|sarcolemma.*(?:action potential|depolar)|جهد الفعل العضلي/i,5],
+  ['tubule','انتقال الإشارة داخل الليف',/t[ -]?tubul|الأنابيب المستعرضة/i,6],
+  ['sr','الكالسيوم داخل الليف العضلي',/sarcoplasmic reticulum.*(?:releas|calcium)|(?:releas|calcium).*sarcoplasmic reticulum|الشبكة الساركوبلازمية/i,7],
+  ['troponin','تنظيم الخيوط العضلية',/troponin|tropomyosin|تروبونين|تروبومايوسين/i,8],
+  ['bridge','الجسور العرضية',/cross[ -]?bridge|myosin.*(?:actin|ATP)|الجسور العرضية/i,9],
+  ['slide','انزلاق الخيوط',/sliding|filaments.*slide|sarcomere.*shorten|انزلاق الخيوط/i,10],
+  ['reset','إنهاء الإشارة والارتخاء',/acetylcholinesterase|SERCA|relaxation|ارتخاء/i,11]
  ];
  const reviews=[...(lesson?.mechanism||[]).map(s=>({quote:s.source_quote,detail:s.detail||s.label})),...(lesson?.coverage||[]).map(c=>({quote:'',detail:c.explanation}))];
  return definitions.flatMap(([id,title,pattern,stage])=>{
@@ -34,7 +36,7 @@ export function MechanismPlayer({source,lesson}:{source:string;lesson?:Explanati
  },[playing,speed,steps.length]);
  if(steps.length<2||!/(neuromuscular|motor end plate|acetylcholine|sarcomere|الوصلة العصبية|انقباض العضل)/i.test(source))return null;
  const active=steps[Math.min(index,steps.length-1)],stage=active.stage;
- const has=(id:string)=>steps.some(s=>s.id===id),muscle=stage>=4&&stage<=8,shift=stage===8?30:0;
+ const has=(id:string)=>steps.some(s=>s.id===id),muscle=stage>=6&&stage<=10,shift=stage===10?30:0;
  return <section className={'mechanism-player '+(playing?'is-playing':'is-paused')} aria-label="محاكاة انتقال الإشارة وانقباض العضلة" data-no-swipe>
   <header><span>INTERACTIVE MECHANISM</span><h3>شاهدي الآلية خطوة بخطوة</h3><p>محاكاة تخطيطية غير مقياسية، تعرض الخطوات الصريحة في مصدرك. الأجزاء غير المذكورة لا تُستكمل بالتخمين.</p></header>
   <svg viewBox="0 0 960 490" role="img" aria-label={active.title}>
@@ -50,18 +52,19 @@ export function MechanismPlayer({source,lesson}:{source:string;lesson?:Explanati
     <text x="480" y="448" textAnchor="middle" fill="#70424c" fontSize="23">Muscle membrane</text>
     {has('release')&&[0,1,2,3,4,5,6,7].map(i=><circle key={i} className={stage===2||stage===3?'transmitter-motion':''} cx={335+i*42} cy={stage===3?331:298+(i%2)*22} r="7" fill="#bc8929" opacity={stage>=2&&stage<=3?1:.13} style={{animationDelay:`${i*.11}s`}}/>)}
     {has('receptor')&&[330,485,640].map(x=><g key={x}><path d={`M${x-15} 350 V373 M${x+15} 350 V373`} stroke={stage===3?'#3b8071':'#856470'} strokeWidth="11"/><circle cx={x} cy="341" r="8" fill={stage===3?'#bb923c':'#ead9cf'}/></g>)}
-    <text x="795" y="311" fontSize="20" fill="#876424">{stage===9&&has('reset')?'Signal ends':has('release')?'ACh':''}</text>
+    {(stage===4||stage===5)&&<g aria-label={active.title}><path d="M70 357 H295 L320 343 L350 379 L378 352 H535 L561 340 L592 380 L622 357 H890" fill="none" stroke="#db9c32" strokeWidth="7" strokeLinecap="round" className="signal-pulse"/><text x="480" y="415" textAnchor="middle" fontSize="20" fill="#70424c">{active.title}</text></g>}
+    <text x="795" y="311" fontSize="20" fill="#876424">{stage===11&&has('reset')?'Signal ends':has('release')?'ACh':''}</text>
    </>:<>
     <rect x="80" y="90" width="800" height="310" rx="80" fill={`url(#${uid}muscle)`} stroke="#a56c73" strokeWidth="3"/>
     <path d="M255 90 V220 Q255 256 285 256 Q315 256 315 220 V90" fill="#faf7f0" stroke="#83555e" strokeWidth="5"/>
-    {stage===4&&<circle className="tubule-signal" cx="285" cy="130" r="12" fill="#dab454"/>}
+    {stage===6&&<circle className="tubule-signal" cx="285" cy="130" r="12" fill="#dab454"/>}
     {has('sr')&&<><path d="M360 131 Q460 90 790 145 M360 359 Q535 405 790 355" fill="none" stroke="#719f96" strokeWidth="23"/><text x="587" y="84" textAnchor="middle" fontSize="22" fill="#426e63">Sarcoplasmic reticulum</text></>}
-    {has('sr')&&[0,1,2,3,4,5].map(i=><circle key={i} className={stage===5?'calcium-motion':''} cx={400+i*65} cy={176+(i%2)*130} r="7" fill="#b89735" opacity={stage>=5?1:.2} style={{animationDelay:`${i*.12}s`}}/>)}
+    {has('sr')&&[0,1,2,3,4,5].map(i=><circle key={i} className={stage===7?'calcium-motion':''} cx={400+i*65} cy={176+(i%2)*130} r="7" fill="#b89735" opacity={stage>=7?1:.2} style={{animationDelay:`${i*.12}s`}}/>)}
     {(has('troponin')||has('bridge')||has('slide'))&&<g>
      <path d="M370 218 H800 M370 283 H800" stroke="#698f8b" strokeWidth="9"/>
-     <g style={{transform:`translateX(${shift}px)`,transition:'transform 1.3s ease'}}><path d="M377 240 H690" stroke="#975f6c" strokeWidth="14"/><path d="M430 237 l13 -18 M505 237 l13 -18 M580 237 l13 -18 M655 237 l13 -18" stroke="#975f6c" strokeWidth="7" style={{opacity:stage>=7?1:.25}}/></g>
-     {stage===6&&[425,510,595,680,765].map(x=><circle key={x} cx={x} cy="217" r="11" fill="#d9b24b"/>)}
-     <text x="570" y="330" textAnchor="middle" fill="#70424c" fontSize="20">{stage===8?'Filament sliding':stage===7?'Cross-bridges':active.title}</text>
+     <g style={{transform:`translateX(${shift}px)`,transition:'transform 1.3s ease'}}><path d="M377 240 H690" stroke="#975f6c" strokeWidth="14"/><path d="M430 237 l13 -18 M505 237 l13 -18 M580 237 l13 -18 M655 237 l13 -18" stroke="#975f6c" strokeWidth="7" style={{opacity:stage>=9?1:.25}}/></g>
+     {stage===8&&[425,510,595,680,765].map(x=><circle key={x} cx={x} cy="217" r="11" fill="#d9b24b"/>)}
+     <text x="570" y="330" textAnchor="middle" fill="#70424c" fontSize="20">{stage===10?'Filament sliding':stage===9?'Cross-bridges':active.title}</text>
     </g>}
     <text x="190" y="439" fontSize="21" fill="#70424c">Muscle fiber</text>
    </>}
