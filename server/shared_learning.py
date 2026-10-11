@@ -62,10 +62,10 @@ def media_for_concept(concept_key):
 def candidate_plans():
     # Billing stays disabled regardless of DB contents until authenticated
     # webhook-driven subscription verification has been implemented.
-    return {"billing_enabled": False, "currency": "SAR", "plans": [
-        {"code": "free", "price_halalas": 0, "shared_access": True, "custom_videos": 0},
-        {"code": "student", "price_halalas": 900, "shared_access": True, "custom_videos": 0},
-        {"code": "student_plus", "price_halalas": 1900, "shared_access": True, "custom_videos": 2},
+    return {"billing_enabled": False, "currency": "SAR", "access_duration_days": 60, "auto_renewal": False, "plans": [
+        {"code": "free", "price_halalas": 0, "shared_access": True, "custom_videos": 0, "access_duration_days": 60},
+        {"code": "student", "price_halalas": 1500, "shared_access": True, "custom_videos": 0, "access_duration_days": 60},
+        {"code": "student_plus", "price_halalas": 2900, "shared_access": True, "custom_videos": 2, "access_duration_days": 60},
     ]}
 
 def clean_snapshot(snapshot):
