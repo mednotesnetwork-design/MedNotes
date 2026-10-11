@@ -25,7 +25,7 @@ export function StudioCanvas({record,busy,onNew,onLibrary,onGo,onResume,onGenera
    <div className="mn3-sidebar-foot"><BookOpen size={16}/> المحاضرة الأصلية محفوظة كمرجع، وليست واجهة الشرح الأساسية.</div>
   </aside>
   <div className="mn3-study-col">
-   <div className="mn3-breadcrumb"><span>MEDNOTE</span><ChevronLeft size={13}/><span>{record.name}</span><ChevronLeft size={13}/><b>{chapter?.title||'Lecture analysis'}</b></div>
+   <div className="mn3-breadcrumb"><span>{record.name}</span><ChevronLeft size={13}/><b>{chapter?.title||'Lecture analysis'}</b></div>
    {!chapter?<div className="mn3-unbuilt"><Layers size={48}/><span>LECTURE UNDERSTANDING</span><h2>نبني خريطة المحاضرة من محتواها العلمي</h2><p>تُراجع الرسومات أولًا، ثم تُجمع الأفكار المتشابهة ويعاد ترتيبها لتبدأ من الأساسيات قبل التطبيقات.</p>{!busy&&<button className="mn3-primary" onClick={onResume}>استكمال بناء المحاضرة <ArrowLeft size={16}/></button>}</div>:
    <><div className="mn3-lecture-head"><div><span className="mn3-overline">SECTION {String(index+1).padStart(2,'0')} / {String(chapters.length).padStart(2,'0')} · {chapter.kind.toUpperCase()}</span><h2>{lesson?.headline||chapter.title}</h2><p>{chapter.goal}</p></div><div className="mn3-lecture-page"><span>{index+1} / {chapters.length}</span><button disabled={index===0||busy} onClick={()=>{setTab('learn');onGo(index-1);}} aria-label="السابق"><ChevronRight size={19}/></button><button disabled={index===chapters.length-1||busy} onClick={()=>{setTab('learn');onGo(index+1);}} aria-label="التالي"><ChevronLeft size={19}/></button></div></div>
     <div className="mn3-nav-tabs" role="tablist" aria-label="أنماط التعلم">
