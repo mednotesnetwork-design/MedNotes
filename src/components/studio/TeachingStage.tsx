@@ -4,7 +4,7 @@ import type {TeachingChapter,Source} from './studio-types';
 import {MedicalVisual} from './MedicalVisual';
 import {QuizPanel} from './ClinicalPanels';
 
-export type SceneView={kind:'foundation'|'concept'|'mechanism'|'clinical'|'quiz';title:string;body:string;source_ids:string[];section:string;index:number};
+export type SceneView={kind:'foundation'|'anatomy'|'concept'|'mechanism-overview'|'mechanism'|'clinical-overview'|'clinical'|'quiz';title:string;body:string;source_ids:string[];section:string;index:number};
 function clinicalIsGenuine(c:TeachingChapter['clinical']){
  if(!c||!c.shots?.length)return false;
  const text=[c.title,c.scenario,...c.shots.map(s=>s.description)].join(' ');
@@ -16,12 +16,25 @@ function pagesLabel(ids:string[],sources:Source[]){
  return [...new Set(pageNos)].sort((a,b)=>a-b).join('، ');
 }
 export function sceneList(lesson:TeachingChapter):SceneView[]{
- const scenes:SceneView[]=[{kind:'foundation',title:lesson.foundation.title,body:lesson.foundation.body,source_ids:lesson.source_registry.map(x=>x.id),section:'ابدئي من الأساسيات',index:0}];
- lesson.scenes.forEach((item,i)=>scenes.push({kind:'concept',title:item.title,body:item.body,source_ids:item.source_ids,section:'فهم الفكرة',index:i}));
- lesson.mechanism.forEach((item,i)=>scenes.push({kind:'mechanism',title:item.title,body:item.detail,source_ids:item.source_ids,section:'كيف تحدث الآلية؟',index:i}));
- if(clinicalIsGenuine(lesson.clinical))scenes.push({kind:'clinical',title:lesson.clinical!.title,body:lesson.clinical!.scenario,source_ids:lesson.clinical!.source_ids,section:'من المختبر إلى المريض',index:0});
+ const layers=lesson.learning_layers;
+ const scenes:SceneView[]=[];
+ const pushLayer=(kind:SceneView['kind'],key:'foundation'|'anatomy'|'mechanism'|'clinical',section:string)=>{
+  const v=layers?.[key];
+  if(v?.coverage==='supported')scenes.push({kind,title:v.title,body:v.explanation,source_ids:v.source_ids,section,index:0});
+ };
+ if(layers){
+  pushLayer('foundation','foundation','الطبقة 1 · من الصفر');
+  pushLayer('anatomy','anatomy','الطبقة 2 · التركيب والاتجاه');
+ }else{
+  scenes.push({kind:'foundation',title:lesson.foundation.title,body:lesson.foundation.body,source_ids:lesson.source_registry.map(x=>x.id),section:'الطبقة 1 · من الصفر',index:0});
+ }
+ lesson.scenes.forEach((item,i)=>scenes.push({kind:'concept',title:item.title,body:item.body,source_ids:item.source_ids,section:'فهم التفاصيل',index:i}));
+ if(layers)pushLayer('mechanism-overview','mechanism','الطبقة 3 · آلية العمل');
+ lesson.mechanism.forEach((item,i)=>scenes.push({kind:'mechanism',title:item.title,body:item.detail,source_ids:item.source_ids,section:'الطبقة 3 · الخطوة '+(i+1)+' من '+lesson.mechanism.length,index:i}));
+ if(layers)pushLayer('clinical-overview','clinical','الطبقة 4 · الأهمية السريرية');
+ if(clinicalIsGenuine(lesson.clinical))scenes.push({kind:'clinical',title:lesson.clinical!.title,body:lesson.clinical!.scenario,source_ids:lesson.clinical!.source_ids,section:'من الفسيولوجيا إلى المريض',index:0});
  if(lesson.quiz?.length)scenes.push({kind:'quiz',title:'تأكدي من فهمك',body:'فكري بالإجابة قبل فتح التفسير، ثم راجعي لماذا بقية الخيارات غير صحيحة.',source_ids:[],section:'تطبيق وتفكير',index:0});
- return scenes;
+ return scenes.length?scenes:[{kind:'foundation',title:lesson.foundation.title,body:lesson.foundation.body,source_ids:lesson.source_registry.map(x=>x.id),section:'الأساسيات',index:0}];
 }
 function ClinicalEncounter({lesson}:{lesson:TeachingChapter}){
  const c=lesson.clinical;
@@ -48,6 +61,7 @@ export function TeachingStage({lesson,sources,onExit}:{lesson:TeachingChapter;so
  const shouldChunk=chunk.length>2&&item.body.length>230;
  return <div className="mn4-stage" dir="rtl">
   <div className="mn4-stage-label"><span><GraduationCap size={17}/> TEACHING STUDIO</span><span className="mn4-scene-count">{String(frame+1).padStart(2,'0')} <span>/</span> {String(all.length).padStart(2,'0')}</span></div>
+  {lesson.clinical_trust&&<div className="mn4-evidence-banner" role="status"><span>{lesson.clinical_trust.clinical_approval?'تم تسجيل مراجعة طبية بشرية':'محتوى تعليمي · بانتظار مراجعة طبية بشرية'}</span><small>{lesson.clinical_trust.external_reference_status==='retrieved'?'مراجع خارجية موثقة متاحة':'التحقق بالمراجع الخارجية غير متاح أو لم يجد نتيجة'} · تدقيق المصدر آلي</small></div>}
   <div className="mn4-progress">{all.map((s,i)=><button key={i} title={s.title} aria-label={'افتحي '+s.title} className={i===frame?'current':i<frame?'past':''} onClick={()=>{setFrame(i);setShowFull(false);setSourceOpen(false)}}/>)}</div>
   <div className="mn4-scene-heading"><span>{item.section}</span><h2>{item.title}</h2></div>
   {item.kind==='quiz'?<QuizPanel lesson={lesson}/>:
