@@ -170,7 +170,7 @@ export function LectureCourse(){
   const byId=new Map(all.map(p=>[p.id,p]));
   const sourceUnits=units.map(u=>{
    const sample=u.cards.flatMap(c=>c.source_ids).map(id=>byId.get(id)?.text||'')
-    .filter(Boolean).join(' · ').slice(0,4000);
+    .filter(Boolean).join(' · ').slice(0,900);
    return {id:u.id,title:u.title,objective:u.objective,sample};
   });
   setBusy(`دمج ${units.length} وحدة فرعية في مفاهيم رئيسية مترابطة…`);
@@ -215,14 +215,8 @@ export function LectureCourse(){
   // only when the learner requests visual study.
   if(state.plan){
    if(!state.concepts?.length)await consolidateConcepts(signal);
-   // Each major concept gets a first-principles introduction, independently
-   // reviewed by the existing source fidelity audit.
-   try{await teachConceptOverview(signal);}
-   catch(e){
-    signal.throwIfAborted();
-    await save({...current.current,planningNotices:[...(current.current.planningNotices||[]),
-     'لم يكتمل التمهيد الطبي تلقائيًا؛ استخدمي زر إنشائه دون رفع المحاضرة مجددًا.']});
-   }
+   // Do not block access to the lecture on slow or overloaded teaching
+   // inference. The student's saved sources and concept map are already usable.
    await save({...current.current,phase:'ready'});
    return;
   }
@@ -271,14 +265,8 @@ export function LectureCourse(){
    planningNotices:[...(state.planningNotices||[]),'تم بناء الهيكل الأساسي سريعًا من النص الموثّق. الرسومات غير المفحوصة تظهر بتنبيه ولا تُعتبر مراجَعة.']};
   await save(state);
   await consolidateConcepts(signal);
-  try{await teachConceptOverview(signal);}
-  catch(error){
-   signal.throwIfAborted();
-   await save({...current.current,planningNotices:[...(current.current.planningNotices||[]),
-    'لم يكتمل التمهيد الأول تلقائيًا؛ يمكنك إنشاؤه من داخل السلايد.']});
-  }
-  const initial=current.current.plan?.units.flatMap(u=>u.cards)[current.current.active];
-  if(initial&&!current.current.lessons[initial.id+':'+current.current.mode])await teach(signal);
+  // The verified source map is accessible now. Both the beginner's overview
+  // and individual deep teaching cards remain on-demand, with retry and caching.
   await save({...current.current,phase:'ready'});
  }
  async function openFile(file:File){await work(signal=>ingestFile(file,signal));}
