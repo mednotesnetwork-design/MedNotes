@@ -1,0 +1,7 @@
+export type Stage='extracting'|'reading_visuals'|'outlining'|'ready'|'failed';
+export type Source={id:string;page:number;title:string;text:string;image?:string;observations?:{kind:string;text:string}[];warnings:string[];visionDone?:boolean};
+export type Chapter={title:string;goal:string;kind:'foundation'|'mechanism'|'clinical'|'integration';source_ids:string[];scenes:string[]};
+export type TeachingScene={title:string;body:string;source_ids:string[]};
+export type TeachingChapter={headline:string;opening:string;foundation:{title:string;body:string};scenes:TeachingScene[];mechanism:{title:string;detail:string;source_ids:string[]}[];clinical:null|{title:string;scenario:string;reasoning:string;source_ids:string[];shots:{description:string;clinical_cue:string}[]};visual:{title:string;caption:string;shot_prompts:string[]};high_yield:string[];quiz:{question:string;options:string[];answer_index:number;why:string[];source_ids:string[]}[];uncertainties:string[];source_registry:{id:string;page:number}[];reviewed:boolean;media:{clinical_video:string;mechanism_video:string;note:string}};
+export type StudioRecord={id:string;name:string;created:number;updated:number;stage:Stage;sources:Source[];outline?:{title:string;chapters:Chapter[];source_count:number};chapters:Record<number,TeachingChapter>;selected:number;error?:string;visionOffset:number};
+export type StudioMeta={id:string;name:string;updated:number;pages:number;stage:Stage};
