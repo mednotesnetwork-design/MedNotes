@@ -23,8 +23,8 @@ export function Axon3D({mode}:{mode:Mode}){
    const scene=new THREE.Scene();
    scene.background=new THREE.Color('#0d2227');
    scene.fog=new THREE.FogExp2('#0d2227',.012);
-   const camera=new THREE.PerspectiveCamera(34,1,.1,120);
-   camera.position.set(0,5,21);
+   const camera=new THREE.PerspectiveCamera(39,1,.1,120);
+   camera.position.set(0,4.8,28);
    camera.lookAt(0,0,0);cameraRef.current=camera;
    scene.add(new THREE.HemisphereLight(0xc7eaf4,0x35252f,2.6));
    const key=new THREE.DirectionalLight(0xffe3be,4.0);key.position.set(2,9,12);scene.add(key);
@@ -107,7 +107,7 @@ export function Axon3D({mode}:{mode:Mode}){
     down.x=e.clientX;down.y=e.clientY;
    };
    const pointerUp=()=>{down.active=false;};
-   const scroll=(e:WheelEvent)=>{e.preventDefault();zoom=Math.min(1.5,Math.max(.75,zoom+e.deltaY*.001));camera.position.z=21*zoom;};
+   const scroll=(e:WheelEvent)=>{e.preventDefault();zoom=Math.min(1.5,Math.max(.75,zoom+e.deltaY*.001));camera.position.z=28*zoom;};
    root.addEventListener('pointerdown',pointerDown);
    root.addEventListener('pointermove',pointerMove);
    root.addEventListener('pointerup',pointerUp);
