@@ -3,7 +3,8 @@ import {BookOpen,ImageOff,Lightbulb,Maximize2} from 'lucide-react';
 import {References,type OriginalSourceImage} from './ClinicalTeachingLayers';
 import type {Explanation} from './types';
 
-type Props={lesson:Explanation;slide:string;sourceImages?:OriginalSourceImage[];compact?:boolean};
+type Props={lesson:Explanation;slide:string;sourceImages?:OriginalSourceImage[];
+ onToolSelect?:(tab:'quiz'|'3d')=>void;anatomyAvailable?:boolean};
 type CuratedFigure={src:string;title:string;credit:string;license:string;licenseUrl:string;pageUrl:string};
 const NMJ_FIGURE:CuratedFigure={
  src:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Neuro_Muscular_Junction.png/1280px-Neuro_Muscular_Junction.png',
@@ -49,7 +50,7 @@ function availableSteps(lesson:Explanation){
  * licensed real figures or explicitly identified source-PDF pages: never
  * fake generated figures, patient videos or unsupported image coordinates.
  */
-export function IllustratedMedicalSlide({lesson,slide,sourceImages=[]}:Props){
+export function IllustratedMedicalSlide({lesson,slide,sourceImages=[],onToolSelect,anatomyAvailable=false}:Props){
  const [step,setStep]=useState(0);
  const [showOriginal,setShowOriginal]=useState(false);
  const [failed,setFailed]=useState(false);
@@ -121,6 +122,23 @@ export function IllustratedMedicalSlide({lesson,slide,sourceImages=[]}:Props){
     </div>
    </div>
   </div>
+  {(lesson.questions?.length>0||!!lesson.clinical_connection?.text||anatomyAvailable)&&<div className="medplate-tool-row">
+   {lesson.questions?.[0]&&<article className="medplate-tool-card">
+    <span className="medplate-tool-eyebrow">CHECKPOINT · ACTIVE RECALL</span>
+    <strong dir="auto">{lesson.questions[0].question}</strong>
+    {onToolSelect&&<button type="button" onClick={()=>onToolSelect('quiz')}>افتحي السؤال والخيارات ←</button>}
+   </article>}
+   {lesson.clinical_connection?.text&&<article className="medplate-tool-card medplate-tool-clinical">
+    <span className="medplate-tool-eyebrow">CLINICAL PEARL</span>
+    <p dir="auto">{lesson.clinical_connection.text}</p>
+    {lesson.clinical_connection.basis==='additional'&&<small>توضيح إضافي خارج المحاضرة</small>}
+   </article>}
+   {anatomyAvailable&&onToolSelect&&<article className="medplate-tool-card medplate-tool-3d">
+    <span className="medplate-tool-eyebrow">INTERACTIVE ANATOMY / 3D</span>
+    <strong>استكشفي التركيب التشريحي داخل أطلس MedNote</strong>
+    <button type="button" onClick={()=>onToolSelect('3d')}>فتح أطلس 3D ←</button>
+   </article>}
+  </div>}
   {lesson.opening?.kind==='case'&&lesson.opening.scene&&<aside className="medplate-case">
    <span>CLINICAL REASONING · CASE SCENARIO (TEXT)</span><p dir="auto">{lesson.opening.scene}</p>
    <strong dir="auto">{lesson.opening.prompt}</strong>
