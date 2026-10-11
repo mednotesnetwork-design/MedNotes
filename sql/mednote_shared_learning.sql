@@ -38,19 +38,24 @@ CREATE TABLE IF NOT EXISTS mednote_shared_media (
 );
 CREATE INDEX IF NOT EXISTS mednote_shared_media_lookup ON
   mednote_shared_media(concept_key,kind) WHERE status='approved' AND medical_review='clinician_approved';
--- Candidate prices only: 100 halalas = 1 SAR. No payment or subscription activation
+-- Candidate prices only: 100 halalas = 1 SAR. 60-day access passes, NOT monthly. No payment or subscription activation
 -- is performed until authenticated users and a verified payment webhook exist.
 CREATE TABLE IF NOT EXISTS mednote_student_plans (
   code text PRIMARY KEY CHECK (code IN ('free','student','student_plus')),
   price_halalas integer NOT NULL CHECK (price_halalas BETWEEN 0 AND 10000),
   shared_access boolean NOT NULL DEFAULT true,
-  monthly_custom_video_credits integer NOT NULL DEFAULT 0 CHECK (monthly_custom_video_credits BETWEEN 0 AND 20),
+  period_custom_video_credits integer NOT NULL DEFAULT 0 CHECK (period_custom_video_credits BETWEEN 0 AND 20),
+  access_duration_days integer NOT NULL DEFAULT 60 CHECK (access_duration_days=60),
   billing_enabled boolean NOT NULL DEFAULT false,
   updated_at timestamptz NOT NULL DEFAULT now()
 );
-INSERT INTO mednote_student_plans(code,price_halalas,shared_access,monthly_custom_video_credits,billing_enabled)
-VALUES ('free',0,true,0,false),('student',900,true,0,false),('student_plus',1900,true,2,false)
-ON CONFLICT (code) DO NOTHING;
+INSERT INTO mednote_student_plans(code,price_halalas,shared_access,period_custom_video_credits,access_duration_days,billing_enabled)
+VALUES ('free',0,true,0,60,false),('student',1500,true,0,60,false),('student_plus',2900,true,2,60,false)
+ON CONFLICT (code) DO UPDATE SET
+  price_halalas=EXCLUDED.price_halalas,
+  period_custom_video_credits=EXCLUDED.period_custom_video_credits,
+  access_duration_days=EXCLUDED.access_duration_days,
+  billing_enabled=false;
 -- Private subscriber records and webhooks must not be simulated without auth.
 
 -- Human clinical approval is a separate offline audit action; the curator
