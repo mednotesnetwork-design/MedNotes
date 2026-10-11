@@ -1,0 +1,101 @@
+/* MedNote focused teaching experience; inherited Atlas colors, not a nested site. */
+.mn3 .mn4-workspace{display:grid;grid-template-columns:minmax(195px,230px) minmax(0,1fr);max-width:1410px;gap:0;min-height:76vh;margin:0 auto}
+.mn3 .mn4-chapters{background:var(--mn-background);border-left:1px solid var(--mn-border);padding:20px 14px}
+.mn3 .mn4-primary-column{padding:23px clamp(12px,3vw,43px) 65px;min-width:0;width:100%}
+.mn3 .mn4-location{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 20px;color:var(--mn-muted);font-size:11px;overflow:hidden}
+.mn3 .mn4-location>span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:500px}
+.mn3 .mn4-mobile-nav{display:none}
+.mn3 .mn4-chapter-heading{padding:4px 0 22px}
+.mn3 .mn4-chapter-heading h1{font-size:clamp(21px,2.7vw,32px);line-height:1.4;color:var(--mn-sand);margin:8px 0}
+.mn3 .mn4-chapter-heading p{font-size:13px;color:var(--mn-muted);line-height:1.7;max-width:800px;margin:0}
+.mn3 .mn4-stage{background:var(--mn-surface);border:1px solid var(--mn-border);border-radius:var(--mn-radius);padding:clamp(14px,2.3vw,28px);min-height:490px;box-shadow:none}
+.mn3 .mn4-stage-label{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px;color:var(--mn-mint)}
+.mn3 .mn4-stage-label>span:first-child{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:1px;font-weight:700}
+.mn3 .mn4-scene-count{font-size:12px;letter-spacing:1.1px;color:var(--mn-sand);direction:ltr}
+.mn3 .mn4-scene-count span{color:var(--mn-muted)}
+.mn3 .mn4-progress{display:flex;align-items:center;gap:5px;margin-bottom:26px;direction:rtl}
+.mn3 .mn4-progress button{height:4px;min-width:7px;flex:1;border:0;border-radius:4px;background:var(--mn-border-strong);padding:0}
+.mn3 .mn4-progress button.past{background:#659886}
+.mn3 .mn4-progress button.current{background:var(--mn-mint);box-shadow:0 0 0 1px var(--mn-mint)}
+.mn3 .mn4-scene-heading{margin:0 0 15px}
+.mn3 .mn4-scene-heading>span{font-size:11px;font-weight:700;color:var(--mn-mint)}
+.mn3 .mn4-scene-heading h2{font-size:clamp(23px,3.3vw,37px);font-weight:500;line-height:1.4;margin:7px 0;color:var(--mn-sand)}
+.mn3 .mn4-atlas{border:1px solid var(--mn-border);background:var(--mn-background);border-radius:var(--mn-radius);overflow:hidden;margin-bottom:23px}
+.mn3 .mn4-atlas-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;background:var(--mn-surface-raised);font-size:11px;color:var(--mn-sand)}
+.mn3 .mn4-atlas-top>span:first-child{display:inline-flex;align-items:center;gap:8px;letter-spacing:1px;font-weight:700;direction:ltr}
+.mn3 .mn4-atlas-legend{color:var(--mn-muted);font-size:10px}
+.mn3 .mn4-med-svg{display:block;width:100%;height:auto;max-height:390px;background:#102b2d}
+.mn3 .mn4-segment{display:flex;gap:3px;flex-wrap:wrap;direction:ltr}
+.mn3 .mn4-segment button,.mn3 .mn4-phase-choices button{border:1px solid var(--mn-border-strong);border-radius:var(--mn-radius);color:var(--mn-muted);background:var(--mn-surface);padding:6px 9px;font-size:11px}
+.mn3 .mn4-segment button[aria-pressed=true],.mn3 .mn4-phase-choices button[aria-pressed=true]{border-color:var(--mn-mint);background:var(--mn-selection);color:var(--mn-mint)}
+.mn3 .mn4-atlas-caption{display:flex;align-items:center;gap:10px;padding:12px 15px;color:var(--mn-muted);font-size:12px;line-height:1.6}
+.mn3 .mn4-atlas-caption svg{flex-shrink:0;color:var(--mn-mint)}
+.mn3 .mn4-phase-choices{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;padding:9px;direction:ltr}
+.mn3 .mn4-phase-choices button{display:flex;align-items:center;gap:8px;justify-content:center;flex-wrap:wrap;min-width:0;text-align:center;padding:9px 4px;font-size:10px}
+.mn3 .mn4-phase-choices small{color:var(--mn-mint);font-size:9px}
+.mn3 .mn4-phase-choices strong{font-weight:500;overflow-wrap:anywhere}
+.mn3 .mn4-original-diagram{padding:13px;background:var(--mn-background);border:1px solid var(--mn-border);border-radius:var(--mn-radius);margin:0 0 19px;text-align:center}
+.mn3 .mn4-original-diagram img{max-height:360px;width:auto;max-width:100%;object-fit:contain}
+.mn3 .mn4-original-diagram figcaption{font-size:11px;color:var(--mn-muted);margin:9px 0 0}
+.mn3 .mn4-teaching-copy{max-width:840px;margin:17px 0 14px}
+.mn3 .mn4-copy-title{display:flex;align-items:center;gap:8px;color:var(--mn-mint);font-size:12px;font-weight:700;margin-bottom:11px}
+.mn3 .mn4-teaching-copy p{font-size:clamp(15px,1.6vw,19px);line-height:2;white-space:pre-line;color:var(--mn-text);margin:0}
+.mn3 .mn4-expand{display:inline-flex;align-items:center;gap:7px;margin-top:14px;border:1px solid var(--mn-border-strong);background:var(--mn-surface-raised);padding:8px 13px;color:var(--mn-mint);border-radius:var(--mn-radius);font-size:12px}
+.mn3 .mn4-mech-context,.mn3 .mn4-think{display:flex;align-items:flex-start;gap:10px;background:var(--mn-surface-raised);padding:13px 15px;border-right:3px solid var(--mn-sand);border-radius:var(--mn-radius);margin:18px 0}
+.mn3 .mn4-think{border-color:var(--mn-mint)}
+.mn3 .mn4-mech-context svg,.mn3 .mn4-think svg{flex-shrink:0;color:var(--mn-sand);margin-top:3px}
+.mn3 .mn4-think svg{color:var(--mn-mint)}
+.mn3 .mn4-mech-context p,.mn3 .mn4-think p{font-size:12px;line-height:1.8;color:var(--mn-muted);margin:0}
+.mn3 .mn4-source-trigger{display:flex;align-items:center;gap:8px;border:0;border-top:1px solid var(--mn-border);background:transparent;color:var(--mn-mint);font-size:12px;padding:15px 0 10px;width:100%;margin-top:15px;text-align:start}
+.mn3 .mn4-source-trigger span{margin-right:auto;color:var(--mn-muted)}
+.mn3 .mn4-source-drawer,.mn3 .mn4-source-shelf{max-height:480px;overflow:auto;padding:12px;background:var(--mn-background);border:1px solid var(--mn-border);border-radius:var(--mn-radius)}
+.mn3 .mn4-source-drawer details,.mn3 .mn4-source-shelf details{border-bottom:1px solid var(--mn-border);padding:10px 0}
+.mn3 .mn4-source-drawer summary,.mn3 .mn4-source-shelf summary{font-size:12px;color:var(--mn-mint);cursor:pointer}
+.mn3 .mn4-source-drawer img,.mn3 .mn4-source-shelf img{max-width:100%;max-height:350px;display:block;margin:14px auto}
+.mn3 .mn4-source-drawer p,.mn3 .mn4-source-shelf p{white-space:pre-wrap;font-size:11px;line-height:1.7;color:var(--mn-muted)}
+.mn3 .mn4-stage-footer{border-top:1px solid var(--mn-border);display:flex;align-items:center;justify-content:space-between;gap:9px;padding-top:18px;margin-top:22px}
+.mn3 .mn4-stage-footer button{display:flex;align-items:center;gap:7px;justify-content:center;border:1px solid var(--mn-border-strong);padding:10px 15px;border-radius:var(--mn-radius);font-size:12px}
+.mn3 .mn4-stage-footer .mn4-primary{background:var(--mn-mint);color:var(--mn-background);border-color:var(--mn-mint);font-weight:700}
+.mn3 .mn4-stage-footer .mn4-secondary{background:var(--mn-surface-raised);color:var(--mn-mint)}
+.mn3 .mn4-stage-footer>span{font-size:11px;color:var(--mn-muted);text-align:center}
+.mn3 .mn4-chapter-footer{display:flex;align-items:center;justify-content:space-between;gap:7px;flex-wrap:wrap;margin-top:20px}
+.mn3 .mn4-chapter-footer button{display:inline-flex;align-items:center;gap:5px;border:0;background:transparent;color:var(--mn-mint);font-size:11px;padding:10px}
+.mn3 .mn4-chapter-footer button:disabled{color:var(--mn-muted)}
+.mn3 .mn4-case{border:1px solid var(--mn-border);border-radius:var(--mn-radius);overflow:hidden;background:var(--mn-background);margin-bottom:16px}
+.mn3 .mn4-case-heading{display:flex;align-items:center;gap:8px;background:var(--mn-surface-raised);padding:12px 15px;font-size:11px;color:var(--mn-sand);letter-spacing:1px}
+.mn3 .mn4-case-heading small{margin-right:auto;letter-spacing:0;font-size:11px;color:var(--mn-muted)}
+.mn3 .mn4-case-main{background:radial-gradient(ellipse at 15% 12%,#274a44,#132829 75%);padding:25px}
+.mn3 .mn4-case-moment>span{font-size:10px;color:var(--mn-mint);letter-spacing:1px}
+.mn3 .mn4-case-moment h3{color:var(--mn-sand);font-size:20px;margin:9px 0}
+.mn3 .mn4-case-moment p{font-size:15px;line-height:1.9;max-width:700px}
+.mn3 .mn4-case-order{display:flex;gap:9px;margin-top:20px}
+.mn3 .mn4-case-order button{border:1px solid var(--mn-border-strong);border-radius:6px;background:var(--mn-surface-raised);color:var(--mn-muted);padding:6px 11px}
+.mn3 .mn4-case-order button[aria-current=step]{background:var(--mn-selection);color:var(--mn-mint);border-color:var(--mn-mint)}
+.mn3 .mn4-case-reveal{border-top:1px solid var(--mn-border);padding:13px 17px}
+.mn3 .mn4-case-reveal summary{display:flex;gap:9px;align-items:center;cursor:pointer;font-size:12px;color:var(--mn-mint);font-weight:700}
+.mn3 .mn4-case-reveal p{font-size:13px;line-height:1.8;color:var(--mn-text);margin-top:12px}
+.mn3 .mn4-workspace .mn4-chapters nav{display:block}
+@keyframes mn4-forward{0%{transform:translateX(0)}100%{transform:translateX(340px)}}@keyframes mn4-back{0%{transform:translateX(0)}100%{transform:translateX(-340px)}}
+.mn3 .mn4-vesicle-forward{animation:mn4-forward 6s linear infinite alternate}.mn3 .mn4-vesicle-back{animation:mn4-back 6s linear infinite alternate}
+@media(prefers-reduced-motion:reduce){.mn3 .mn4-vesicle-forward,.mn3 .mn4-vesicle-back{animation:none}}
+@media(max-width:800px){
+ .mn3 .mn4-workspace{display:block}
+ .mn3 .mn4-chapters{display:none;border:0;padding:10px 14px}
+ .mn3 .mn4-chapters.mn4-nav-open{display:block}
+ .mn3 .mn4-chapters nav{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+ .mn3 .mn4-chapters .mn3-chapter-link{width:auto;min-width:0}
+ .mn3 .mn4-primary-column{padding:13px 12px 40px}
+ .mn3 .mn4-mobile-nav{display:flex;gap:6px;align-items:center;flex-shrink:0;border:1px solid var(--mn-border-strong);color:var(--mn-mint);background:var(--mn-surface-raised);border-radius:var(--mn-radius);padding:7px;font-size:11px}
+ .mn3 .mn4-location{margin:3px 0 16px}
+ .mn3 .mn4-location>span{max-width:57%}
+ .mn3 .mn4-med-svg{max-height:none}
+ .mn3 .mn4-atlas-top{flex-direction:column;align-items:stretch;gap:9px}
+ .mn3 .mn4-atlas-top>span:first-child{justify-content:flex-start}
+ .mn3 .mn4-phase-choices{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .mn3 .mn4-stage{padding:14px;min-height:0}
+ .mn3 .mn4-stage-footer>span{font-size:10px}
+ .mn3 .mn4-stage-footer button{padding:9px;white-space:nowrap}
+ .mn3 .mn4-scene-heading h2{font-size:24px}
+ .mn3 .mn4-teaching-copy p{font-size:16px}
+ .mn3 .mn4-chapter-heading p{font-size:12px}
+}
