@@ -43,3 +43,10 @@
 .mn3 .mn4-stage-footer .mn4-primary{background:var(--mn-mint);color:var(--mn-background);border:1px solid var(--mn-mint)}
 .mn3 .mn4-stage-footer .mn4-secondary{background:var(--mn-surface-raised);color:var(--mn-mint);border:1px solid var(--mn-border)}
 @media(max-width:760px){.mn3 .mn4-workspace{display:block}.mn3 .mn4-primary-column{padding:12px;max-width:none}.mn3 .mn4-chapters{display:none;padding:13px;border-bottom:1px solid var(--mn-border)}.mn3 .mn4-chapters.mn4-nav-open{display:block}.mn3 .mn4-chapter-heading{margin-bottom:14px}.mn3 .mn4-mobile-nav{display:flex}.mn3 .mn4-stage{padding:14px}.mn3 .mn4-chapter-footer{gap:5px}.mn3 .mn4-chapter-footer button{font-size:11px;padding:8px}.mn3 .mn4-stage-footer button{padding:9px 11px}}
+
+.mn3 .mn4-evidence-banner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;border:1px solid var(--mn-border);background:var(--mn-surface-raised);padding:9px 12px;border-radius:var(--mn-radius);margin:13px 0}
+.mn3 .mn4-evidence-banner>span{color:var(--mn-sand);font-size:11px;font-weight:600}
+.mn3 .mn4-evidence-banner>small{color:var(--mn-muted);font-size:10px}
+.mn3 .mn4-clinical-pearls{border-right:3px solid var(--mn-sand);padding:15px 17px;background:var(--mn-surface-raised);margin:17px 0}
+.mn3 .mn4-clinical-pearls>strong{color:var(--mn-sand);display:block;font-size:13px;margin-bottom:9px}
+.mn3 .mn4-clinical-pearls p{color:var(--mn-text);font-size:12px;line-height:1.9;margin:7px 0}
