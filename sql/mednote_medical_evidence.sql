@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS mednote_medical_references (
   publisher text NOT NULL,
   version text NOT NULL,
   url text NOT NULL CHECK (url ~ '^https://'),
+  rights_basis text NOT NULL CHECK (length(rights_basis) BETWEEN 5 AND 500),
   content_sha256 text NOT NULL CHECK (content_sha256 ~ '^[a-f0-9]{64}$'),
   curator_approved boolean NOT NULL DEFAULT FALSE,
   active boolean NOT NULL DEFAULT FALSE,
@@ -49,3 +50,18 @@ CREATE INDEX IF NOT EXISTS mednote_clinical_review_audit_module
  ON mednote_clinical_review_audit(module_digest,reviewed_at DESC);
 -- Audit rows are append-only by policy and DB privileges. Do NOT grant
 -- INSERT, UPDATE, or DELETE to web/AI runtime roles.
+
+CREATE TABLE IF NOT EXISTS mednote_reference_review_audit (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  reference_id uuid NOT NULL REFERENCES mednote_medical_references(id),
+  action text NOT NULL CHECK (action IN ('approved','deactivated')),
+  operator_identity text NOT NULL,
+  rights_basis_verified boolean NOT NULL,
+  source_version_verified boolean NOT NULL,
+  notes text NOT NULL CHECK (length(notes)>=20),
+  created_at timestamptz NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS mednote_reference_review_reference
+ ON mednote_reference_review_audit(reference_id,created_at DESC);
+-- Restrict both audit tables to SELECT for the AI service. A separate DB
+-- role for a verified curator writes audit approvals outside the web app.
