@@ -17,8 +17,8 @@ function Monitor({frame}:{frame:SimulationPhase}){
 }
 
 export function ClinicalFilmStage({film}:{film:ClinicalFilm}){
- const [selected,setSelected]=useState(0),[showPrompt,setShowPrompt]=useState(false),[copied,setCopied]=useState(false);
- useEffect(()=>{setSelected(0);setShowPrompt(false);setCopied(false);},[film]);
+ const [selected,setSelected]=useState(0),[showPrompt,setShowPrompt]=useState(false),[copied,setCopied]=useState(false),[copiedJson,setCopiedJson]=useState(false);
+ useEffect(()=>{setSelected(0);setShowPrompt(false);setCopied(false);setCopiedJson(false);},[film]);
  const phase=film.timeline[Math.min(selected,film.timeline.length-1)];
  async function copyPrompt(){
   try{await navigator.clipboard.writeText(film.video_generation_prompt);setCopied(true);}
@@ -38,7 +38,7 @@ export function ClinicalFilmStage({film}:{film:ClinicalFilm}){
   <div className="mn5-meaning"><h4>Clinical reasoning</h4><p>{phase.medical_explanation}</p></div>
   <div className="mn5-film-controls"><button disabled={selected===0} onClick={()=>setSelected(i=>i-1)}><ArrowRight size={17}/> السابق</button><span>{selected+1} / {film.timeline.length}</span><button disabled={selected===film.timeline.length-1} onClick={()=>setSelected(i=>i+1)}>المشهد التالي <ArrowLeft size={17}/></button></div>
   <details className="mn5-medical-caveats"><summary>قواعد الواقعية الطبية وتفاوت الأعراض</summary>{film.clinical_caveats.map((s,i)=><p key={'c'+i}>{s}</p>)}{film.not_universal.map((s,i)=><p key={'u'+i}>{s}</p>)}<p>المحتوى تعليمي فقط، ويستلزم مراجعة بشرية قبل نشره بوصفه محاكاة سريرية موثوقة.</p></details>
-  <div className="mn5-prompt"><div><strong>VIDEO GENERATION PROMPT</strong><p>نص إنتاج جاهز للاستخدام مع نموذج فيديو خارجي؛ لا يتضمن ملف فيديو أو تشغيلًا وهميًا.</p></div><button type="button" onClick={()=>{void copyPrompt();}}>{copied?<CheckCircle2 size={16}/>:<ClipboardCopy size={16}/>} {copied?'تم نسخ البرومبت':'نسخ برومبت الفيديو'}</button><button type="button" onClick={()=>setShowPrompt(v=>!v)}>{showPrompt?'إخفاء النص':'عرض نص الإنتاج'}</button>{showPrompt&&<textarea dir="auto" readOnly rows={10} aria-label="برومبت إنتاج الفيديو الطبي" value={film.video_generation_prompt} onFocus={e=>e.currentTarget.select()}/>}</div>
+  <div className="mn5-prompt"><div><strong>VIDEO GENERATION PROMPT</strong><p>نص إنتاج جاهز للاستخدام مع نموذج فيديو خارجي؛ لا يتضمن ملف فيديو أو تشغيلًا وهميًا.</p></div><button type="button" onClick={()=>{void copyPrompt();}}>{copied?<CheckCircle2 size={16}/>:<ClipboardCopy size={16}/>} {copied?'تم نسخ البرومبت':'نسخ برومبت الفيديو'}</button><button type="button" onClick={()=>{void navigator.clipboard.writeText(JSON.stringify(film,null,2)).then(()=>setCopiedJson(true)).catch(()=>setShowPrompt(true));}}><ClipboardCopy size={16}/>{copiedJson?'تم نسخ JSON':'نسخ السيناريو JSON'}</button><button type="button" onClick={()=>setShowPrompt(v=>!v)}>{showPrompt?'إخفاء النص':'عرض نص الإنتاج'}</button>{showPrompt&&<textarea dir="auto" readOnly rows={10} aria-label="برومبت إنتاج الفيديو الطبي" value={film.video_generation_prompt} onFocus={e=>e.currentTarget.select()}/>}</div>
   <p className="mn5-disclaimer">ليس فيديو مولّدًا، وليس أداة تشخيص أو تدبير علاجي. المراجعة الآلية لا تساوي اعتمادًا طبيًا بشريًا.</p>
  </section>;
 }
