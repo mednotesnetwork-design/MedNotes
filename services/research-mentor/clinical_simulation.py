@@ -164,10 +164,6 @@ def _clinical_script(provider,data):
     severe_evidence=re.compile(r"\b(severe|critical|shock|cyanosis|hypoxia|"
                                r"collapse|respiratory distress|hypotension|life.threatening)\b|"
                                r"شديد|حرج|صدمة|زرقة|نقص الأكسج|انخفاض الضغط|اختناق",re.I)
-    if timeline[3].get("status")!="not_applicable":
-        require(any(severe_evidence.search(row["text"]) for row in relevant),
-                "Critical clinical phase has no source support",
-                "SIMULATION_UNVERIFIED_CRITICAL",422)
     for index,phase in enumerate(timeline):
         require(isinstance(phase,dict) and type(phase.get("phase")) is int
                 and phase["phase"]==index and phase.get("phase_name")==PHASES[index]
@@ -207,6 +203,10 @@ def _clinical_script(provider,data):
                     and not any(key in vital for key in ("value","number","units","reading")),
                     "Unsafe or fabricated simulated vital sign","SIMULATION_INVALID",422)
             seen.add(vital["metric"])
+    if timeline[3].get("status")!="not_applicable":
+        require(any(severe_evidence.search(row["text"]) for row in relevant),
+                "Critical clinical phase has no source support",
+                "SIMULATION_UNVERIFIED_CRITICAL",422)
     for key in ("clinical_caveats","not_universal"):
         require(isinstance(draft.get(key),list) and len(draft[key])<=10
                 and all(_nonempty(text,450) for text in draft[key]),
