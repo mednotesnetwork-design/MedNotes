@@ -39,9 +39,9 @@ export function sceneList(lesson:TeachingChapter):SceneView[]{
  return scenes.length?scenes:[{kind:'foundation',title:lesson.foundation.title,body:lesson.foundation.body,source_ids:lesson.source_registry.map(x=>x.id),section:'الأساسيات',index:0}];
 }
 
-export function TeachingStage({lesson,sources,clinicalFilm,media=[],busy=false,onSimulate,onExit}:{lesson:TeachingChapter;sources:Source[];clinicalFilm?:ClinicalFilm;media?:SharedMedia[];busy?:boolean;onSimulate?:()=>void;onExit?:()=>void}){
+export function TeachingStage({lesson,sources,clinicalFilm,media=[],followups=[],busy=false,onSimulate,onAsk,onExit}:{lesson:TeachingChapter;sources:Source[];clinicalFilm?:ClinicalFilm;media?:SharedMedia[];followups?:{question:string;answer:string;source_ids:string[]}[];busy?:boolean;onSimulate?:()=>void;onAsk?:(question:string)=>void;onExit?:()=>void}){
  const all=useMemo(()=>sceneList(lesson),[lesson]);
- const [frame,setFrame]=useState(0),[showFull,setShowFull]=useState(false),[sourceOpen,setSourceOpen]=useState(false);
+ const [frame,setFrame]=useState(0),[showFull,setShowFull]=useState(false),[sourceOpen,setSourceOpen]=useState(false),[question,setQuestion]=useState('');
  useEffect(()=>{setFrame(0);setShowFull(false);setSourceOpen(false)},[lesson]);
  const item=all[Math.min(frame,all.length-1)];
  const sourceItems=sourceOpen?(item.source_ids.length?sources.filter(s=>item.source_ids.includes(s.id)):sources):[];
@@ -71,6 +71,15 @@ export function TeachingStage({lesson,sources,clinicalFilm,media=[],busy=false,o
   </>}
   {!!item.source_ids.length&&<button type="button" className="mn4-source-trigger" onClick={()=>setSourceOpen(v=>!v)}><FileSearch size={16}/>{sourceOpen?'إخفاء المرجع':'التحقق من المصدر'} <span>صفحات {pagesLabel(item.source_ids,sources)||'المحاضرة'}</span></button>}
   {sourceOpen&&<div className="mn4-source-drawer">{sourceItems.map(s=><details key={s.id}><summary>الشريحة الأصلية {s.page} — {s.title}</summary>{s.image&&<img src={s.image} alt={'الشريحة الأصلية '+s.page} loading="lazy"/>}<p>{s.text}</p>{s.warnings.map((x,i)=><small key={i}>{x}</small>)}</details>)}</div>}
+  <section className="mn6-followup" aria-label="اسألي عن هذا المفهوم">
+   <h3>اسألي عن أي نقطة في هذه المحاضرة</h3>
+   <p>المحاضرة ووسائطها المشتركة لا تُعاد صناعتها؛ الإجابات التفصيلية خاصة بك وترتبط بالصفحات الأصلية.</p>
+   {followups.map((turn,i)=><div className="mn6-turn" key={i}><strong>{turn.question}</strong><p>{turn.answer}</p><small>المصادر: صفحات {pagesLabel(turn.source_ids,sources)||'المحاضرة'}</small></div>)}
+   <form onSubmit={event=>{event.preventDefault();if(question.trim()&&!busy&&onAsk){onAsk(question.trim());setQuestion('')}}}>
+    <textarea value={question} maxLength={1200} rows={2} aria-label="سؤالك عن هذه المحاضرة" placeholder="ما فهمت هذه الخطوة، ممكن تشرحها؟" onChange={event=>setQuestion(event.target.value)}/>
+    <button type="submit" disabled={busy||!question.trim()||!onAsk}>اسألي MedNote</button>
+   </form>
+  </section>
   <div className="mn4-stage-footer"><button className="mn4-secondary" disabled={frame===0} onClick={()=>{setFrame(v=>v-1);setSourceOpen(false);setShowFull(false)}}><ArrowRight size={19}/> السابق</button><span>{Math.round((frame+1)/all.length*100)}% من هذا المفهوم</span>{frame===all.length-1?<button className="mn4-primary" onClick={()=>{setFrame(0);onExit?.()}}><RotateCcw size={17}/> مراجعة أخرى</button>:<button className="mn4-primary" onClick={()=>{setFrame(v=>v+1);setSourceOpen(false);setShowFull(false)}}>تابعي <ArrowLeft size={19}/></button>}</div>
  </div>;
 }
