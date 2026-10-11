@@ -71,11 +71,11 @@ export function Studio(){
  }).catch(()=>{if(mounted)setError('تعذر فتح الحفظ المحلي لهذا المتصفح.')}).finally(()=>{if(mounted)setLoaded(true)});
  return()=>{mounted=false;abort.current?.abort();};
  },[]);
- async function run(task:(signal:AbortSignal)=>Promise<void>){
+ async function run(task:(signal:AbortSignal)=>Promise<void>,preserveLecture=false){
   if(abort.current)return;const controller=new AbortController();abort.current=controller;setError('');
   try{await task(controller.signal);}catch(e){
    if(!(e instanceof DOMException&&e.name==='AbortError')){const message=e instanceof Error?e.message:'تعذرت المعالجة';setError(message);
-    if(current.current)await save({...current.current,stage:'failed',error:message}).catch(()=>{});}
+    if(current.current&&!preserveLecture)await save({...current.current,stage:'failed',error:message}).catch(()=>{});}
   }finally{abort.current=null;setBusy('');}
  }
  async function upload(file:File){
@@ -131,7 +131,7 @@ export function Studio(){
    const result=await studioRequest({operation:'simulation',clinical:lesson.clinical,sources},signal,'صياغة سيناريو سريري واقعي ومراجعته علميًا');
    const saved=result.simulation as ClinicalFilm;
    await save({...current.current!,simulations:{...current.current!.simulations,[index]:saved}});
-  });
+  },true);
  }
  async function go(index:number){
   const state=current.current;if(!state?.outline||index<0||index>=state.outline.chapters.length)return;
