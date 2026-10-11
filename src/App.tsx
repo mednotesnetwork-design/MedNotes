@@ -16,6 +16,7 @@ import { Contributors } from "@/pages/Contributors";
 import NotFound from "@/pages/not-found";
 import {Research} from './pages/Research';
 import {Lectures} from './pages/Lectures';
+import {Membership} from './pages/Membership';
 import {Anatomy} from './pages/Anatomy';
 import './study.css';
 import { LanguageProvider } from "@/hooks/use-language";
@@ -30,6 +31,7 @@ function Router() {
         <Route path="/research" component={Research} />
         <Route path="/anatomy" component={Anatomy} />
         <Route path="/lectures" component={Lectures} />
+        <Route path="/membership" component={Membership} />
         <Route path="/" component={Home} />
         <Route path="/universities" component={Universities} />
         <Route path="/modules" component={Modules} />
