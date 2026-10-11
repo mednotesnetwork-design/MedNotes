@@ -22,3 +22,30 @@
 .mn3 .mn6-pricing p,.mn3 .mn6-pricing small{font-size:11px;line-height:1.8;color:var(--mn-muted)}
 .mn3 .mn6-pricing>div{display:flex;justify-content:space-between;flex-wrap:wrap;gap:9px;border-bottom:1px solid var(--mn-border);padding:9px 0;font-size:12px;color:var(--mn-text)}
 .mn3 .mn6-pricing strong{white-space:nowrap;color:var(--mn-sand)}
+
+.mn3 .mn7-cinema{background:var(--mn-background);border:1px solid var(--mn-border);border-radius:10px;overflow:hidden;margin:12px 0 18px}
+.mn3 .mn7-top{display:flex;justify-content:space-between;flex-wrap:wrap;align-items:center;gap:10px;padding:14px 18px;background:var(--mn-surface-raised);border-bottom:1px solid var(--mn-border)}
+.mn3 .mn7-top span{display:inline-flex;gap:8px;align-items:center;font-size:11px;font-weight:700;letter-spacing:.7px;color:var(--mn-mint)}
+.mn3 .mn7-top small{color:var(--mn-sand);font-size:10px;letter-spacing:.6px}
+.mn3 .mn7-screen{position:relative;background:#10282b}
+.mn3 .mn7-screen .mn4-visual-direction{margin:0;border-radius:0;border-top:1px solid var(--mn-border);border-left:0;border-right:0;border-bottom:0}
+.mn3 .mn7-screen .mn4-atlas{border:0;border-radius:0;margin:0}
+.mn3 .mn7-screen .mn4-phase-choices{display:none}
+.mn3 .mn7-screen-bottom{display:flex;justify-content:space-between;gap:9px;padding:10px 17px;align-items:center;background:var(--mn-chrome);color:var(--mn-sand);font-size:11px}
+.mn3 .mn7-screen-bottom span:last-child{color:var(--mn-mint);font-size:10px;white-space:nowrap}
+.mn3 .mn7-controls{display:flex;flex-wrap:wrap;gap:8px;padding:13px 16px;align-items:center;border-bottom:1px solid var(--mn-border)}
+.mn3 .mn7-controls>button,.mn3 .mn7-speed button{border:1px solid var(--mn-border-strong);border-radius:6px;padding:9px 11px;font-size:12px;display:flex;align-items:center;gap:7px;background:var(--mn-surface-raised);color:var(--mn-text);cursor:pointer}
+.mn3 .mn7-controls>button:first-child{background:var(--mn-mint);color:var(--mn-background);border-color:var(--mn-mint);font-weight:700}
+.mn3 .mn7-speed{display:flex;gap:4px;margin-right:auto}
+.mn3 .mn7-speed button[aria-pressed=true]{color:var(--mn-mint);background:var(--mn-selection);border-color:var(--mn-mint)}
+.mn3 .mn7-progress{display:flex;gap:7px;padding:11px 16px 0}
+.mn3 .mn7-progress button{height:20px;flex:1;display:flex;align-items:center;border:0;background:none;padding:0;cursor:pointer}
+.mn3 .mn7-progress button span{height:4px;width:100%;background:var(--mn-border-strong);border-radius:4px}
+.mn3 .mn7-progress button[aria-pressed=true] span{background:var(--mn-mint);height:6px}
+.mn3 .mn7-narrative{padding:12px 17px 8px}
+.mn3 .mn7-narrative strong{font-size:15px;color:var(--mn-sand);line-height:1.65}
+.mn3 .mn7-narrative p{font-size:13px;color:var(--mn-text);line-height:1.85;margin:7px 0}
+.mn3 .mn7-narrative small{display:block;color:var(--mn-mint);font-size:11px;line-height:1.8}
+.mn3 .mn7-disclaimer{margin:0;color:var(--mn-muted);font-size:10px;padding:8px 16px 14px;line-height:1.8}
+.mn3 .mn6-subscription-link{display:inline-flex;align-items:center;gap:8px;color:var(--mn-mint);font-size:12px;text-decoration:none;margin-top:20px;border:1px solid var(--mn-border);padding:11px;border-radius:6px}
+@media (prefers-reduced-motion:reduce){.mn3 .mn7-progress button span{transition:none}}
