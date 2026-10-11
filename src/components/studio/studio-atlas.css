@@ -1,0 +1,73 @@
+/* Studio v3 follows the original MedNote Atlas design tokens.
+   This is a visual identity restoration, not a new palette or layout system. */
+.mn3{
+ --ink:var(--mn-text);--teal:var(--mn-mint);--muted:var(--mn-muted);
+ --line:var(--mn-border);--pale:var(--mn-selection);
+ background:var(--mn-background);color:var(--mn-text);font-family:var(--mn-font);
+}
+.mn3 :is(h1,h2,h3,h4){color:var(--mn-sand);font-weight:500;letter-spacing:normal}
+.mn3 :is(p,small,label){color:var(--mn-text)}
+.mn3 :is(.mn3-top,.mn3-chapter-nav,.mn3-media-rail,.mn3-library,.mn3-editorial,.mn3-full-tab,.mn3-unbuilt,.mn3-not-ready,.mn3-quiz,.mn3-media-card){background:var(--mn-surface);color:var(--mn-text);border-color:var(--mn-border);box-shadow:none;border-radius:var(--mn-radius)}
+.mn3 :is(.mn3-stage-list,.mn3-nav-title,.mn3-lesson-intro,.mn3-foundation,.mn3-lesson-scene,.mn3-nav-tabs,.mn3-source-list details){border-color:var(--mn-border)}
+.mn3 :is(.mn3-top-brand small,.mn3-overline,.mn3-nav-title span,.mn3-navigation-caption,.mn3-eyebrow,.mn3-tab-heading span,.mn3-section-kicker,.mn3-lesson-intro>span,.mn3-highyield>span,.mn3-panel-head span){color:var(--mn-mint)}
+.mn3 :is(.mn3-nav-title p,.mn3-nav-placeholder,.mn3-sidebar-foot,.mn3-stage-list,.mn3-breadcrumb,.mn3-lecture-head p,.mn3-welcome p,.mn3-welcome small,.mn3-lesson-intro p,.mn3-editorial p,.mn3-source-list p,.mn3-tab-heading p,.mn3-unbuilt p,.mn3-not-ready p,.mn3-pager span,.mn3-rail-disclosure p,.mn3-media-placeholder p){color:var(--mn-muted)}
+.mn3 .mn3-glyph{background:var(--mn-selection);border:1px solid var(--mn-border-strong);border-radius:var(--mn-radius);color:var(--mn-mint)}
+.mn3 .mn3-top-brand h1{color:var(--mn-sand)}
+.mn3 :is(.mn3-top-actions button,.mn3-pager button,.mn3-lecture-page button,.mn3-feedback button,.mn3-controls button,.mn3-source-toggle){background:var(--mn-surface-raised);color:var(--mn-mint);border:1px solid var(--mn-border-strong);border-radius:var(--mn-radius)}
+.mn3 .mn3-primary,.mn3-top-actions .mn3-primary{background:var(--mn-mint);border-color:var(--mn-mint);color:var(--mn-background);box-shadow:none;border-radius:var(--mn-radius)}
+.mn3 .mn3-primary :is(svg,span){color:inherit}
+.mn3 .mn3-welcome-emblem{background:var(--mn-surface-raised);border:1px solid var(--mn-border);border-radius:var(--mn-radius);color:var(--mn-mint)}
+.mn3 :is(.mn3-chapter-link.active,.mn3-inline-jump button,.mn3-section-kicker span,.mn3-quiz>button b,.mn3-nav-tabs button[aria-selected=true]){background:var(--mn-selection);color:var(--mn-mint);border-color:var(--mn-border-strong);border-radius:var(--mn-radius)}
+.mn3 .mn3-chapter-link{color:var(--mn-muted)}
+.mn3 :is(.mn3-chapter-link span,.mn3-chapter-link.active span,.mn3-chapter-link svg,.mn3-chapter-link.active svg,.mn3-lecture-page button:hover,.mn3-breadcrumb b,.mn3-source-foot,.mn3-media-open,.mn3-source-list summary,.mn3-feedback summary,.mn3-quiz>button b){color:var(--mn-mint)}
+.mn3 .mn3-chapter-link:hover:not(:disabled){background:var(--mn-selection)}
+.mn3 .mn3-sidebar-foot{background:var(--mn-surface-raised);border-radius:var(--mn-radius)}
+.mn3 .mn3-nav-tabs button{color:var(--mn-muted);background:transparent}
+.mn3 .mn3-nav-tabs button[aria-selected=true]{border-bottom:2px solid var(--mn-mint);color:var(--mn-mint)}
+.mn3 .mn3-editorial{border-color:var(--mn-border)}
+.mn3 .mn3-section-kicker span{width:29px;height:29px}
+.mn3 .mn3-highyield{background:var(--mn-surface-raised);border-right:3px solid var(--mn-sand);border-radius:var(--mn-radius)}
+.mn3 .mn3-highyield>span{color:var(--mn-sand)}
+.mn3 .mn3-uncertainty,.mn3 .mn3-reason,.mn3 .mn3-shot-list{background:var(--mn-surface-raised);border-color:var(--mn-rose);border-radius:var(--mn-radius)}
+.mn3 .mn3-uncertainty summary,.mn3 .mn3-reason strong{color:var(--mn-rose)}
+.mn3 .mn3-inline-jump button{border:1px solid var(--mn-border-strong)}
+.mn3 .mn3-quiz>button{background:var(--mn-surface-raised);border:1px solid var(--mn-border-strong);color:var(--mn-text);border-radius:var(--mn-radius)}
+.mn3 .mn3-quiz>button span{color:var(--mn-text)}
+.mn3 .mn3-quiz>button.correct{background:var(--mn-selection);border-color:var(--mn-mint)}
+.mn3 .mn3-quiz>button.incorrect{background:#382a2e;border-color:var(--mn-rose)}
+.mn3 .mn3-feedback{background:var(--mn-surface-raised);color:var(--mn-text);border:1px solid var(--mn-border);border-radius:var(--mn-radius)}
+.mn3 .mn3-feedback strong{color:var(--mn-mint)}
+.mn3 .mn3-media-card-title small,.mn3 .mn3-rail-title small{background:var(--mn-selection);color:var(--mn-mint);border-radius:var(--mn-radius)}
+.mn3 .mn3-media-open{background:var(--mn-surface-raised);color:var(--mn-mint)}
+.mn3 .mn3-rail-title,.mn3 .mn3-media-summary>span,.mn3 .mn3-media-summary strong{color:var(--mn-sand)}
+.mn3 .mn3-rail-disclosure{background:var(--mn-surface-raised);color:var(--mn-muted);border-radius:var(--mn-radius)}
+.mn3 .mn3-media-placeholder{background:var(--mn-surface-raised);color:var(--mn-muted);border-color:var(--mn-border)}
+.mn3 .mn3-progress{background:var(--mn-surface-raised);border-color:var(--mn-border)}
+.mn3 .mn3-progress b{color:var(--mn-mint)}
+.mn3 .mn3-progress small{color:var(--mn-muted)}
+.mn3 .mn3-progress button{background:var(--mn-surface);color:var(--mn-mint);border:1px solid var(--mn-border-strong)}
+.mn3 .mn3-progress-track{background:var(--mn-border)}
+.mn3 .mn3-progress-track span{background:var(--mn-mint)}
+.mn3 .mn3-error{background:#30292d;color:var(--mn-rose)}
+.mn3 .mn3-error button{background:var(--mn-surface);color:var(--mn-rose);border:1px solid var(--mn-rose)}
+.mn3 .mn3-library button{color:var(--mn-text);border-color:var(--mn-border)}
+.mn3 .mn3-library button small{color:var(--mn-muted)}
+.mn3 .mn3-source-list summary{color:var(--mn-mint)}
+.mn3 .mn3-source-list img{border-color:var(--mn-border)}
+.mn3 .mn3-source-list small{color:var(--mn-sand)}
+.mn3 .mn3-theatre-scene{background:var(--mn-background);border-block:1px solid var(--mn-border)}
+.mn3 .mn3-orbit-inner{border-color:var(--mn-mint);box-shadow:0 0 0 14px #8dd3b314;color:var(--mn-sand)}
+.mn3 .mn3-stage-text h3{color:var(--mn-sand)}
+.mn3 .mn3-stage-text p,.mn3 .mn3-orbit small{color:var(--mn-text)}
+.mn3 .mn3-stage-text>span{color:var(--mn-mint)}
+.mn3 .mn3-case-stage{background:var(--mn-background);border-block:1px solid var(--mn-border)}
+.mn3 .mn3-clinical-figure{opacity:.28}
+.mn3 .mn3-case-overlay{background:linear-gradient(transparent,var(--mn-background))}
+.mn3 .mn3-case-overlay h3{color:var(--mn-sand)}
+.mn3 .mn3-case-overlay span{color:var(--mn-mint)}
+.mn3 .mn3-reason{border-right:3px solid var(--mn-sand)}
+.mn3 .mn3-reason p,.mn3 .mn3-disclosure{color:var(--mn-muted)}
+.mn3 button:hover:not(:disabled){filter:none}
+.mn3 :is(.mn3-source-toggle,.mn3-top-actions button,.mn3-primary,.mn3-chapter-link,.mn3-inline-jump button):hover:not(:disabled){border-color:var(--mn-mint)}
+.mn3 .mn3-top-actions button:hover:not(:disabled){background:var(--mn-selection)}
+@media(prefers-reduced-motion:reduce){.mn3 .mn3-orbit-inner{animation:none}}
