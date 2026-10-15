@@ -1,0 +1,11 @@
+'use client';
+import { useState } from 'react';
+import { byId, nameOf, vessel } from '@atlas/lib/anatomy';
+import { ChevronDown, ChevronRight } from 'lucide-react';
+import TraceControls,{type TraceDirection} from './TraceControls';
+import { tracedIds } from '@atlas/lib/anatomy/study';
+export default function VascularTree({selectedId,onSelect,system,direction,onDirection}:{selectedId:string|null;onSelect:(id:string)=>void;system:'artery'|'vein';direction:TraceDirection;onDirection:(v:TraceDirection)=>void}){
+ const [collapsed,setCollapsed]=useState<string[]>([]);const traced=new Set(selectedId?tracedIds(selectedId,direction):[]);
+ function node(id:string,depth=0):React.ReactNode{const e=byId.get(id);if(!e||depth>10)return null;const v=vessel(e),children=v.branchIds,closed=collapsed.includes(id);return <li key={id}><div className={'tree-node '+(traced.has(id)?'traced ':'')+(selectedId===id?'selected':'')} style={{'--tree-color':system==='artery'?'#d68e80':'#85abc4'} as React.CSSProperties}>{children.length>0?<button aria-label={(closed?'Expand ':'Collapse ')+e.name} aria-expanded={!closed} className="tree-expander" onClick={()=>setCollapsed(x=>closed?x.filter(i=>i!==id):[...x,id])}>{closed?<ChevronRight size={16}/>:<ChevronDown size={16}/>}</button>:<span className="tree-leaf"/>}<button onClick={()=>onSelect(id)}>{nameOf(id)}</button></div>{!closed&&children.length>0&&<ul>{children.map(c=>node(c,depth+1))}</ul>}</li>;}
+ return <div className="vascular-workspace"><span className="eyebrow">{system==='artery'?'ARTERIAL SUPPLY':'VENOUS DRAINAGE'}</span><h2>{system==='artery'?'Follow the arterial tree':'Follow venous drainage'}</h2><p>{system==='artery'?'Select a branch to trace its source.':'Select a vein to trace drainage toward the heart. Variants are described in the anatomy panel.'}</p>{selectedId&&<TraceControls id={selectedId} direction={direction} onDirection={onDirection} onSelect={onSelect}/>}<div className="heart-context">{system==='artery'?'Left ventricle → aortic valve → aorta':'Superior vena cava → right atrium'}<small>Right upper-limb pathway · other great-vessel branches omitted</small></div><ul className="vascular-tree">{node(system==='artery'?'aorta':'superior-vena-cava')}</ul></div>;
+}

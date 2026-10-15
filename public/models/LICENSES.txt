@@ -1,0 +1,23 @@
+MedNote anatomical source asset notices
+
+BodyParts3D models (bundles without the z- prefix)
+Copyright: The Database Center for Life Science, Japan.
+Current archive license: Creative Commons Attribution 4.0 International.
+Historical source OBJ notices: Creative Commons Attribution-ShareAlike 2.1 Japan.
+Archive terms: https://dbarchive.biosciencedbc.jp/en/bodyparts3d/lic.html
+License: https://creativecommons.org/licenses/by/4.0/
+Historical license: https://creativecommons.org/licenses/by-sa/2.1/jp/
+Changes: source OBJ to glTF conversion, proper coordinate rotation, common scale/offset and material replacement. Source topology preserved. Provenance in docs/asset-provenance.json.
+
+Z-Anatomy models (z-*.glb) and source landmark annotations
+Z-Anatomy – The libre 3D atlas of anatomy.
+Gauthier Kervyn and contributors; original BodyParts3D by Kousaku Okubo / The Database Center for Life Science.
+Licensed under Creative Commons Attribution-ShareAlike 4.0 International.
+Source: https://github.com/Z-Anatomy/Models-of-human-anatomy
+License: https://creativecommons.org/licenses/by-sa/4.0/
+Derived from BodyParts3D, The Database Center for Life Science, CC BY-SA 2.1 Japan.
+These converted source models and geometric annotations remain CC BY-SA 4.0.
+Changes: shared coordinate registration, source base mesh extraction, omission of cosmetic solidify/subdivision modifiers, source Bezier control/radius tessellation, system materials, explicit canonical structure mapping. Original source and conversion metadata: /data/z-anatomy-provenance.json.
+No endorsement by the source creators is claimed. Source-mapped assets are not independently medically validated.
+
+NIH clinical specimens retained: see /data/nih-clinical-provenance.json for model-specific CC0/Public Domain attribution.

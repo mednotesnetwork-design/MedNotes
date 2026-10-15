@@ -1,0 +1,2779 @@
+{
+  "source": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+  "sourceFile": "Z-Anatomy/Startup.blend",
+  "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+  "license": "CC BY-SA 4.0",
+  "attribution": "Z-Anatomy \u2013 The libre 3D atlas of anatomy; Gauthier Kervyn and contributors. Derived from BodyParts3D, The Database Center for Life Science (CC BY-SA 2.1 Japan).",
+  "registration": {
+    "scale": 9.67766241,
+    "offset": [
+      -0.000798519013,
+      -11.2284281,
+      1.02194047
+    ],
+    "axes": "x,z,-y",
+    "status": "Numerically registered against BodyParts3D; spatial review pending"
+  },
+  "excluded": "No inner ear, kidney, definitions, or unrelated restricted-license components included.",
+  "changes": [
+    "Read source meshes and curve controls without executing scripts",
+    "Transform shared coordinates; tessellate Bezier curves using source bevel radii",
+    "Omit cosmetic solidify and subdivision modifiers on attachment patches",
+    "Use matching source bones for source attachment surfaces"
+  ],
+  "assets": [
+    {
+      "id": "z-supraspinatus-muscle-or",
+      "entityId": "supraspinatus",
+      "name": "Supraspinatus muscle.or",
+      "system": "attachment",
+      "region": "Shoulder",
+      "role": "attachment-patch",
+      "attachmentKind": "origin",
+      "boneId": "scapula",
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -1.2986724376678467,
+          2.107163190841675,
+          0.09481244534254074
+        ],
+        [
+          -0.6727745532989502,
+          2.304123640060425,
+          0.43256518244743347
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Supraspinatus muscle.or",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-supraspinatus-muscle-or"
+      ],
+      "url": "/models/z-upper-limb-attachment.glb",
+      "format": "glb",
+      "triangles": 598
+    },
+    {
+      "id": "z-supraspinatus-muscle-er",
+      "entityId": "supraspinatus",
+      "name": "Supraspinatus muscle.er",
+      "system": "attachment",
+      "region": "Shoulder",
+      "role": "attachment-patch",
+      "attachmentKind": "insertion",
+      "boneId": "humerus",
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -1.8726481199264526,
+          2.2018730640411377,
+          0.7553773522377014
+        ],
+        [
+          -1.7679154872894287,
+          2.3477041721343994,
+          0.913033664226532
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Supraspinatus muscle.er",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-supraspinatus-muscle-er"
+      ],
+      "url": "/models/z-upper-limb-attachment.glb",
+      "format": "glb",
+      "triangles": 89
+    },
+    {
+      "id": "z-infraspinatus-muscle-or",
+      "entityId": "infraspinatus",
+      "name": "Infraspinatus muscle.or",
+      "system": "attachment",
+      "region": "Shoulder",
+      "role": "attachment-patch",
+      "attachmentKind": "origin",
+      "boneId": "scapula",
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -1.3714735507965088,
+          1.2160301208496094,
+          -0.05794496089220047
+        ],
+        [
+          -0.6278706789016724,
+          2.2466230392456055,
+          0.4170697331428528
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Infraspinatus muscle.or",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-infraspinatus-muscle-or"
+      ],
+      "url": "/models/z-upper-limb-attachment.glb",
+      "format": "glb",
+      "triangles": 1027
+    },
+    {
+      "id": "z-infraspinatus-muscle-er",
+      "entityId": "infraspinatus",
+      "name": "Infraspinatus muscle.er",
+      "system": "attachment",
+      "region": "Shoulder",
+      "role": "attachment-patch",
+      "attachmentKind": "insertion",
+      "boneId": "humerus",
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -1.8831257820129395,
+          2.161512851715088,
+          0.6078901886940002
+        ],
+        [
+          -1.7842180728912354,
+          2.3040060997009277,
+          0.7833718657493591
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Infraspinatus muscle.er",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-infraspinatus-muscle-er"
+      ],
+      "url": "/models/z-upper-limb-attachment.glb",
+      "format": "glb",
+      "triangles": 79
+    },
+    {
+      "id": "z-subscapularis-muscle-or",
+      "entityId": "subscapularis",
+      "name": "Subscapularis muscle.or",
+      "system": "attachment",
+      "region": "Shoulder",
+      "role": "attachment-patch",
+      "attachmentKind": "origin",
+      "boneId": "scapula",
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -1.2580872774124146,
+          1.004492163658142,
+          -0.0048234122805297375
+        ],
+        [
+          -0.6717678904533386,
+          2.277413845062256,
+          0.5528352856636047
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Subscapularis muscle.or",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-subscapularis-muscle-or"
+      ],
+      "url": "/models/z-upper-limb-attachment.glb",
+      "format": "glb",
+      "triangles": 1319
+    },
+    {
+      "id": "z-subscapularis-muscle-er",
+      "entityId": "subscapularis",
+      "name": "Subscapularis muscle.er",
+      "system": "attachment",
+      "region": "Shoulder",
+      "role": "attachment-patch",
+      "attachmentKind": "insertion",
+      "boneId": "humerus",
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -1.6522709131240845,
+          2.073232412338257,
+          0.9509614109992981
+        ],
+        [
+          -1.545540690422058,
+          2.2391738891601562,
+          1.0045056343078613
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Subscapularis muscle.er",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-subscapularis-muscle-er"
+      ],
+      "url": "/models/z-upper-limb-attachment.glb",
+      "format": "glb",
+      "triangles": 28
+    },
+    {
+      "id": "z-teres-minor-muscle-or",
+      "entityId": "teres-minor",
+      "name": "Teres minor muscle.or",
+      "system": "attachment",
+      "region": "Shoulder",
+      "role": "attachment-patch",
+      "attachmentKind": "origin",
+      "boneId": "scapula",
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -1.3310924768447876,
+          1.3000710010528564,
+          0.09267803281545639
+        ],
+        [
+          -0.9774730801582336,
+          1.8302658796310425,
+          0.46757522225379944
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Teres minor muscle.or",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-teres-minor-muscle-or"
+      ],
+      "url": "/models/z-upper-limb-attachment.glb",
+      "format": "glb",
+      "triangles": 408
+    },
+    {
+      "id": "z-teres-minor-muscle-er",
+      "entityId": "teres-minor",
+      "name": "Teres minor muscle.er",
+      "system": "attachment",
+      "region": "Shoulder",
+      "role": "attachment-patch",
+      "attachmentKind": "insertion",
+      "boneId": "humerus",
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -1.8895665407180786,
+          1.9941974878311157,
+          0.6012143492698669
+        ],
+        [
+          -1.7811723947525024,
+          2.1709513664245605,
+          0.8265781998634338
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Teres minor muscle.er",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-teres-minor-muscle-er"
+      ],
+      "url": "/models/z-upper-limb-attachment.glb",
+      "format": "glb",
+      "triangles": 127
+    },
+    {
+      "id": "z-clavicular-part-of-deltoid-muscle-or",
+      "entityId": "deltoid-anterior-fibers",
+      "name": "Clavicular part of deltoid muscle.or",
+      "system": "attachment",
+      "region": "Shoulder",
+      "role": "attachment-patch",
+      "attachmentKind": "origin",
+      "boneId": "clavicle",
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -1.4331060647964478,
+          2.3968780040740967,
+          0.7061167359352112
+        ],
+        [
+          -0.894704282283783,
+          2.5203371047973633,
+          1.118965744972229
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Clavicular part of deltoid muscle.or",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-clavicular-part-of-deltoid-muscle-or"
+      ],
+      "url": "/models/z-upper-limb-attachment.glb",
+      "format": "glb",
+      "triangles": 125
+    },
+    {
+      "id": "z-acromial-part-of-deltoid-muscle-or",
+      "entityId": "deltoid-middle-fibers",
+      "name": "Acromial part of deltoid muscle.or",
+      "system": "attachment",
+      "region": "Shoulder",
+      "role": "attachment-patch",
+      "attachmentKind": "origin",
+      "boneId": "scapula",
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -1.6806014776229858,
+          2.3859808444976807,
+          0.42946305871009827
+        ],
+        [
+          -1.5432062149047852,
+          2.4647512435913086,
+          0.8017557263374329
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Acromial part of deltoid muscle.or",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-acromial-part-of-deltoid-muscle-or"
+      ],
+      "url": "/models/z-upper-limb-attachment.glb",
+      "format": "glb",
+      "triangles": 510
+    },
+    {
+      "id": "z-scapular-spinal-part-of-deltoid-muscle-or",
+      "entityId": "deltoid-posterior-fibers",
+      "name": "Scapular spinal part of deltoid muscle.or",
+      "system": "attachment",
+      "region": "Shoulder",
+      "role": "attachment-patch",
+      "attachmentKind": "origin",
+      "boneId": "scapula",
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -1.66706383228302,
+          2.0542795658111572,
+          0.058183636516332626
+        ],
+        [
+          -0.9310105443000793,
+          2.387340545654297,
+          0.45881935954093933
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Scapular spinal part of deltoid muscle.or",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-scapular-spinal-part-of-deltoid-muscle-or"
+      ],
+      "url": "/models/z-upper-limb-attachment.glb",
+      "format": "glb",
+      "triangles": 872
+    },
+    {
+      "id": "z-long-head-of-biceps-brachii-or",
+      "entityId": "biceps-brachii-long-head",
+      "name": "Long head of biceps brachii.or",
+      "system": "attachment",
+      "region": "Arm",
+      "role": "attachment-patch",
+      "attachmentKind": "origin",
+      "boneId": "scapula",
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -1.415160894393921,
+          2.258604049682617,
+          0.6202907562255859
+        ],
+        [
+          -1.3730230331420898,
+          2.2956366539001465,
+          0.7108064293861389
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Long head of biceps brachii.or",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-long-head-of-biceps-brachii-or"
+      ],
+      "url": "/models/z-upper-limb-attachment.glb",
+      "format": "glb",
+      "triangles": 80
+    },
+    {
+      "id": "z-long-head-of-triceps-brachii-or",
+      "entityId": "triceps-brachii-long-head",
+      "name": "Long head of triceps brachii.or",
+      "system": "attachment",
+      "region": "Arm",
+      "role": "attachment-patch",
+      "attachmentKind": "origin",
+      "boneId": "scapula",
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -1.5006074905395508,
+          1.89712655544281,
+          0.5665202140808105
+        ],
+        [
+          -1.4437452554702759,
+          1.9593615531921387,
+          0.6567683815956116
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Long head of triceps brachii.or",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-long-head-of-triceps-brachii-or"
+      ],
+      "url": "/models/z-upper-limb-attachment.glb",
+      "format": "glb",
+      "triangles": 105
+    },
+    {
+      "id": "z-lateral-head-of-triceps-brachii-or",
+      "entityId": "triceps-brachii-lateral-head",
+      "name": "Lateral head of triceps brachii.or",
+      "system": "attachment",
+      "region": "Arm",
+      "role": "attachment-patch",
+      "attachmentKind": "origin",
+      "boneId": "humerus",
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -2.038466691970825,
+          0.7400312423706055,
+          0.5803663730621338
+        ],
+        [
+          -1.744783639907837,
+          1.9281055927276611,
+          0.7035824656486511
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Lateral head of triceps brachii.or",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-lateral-head-of-triceps-brachii-or"
+      ],
+      "url": "/models/z-upper-limb-attachment.glb",
+      "format": "glb",
+      "triangles": 72
+    },
+    {
+      "id": "z-medial-head-of-triceps-brachii-or",
+      "entityId": "triceps-brachii-medial-head",
+      "name": "Medial head of triceps brachii.or",
+      "system": "attachment",
+      "region": "Arm",
+      "role": "attachment-patch",
+      "attachmentKind": "origin",
+      "boneId": "humerus",
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -2.2765848636627197,
+          -0.31017279624938965,
+          0.505835235118866
+        ],
+        [
+          -1.7349869012832642,
+          1.568684697151184,
+          0.7254154682159424
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Medial head of triceps brachii.or",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-medial-head-of-triceps-brachii-or"
+      ],
+      "url": "/models/z-upper-limb-attachment.glb",
+      "format": "glb",
+      "triangles": 97
+    },
+    {
+      "id": "z-brachialis-muscle-or",
+      "entityId": "brachialis",
+      "name": "Brachialis muscle.or",
+      "system": "attachment",
+      "region": "Arm",
+      "role": "attachment-patch",
+      "attachmentKind": "origin",
+      "boneId": "humerus",
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -2.228667974472046,
+          -0.32942309975624084,
+          0.6009419560432434
+        ],
+        [
+          -1.874510407447815,
+          1.2363702058792114,
+          0.8504772186279297
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Brachialis muscle.or",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-brachialis-muscle-or"
+      ],
+      "url": "/models/z-upper-limb-attachment.glb",
+      "format": "glb",
+      "triangles": 192
+    },
+    {
+      "id": "z-teres-major-muscle-or",
+      "entityId": "teres-major",
+      "name": "Teres major muscle.or",
+      "system": "attachment",
+      "region": "Shoulder",
+      "role": "attachment-patch",
+      "attachmentKind": "origin",
+      "boneId": "scapula",
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -1.120165467262268,
+          0.9251775145530701,
+          0.055310435593128204
+        ],
+        [
+          -0.9545711278915405,
+          1.2651903629302979,
+          0.18830831348896027
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Teres major muscle.or",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-teres-major-muscle-or"
+      ],
+      "url": "/models/z-upper-limb-attachment.glb",
+      "format": "glb",
+      "triangles": 353
+    },
+    {
+      "id": "z-coracobrachialis-muscle-or",
+      "entityId": "coracobrachialis",
+      "name": "Coracobrachialis muscle.or",
+      "system": "attachment",
+      "region": "Arm",
+      "role": "attachment-patch",
+      "attachmentKind": "origin",
+      "boneId": "scapula",
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -1.3735071420669556,
+          2.204434394836426,
+          0.9529111981391907
+        ],
+        [
+          -1.3042161464691162,
+          2.240906000137329,
+          1.0091065168380737
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Coracobrachialis muscle.or",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-coracobrachialis-muscle-or"
+      ],
+      "url": "/models/z-upper-limb-attachment.glb",
+      "format": "glb",
+      "triangles": 209
+    },
+    {
+      "id": "z-deltoid-muscle-er",
+      "entityId": "deltoid",
+      "name": "Deltoid muscle.er",
+      "system": "attachment",
+      "region": "Shoulder",
+      "role": "attachment-patch",
+      "attachmentKind": "insertion",
+      "boneId": "humerus",
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -2.0490970611572266,
+          1.0404984951019287,
+          0.6671128869056702
+        ],
+        [
+          -1.9490227699279785,
+          1.461307406425476,
+          0.8501327037811279
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Deltoid muscle.er",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-deltoid-muscle-er"
+      ],
+      "url": "/models/z-upper-limb-attachment.glb",
+      "format": "glb",
+      "triangles": 35
+    },
+    {
+      "id": "z-biceps-brachii-muscle-er",
+      "entityId": "biceps-brachii",
+      "name": "Biceps brachii muscle.er",
+      "system": "attachment",
+      "region": "Arm",
+      "role": "attachment-patch",
+      "attachmentKind": "insertion",
+      "boneId": "radius",
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -2.306689977645874,
+          -1.063297986984253,
+          0.7648746967315674
+        ],
+        [
+          -2.23307728767395,
+          -0.8319841623306274,
+          0.8915537595748901
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Biceps brachii muscle.er",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-biceps-brachii-muscle-er"
+      ],
+      "url": "/models/z-upper-limb-attachment.glb",
+      "format": "glb",
+      "triangles": 25
+    },
+    {
+      "id": "z-triceps-brachii-muscle-er",
+      "entityId": "triceps-brachii",
+      "name": "Triceps brachii muscle.er",
+      "system": "attachment",
+      "region": "Arm",
+      "role": "attachment-patch",
+      "attachmentKind": "insertion",
+      "boneId": "ulna",
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -2.180736541748047,
+          -0.6648424863815308,
+          0.44034478068351746
+        ],
+        [
+          -1.9676599502563477,
+          -0.4858641028404236,
+          0.5643652081489563
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Triceps brachii muscle.er",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-triceps-brachii-muscle-er"
+      ],
+      "url": "/models/z-upper-limb-attachment.glb",
+      "format": "glb",
+      "triangles": 54
+    },
+    {
+      "id": "z-brachialis-muscle-er",
+      "entityId": "brachialis",
+      "name": "Brachialis muscle.er",
+      "system": "attachment",
+      "region": "Arm",
+      "role": "attachment-patch",
+      "attachmentKind": "insertion",
+      "boneId": "ulna",
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -2.194420576095581,
+          -1.0328093767166138,
+          0.7045069336891174
+        ],
+        [
+          -2.1048130989074707,
+          -0.8662075400352478,
+          0.7340840697288513
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Brachialis muscle.er",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-brachialis-muscle-er"
+      ],
+      "url": "/models/z-upper-limb-attachment.glb",
+      "format": "glb",
+      "triangles": 67
+    },
+    {
+      "id": "z-pectoralis-major-muscle-er",
+      "entityId": "pectoralis-major",
+      "name": "Pectoralis major muscle.er",
+      "system": "attachment",
+      "region": "Shoulder girdle",
+      "role": "attachment-patch",
+      "attachmentKind": "insertion",
+      "boneId": "humerus",
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -1.9390884637832642,
+          1.3843700885772705,
+          0.8522924780845642
+        ],
+        [
+          -1.7080222368240356,
+          1.8244857788085938,
+          0.8742902874946594
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Pectoralis major muscle.er",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-pectoralis-major-muscle-er"
+      ],
+      "url": "/models/z-upper-limb-attachment.glb",
+      "format": "glb",
+      "triangles": 47
+    },
+    {
+      "id": "z-pectoralis-minor-muscle-or",
+      "entityId": "pectoralis-minor",
+      "name": "Pectoralis minor muscle.or",
+      "system": "attachment",
+      "region": "Shoulder girdle",
+      "role": "attachment-patch",
+      "attachmentKind": "insertion",
+      "boneId": "scapula",
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -1.2989356517791748,
+          2.2114336490631104,
+          0.8840158581733704
+        ],
+        [
+          -1.1982649564743042,
+          2.315023422241211,
+          1.031067967414856
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Pectoralis minor muscle.or",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-pectoralis-minor-muscle-or"
+      ],
+      "url": "/models/z-upper-limb-attachment.glb",
+      "format": "glb",
+      "triangles": 361
+    },
+    {
+      "id": "z-levator-scapulae-er",
+      "entityId": "levator-scapulae",
+      "name": "Levator scapulae.er",
+      "system": "attachment",
+      "region": "Shoulder girdle",
+      "role": "attachment-patch",
+      "attachmentKind": "insertion",
+      "boneId": "scapula",
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -0.8349002003669739,
+          2.1946377754211426,
+          0.10544422268867493
+        ],
+        [
+          -0.6253184080123901,
+          2.415771484375,
+          0.31155461072921753
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Levator scapulae.er",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-levator-scapulae-er"
+      ],
+      "url": "/models/z-upper-limb-attachment.glb",
+      "format": "glb",
+      "triangles": 897
+    },
+    {
+      "id": "z-rhomboid-major-muscle-er",
+      "entityId": "rhomboid-major",
+      "name": "Rhomboid major muscle.er",
+      "system": "attachment",
+      "region": "Shoulder girdle",
+      "role": "attachment-patch",
+      "attachmentKind": "insertion",
+      "boneId": "scapula",
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -0.8576794266700745,
+          0.9564076066017151,
+          -0.06977135688066483
+        ],
+        [
+          -0.5903909802436829,
+          1.9224193096160889,
+          0.05509912595152855
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Rhomboid major muscle.er",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-rhomboid-major-muscle-er"
+      ],
+      "url": "/models/z-upper-limb-attachment.glb",
+      "format": "glb",
+      "triangles": 1238
+    },
+    {
+      "id": "z-rhomboid-minor-muscle-er",
+      "entityId": "rhomboid-minor",
+      "name": "Rhomboid minor muscle.er",
+      "system": "attachment",
+      "region": "Shoulder girdle",
+      "role": "attachment-patch",
+      "attachmentKind": "insertion",
+      "boneId": "scapula",
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -0.6399269104003906,
+          1.9293382167816162,
+          0.029011975973844528
+        ],
+        [
+          -0.5873719453811646,
+          2.1949379444122314,
+          0.12380202859640121
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Rhomboid minor muscle.er",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-rhomboid-minor-muscle-er"
+      ],
+      "url": "/models/z-upper-limb-attachment.glb",
+      "format": "glb",
+      "triangles": 354
+    },
+    {
+      "id": "z-serratus-anterior-muscle-or",
+      "entityId": "serratus-anterior",
+      "name": "Serratus anterior muscle.or",
+      "system": "attachment",
+      "region": "Shoulder girdle",
+      "role": "attachment-patch",
+      "attachmentKind": "insertion",
+      "boneId": "scapula",
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -0.933001697063446,
+          0.9606053233146667,
+          -0.03636522591114044
+        ],
+        [
+          -0.612250566482544,
+          2.26304030418396,
+          0.21936340630054474
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Serratus anterior muscle.or",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-serratus-anterior-muscle-or"
+      ],
+      "url": "/models/z-upper-limb-attachment.glb",
+      "format": "glb",
+      "triangles": 306
+    },
+    {
+      "id": "z-subclavius-muscle-or",
+      "entityId": "subclavius",
+      "name": "Subclavius muscle.or",
+      "system": "attachment",
+      "region": "Shoulder girdle",
+      "role": "attachment-patch",
+      "attachmentKind": "insertion",
+      "boneId": "clavicle",
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -0.9724324941635132,
+          2.3132996559143066,
+          0.89119553565979
+        ],
+        [
+          -0.6460352540016174,
+          2.4414305686950684,
+          1.3047900199890137
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Subclavius muscle.or",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-subclavius-muscle-or"
+      ],
+      "url": "/models/z-upper-limb-attachment.glb",
+      "format": "glb",
+      "triangles": 47
+    },
+    {
+      "id": "z-pectoralis-major-muscle-or",
+      "entityId": "pectoralis-major-clavicular-head",
+      "name": "Pectoralis major muscle.or",
+      "system": "attachment",
+      "region": "Shoulder girdle",
+      "role": "attachment-patch",
+      "attachmentKind": "origin",
+      "boneId": "clavicle",
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -0.8915830254554749,
+          2.2740025520324707,
+          1.114060401916504
+        ],
+        [
+          -0.2571103572845459,
+          2.412870168685913,
+          1.506160020828247
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Pectoralis major muscle.or",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-pectoralis-major-muscle-or"
+      ],
+      "url": "/models/z-upper-limb-attachment.glb",
+      "format": "glb",
+      "triangles": 108
+    },
+    {
+      "id": "z-ascending-part-of-trapezius-muscle-or",
+      "entityId": "trapezius",
+      "name": "Ascending part of trapezius muscle.or",
+      "system": "attachment",
+      "region": "Shoulder girdle",
+      "role": "attachment-patch",
+      "attachmentKind": "insertion",
+      "boneId": "clavicle",
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -1.2752761840820312,
+          2.4615042209625244,
+          0.5535681843757629
+        ],
+        [
+          -0.793154776096344,
+          2.5492560863494873,
+          1.0374054908752441
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Ascending part of trapezius muscle.or",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-ascending-part-of-trapezius-muscle-or"
+      ],
+      "url": "/models/z-upper-limb-attachment.glb",
+      "format": "glb",
+      "triangles": 61
+    },
+    {
+      "id": "z-transverse-part-of-trapezius-muscle-or",
+      "entityId": "trapezius",
+      "name": "Transverse part of trapezius muscle.or",
+      "system": "attachment",
+      "region": "Shoulder girdle",
+      "role": "attachment-patch",
+      "attachmentKind": "insertion",
+      "boneId": "scapula",
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -1.6235160827636719,
+          2.3510634899139404,
+          0.3587350845336914
+        ],
+        [
+          -1.4797213077545166,
+          2.4832520484924316,
+          0.7026587128639221
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Transverse part of trapezius muscle.or",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-transverse-part-of-trapezius-muscle-or"
+      ],
+      "url": "/models/z-upper-limb-attachment.glb",
+      "format": "glb",
+      "triangles": 214
+    },
+    {
+      "id": "z-descending-part-of-trapezius-muscle-or",
+      "entityId": "trapezius",
+      "name": "Descending part of trapezius muscle.or",
+      "system": "attachment",
+      "region": "Shoulder girdle",
+      "role": "attachment-patch",
+      "attachmentKind": "insertion",
+      "boneId": "scapula",
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -1.3344545364379883,
+          2.070655584335327,
+          0.049818117171525955
+        ],
+        [
+          -0.6463283896446228,
+          2.3513920307159424,
+          0.3536103069782257
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Descending part of trapezius muscle.or",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-descending-part-of-trapezius-muscle-or"
+      ],
+      "url": "/models/z-upper-limb-attachment.glb",
+      "format": "glb",
+      "triangles": 247
+    },
+    {
+      "id": "z-clavicle-r",
+      "entityId": "clavicle",
+      "name": "Clavicle.r",
+      "system": "bone",
+      "region": "Shoulder girdle",
+      "role": "attachment-support",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -1.4943583011627197,
+          2.214930295944214,
+          0.5161687731742859
+        ],
+        [
+          -0.10932892560958862,
+          2.5643253326416016,
+          1.5107580423355103
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Clavicle.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-clavicle-r"
+      ],
+      "url": "/models/z-upper-limb-bone.glb",
+      "format": "glb",
+      "triangles": 1550
+    },
+    {
+      "id": "z-humerus-r",
+      "entityId": "humerus",
+      "name": "Humerus.r",
+      "system": "bone",
+      "region": "Arm",
+      "role": "attachment-support",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -2.4089181423187256,
+          -0.7085920572280884,
+          0.502964198589325
+        ],
+        [
+          -1.400251865386963,
+          2.364858627319336,
+          1.0097547769546509
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Humerus.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-humerus-r"
+      ],
+      "url": "/models/z-upper-limb-bone.glb",
+      "format": "glb",
+      "triangles": 4280
+    },
+    {
+      "id": "z-radius-r",
+      "entityId": "radius",
+      "name": "Radius.r",
+      "system": "bone",
+      "region": "Forearm",
+      "role": "attachment-support",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -2.794419765472412,
+          -2.9412167072296143,
+          0.6160518527030945
+        ],
+        [
+          -2.196436882019043,
+          -0.6475368738174438,
+          1.2806274890899658
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Radius.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-radius-r"
+      ],
+      "url": "/models/z-upper-limb-bone.glb",
+      "format": "glb",
+      "triangles": 784
+    },
+    {
+      "id": "z-scapula-r",
+      "entityId": "scapula",
+      "name": "Scapula.r",
+      "system": "bone",
+      "region": "Shoulder girdle",
+      "role": "attachment-support",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -1.6806023120880127,
+          0.9100186228752136,
+          -0.06977105885744095
+        ],
+        [
+          -0.5873727798461914,
+          2.4929463863372803,
+          1.0341798067092896
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Scapula.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-scapula-r"
+      ],
+      "url": "/models/z-upper-limb-bone.glb",
+      "format": "glb",
+      "triangles": 25326
+    },
+    {
+      "id": "z-ulna-r",
+      "entityId": "ulna",
+      "name": "Ulna.r",
+      "system": "bone",
+      "region": "Forearm",
+      "role": "attachment-support",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -2.474701166152954,
+          -2.948411226272583,
+          0.4375254809856415
+        ],
+        [
+          -1.9676594734191895,
+          -0.47635403275489807,
+          1.243089199066162
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Ulna.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-ulna-r"
+      ],
+      "url": "/models/z-upper-limb-bone.glb",
+      "format": "glb",
+      "triangles": 904
+    },
+    {
+      "id": "z-coracohumeral-ligament-r",
+      "entityId": "coracohumeral-ligament",
+      "name": "Coracohumeral ligament.r",
+      "system": "ligament",
+      "region": "Shoulder",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -1.7873324155807495,
+          2.2345845699310303,
+          0.8066871762275696
+        ],
+        [
+          -1.34004545211792,
+          2.408830165863037,
+          1.0032858848571777
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Coracohumeral ligament.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-coracohumeral-ligament-r"
+      ],
+      "url": "/models/z-upper-limb-ligament.glb",
+      "format": "glb",
+      "triangles": 16
+    },
+    {
+      "id": "z-superior-glenohumeral-ligament-r",
+      "entityId": "superior-glenohumeral-ligament",
+      "name": "Superior glenohumeral ligament.r",
+      "system": "ligament",
+      "region": "Shoulder",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -1.6407809257507324,
+          2.20053768157959,
+          0.6952744126319885
+        ],
+        [
+          -1.357738971710205,
+          2.361997127532959,
+          0.9639104008674622
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Superior glenohumeral ligament.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-superior-glenohumeral-ligament-r"
+      ],
+      "url": "/models/z-upper-limb-ligament.glb",
+      "format": "glb",
+      "triangles": 15
+    },
+    {
+      "id": "z-middle-glenohumeral-ligament-r",
+      "entityId": "middle-glenohumeral-ligament",
+      "name": "Middle glenohumeral ligament.r",
+      "system": "ligament",
+      "region": "Shoulder",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -1.603277564048767,
+          2.132228374481201,
+          0.7460718750953674
+        ],
+        [
+          -1.3272759914398193,
+          2.2923221588134766,
+          0.9760045409202576
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Middle glenohumeral ligament.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-middle-glenohumeral-ligament-r"
+      ],
+      "url": "/models/z-upper-limb-ligament.glb",
+      "format": "glb",
+      "triangles": 25
+    },
+    {
+      "id": "z-inferior-glenohumeral-ligament-r",
+      "entityId": "inferior-glenohumeral-ligament-complex",
+      "name": "Inferior glenohumeral ligament.r",
+      "system": "ligament",
+      "region": "Shoulder",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -1.580178141593933,
+          1.994769811630249,
+          0.7687100172042847
+        ],
+        [
+          -1.3450902700424194,
+          2.185540199279785,
+          0.9338592886924744
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Inferior glenohumeral ligament.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-inferior-glenohumeral-ligament-r"
+      ],
+      "url": "/models/z-upper-limb-ligament.glb",
+      "format": "glb",
+      "triangles": 29
+    },
+    {
+      "id": "z-glenoid-labrum-r",
+      "entityId": "glenoid-labrum",
+      "name": "Glenoid labrum.r",
+      "system": "ligament",
+      "region": "Shoulder",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -1.5370216369628906,
+          1.9324864149093628,
+          0.5465285181999207
+        ],
+        [
+          -1.3492580652236938,
+          2.2804946899414062,
+          0.7980777621269226
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Glenoid labrum.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-glenoid-labrum-r"
+      ],
+      "url": "/models/z-upper-limb-ligament.glb",
+      "format": "glb",
+      "triangles": 214
+    },
+    {
+      "id": "z-superior-transverse-scapular-ligament-r",
+      "entityId": "superior-transverse-scapular-ligament",
+      "name": "Superior transverse scapular ligament.r",
+      "system": "ligament",
+      "region": "Shoulder",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -1.0980300903320312,
+          2.2390966415405273,
+          0.49668577313423157
+        ],
+        [
+          -0.9992746114730835,
+          2.3091094493865967,
+          0.6500202417373657
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Superior transverse scapular ligament.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-superior-transverse-scapular-ligament-r"
+      ],
+      "url": "/models/z-upper-limb-ligament.glb",
+      "format": "glb",
+      "triangles": 2
+    },
+    {
+      "id": "z-latissimus-dorsi-muscle-r",
+      "entityId": "latissimus-dorsi",
+      "name": "Latissimus dorsi muscle.r",
+      "system": "muscle",
+      "region": "Shoulder girdle",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source base mesh; cosmetic solidify/subdivision modifiers omitted",
+      "bounds": [
+        [
+          -1.7875670194625854,
+          -2.213592529296875,
+          -0.13903331756591797
+        ],
+        [
+          0.020851437002420425,
+          1.7582978010177612,
+          0.8451536893844604
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Latissimus dorsi muscle.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-latissimus-dorsi-muscle-r"
+      ],
+      "url": "/models/z-upper-limb-muscle.glb",
+      "format": "glb",
+      "triangles": 21580
+    },
+    {
+      "id": "z-axillary-nerve-r",
+      "entityId": "axillary-nerve",
+      "name": "Axillary nerve.r",
+      "system": "nerve",
+      "region": "Shoulder",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -1.5839537382125854,
+          1.8392518758773804,
+          0.6578304171562195
+        ],
+        [
+          -1.0645288228988647,
+          2.3217923641204834,
+          0.9001521468162537
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Axillary nerve.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-axillary-nerve-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 576
+    },
+    {
+      "id": "z-radial-nerve-r",
+      "entityId": "radial-nerve",
+      "name": "Radial nerve.r",
+      "system": "nerve",
+      "region": "Arm",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -2.364518880844116,
+          -0.6644414067268372,
+          0.5593886375427246
+        ],
+        [
+          -1.1705851554870605,
+          2.124000072479248,
+          0.8670715093612671
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Radial nerve.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-radial-nerve-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 1152
+    },
+    {
+      "id": "z-median-nerve-r",
+      "entityId": "median-nerve",
+      "name": "Median nerve.r",
+      "system": "nerve",
+      "region": "Forearm",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -2.555453062057495,
+          -3.1389975547790527,
+          0.7607982158660889
+        ],
+        [
+          -1.0705599784851074,
+          2.224013328552246,
+          1.3584791421890259
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Median nerve.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-median-nerve-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 2592
+    },
+    {
+      "id": "z-ulnar-nerve-r",
+      "entityId": "ulnar-nerve",
+      "name": "Ulnar nerve.r",
+      "system": "nerve",
+      "region": "Forearm",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -2.2977447509765625,
+          -2.683387041091919,
+          0.5885311961174011
+        ],
+        [
+          -0.9707139730453491,
+          2.3181607723236084,
+          1.2096201181411743
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Ulnar nerve.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-ulnar-nerve-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 1584
+    },
+    {
+      "id": "z-musculocutaneous-nerve-r",
+      "entityId": "musculocutaneous-nerve",
+      "name": "Musculocutaneous nerve.r",
+      "system": "nerve",
+      "region": "Arm",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -2.1653032302856445,
+          -0.6636596322059631,
+          0.7463110685348511
+        ],
+        [
+          -1.690146565437317,
+          1.4579899311065674,
+          0.9489310383796692
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Musculocutaneous nerve.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-musculocutaneous-nerve-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 720
+    },
+    {
+      "id": "z-dorsal-scapular-nerve-r",
+      "entityId": "dorsal-scapular-nerve",
+      "name": "Dorsal scapular nerve.r",
+      "system": "nerve",
+      "region": "Shoulder girdle",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -0.5678370594978333,
+          1.393193244934082,
+          -0.026000741869211197
+        ],
+        [
+          -0.24695302546024323,
+          3.1243247985839844,
+          0.9168277382850647
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Dorsal scapular nerve.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-dorsal-scapular-nerve-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 1296
+    },
+    {
+      "id": "z-long-thoracic-nerve-r",
+      "entityId": "long-thoracic-nerve",
+      "name": "Long thoracic nerve.r",
+      "system": "nerve",
+      "region": "Shoulder girdle",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -1.3911439180374146,
+          0.3365810513496399,
+          0.4934645891189575
+        ],
+        [
+          -0.2232569009065628,
+          3.119246482849121,
+          1.074628233909607
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Long thoracic nerve.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-long-thoracic-nerve-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 2016
+    },
+    {
+      "id": "z-suprascapular-nerve-r",
+      "entityId": "suprascapular-nerve",
+      "name": "Suprascapular nerve.r",
+      "system": "nerve",
+      "region": "Shoulder",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -1.3872877359390259,
+          1.5093570947647095,
+          0.13685178756713867
+        ],
+        [
+          -0.5216048359870911,
+          2.838897943496704,
+          0.9009250998497009
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Suprascapular nerve.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-suprascapular-nerve-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 2448
+    },
+    {
+      "id": "z-subclavian-nerve-r",
+      "entityId": "nerve-to-subclavius",
+      "name": "Subclavian nerve.r",
+      "system": "nerve",
+      "region": "Shoulder girdle",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -0.6466871500015259,
+          2.2823967933654785,
+          0.8916938900947571
+        ],
+        [
+          -0.5207948684692383,
+          2.837632656097412,
+          1.2993488311767578
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Subclavian nerve.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-subclavian-nerve-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 432
+    },
+    {
+      "id": "z-lateral-pectoral-nerve-r",
+      "entityId": "lateral-pectoral-nerve",
+      "name": "Lateral pectoral nerve.r",
+      "system": "nerve",
+      "region": "Shoulder girdle",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -1.3480480909347534,
+          0.6438514590263367,
+          0.8746119141578674
+        ],
+        [
+          -0.34402868151664734,
+          2.322685956954956,
+          2.2271361351013184
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Lateral pectoral nerve.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-lateral-pectoral-nerve-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 3600
+    },
+    {
+      "id": "z-medial-pectoral-nerve-r",
+      "entityId": "medial-pectoral-nerve",
+      "name": "Medial pectoral nerve.r",
+      "system": "nerve",
+      "region": "Shoulder girdle",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -1.011069893836975,
+          1.7279555797576904,
+          0.9011281728744507
+        ],
+        [
+          -0.5706382989883423,
+          2.6292927265167236,
+          1.497896432876587
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Medial pectoral nerve.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-medial-pectoral-nerve-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 1008
+    },
+    {
+      "id": "z-superior-subscapular-nerve-r",
+      "entityId": "upper-subscapular-nerve",
+      "name": "Superior subscapular nerve.r",
+      "system": "nerve",
+      "region": "Shoulder",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -1.0841238498687744,
+          1.8568310737609863,
+          0.16747377812862396
+        ],
+        [
+          -0.7730116248130798,
+          2.2222697734832764,
+          0.7749309539794922
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Superior subscapular nerve.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-superior-subscapular-nerve-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 576
+    },
+    {
+      "id": "z-inferior-subscapular-nerve-r",
+      "entityId": "lower-subscapular-nerve",
+      "name": "Inferior subscapular nerve.r",
+      "system": "nerve",
+      "region": "Shoulder",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -1.1448801755905151,
+          1.2476636171340942,
+          0.14142143726348877
+        ],
+        [
+          -0.9118500351905823,
+          2.1641366481781006,
+          0.77696293592453
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Inferior subscapular nerve.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-inferior-subscapular-nerve-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 1008
+    },
+    {
+      "id": "z-thoracodorsal-nerve-r",
+      "entityId": "thoracodorsal-nerve",
+      "name": "Thoracodorsal nerve.r",
+      "system": "nerve",
+      "region": "Shoulder girdle",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -1.4509308338165283,
+          0.5635058879852295,
+          0.013652259483933449
+        ],
+        [
+          -0.8585936427116394,
+          2.1216537952423096,
+          0.778344988822937
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Thoracodorsal nerve.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-thoracodorsal-nerve-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 2304
+    },
+    {
+      "id": "z-medial-brachial-cutaneous-nerve-r",
+      "entityId": "medial-cutaneous-nerve-of-arm",
+      "name": "Medial brachial cutaneous nerve.r",
+      "system": "nerve",
+      "region": "Arm",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -1.6621713638305664,
+          0.35154369473457336,
+          0.5008788704872131
+        ],
+        [
+          -0.9707595705986023,
+          2.3182055950164795,
+          0.9869171977043152
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Medial brachial cutaneous nerve.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-medial-brachial-cutaneous-nerve-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 864
+    },
+    {
+      "id": "z-medial-antebrachial-cutaneous-nerve-r",
+      "entityId": "medial-cutaneous-nerve-of-forearm",
+      "name": "Medial antebrachial cutaneous nerve.r",
+      "system": "nerve",
+      "region": "Forearm",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -1.8367875814437866,
+          0.03620623052120209,
+          0.8257296085357666
+        ],
+        [
+          -1.2483092546463013,
+          2.0063581466674805,
+          0.9902389645576477
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Medial antebrachial cutaneous nerve.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-medial-antebrachial-cutaneous-nerve-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 864
+    },
+    {
+      "id": "z-lateral-antebrachial-cutaneous-nerve-r",
+      "entityId": "lateral-cutaneous-nerve-of-forearm",
+      "name": "Lateral antebrachial cutaneous nerve.r",
+      "system": "nerve",
+      "region": "Forearm",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -2.6668238639831543,
+          -2.227268934249878,
+          0.8542424440383911
+        ],
+        [
+          -2.1563806533813477,
+          -0.6592431664466858,
+          1.108122706413269
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Lateral antebrachial cutaneous nerve.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-lateral-antebrachial-cutaneous-nerve-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 864
+    },
+    {
+      "id": "z-superior-lateral-brachial-cutaneous-nerve-r",
+      "entityId": "superior-lateral-cutaneous-nerve-of-arm",
+      "name": "Superior lateral brachial cutaneous nerve.r",
+      "system": "nerve",
+      "region": "Arm",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -2.2245900630950928,
+          1.4342398643493652,
+          0.1442088484764099
+        ],
+        [
+          -1.5808849334716797,
+          1.9769564867019653,
+          0.6709758043289185
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Superior lateral brachial cutaneous nerve.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-superior-lateral-brachial-cutaneous-nerve-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 1008
+    },
+    {
+      "id": "z-deep-branch-of-radial-nerve-r",
+      "entityId": "deep-branch-radial-nerve",
+      "name": "Deep branch of radial nerve.r",
+      "system": "nerve",
+      "region": "Elbow",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -2.576022148132324,
+          -3.046346426010132,
+          0.7012826800346375
+        ],
+        [
+          -2.258598804473877,
+          -0.660359263420105,
+          1.1434496641159058
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Deep branch of radial nerve.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-deep-branch-of-radial-nerve-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 1008
+    },
+    {
+      "id": "z-superficial-branch-of-radial-nerve-r",
+      "entityId": "superficial-radial-nerve",
+      "name": "Superficial branch of radial nerve.r",
+      "system": "nerve",
+      "region": "Forearm",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -2.9229273796081543,
+          -3.2592990398406982,
+          0.8582266569137573
+        ],
+        [
+          -2.257512092590332,
+          -0.6608301997184753,
+          1.4630192518234253
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Superficial branch of radial nerve.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-superficial-branch-of-radial-nerve-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 2160
+    },
+    {
+      "id": "z-posterior-interosseous-nerve-of-forearm-r",
+      "entityId": "posterior-interosseous-nerve",
+      "name": "Posterior interosseous nerve of forearm.r",
+      "system": "nerve",
+      "region": "Forearm",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -2.4459447860717773,
+          -2.559011936187744,
+          0.7210785746574402
+        ],
+        [
+          -2.3074004650115967,
+          -0.9399935603141785,
+          1.0901938676834106
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Posterior interosseous nerve of forearm.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-posterior-interosseous-nerve-of-forearm-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 864
+    },
+    {
+      "id": "z-anterior-interosseous-nerve-of-forearm-r",
+      "entityId": "anterior-interosseous-nerve",
+      "name": "Anterior interosseous nerve of forearm.r",
+      "system": "nerve",
+      "region": "Forearm",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -2.45100474357605,
+          -2.672701597213745,
+          0.8098976612091064
+        ],
+        [
+          -2.07442307472229,
+          -0.6437976360321045,
+          1.1505194902420044
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Anterior interosseous nerve of forearm.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-anterior-interosseous-nerve-of-forearm-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 720
+    },
+    {
+      "id": "z-palmar-branch-of-median-nerve-r",
+      "entityId": "palmar-cutaneous-median-nerve",
+      "name": "Palmar branch of median nerve.r",
+      "system": "nerve",
+      "region": "Wrist",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -2.6850056648254395,
+          -3.099290132522583,
+          1.132936716079712
+        ],
+        [
+          -2.323974370956421,
+          -2.1452085971832275,
+          1.4646614789962769
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Palmar branch of median nerve.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-palmar-branch-of-median-nerve-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 576
+    },
+    {
+      "id": "z-common-palmar-digital-branches-of-median-nerve-r",
+      "entityId": "median-digital-nerves",
+      "name": "Common palmar digital branches of median nerve.r",
+      "system": "nerve",
+      "region": "Hand",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -2.9030606746673584,
+          -3.7081046104431152,
+          1.3490337133407593
+        ],
+        [
+          -2.5459766387939453,
+          -3.134235382080078,
+          1.4544254541397095
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Common palmar digital branches of median nerve.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-common-palmar-digital-branches-of-median-nerve-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 1152
+    },
+    {
+      "id": "z-proper-palmar-digital-branches-of-median-nerve-r",
+      "entityId": "median-digital-nerves",
+      "name": "Proper palmar digital branches of median nerve.r",
+      "system": "nerve",
+      "region": "Hand",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -3.183722734451294,
+          -4.436333656311035,
+          1.362208604812622
+        ],
+        [
+          -2.5352096557617188,
+          -3.2144341468811035,
+          1.9536093473434448
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Proper palmar digital branches of median nerve.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-proper-palmar-digital-branches-of-median-nerve-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 5472
+    },
+    {
+      "id": "z-superficial-branch-of-ulnar-nerve-r",
+      "entityId": "superficial-ulnar-nerve",
+      "name": "Superficial branch of ulnar nerve.r",
+      "system": "nerve",
+      "region": "Hand",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -2.417024612426758,
+          -3.0679852962493896,
+          1.200392246246338
+        ],
+        [
+          -2.2885468006134033,
+          -2.679582118988037,
+          1.3639752864837646
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Superficial branch of ulnar nerve.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-superficial-branch-of-ulnar-nerve-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 432
+    },
+    {
+      "id": "z-deep-branch-of-ulnar-nerve-r",
+      "entityId": "deep-ulnar-nerve",
+      "name": "Deep branch of ulnar nerve.r",
+      "system": "nerve",
+      "region": "Hand",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -2.7635018825531006,
+          -3.189025402069092,
+          1.2873969078063965
+        ],
+        [
+          -2.4003865718841553,
+          -3.0041940212249756,
+          1.350372314453125
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Deep branch of ulnar nerve.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-deep-branch-of-ulnar-nerve-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 720
+    },
+    {
+      "id": "z-dorsal-branch-of-ulnar-nerve-r",
+      "entityId": "dorsal-cutaneous-ulnar-nerve",
+      "name": "Dorsal branch of ulnar nerve.r",
+      "system": "nerve",
+      "region": "Wrist",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -2.394615650177002,
+          -3.6622636318206787,
+          1.143466830253601
+        ],
+        [
+          -2.228987693786621,
+          -2.6808054447174072,
+          1.3767166137695312
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Dorsal branch of ulnar nerve.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-dorsal-branch-of-ulnar-nerve-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 720
+    },
+    {
+      "id": "z-posterior-cord-of-brachial-plexus-r",
+      "entityId": "posterior-cord",
+      "name": "Posterior cord of brachial plexus.r",
+      "system": "nerve",
+      "region": "Shoulder girdle",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -1.1846592426300049,
+          2.110740900039673,
+          0.7574992775917053
+        ],
+        [
+          -0.9682549238204956,
+          2.3219387531280518,
+          0.7825525999069214
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Posterior cord of brachial plexus.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-posterior-cord-of-brachial-plexus-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 288
+    },
+    {
+      "id": "z-superior-trunk-of-brachial-plexus-r",
+      "entityId": "upper-trunk",
+      "name": "Superior trunk of brachial plexus.r",
+      "system": "nerve",
+      "region": "Shoulder girdle",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -0.8603744506835938,
+          2.489131450653076,
+          0.7425200343132019
+        ],
+        [
+          -0.5145233869552612,
+          2.8455326557159424,
+          0.9106143116950989
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Superior trunk of brachial plexus.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-superior-trunk-of-brachial-plexus-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 144
+    },
+    {
+      "id": "z-anterior-division-of-superior-trunk-of-brachial-plexus-r",
+      "entityId": "upper-anterior-division",
+      "name": "Anterior division of superior trunk of brachial plexus.r",
+      "system": "nerve",
+      "region": "Shoulder girdle",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -1.0738790035247803,
+          2.3075780868530273,
+          0.7425557971000671
+        ],
+        [
+          -0.8378658890724182,
+          2.507425308227539,
+          0.891363263130188
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Anterior division of superior trunk of brachial plexus.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-anterior-division-of-superior-trunk-of-brachial-plexus-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 144
+    },
+    {
+      "id": "z-posterior-division-of-superior-trunk-of-brachial-plexus-r",
+      "entityId": "upper-posterior-division",
+      "name": "Posterior division of superior trunk of brachial plexus.r",
+      "system": "nerve",
+      "region": "Shoulder girdle",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -0.9819570779800415,
+          2.3082709312438965,
+          0.747366726398468
+        ],
+        [
+          -0.8411204218864441,
+          2.503763198852539,
+          0.7768496870994568
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Posterior division of superior trunk of brachial plexus.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-posterior-division-of-superior-trunk-of-brachial-plexus-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 144
+    },
+    {
+      "id": "z-middle-trunk-of-brachial-plexus-r",
+      "entityId": "middle-trunk",
+      "name": "Middle trunk of brachial plexus.r",
+      "system": "nerve",
+      "region": "Shoulder girdle",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -0.8228544592857361,
+          2.4949803352355957,
+          0.7574808597564697
+        ],
+        [
+          -0.49925628304481506,
+          2.737577199935913,
+          0.8104503154754639
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Middle trunk of brachial plexus.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-middle-trunk-of-brachial-plexus-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 144
+    },
+    {
+      "id": "z-anterior-division-of-middle-trunk-of-brachial-plexus-r",
+      "entityId": "middle-anterior-division",
+      "name": "Anterior division of middle trunk of brachial plexus.r",
+      "system": "nerve",
+      "region": "Shoulder girdle",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -1.076653242111206,
+          2.3056046962738037,
+          0.7823531031608582
+        ],
+        [
+          -0.8062237501144409,
+          2.518771171569824,
+          0.8925855159759521
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Anterior division of middle trunk of brachial plexus.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-anterior-division-of-middle-trunk-of-brachial-plexus-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 144
+    },
+    {
+      "id": "z-posterior-division-of-middle-trunk-of-brachial-plexus-r",
+      "entityId": "middle-posterior-division",
+      "name": "Posterior division of middle trunk of brachial plexus.r",
+      "system": "nerve",
+      "region": "Shoulder girdle",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -0.9820193648338318,
+          2.3083386421203613,
+          0.7575034499168396
+        ],
+        [
+          -0.8056572079658508,
+          2.518367052078247,
+          0.8153477311134338
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Posterior division of middle trunk of brachial plexus.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-posterior-division-of-middle-trunk-of-brachial-plexus-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 144
+    },
+    {
+      "id": "z-inferior-trunk-of-brachial-plexus-r",
+      "entityId": "lower-trunk",
+      "name": "Inferior trunk of brachial plexus.r",
+      "system": "nerve",
+      "region": "Shoulder girdle",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -0.8162235617637634,
+          2.4699795246124268,
+          0.8497770428657532
+        ],
+        [
+          -0.5283094644546509,
+          2.680492639541626,
+          0.924820065498352
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Inferior trunk of brachial plexus.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-inferior-trunk-of-brachial-plexus-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 288
+    },
+    {
+      "id": "z-anterior-division-of-inferior-trunk-of-brachial-plexus-r",
+      "entityId": "lower-anterior-division",
+      "name": "Anterior division of inferior trunk of brachial plexus.r",
+      "system": "nerve",
+      "region": "Shoulder girdle",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -0.9840559363365173,
+          2.3041436672210693,
+          0.8496729135513306
+        ],
+        [
+          -0.7970364689826965,
+          2.491868495941162,
+          0.9331948161125183
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Anterior division of inferior trunk of brachial plexus.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-anterior-division-of-inferior-trunk-of-brachial-plexus-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 288
+    },
+    {
+      "id": "z-posterior-division-of-inferior-trunk-of-brachial-plexus-r",
+      "entityId": "lower-posterior-division",
+      "name": "Posterior division of inferior trunk of brachial plexus.r",
+      "system": "nerve",
+      "region": "Shoulder girdle",
+      "role": "anatomy",
+      "attachmentKind": null,
+      "boneId": null,
+      "conversion": "Source Bezier controls and bevel radii; 9 longitudinal samples/segment, 8 radial segments; linear radius interpolation",
+      "bounds": [
+        [
+          -1.0721464157104492,
+          2.3158435821533203,
+          0.8497652411460876
+        ],
+        [
+          -0.8006039261817932,
+          2.494434356689453,
+          0.8918982744216919
+        ]
+      ],
+      "sourceId": "z-anatomy",
+      "sourceObject": "Posterior division of inferior trunk of brachial plexus.r",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "z-posterior-division-of-inferior-trunk-of-brachial-plexus-r"
+      ],
+      "url": "/models/z-upper-limb-nerve.glb",
+      "format": "glb",
+      "triangles": 144
+    }
+  ],
+  "skipped": [
+    {
+      "name": "Lateral cord of brachial plexus.r",
+      "reason": "not in source"
+    },
+    {
+      "name": "Medial cord of brachial plexus.r",
+      "reason": "not in source"
+    },
+    {
+      "name": "Palmaris brevis muscle.r",
+      "reason": "not in source"
+    }
+  ]
+}

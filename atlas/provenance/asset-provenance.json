@@ -1,0 +1,4721 @@
+{
+  "sourceArchive": "bp3d-isa.zip",
+  "archiveSha256": "40665852c49f218326590e204db91064a1ecfc3c6f8cbd7bbbcaac62c7cd409e",
+  "downloadPage": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+  "currentLicensePage": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/lic.html",
+  "currentLicense": "CC BY 4.0 (updated 2025-02-27)",
+  "embeddedHistoricalLicense": "CC BY-SA 2.1 Japan",
+  "changes": [
+    "Coordinate rotation: x, z, -y",
+    "Scale millimetres to decimetre display units",
+    "Common superior offset 1100 mm",
+    "Repack OBJ as glTF 2.0; no invented meshes",
+    "Anatomical system materials; no new shape"
+  ],
+  "meshes": [
+    {
+      "id": "median-antebrachial-vein__BP5934",
+      "entityId": "median-antebrachial-vein",
+      "name": "Right median antebrachial vein",
+      "system": "vein",
+      "region": "Forearm",
+      "bounds": [
+        [
+          -2.6244800090789795,
+          -2.852830171585083,
+          0.7286530137062073
+        ],
+        [
+          -1.762839913368225,
+          -0.8634997606277466,
+          1.345329999923706
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP5934",
+      "sourceConceptId": "FMA22968",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ2286.obj",
+      "sourceSha256": "d7f83f57d6c7d22577bf5b5fa8c9f93dab356539dc36c509cff80395ceca75a5",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "median-antebrachial-vein__BP5934"
+      ],
+      "url": "/models/forearm-vein.glb",
+      "format": "glb",
+      "triangles": 5386
+    },
+    {
+      "id": "radial-venae-comitantes__BP5927",
+      "entityId": "radial-venae-comitantes",
+      "name": "Right radial vein",
+      "system": "vein",
+      "region": "Forearm",
+      "bounds": [
+        [
+          -2.669100046157837,
+          -2.8018798828125,
+          0.8550240397453308
+        ],
+        [
+          -2.13700008392334,
+          -0.7415002584457397,
+          1.2582099437713623
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP5927",
+      "sourceConceptId": "FMA22948",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ2296.obj",
+      "sourceSha256": "056273377aef9446e304ea3fd8d5587017b48ddc356b9a981af52da8cd199530",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "radial-venae-comitantes__BP5927"
+      ],
+      "url": "/models/forearm-vein.glb",
+      "format": "glb",
+      "triangles": 5282
+    },
+    {
+      "id": "ulnar-venae-comitantes__BP5920",
+      "entityId": "ulnar-venae-comitantes",
+      "name": "Right ulnar vein",
+      "system": "vein",
+      "region": "Forearm",
+      "bounds": [
+        [
+          -2.501610040664673,
+          -2.8575799465179443,
+          0.8386620283126831
+        ],
+        [
+          -2.1084399223327637,
+          -0.7663000226020813,
+          1.342250108718872
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP5920",
+      "sourceConceptId": "FMA22951",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ2312.obj",
+      "sourceSha256": "025b487bc69d73be64f065f36d60a86fac60ed1717fcc158e9eaab8c8cd8787b",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "ulnar-venae-comitantes__BP5920"
+      ],
+      "url": "/models/forearm-vein.glb",
+      "format": "glb",
+      "triangles": 6076
+    },
+    {
+      "id": "axillary-vein__BP5956",
+      "entityId": "axillary-vein",
+      "name": "Right axillary vein",
+      "system": "vein",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -1.5716700553894043,
+          1.3284997940063477,
+          0.9139420390129089
+        ],
+        [
+          -0.7491909861564636,
+          2.351400136947632,
+          1.1516900062561035
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP5956",
+      "sourceConceptId": "FMA13330",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ2269.obj",
+      "sourceSha256": "24438422321aa6665de6394aa39e79fdeabdf2bc56427a3419da4dc630546464",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "axillary-vein__BP5956"
+      ],
+      "url": "/models/shoulder-girdle-vein.glb",
+      "format": "glb",
+      "triangles": 2146
+    },
+    {
+      "id": "subclavian-vein__BP10356",
+      "entityId": "subclavian-vein",
+      "name": "Right subclavian vein",
+      "system": "vein",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -0.8682869672775269,
+          2.2772998809814453,
+          1.0849699974060059
+        ],
+        [
+          -0.22342300415039062,
+          2.515500545501709,
+          1.2179299592971802
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP10356",
+      "sourceConceptId": "FMA4755",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3587.obj",
+      "sourceSha256": "3ed476e466dbc681e284005f910b546a97ac24999236cae1ec7487149da7bb53",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "subclavian-vein__BP10356"
+      ],
+      "url": "/models/shoulder-girdle-vein.glb",
+      "format": "glb",
+      "triangles": 368
+    },
+    {
+      "id": "median-cubital-vein__BP5931",
+      "entityId": "median-cubital-vein",
+      "name": "Right median cubital vein",
+      "system": "vein",
+      "region": "Elbow",
+      "bounds": [
+        [
+          -2.339289903640747,
+          -0.7553002834320068,
+          0.6677989959716797
+        ],
+        [
+          -1.8350300788879395,
+          -0.3605004847049713,
+          1.0134700536727905
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP5931",
+      "sourceConceptId": "FMA22964",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ2287.obj",
+      "sourceSha256": "82a121207952ed3f38b387186dbccef17f76fd6f2e90b080dc045796430a30f4",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "median-cubital-vein__BP5931"
+      ],
+      "url": "/models/elbow-vein.glb",
+      "format": "glb",
+      "triangles": 2502
+    },
+    {
+      "id": "basilic-vein__BP5950",
+      "entityId": "basilic-vein",
+      "name": "Right basilic vein",
+      "system": "vein",
+      "region": "Arm",
+      "bounds": [
+        [
+          -2.3548500537872314,
+          -3.111690044403076,
+          0.6282849907875061
+        ],
+        [
+          -1.5100599527359009,
+          1.372399926185608,
+          1.1480799913406372
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP5950",
+      "sourceConceptId": "FMA22909",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ2270.obj",
+      "sourceSha256": "9340492869064c52e522a426c4c2bdb73f0ccfc8392dee56f01a8186f6187ba5",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "basilic-vein__BP5950"
+      ],
+      "url": "/models/arm-vein.glb",
+      "format": "glb",
+      "triangles": 18150
+    },
+    {
+      "id": "cephalic-vein__BP5943",
+      "entityId": "cephalic-vein",
+      "name": "Right cephalic vein",
+      "system": "vein",
+      "region": "Arm",
+      "bounds": [
+        [
+          -2.790409803390503,
+          -3.255349636077881,
+          0.7765540480613708
+        ],
+        [
+          -1.0683599710464478,
+          2.2681994438171387,
+          1.3173099756240845
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP5943",
+      "sourceConceptId": "FMA13325",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ2272.obj",
+      "sourceSha256": "b57bd07b9e940b76500243e88b2d0f32fac59fff6ddea84419b254c82a6256f8",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "cephalic-vein__BP5943"
+      ],
+      "url": "/models/arm-vein.glb",
+      "format": "glb",
+      "triangles": 22622
+    },
+    {
+      "id": "brachial-veins__BP5947",
+      "entityId": "brachial-veins",
+      "name": "Right medial brachial vein",
+      "system": "vein",
+      "region": "Arm",
+      "bounds": [
+        [
+          -2.1819400787353516,
+          -0.8159997463226318,
+          0.8270149827003479
+        ],
+        [
+          -1.500249981880188,
+          1.3497997522354126,
+          0.9724330306053162
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP5947",
+      "sourceConceptId": "FMA22935",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ2341.obj",
+      "sourceSha256": "0468a157795c7346d964d1884627464d5cfe9c4c8bcc84661aefdb2bc2d18259",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "brachial-veins__BP5947"
+      ],
+      "url": "/models/arm-vein.glb",
+      "format": "glb",
+      "triangles": 2570
+    },
+    {
+      "id": "radius__BP8464",
+      "entityId": "radius",
+      "name": "Right radius",
+      "system": "bone",
+      "region": "Forearm",
+      "bounds": [
+        [
+          -2.7953500747680664,
+          -2.9416496753692627,
+          0.6110259890556335
+        ],
+        [
+          -2.1983299255371094,
+          -0.6494995355606079,
+          1.2690799236297607
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP8464",
+      "sourceConceptId": "FMA23464",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3349.obj",
+      "sourceSha256": "0f824e639b13ea02959734a0d9bd8d7ca67d0b51f531a138d769e1d3b22e0c98",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "radius__BP8464"
+      ],
+      "url": "/models/forearm-bone.glb",
+      "format": "glb",
+      "triangles": 672
+    },
+    {
+      "id": "ulna__BP8233",
+      "entityId": "ulna",
+      "name": "Right ulna",
+      "system": "bone",
+      "region": "Forearm",
+      "bounds": [
+        [
+          -2.471790075302124,
+          -2.948270320892334,
+          0.4479919672012329
+        ],
+        [
+          -1.968809962272644,
+          -0.4755004942417145,
+          1.2349400520324707
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP8233",
+      "sourceConceptId": "FMA23467",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3391.obj",
+      "sourceSha256": "0aad73148e036c980ab24dfa675fcc1f109e5c60d82c12f3696420cf93cb4a98",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "ulna__BP8233"
+      ],
+      "url": "/models/forearm-bone.glb",
+      "format": "glb",
+      "triangles": 834
+    },
+    {
+      "id": "sternum__BP7865",
+      "entityId": "sternum",
+      "name": "Xiphoid process",
+      "system": "bone",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -0.10337799787521362,
+          0.6402001976966858,
+          1.9850900173187256
+        ],
+        [
+          0.10603900253772736,
+          0.8450000286102295,
+          2.1335299015045166
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP7865",
+      "sourceConceptId": "FMA7488",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3153.obj",
+      "sourceSha256": "371573a43e28506d674bf4999ee4c50c0497014aa8d69865f450a078d493a495",
+      "review": "source-mapped",
+      "side": "midline",
+      "meshIds": [
+        "sternum__BP7865"
+      ],
+      "url": "/models/shoulder-girdle-bone.glb",
+      "format": "glb",
+      "triangles": 922
+    },
+    {
+      "id": "sternum__BP8989",
+      "entityId": "sternum",
+      "name": "Body of sternum",
+      "system": "bone",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -0.23614901304244995,
+          0.7965002655982971,
+          1.6516599655151367
+        ],
+        [
+          0.23955601453781128,
+          1.8964000940322876,
+          2.138319969177246
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP8989",
+      "sourceConceptId": "FMA7487",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3178.obj",
+      "sourceSha256": "ec90f03f2ce1edebc8793a9e9973229b198d6367eb5eab1dff6e238110e94d9d",
+      "review": "source-mapped",
+      "side": "midline",
+      "meshIds": [
+        "sternum__BP8989"
+      ],
+      "url": "/models/shoulder-girdle-bone.glb",
+      "format": "glb",
+      "triangles": 4646
+    },
+    {
+      "id": "sternum__BP8562",
+      "entityId": "sternum",
+      "name": "Manubrium",
+      "system": "bone",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -0.27449700236320496,
+          1.802700161933899,
+          1.3080099821090698
+        ],
+        [
+          0.27449700236320496,
+          2.252500057220459,
+          1.7858799695968628
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP8562",
+      "sourceConceptId": "FMA7486",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3290.obj",
+      "sourceSha256": "e94f731d044131260947146ab79fa7c4712865e1aac36a1410003358b96e0692",
+      "review": "source-mapped",
+      "side": "midline",
+      "meshIds": [
+        "sternum__BP8562"
+      ],
+      "url": "/models/shoulder-girdle-bone.glb",
+      "format": "glb",
+      "triangles": 2546
+    },
+    {
+      "id": "ribs__BP8407",
+      "entityId": "ribs",
+      "name": "Right tenth rib",
+      "system": "bone",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -1.2364799976348877,
+          -0.7702001929283142,
+          0.11359299719333649
+        ],
+        [
+          -0.1687290072441101,
+          0.5897998213768005,
+          1.1768699884414673
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP8407",
+      "sourceConceptId": "FMA8445",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3330.obj",
+      "sourceSha256": "9e62a17a2ea9dc16797beec97bd0925c9692c2a4764391cbc1e289b0120e7aa4",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "ribs__BP8407"
+      ],
+      "url": "/models/shoulder-girdle-bone.glb",
+      "format": "glb",
+      "triangles": 6820
+    },
+    {
+      "id": "ribs__BP8951",
+      "entityId": "ribs",
+      "name": "Right eleventh rib",
+      "system": "bone",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -1.113529920578003,
+          -0.9191998243331909,
+          0.17961999773979187
+        ],
+        [
+          -0.17596299946308136,
+          0.21729980409145355,
+          0.9601830244064331
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP8951",
+      "sourceConceptId": "FMA8531",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3331.obj",
+      "sourceSha256": "1fdce776ea65919bf9aa418ec91c872b3eb835daca57dc69a7caa40bb02707d7",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "ribs__BP8951"
+      ],
+      "url": "/models/shoulder-girdle-bone.glb",
+      "format": "glb",
+      "triangles": 4866
+    },
+    {
+      "id": "ribs__BP9236",
+      "entityId": "ribs",
+      "name": "Right twelfth rib",
+      "system": "bone",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -0.8653320074081421,
+          -0.8865997195243835,
+          0.2799220085144043
+        ],
+        [
+          -0.1821250021457672,
+          -0.10829956084489822,
+          0.6609729528427124
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP9236",
+      "sourceConceptId": "FMA8533",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3332.obj",
+      "sourceSha256": "50dd4dac4ebb45fa245d700f7ceac89edd7503cb4caab154b644b0a808da2ecc",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "ribs__BP9236"
+      ],
+      "url": "/models/shoulder-girdle-bone.glb",
+      "format": "glb",
+      "triangles": 2818
+    },
+    {
+      "id": "ribs__BP8341",
+      "entityId": "ribs",
+      "name": "Right first rib",
+      "system": "bone",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -0.6976410150527954,
+          2.1006994247436523,
+          0.6441459655761719
+        ],
+        [
+          -0.1511089950799942,
+          2.7047998905181885,
+          1.3042399883270264
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP8341",
+      "sourceConceptId": "FMA7857",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3334.obj",
+      "sourceSha256": "3831c5c578d45fc491e7e72417cc436e04a1a3a1916138e51528ad0b0b212a54",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "ribs__BP8341"
+      ],
+      "url": "/models/shoulder-girdle-bone.glb",
+      "format": "glb",
+      "triangles": 3276
+    },
+    {
+      "id": "ribs__BP9279",
+      "entityId": "ribs",
+      "name": "Right second rib",
+      "system": "bone",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -0.9697210192680359,
+          1.735500454902649,
+          0.5065290331840515
+        ],
+        [
+          -0.16049499809741974,
+          2.5903003215789795,
+          1.6715699434280396
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP9279",
+      "sourceConceptId": "FMA7882",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3336.obj",
+      "sourceSha256": "57084a626a91aa88782f2e836c75450cd90bf19717dfd3f31602b4c674b70c0c",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "ribs__BP9279"
+      ],
+      "url": "/models/shoulder-girdle-bone.glb",
+      "format": "glb",
+      "triangles": 5594
+    },
+    {
+      "id": "ribs__BP8969",
+      "entityId": "ribs",
+      "name": "Right third rib",
+      "system": "bone",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -1.0894700288772583,
+          1.438199520111084,
+          0.368289977312088
+        ],
+        [
+          -0.14023999869823456,
+          2.3596997261047363,
+          1.792680025100708
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP8969",
+      "sourceConceptId": "FMA7909",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3338.obj",
+      "sourceSha256": "b239419743f7320b8b1d4f4d96ab41c1ff7fccdc921fa3a99c700a9d6dbd2a6c",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "ribs__BP8969"
+      ],
+      "url": "/models/shoulder-girdle-bone.glb",
+      "format": "glb",
+      "triangles": 7254
+    },
+    {
+      "id": "ribs__BP9092",
+      "entityId": "ribs",
+      "name": "Right fourth rib",
+      "system": "bone",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -1.1759300231933594,
+          1.1109997034072876,
+          0.2319449931383133
+        ],
+        [
+          -0.15011900663375854,
+          2.1534998416900635,
+          1.9219200611114502
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP9092",
+      "sourceConceptId": "FMA7957",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3340.obj",
+      "sourceSha256": "ffca17251de4f457c4952e9d913070eb7a6f767493925ac3d8c3c744941b5dbd",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "ribs__BP9092"
+      ],
+      "url": "/models/shoulder-girdle-bone.glb",
+      "format": "glb",
+      "triangles": 8832
+    },
+    {
+      "id": "ribs__BP8792",
+      "entityId": "ribs",
+      "name": "Right fifth rib",
+      "system": "bone",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -1.2707899808883667,
+          0.721600353717804,
+          0.1272760033607483
+        ],
+        [
+          -0.15314200520515442,
+          1.9131994247436523,
+          1.9765100479125977
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP8792",
+      "sourceConceptId": "FMA8066",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3342.obj",
+      "sourceSha256": "b2d1f3bc9478c51524628f4e79524290add55800ae85b06ff657f17f4c0c6f1f",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "ribs__BP8792"
+      ],
+      "url": "/models/shoulder-girdle-bone.glb",
+      "format": "glb",
+      "triangles": 9710
+    },
+    {
+      "id": "ribs__BP8881",
+      "entityId": "ribs",
+      "name": "Right sixth rib",
+      "system": "bone",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -1.3434900045394897,
+          0.37910035252571106,
+          0.03641410171985626
+        ],
+        [
+          -0.14837300777435303,
+          1.6569994688034058,
+          1.9350500106811523
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP8881",
+      "sourceConceptId": "FMA8175",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3344.obj",
+      "sourceSha256": "5e45ea5a527d3b7df56c508213020265ed1c8a0d9a99f31454b92059f4f1a95f",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "ribs__BP8881"
+      ],
+      "url": "/models/shoulder-girdle-bone.glb",
+      "format": "glb",
+      "triangles": 10246
+    },
+    {
+      "id": "ribs__BP8211",
+      "entityId": "ribs",
+      "name": "Right seventh rib",
+      "system": "bone",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -1.3708500862121582,
+          0.051899414509534836,
+          0.04486909881234169
+        ],
+        [
+          -0.1368969976902008,
+          1.4027001857757568,
+          1.802030086517334
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP8211",
+      "sourceConceptId": "FMA8229",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3346.obj",
+      "sourceSha256": "86cc62c1a0a754f2e01a30b5d7179c745f3c2404ef4031ae43568667c4041996",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "ribs__BP8211"
+      ],
+      "url": "/models/shoulder-girdle-bone.glb",
+      "format": "glb",
+      "triangles": 10032
+    },
+    {
+      "id": "ribs__BP9073",
+      "entityId": "ribs",
+      "name": "Right eighth rib",
+      "system": "bone",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -1.3296799659729004,
+          -0.25339967012405396,
+          0.04564489796757698
+        ],
+        [
+          -0.1367650032043457,
+          1.1132996082305908,
+          1.6267799139022827
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP9073",
+      "sourceConceptId": "FMA8283",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3347.obj",
+      "sourceSha256": "388e8f3dd5c308fe1454daed2aa3a2fced280d4ec60f97b547b476ca6b0da930",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "ribs__BP9073"
+      ],
+      "url": "/models/shoulder-girdle-bone.glb",
+      "format": "glb",
+      "triangles": 8336
+    },
+    {
+      "id": "ribs__BP9181",
+      "entityId": "ribs",
+      "name": "Right ninth rib",
+      "system": "bone",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -1.2909801006317139,
+          -0.49910032749176025,
+          0.07529070228338242
+        ],
+        [
+          -0.15864600241184235,
+          0.8536999225616455,
+          1.3563200235366821
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP9181",
+      "sourceConceptId": "FMA8364",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3348.obj",
+      "sourceSha256": "4ef4af4eb8a7ea76479b2d4a1b2973c7d950f6e3aa5593eca4377258222bdaf6",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "ribs__BP9181"
+      ],
+      "url": "/models/shoulder-girdle-bone.glb",
+      "format": "glb",
+      "triangles": 7576
+    },
+    {
+      "id": "clavicle__BP9271",
+      "entityId": "clavicle",
+      "name": "Right clavicle",
+      "system": "bone",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -1.4527698755264282,
+          2.086199998855591,
+          0.544124960899353
+        ],
+        [
+          -0.09661649912595749,
+          2.5543994903564453,
+          1.469480037689209
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP9271",
+      "sourceConceptId": "FMA13322",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3362.obj",
+      "sourceSha256": "9a111cac8351e79dd1315aea90108fe56f78e4bf0159473e6ad727ba91b60e6d",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "clavicle__BP9271"
+      ],
+      "url": "/models/shoulder-girdle-bone.glb",
+      "format": "glb",
+      "triangles": 1146
+    },
+    {
+      "id": "scapula__BP9101",
+      "entityId": "scapula",
+      "name": "Right scapula",
+      "system": "bone",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -1.6646400690078735,
+          0.839599609375,
+          -0.050827499479055405
+        ],
+        [
+          -0.5705379843711853,
+          2.4985997676849365,
+          1.0285600423812866
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP9101",
+      "sourceConceptId": "FMA13395",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3384.obj",
+      "sourceSha256": "1641b04e55f9d75bdd6f1f4f07ea596e5dea0a8cb6b348bff47281b8a0bc6e5d",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "scapula__BP9101"
+      ],
+      "url": "/models/shoulder-girdle-bone.glb",
+      "format": "glb",
+      "triangles": 26172
+    },
+    {
+      "id": "humerus__BP9206",
+      "entityId": "humerus",
+      "name": "Right humerus",
+      "system": "bone",
+      "region": "Arm",
+      "bounds": [
+        [
+          -2.40841007232666,
+          -0.7080004811286926,
+          0.5103909969329834
+        ],
+        [
+          -1.4009000062942505,
+          2.3654003143310547,
+          1.0021899938583374
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP9206",
+      "sourceConceptId": "FMA23130",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3368.obj",
+      "sourceSha256": "85f5445a11ecb029b027db0b9b34933982836d442b19ff531d1ca35a3bc3a237",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "humerus__BP9206"
+      ],
+      "url": "/models/arm-bone.glb",
+      "format": "glb",
+      "triangles": 3784
+    },
+    {
+      "id": "distal-phalanx-2__BP8939",
+      "entityId": "distal-phalanx-2",
+      "name": "Distal phalanx of right index finger",
+      "system": "bone",
+      "region": "Hand",
+      "bounds": [
+        [
+          -3.113680124282837,
+          -4.381539821624756,
+          1.696470022201538
+        ],
+        [
+          -3.014249801635742,
+          -4.243109703063965,
+          1.8672999143600464
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP8939",
+      "sourceConceptId": "FMA24460",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3193.obj",
+      "sourceSha256": "00d90373136e996def72c45bb2de42630f7533014b622d36bbf56c4121355e4b",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "distal-phalanx-2__BP8939"
+      ],
+      "url": "/models/hand-bone.glb",
+      "format": "glb",
+      "triangles": 210
+    },
+    {
+      "id": "distal-phalanx-5__BP8637",
+      "entityId": "distal-phalanx-5",
+      "name": "Distal phalanx of right little finger",
+      "system": "bone",
+      "region": "Hand",
+      "bounds": [
+        [
+          -2.2720301151275635,
+          -4.232509613037109,
+          1.6817100048065186
+        ],
+        [
+          -2.1889500617980957,
+          -4.107230186462402,
+          1.8187299966812134
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP8637",
+      "sourceConceptId": "FMA24463",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3194.obj",
+      "sourceSha256": "0edc751d14c5260c93fcde78f868ce49521eec95085a613417a96ddfd6a8965d",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "distal-phalanx-5__BP8637"
+      ],
+      "url": "/models/hand-bone.glb",
+      "format": "glb",
+      "triangles": 188
+    },
+    {
+      "id": "distal-phalanx-3__BP8483",
+      "entityId": "distal-phalanx-3",
+      "name": "Distal phalanx of right middle finger",
+      "system": "bone",
+      "region": "Hand",
+      "bounds": [
+        [
+          -2.809119939804077,
+          -4.469329833984375,
+          1.7820500135421753
+        ],
+        [
+          -2.7136499881744385,
+          -4.334690093994141,
+          1.954279899597168
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP8483",
+      "sourceConceptId": "FMA24461",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3196.obj",
+      "sourceSha256": "901e109df6e4a98b88dae7cdddda416c4cdd91e58093f1dc51d80ccc7c4e9b34",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "distal-phalanx-3__BP8483"
+      ],
+      "url": "/models/hand-bone.glb",
+      "format": "glb",
+      "triangles": 174
+    },
+    {
+      "id": "distal-phalanx-4__BP7961",
+      "entityId": "distal-phalanx-4",
+      "name": "Distal phalanx of right ring finger",
+      "system": "bone",
+      "region": "Hand",
+      "bounds": [
+        [
+          -2.536139965057373,
+          -4.351309776306152,
+          1.7871699333190918
+        ],
+        [
+          -2.452810049057007,
+          -4.259920120239258,
+          1.9438000917434692
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP7961",
+      "sourceConceptId": "FMA24462",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3197.obj",
+      "sourceSha256": "4fece0e70293449e99a1b27a0d40c9d4fedd548ff0471fa7c783e5d973cbfba3",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "distal-phalanx-4__BP7961"
+      ],
+      "url": "/models/hand-bone.glb",
+      "format": "glb",
+      "triangles": 112
+    },
+    {
+      "id": "distal-phalanx-1__BP8436",
+      "entityId": "distal-phalanx-1",
+      "name": "Distal phalanx of right thumb",
+      "system": "bone",
+      "region": "Hand",
+      "bounds": [
+        [
+          -3.239140033721924,
+          -3.808610200881958,
+          1.5713499784469604
+        ],
+        [
+          -3.1026298999786377,
+          -3.5783398151397705,
+          1.7335799932479858
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP8436",
+      "sourceConceptId": "FMA24459",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3198.obj",
+      "sourceSha256": "bfae0f42c3cffa63b93403bf6fe1b446dcf0f8fc3e1f8994544ac256830a7b3e",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "distal-phalanx-1__BP8436"
+      ],
+      "url": "/models/hand-bone.glb",
+      "format": "glb",
+      "triangles": 240
+    },
+    {
+      "id": "middle-phalanx-4__BP8451",
+      "entityId": "middle-phalanx-4",
+      "name": "Middle phalanx of right ring finger",
+      "system": "bone",
+      "region": "Hand",
+      "bounds": [
+        [
+          -2.5429298877716064,
+          -4.302960395812988,
+          1.5653599500656128
+        ],
+        [
+          -2.4276299476623535,
+          -4.063960075378418,
+          1.8056700229644775
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP8451",
+      "sourceConceptId": "FMA24457",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3292.obj",
+      "sourceSha256": "11af3f3453af291b20b0f4a9002c3e0906535acdc0004bd175876ddeecb9a094",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "middle-phalanx-4__BP8451"
+      ],
+      "url": "/models/hand-bone.glb",
+      "format": "glb",
+      "triangles": 316
+    },
+    {
+      "id": "middle-phalanx-2__BP8523",
+      "entityId": "middle-phalanx-2",
+      "name": "Middle phalanx of right index finger",
+      "system": "bone",
+      "region": "Hand",
+      "bounds": [
+        [
+          -3.0899999141693115,
+          -4.289940357208252,
+          1.5130900144577026
+        ],
+        [
+          -2.944000005722046,
+          -4.085239887237549,
+          1.720829963684082
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP8523",
+      "sourceConceptId": "FMA24455",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3303.obj",
+      "sourceSha256": "af5955d21314bf58ed06fc28f28467e56ce366b658372b37a5e21936ed9f2c8b",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "middle-phalanx-2__BP8523"
+      ],
+      "url": "/models/hand-bone.glb",
+      "format": "glb",
+      "triangles": 264
+    },
+    {
+      "id": "middle-phalanx-5__BP8491",
+      "entityId": "middle-phalanx-5",
+      "name": "Middle phalanx of right little finger",
+      "system": "bone",
+      "region": "Hand",
+      "bounds": [
+        [
+          -2.305449962615967,
+          -4.124300003051758,
+          1.5482299327850342
+        ],
+        [
+          -2.189349889755249,
+          -3.9284496307373047,
+          1.7143899202346802
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP8491",
+      "sourceConceptId": "FMA24458",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3304.obj",
+      "sourceSha256": "4cd1972167a669afb93f288cf994101bb32083b95efbfc1696b1781560586ca0",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "middle-phalanx-5__BP8491"
+      ],
+      "url": "/models/hand-bone.glb",
+      "format": "glb",
+      "triangles": 208
+    },
+    {
+      "id": "middle-phalanx-3__BP9150",
+      "entityId": "middle-phalanx-3",
+      "name": "Middle phalanx of right middle finger",
+      "system": "bone",
+      "region": "Hand",
+      "bounds": [
+        [
+          -2.8020200729370117,
+          -4.375430107116699,
+          1.577989935874939
+        ],
+        [
+          -2.6658802032470703,
+          -4.121930122375488,
+          1.809340000152588
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP9150",
+      "sourceConceptId": "FMA24456",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3306.obj",
+      "sourceSha256": "60a6197d8d7dedcb1039f82613c3c9e968109a9588b89a767ba6a44202f7c830",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "middle-phalanx-3__BP9150"
+      ],
+      "url": "/models/hand-bone.glb",
+      "format": "glb",
+      "triangles": 342
+    },
+    {
+      "id": "proximal-phalanx-2__BP8914",
+      "entityId": "proximal-phalanx-2",
+      "name": "Proximal phalanx of right index finger",
+      "system": "bone",
+      "region": "Hand",
+      "bounds": [
+        [
+          -3.0276501178741455,
+          -4.141810417175293,
+          1.3409299850463867
+        ],
+        [
+          -2.8095200061798096,
+          -3.7680296897888184,
+          1.567579984664917
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP8914",
+      "sourceConceptId": "FMA24451",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3322.obj",
+      "sourceSha256": "03cb38d378f7eb94046e45a6fcc214c48b1081b6a35c37a491bde356cb948764",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "proximal-phalanx-2__BP8914"
+      ],
+      "url": "/models/hand-bone.glb",
+      "format": "glb",
+      "triangles": 386
+    },
+    {
+      "id": "proximal-phalanx-5__BP8100",
+      "entityId": "proximal-phalanx-5",
+      "name": "Proximal phalanx of right little finger",
+      "system": "bone",
+      "region": "Hand",
+      "bounds": [
+        [
+          -2.3632898330688477,
+          -3.966439723968506,
+          1.3872098922729492
+        ],
+        [
+          -2.221519947052002,
+          -3.640439987182617,
+          1.595229983329773
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP8100",
+      "sourceConceptId": "FMA24454",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3323.obj",
+      "sourceSha256": "c3aaebcb7e86e3610f6d7a6896b33a60d7f544f924bdf0c4b639f8dae8c62e55",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "proximal-phalanx-5__BP8100"
+      ],
+      "url": "/models/hand-bone.glb",
+      "format": "glb",
+      "triangles": 314
+    },
+    {
+      "id": "proximal-phalanx-3__BP9025",
+      "entityId": "proximal-phalanx-3",
+      "name": "Proximal phalanx of right middle finger",
+      "system": "bone",
+      "region": "Hand",
+      "bounds": [
+        [
+          -2.7741401195526123,
+          -4.157189846038818,
+          1.3511199951171875
+        ],
+        [
+          -2.5920801162719727,
+          -3.751389741897583,
+          1.6420100927352905
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP9025",
+      "sourceConceptId": "FMA24452",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3325.obj",
+      "sourceSha256": "ea76430375e036eea61a11c3edcbece711496563e5f2d35e6bee7f1a1cb49569",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "proximal-phalanx-3__BP9025"
+      ],
+      "url": "/models/hand-bone.glb",
+      "format": "glb",
+      "triangles": 458
+    },
+    {
+      "id": "proximal-phalanx-4__BP8330",
+      "entityId": "proximal-phalanx-4",
+      "name": "Proximal phalanx of right ring finger",
+      "system": "bone",
+      "region": "Hand",
+      "bounds": [
+        [
+          -2.5382399559020996,
+          -4.100319862365723,
+          1.3565800189971924
+        ],
+        [
+          -2.405910015106201,
+          -3.7106800079345703,
+          1.6197700500488281
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP8330",
+      "sourceConceptId": "FMA24453",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3326.obj",
+      "sourceSha256": "5bb35c193650c9e390ad18d2e9ca834c19ab32d478a12446380d8cd50b9b0ca2",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "proximal-phalanx-4__BP8330"
+      ],
+      "url": "/models/hand-bone.glb",
+      "format": "glb",
+      "triangles": 376
+    },
+    {
+      "id": "proximal-phalanx-1__BP8017",
+      "entityId": "proximal-phalanx-1",
+      "name": "Proximal phalanx of right thumb",
+      "system": "bone",
+      "region": "Hand",
+      "bounds": [
+        [
+          -3.1880898475646973,
+          -3.643929958343506,
+          1.4265300035476685
+        ],
+        [
+          -2.986489772796631,
+          -3.3280200958251953,
+          1.6488299369812012
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP8017",
+      "sourceConceptId": "FMA24450",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3327.obj",
+      "sourceSha256": "84d3df498603c91935ae8edfc341c17ad3e46b910249a98e1e3edd4ccf309e71",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "proximal-phalanx-1__BP8017"
+      ],
+      "url": "/models/hand-bone.glb",
+      "format": "glb",
+      "triangles": 318
+    },
+    {
+      "id": "metacarpal-1__BP8547",
+      "entityId": "metacarpal-1",
+      "name": "Right first metacarpal bone",
+      "system": "bone",
+      "region": "Hand",
+      "bounds": [
+        [
+          -3.0957698822021484,
+          -3.3971898555755615,
+          1.2362699508666992
+        ],
+        [
+          -2.7223598957061768,
+          -3.027620315551758,
+          1.5386099815368652
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP8547",
+      "sourceConceptId": "FMA24464",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3350.obj",
+      "sourceSha256": "92ef27746cf2c5b317b88558b42e171128f980ea16414ca6e3647d19d1594382",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "metacarpal-1__BP8547"
+      ],
+      "url": "/models/hand-bone.glb",
+      "format": "glb",
+      "triangles": 566
+    },
+    {
+      "id": "metacarpal-2__BP8219",
+      "entityId": "metacarpal-2",
+      "name": "Right second metacarpal bone",
+      "system": "bone",
+      "region": "Hand",
+      "bounds": [
+        [
+          -2.926870107650757,
+          -3.8112902641296387,
+          1.1705700159072876
+        ],
+        [
+          -2.6182000637054443,
+          -3.131309747695923,
+          1.4278700351715088
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP8219",
+      "sourceConceptId": "FMA24466",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3352.obj",
+      "sourceSha256": "6d4e9874925f542124ced9e041f340de5b9c8f872d6ad7e2d483e9d0ab159980",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "metacarpal-2__BP8219"
+      ],
+      "url": "/models/hand-bone.glb",
+      "format": "glb",
+      "triangles": 748
+    },
+    {
+      "id": "metacarpal-3__BP8629",
+      "entityId": "metacarpal-3",
+      "name": "Right third metacarpal bone",
+      "system": "bone",
+      "region": "Hand",
+      "bounds": [
+        [
+          -2.7234601974487305,
+          -3.791599750518799,
+          1.1232600212097168
+        ],
+        [
+          -2.52485990524292,
+          -3.1473798751831055,
+          1.4273300170898438
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP8629",
+      "sourceConceptId": "FMA24468",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3354.obj",
+      "sourceSha256": "98a26b8f08e6cd3578706a65d83c2e1e432d7a206202294cd525aa287b75072b",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "metacarpal-3__BP8629"
+      ],
+      "url": "/models/hand-bone.glb",
+      "format": "glb",
+      "triangles": 702
+    },
+    {
+      "id": "metacarpal-4__BP8444",
+      "entityId": "metacarpal-4",
+      "name": "Right fourth metacarpal bone",
+      "system": "bone",
+      "region": "Hand",
+      "bounds": [
+        [
+          -2.537410020828247,
+          -3.7472100257873535,
+          1.1591700315475464
+        ],
+        [
+          -2.414259910583496,
+          -3.1484198570251465,
+          1.4197099208831787
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP8444",
+      "sourceConceptId": "FMA24470",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3356.obj",
+      "sourceSha256": "3bb88e2a98ce1cb0ab8af411397e5edc5777546c394b25d4d4ee585493ee3718",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "metacarpal-4__BP8444"
+      ],
+      "url": "/models/hand-bone.glb",
+      "format": "glb",
+      "triangles": 536
+    },
+    {
+      "id": "metacarpal-5__BP8925",
+      "entityId": "metacarpal-5",
+      "name": "Right fifth metacarpal bone",
+      "system": "bone",
+      "region": "Hand",
+      "bounds": [
+        [
+          -2.4531400203704834,
+          -3.679840087890625,
+          1.200760006904602
+        ],
+        [
+          -2.2520198822021484,
+          -3.130810022354126,
+          1.4452000856399536
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP8925",
+      "sourceConceptId": "FMA24472",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3358.obj",
+      "sourceSha256": "23d26888c325fd6a2de2688e948de72057afaf383db13875445fe597bd2a8bfd",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "metacarpal-5__BP8925"
+      ],
+      "url": "/models/hand-bone.glb",
+      "format": "glb",
+      "triangles": 506
+    },
+    {
+      "id": "capitate__BP8528",
+      "entityId": "capitate",
+      "name": "Right capitate",
+      "system": "bone",
+      "region": "Wrist",
+      "bounds": [
+        [
+          -2.644819974899292,
+          -3.1780900955200195,
+          1.1053400039672852
+        ],
+        [
+          -2.4840099811553955,
+          -2.9540300369262695,
+          1.2749199867248535
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP8528",
+      "sourceConceptId": "FMA24446",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3361.obj",
+      "sourceSha256": "982098ff86ccc18075bd4ecf422c4bca732f4d691d249c8f381bac574287c59b",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "capitate__BP8528"
+      ],
+      "url": "/models/wrist-bone.glb",
+      "format": "glb",
+      "triangles": 428
+    },
+    {
+      "id": "hamate__BP9266",
+      "entityId": "hamate",
+      "name": "Right hamate",
+      "system": "bone",
+      "region": "Wrist",
+      "bounds": [
+        [
+          -2.519279956817627,
+          -3.1870696544647217,
+          1.1140599250793457
+        ],
+        [
+          -2.366000175476074,
+          -2.9934699535369873,
+          1.3393100500106812
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP9266",
+      "sourceConceptId": "FMA24448",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3367.obj",
+      "sourceSha256": "9c27cf5b75dd149f2469403af7ad68263e1eff29307864ae10481ac647262eba",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "hamate__BP9266"
+      ],
+      "url": "/models/wrist-bone.glb",
+      "format": "glb",
+      "triangles": 522
+    },
+    {
+      "id": "lunate__BP9284",
+      "entityId": "lunate",
+      "name": "Right lunate",
+      "system": "bone",
+      "region": "Wrist",
+      "bounds": [
+        [
+          -2.527240037918091,
+          -3.0253899097442627,
+          1.106350064277649
+        ],
+        [
+          -2.3620200157165527,
+          -2.9017999172210693,
+          1.2692400217056274
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP9284",
+      "sourceConceptId": "FMA24437",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3374.obj",
+      "sourceSha256": "82da5ab98cc4f4e311eba2ee20b811bfa392a05d65d9f8c4ed0b9c7fd62880a1",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "lunate__BP9284"
+      ],
+      "url": "/models/wrist-bone.glb",
+      "format": "glb",
+      "triangles": 332
+    },
+    {
+      "id": "pisiform__BP8770",
+      "entityId": "pisiform",
+      "name": "Right pisiform",
+      "system": "bone",
+      "region": "Wrist",
+      "bounds": [
+        [
+          -2.4021999835968018,
+          -3.103250026702881,
+          1.2724900245666504
+        ],
+        [
+          -2.3195600509643555,
+          -2.9867498874664307,
+          1.376579999923706
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP8770",
+      "sourceConceptId": "FMA24441",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3382.obj",
+      "sourceSha256": "c5b1ce6020acc6e1feff8f44a3f0b5ec717e3cb3218701fbe86644975d981684",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "pisiform__BP8770"
+      ],
+      "url": "/models/wrist-bone.glb",
+      "format": "glb",
+      "triangles": 190
+    },
+    {
+      "id": "scaphoid__BP8724",
+      "entityId": "scaphoid",
+      "name": "Right scaphoid",
+      "system": "bone",
+      "region": "Wrist",
+      "bounds": [
+        [
+          -2.730599880218506,
+          -3.0364599227905273,
+          1.1157399415969849
+        ],
+        [
+          -2.4933199882507324,
+          -2.8821001052856445,
+          1.2666300535202026
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP8724",
+      "sourceConceptId": "FMA24435",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3383.obj",
+      "sourceSha256": "e96e60d6c03b0581caa5733e3ab65aca6dc3671a476d78f123dcd48ecbee0050",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "scaphoid__BP8724"
+      ],
+      "url": "/models/wrist-bone.glb",
+      "format": "glb",
+      "triangles": 322
+    },
+    {
+      "id": "trapezium__BP8566",
+      "entityId": "trapezium",
+      "name": "Right trapezium",
+      "system": "bone",
+      "region": "Wrist",
+      "bounds": [
+        [
+          -2.8172197341918945,
+          -3.1419501304626465,
+          1.177299976348877
+        ],
+        [
+          -2.6493799686431885,
+          -2.9426703453063965,
+          1.3457599878311157
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP8566",
+      "sourceConceptId": "FMA24443",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3388.obj",
+      "sourceSha256": "3b2475587f9ca59d43cb48c7275999f795f97f8b0ed6c68d5b37ff582382d81f",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "trapezium__BP8566"
+      ],
+      "url": "/models/wrist-bone.glb",
+      "format": "glb",
+      "triangles": 434
+    },
+    {
+      "id": "trapezoid__BP7880",
+      "entityId": "trapezoid",
+      "name": "Right trapezoid",
+      "system": "bone",
+      "region": "Wrist",
+      "bounds": [
+        [
+          -2.732609748840332,
+          -3.1713500022888184,
+          1.1352699995040894
+        ],
+        [
+          -2.6214001178741455,
+          -3.0468902587890625,
+          1.2838799953460693
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP7880",
+      "sourceConceptId": "FMA23725",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3389.obj",
+      "sourceSha256": "6823c47b6593463e65b85861e51026b06b76e0196dde1e8fae8b902a32f2a0e8",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "trapezoid__BP7880"
+      ],
+      "url": "/models/wrist-bone.glb",
+      "format": "glb",
+      "triangles": 360
+    },
+    {
+      "id": "triquetrum__BP8307",
+      "entityId": "triquetrum",
+      "name": "Right triquetral",
+      "system": "bone",
+      "region": "Wrist",
+      "bounds": [
+        [
+          -2.4276599884033203,
+          -3.1123101711273193,
+          1.1463099718093872
+        ],
+        [
+          -2.3215699195861816,
+          -2.974099636077881,
+          1.2973599433898926
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP8307",
+      "sourceConceptId": "FMA24439",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3390.obj",
+      "sourceSha256": "aa1d02ab7a2b7e2d87125a43fc92f497d9d35323de3d1a8b25185dbb7dd5cc09",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "triquetrum__BP8307"
+      ],
+      "url": "/models/wrist-bone.glb",
+      "format": "glb",
+      "triangles": 170
+    },
+    {
+      "id": "interosseous-membrane__BP4651",
+      "entityId": "interosseous-membrane",
+      "name": "Interosseous membrane of right forearm",
+      "system": "ligament",
+      "region": "Forearm",
+      "bounds": [
+        [
+          -2.5067598819732666,
+          -2.785280227661133,
+          0.7011710405349731
+        ],
+        [
+          -2.289450168609619,
+          -1.2221002578735352,
+          1.182360053062439
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4651",
+      "sourceConceptId": "FMA23707",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1476.obj",
+      "sourceSha256": "e70c96c4534da21f082cc494a7804f42db96195bed75641334348845cb1ddb97",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "interosseous-membrane__BP4651"
+      ],
+      "url": "/models/forearm-ligament.glb",
+      "format": "glb",
+      "triangles": 1588
+    },
+    {
+      "id": "flexor-retinaculum__BP6527",
+      "entityId": "flexor-retinaculum",
+      "name": "Flexor retinaculum of right wrist",
+      "system": "ligament",
+      "region": "Wrist",
+      "bounds": [
+        [
+          -2.7091901302337646,
+          -3.205209970474243,
+          1.268649935722351
+        ],
+        [
+          -2.3403100967407227,
+          -2.935689687728882,
+          1.4080599546432495
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP6527",
+      "sourceConceptId": "FMA40120",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1471.obj",
+      "sourceSha256": "71b49d4cdeb7da162dc51ac6afd5fcf713daa321c45de0b3f37d2825b4e4ffd0",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "flexor-retinaculum__BP6527"
+      ],
+      "url": "/models/wrist-ligament.glb",
+      "format": "glb",
+      "triangles": 1924
+    },
+    {
+      "id": "anterior-interosseous-artery__BP6298",
+      "entityId": "anterior-interosseous-artery",
+      "name": "Right anterior interosseous artery",
+      "system": "artery",
+      "region": "Forearm",
+      "bounds": [
+        [
+          -2.4415199756622314,
+          -2.4937403202056885,
+          0.7415080070495605
+        ],
+        [
+          -2.2034800052642822,
+          -1.0599597692489624,
+          1.0864299535751343
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP6298",
+      "sourceConceptId": "FMA22812",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ2266.obj",
+      "sourceSha256": "a8b244ec1ae503c6cd71562a8b80427a49459c111dfbd5e4837d1279c7fe07bd",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "anterior-interosseous-artery__BP6298"
+      ],
+      "url": "/models/forearm-artery.glb",
+      "format": "glb",
+      "triangles": 1992
+    },
+    {
+      "id": "common-interosseous-artery__BP6311",
+      "entityId": "common-interosseous-artery",
+      "name": "Right common interosseous artery",
+      "system": "artery",
+      "region": "Forearm",
+      "bounds": [
+        [
+          -2.227400064468384,
+          -1.0839300155639648,
+          0.7111620306968689
+        ],
+        [
+          -2.117069959640503,
+          -1.0031096935272217,
+          0.8013259768486023
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP6311",
+      "sourceConceptId": "FMA22807",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ2275.obj",
+      "sourceSha256": "96afb03f4aa0d1a62ccb95c8b1a7094da8104f9a9cb193e02ea2706707f473ce",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "common-interosseous-artery__BP6311"
+      ],
+      "url": "/models/forearm-artery.glb",
+      "format": "glb",
+      "triangles": 430
+    },
+    {
+      "id": "radial-artery__BP6335",
+      "entityId": "radial-artery",
+      "name": "Right radial artery",
+      "system": "artery",
+      "region": "Forearm",
+      "bounds": [
+        [
+          -2.7951300144195557,
+          -3.08817982673645,
+          0.8315149545669556
+        ],
+        [
+          -2.1361098289489746,
+          -0.7555004954338074,
+          1.2712299823760986
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP6335",
+      "sourceConceptId": "FMA22733",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ2294.obj",
+      "sourceSha256": "cca326b54b9f4e6ed4c4a8ccf258959a3a3c54aff996b894eacca20af05217d2",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "radial-artery__BP6335"
+      ],
+      "url": "/models/forearm-artery.glb",
+      "format": "glb",
+      "triangles": 7472
+    },
+    {
+      "id": "ulnar-artery__BP6315",
+      "entityId": "ulnar-artery",
+      "name": "Right ulnar artery",
+      "system": "artery",
+      "region": "Forearm",
+      "bounds": [
+        [
+          -2.4372599124908447,
+          -3.0532097816467285,
+          0.7698560357093811
+        ],
+        [
+          -2.110489845275879,
+          -0.7555004954338074,
+          1.3107399940490723
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP6315",
+      "sourceConceptId": "FMA22797",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ2310.obj",
+      "sourceSha256": "6bef22a74e2e6ae2d3033c4982fdb75abbadc9b255e76770211d61b3dd4796c1",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "ulnar-artery__BP6315"
+      ],
+      "url": "/models/forearm-artery.glb",
+      "format": "glb",
+      "triangles": 6876
+    },
+    {
+      "id": "lateral-thoracic-artery__BP6288",
+      "entityId": "lateral-thoracic-artery",
+      "name": "Right lateral thoracic artery",
+      "system": "artery",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -1.288640022277832,
+          0.09170044213533401,
+          0.9380529522895813
+        ],
+        [
+          -1.0690200328826904,
+          2.221999406814575,
+          1.649109959602356
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP6288",
+      "sourceConceptId": "FMA22675",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1938.obj",
+      "sourceSha256": "b305b1ff4399ccf627c229ade4894737409e7f3c9254753a4276b510b3b74279",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "lateral-thoracic-artery__BP6288"
+      ],
+      "url": "/models/shoulder-girdle-artery.glb",
+      "format": "glb",
+      "triangles": 2350
+    },
+    {
+      "id": "axillary-artery__BP6023",
+      "entityId": "axillary-artery",
+      "name": "Right axillary artery",
+      "system": "artery",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -1.5144000053405762,
+          1.5812000036239624,
+          0.8005619645118713
+        ],
+        [
+          -0.7694149613380432,
+          2.398399591445923,
+          1.0642499923706055
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP6023",
+      "sourceConceptId": "FMA22655",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ2268.obj",
+      "sourceSha256": "192c0b2607e669dc89a6eadd2c11f2fff904f010e4dca81822209865df7e5752",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "axillary-artery__BP6023"
+      ],
+      "url": "/models/shoulder-girdle-artery.glb",
+      "format": "glb",
+      "triangles": 1826
+    },
+    {
+      "id": "dorsal-scapular-artery__BP6211",
+      "entityId": "dorsal-scapular-artery",
+      "name": "Right dorsal scapular artery",
+      "system": "artery",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -1.0666000843048096,
+          0.8316003680229187,
+          -0.032104600220918655
+        ],
+        [
+          -0.5545200109481812,
+          2.613199472427368,
+          0.9790329933166504
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP6211",
+      "sourceConceptId": "FMA4057",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ2284.obj",
+      "sourceSha256": "1790c89e2535c2831726f71c88ab9f918e113cf20fef742b56d928c108b337aa",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "dorsal-scapular-artery__BP6211"
+      ],
+      "url": "/models/shoulder-girdle-artery.glb",
+      "format": "glb",
+      "triangles": 4446
+    },
+    {
+      "id": "thoracoacromial-trunk__BP6424",
+      "entityId": "thoracoacromial-trunk",
+      "name": "Trunk of right thoraco-acromial artery",
+      "system": "artery",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -0.9646859765052795,
+          2.1833996772766113,
+          0.9785099625587463
+        ],
+        [
+          -0.9166169762611389,
+          2.3092005252838135,
+          1.0283600091934204
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP6424",
+      "sourceConceptId": "FMA66563",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ2304.obj",
+      "sourceSha256": "b82a47ccca2bb3affd63d8d1f86ad7c79a5a725bcbeb60a25711f1cd3275494e",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "thoracoacromial-trunk__BP6424"
+      ],
+      "url": "/models/shoulder-girdle-artery.glb",
+      "format": "glb",
+      "triangles": 472
+    },
+    {
+      "id": "thoracodorsal-artery__BP6241",
+      "entityId": "thoracodorsal-artery",
+      "name": "Right thoracodorsal artery",
+      "system": "artery",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -1.3892899751663208,
+          1.006500244140625,
+          0.637078046798706
+        ],
+        [
+          -1.2835699319839478,
+          1.8055005073547363,
+          0.9149279594421387
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP6241",
+      "sourceConceptId": "FMA66321",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ2305.obj",
+      "sourceSha256": "b7d085f37da4801db31307961a176357a1d3a11e226c290e9883455376e9e254",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "thoracodorsal-artery__BP6241"
+      ],
+      "url": "/models/shoulder-girdle-artery.glb",
+      "format": "glb",
+      "triangles": 2108
+    },
+    {
+      "id": "thyrocervical-trunk__BP6417",
+      "entityId": "thyrocervical-trunk",
+      "name": "Right thyrocervical trunk",
+      "system": "artery",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -0.4277290105819702,
+          2.5219995975494385,
+          0.9754229784011841
+        ],
+        [
+          -0.40075698494911194,
+          2.5794994831085205,
+          0.9948259592056274
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP6417",
+      "sourceConceptId": "FMA3992",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ2307.obj",
+      "sourceSha256": "b81b463eeedf5999f8cd9e072d445799e9c3dcd23a618cda3fb867af39cfe123",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "thyrocervical-trunk__BP6417"
+      ],
+      "url": "/models/shoulder-girdle-artery.glb",
+      "format": "glb",
+      "triangles": 108
+    },
+    {
+      "id": "transverse-cervical-artery__BP6204",
+      "entityId": "transverse-cervical-artery",
+      "name": "Right transverse cervical artery",
+      "system": "artery",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -0.6086130142211914,
+          2.5493993759155273,
+          0.9506199359893799
+        ],
+        [
+          -0.40918299555778503,
+          2.6067004203796387,
+          1.001330018043518
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP6204",
+      "sourceConceptId": "FMA10699",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ2309.obj",
+      "sourceSha256": "024968af9ab0fbfb075c89bfb7436c1131303aa32e5f64826c3d0fe78b4290da",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "transverse-cervical-artery__BP6204"
+      ],
+      "url": "/models/shoulder-girdle-artery.glb",
+      "format": "glb",
+      "triangles": 364
+    },
+    {
+      "id": "subclavian-artery__BP10281",
+      "entityId": "subclavian-artery",
+      "name": "Right subclavian artery",
+      "system": "artery",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -0.8217599987983704,
+          2.309399366378784,
+          0.9435459971427917
+        ],
+        [
+          -0.0974728986620903,
+          2.5303003787994385,
+          1.1222100257873535
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP10281",
+      "sourceConceptId": "FMA3953",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ3579.obj",
+      "sourceSha256": "1fb9231343dce90a8d62061c63e0102eb72d117f131eda7876abfeb0060b6ad3",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "subclavian-artery__BP10281"
+      ],
+      "url": "/models/shoulder-girdle-artery.glb",
+      "format": "glb",
+      "triangles": 452
+    },
+    {
+      "id": "inferior-ulnar-collateral-artery__BP6282",
+      "entityId": "inferior-ulnar-collateral-artery",
+      "name": "Right inferior ulnar collateral artery",
+      "system": "artery",
+      "region": "Elbow",
+      "bounds": [
+        [
+          -1.95524001121521,
+          -0.7984997630119324,
+          0.6960669755935669
+        ],
+        [
+          -1.8601601123809814,
+          -0.11369995027780533,
+          0.8742680549621582
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP6282",
+      "sourceConceptId": "FMA22712",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ2267.obj",
+      "sourceSha256": "752bdaa12e7c36bb2f4b51b8736bd317e9079d35678e7a8f27dd7b211bf55590",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "inferior-ulnar-collateral-artery__BP6282"
+      ],
+      "url": "/models/elbow-artery.glb",
+      "format": "glb",
+      "triangles": 1204
+    },
+    {
+      "id": "posterior-ulnar-recurrent-artery__BP6303",
+      "entityId": "posterior-ulnar-recurrent-artery",
+      "name": "Right posterior ulnar recurrent artery",
+      "system": "artery",
+      "region": "Elbow",
+      "bounds": [
+        [
+          -1.9463400840759277,
+          -0.7991998195648193,
+          0.5434280037879944
+        ],
+        [
+          -1.8700799942016602,
+          -0.5852001905441284,
+          0.7055699825286865
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP6303",
+      "sourceConceptId": "FMA22804",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ2293.obj",
+      "sourceSha256": "33075e1f47328d41642dd8756f9f51cd2c9044a6c4ccf4b05c4e72194ba2cdaa",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "posterior-ulnar-recurrent-artery__BP6303"
+      ],
+      "url": "/models/elbow-artery.glb",
+      "format": "glb",
+      "triangles": 380
+    },
+    {
+      "id": "radial-recurrent-artery__BP6225",
+      "entityId": "radial-recurrent-artery",
+      "name": "Right radial recurrent artery",
+      "system": "artery",
+      "region": "Elbow",
+      "bounds": [
+        [
+          -2.4286201000213623,
+          -0.9932000637054443,
+          0.517071008682251
+        ],
+        [
+          -2.2802698612213135,
+          -0.24729980528354645,
+          0.9336720108985901
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP6225",
+      "sourceConceptId": "FMA22764",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ2295.obj",
+      "sourceSha256": "b677bdbe0b58cb3951390b5a384a48bfc121b7e12532b09450482169b52960c1",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "radial-recurrent-artery__BP6225"
+      ],
+      "url": "/models/elbow-artery.glb",
+      "format": "glb",
+      "triangles": 2602
+    },
+    {
+      "id": "interosseous-recurrent-artery__BP6296",
+      "entityId": "interosseous-recurrent-artery",
+      "name": "Right recurrent interosseous artery",
+      "system": "artery",
+      "region": "Elbow",
+      "bounds": [
+        [
+          -2.2795701026916504,
+          -1.080189824104309,
+          0.5282909870147705
+        ],
+        [
+          -2.2031099796295166,
+          -0.514599621295929,
+          0.7617830038070679
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP6296",
+      "sourceConceptId": "FMA268667",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ2297.obj",
+      "sourceSha256": "0b37892b1dfc542627ebd1c0ef4644772f405da643ff51f18cb2eda374c07d9a",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "interosseous-recurrent-artery__BP6296"
+      ],
+      "url": "/models/elbow-artery.glb",
+      "format": "glb",
+      "triangles": 1270
+    },
+    {
+      "id": "anterior-ulnar-recurrent-artery__BP6305",
+      "entityId": "anterior-ulnar-recurrent-artery",
+      "name": "Right anterior ulnar recurrent artery",
+      "system": "artery",
+      "region": "Elbow",
+      "bounds": [
+        [
+          -2.1441900730133057,
+          -0.9558001756668091,
+          0.6934530138969421
+        ],
+        [
+          -1.934249997138977,
+          -0.7864001393318176,
+          0.8028130531311035
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP6305",
+      "sourceConceptId": "FMA22801",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ2311.obj",
+      "sourceSha256": "ed64165407c9ea2e2b0b8cbb3d2698dacbc68a461d8d3f97efbf0b4d3edcbd2b",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "anterior-ulnar-recurrent-artery__BP6305"
+      ],
+      "url": "/models/elbow-artery.glb",
+      "format": "glb",
+      "triangles": 472
+    },
+    {
+      "id": "superior-ulnar-collateral-artery__BP6278",
+      "entityId": "superior-ulnar-collateral-artery",
+      "name": "Right superior ulnar collateral artery",
+      "system": "artery",
+      "region": "Elbow",
+      "bounds": [
+        [
+          -1.888240098953247,
+          -0.5948998928070068,
+          0.5442579984664917
+        ],
+        [
+          -1.8117399215698242,
+          0.22969970107078552,
+          0.8423449993133545
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP6278",
+      "sourceConceptId": "FMA22707",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ2373.obj",
+      "sourceSha256": "2a493b218515ccdd77c5ef012a35151af65851d24a8e60ec93309493940caeb8",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "superior-ulnar-collateral-artery__BP6278"
+      ],
+      "url": "/models/elbow-artery.glb",
+      "format": "glb",
+      "triangles": 1476
+    },
+    {
+      "id": "brachial-artery__BP6020",
+      "entityId": "brachial-artery",
+      "name": "Right brachial artery",
+      "system": "artery",
+      "region": "Arm",
+      "bounds": [
+        [
+          -2.174690008163452,
+          -0.794099748134613,
+          0.7234690189361572
+        ],
+        [
+          -1.4303799867630005,
+          1.743499755859375,
+          0.8897160291671753
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP6020",
+      "sourceConceptId": "FMA22691",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ2271.obj",
+      "sourceSha256": "ce5b122fcc19c637684c1de1661697b03d487f3b013e8b4313fb095f81118813",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "brachial-artery__BP6020"
+      ],
+      "url": "/models/arm-artery.glb",
+      "format": "glb",
+      "triangles": 3112
+    },
+    {
+      "id": "profunda-brachii-artery__BP6284",
+      "entityId": "profunda-brachii-artery",
+      "name": "Right deep brachial artery",
+      "system": "artery",
+      "region": "Arm",
+      "bounds": [
+        [
+          -2.0604500770568848,
+          0.14979980885982513,
+          0.5211520195007324
+        ],
+        [
+          -1.7434699535369873,
+          0.8430004715919495,
+          0.7666539549827576
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP6284",
+      "sourceConceptId": "FMA22696",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ2277.obj",
+      "sourceSha256": "dd048b36f91cc5b0f16bc5a7bae5bca66aaaf0e3a95c1e2b5e55c397062c1647",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "profunda-brachii-artery__BP6284"
+      ],
+      "url": "/models/arm-artery.glb",
+      "format": "glb",
+      "triangles": 2346
+    },
+    {
+      "id": "deep-palmar-arch__BP6603",
+      "entityId": "deep-palmar-arch",
+      "name": "Right deep palmar arch",
+      "system": "artery",
+      "region": "Hand",
+      "bounds": [
+        [
+          -2.8119800090789795,
+          -3.2394800186157227,
+          1.1771299839019775
+        ],
+        [
+          -2.3648598194122314,
+          -3.033170223236084,
+          1.3471699953079224
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP6603",
+      "sourceConceptId": "FMA22839",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ2279.obj",
+      "sourceSha256": "1e60556bd0efd0e863d04cfdda4ec66383f011bdf0cc9c78681cedd3770f0d71",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "deep-palmar-arch__BP6603"
+      ],
+      "url": "/models/hand-artery.glb",
+      "format": "glb",
+      "triangles": 1736
+    },
+    {
+      "id": "superficial-palmar-arch__BP6606",
+      "entityId": "superficial-palmar-arch",
+      "name": "Right superficial palmar arterial arch",
+      "system": "artery",
+      "region": "Hand",
+      "bounds": [
+        [
+          -2.7173399925231934,
+          -3.4516100883483887,
+          1.216149926185608
+        ],
+        [
+          -2.347709894180298,
+          -2.7117700576782227,
+          1.4041000604629517
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP6606",
+      "sourceConceptId": "FMA22835",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ2300.obj",
+      "sourceSha256": "396907b82c2f9b422643e3a72c941dcb10e3676ac26a4d1aae0a6ed28add7304",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "superficial-palmar-arch__BP6606"
+      ],
+      "url": "/models/hand-artery.glb",
+      "format": "glb",
+      "triangles": 3008
+    },
+    {
+      "id": "princeps-pollicis-artery__BP6234",
+      "entityId": "princeps-pollicis-artery",
+      "name": "Right arteria princeps pollicis",
+      "system": "artery",
+      "region": "Hand",
+      "bounds": [
+        [
+          -3.244259834289551,
+          -3.765089750289917,
+          1.245169997215271
+        ],
+        [
+          -2.7337799072265625,
+          -2.8302197456359863,
+          1.7536900043487549
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP6234",
+      "sourceConceptId": "FMA22905",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ2371.obj",
+      "sourceSha256": "aa6b302f739011b74473ee503692661ef5f068396c3e45c76f83888f90d9ac62",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "princeps-pollicis-artery__BP6234"
+      ],
+      "url": "/models/hand-artery.glb",
+      "format": "glb",
+      "triangles": 1070
+    },
+    {
+      "id": "anterior-circumflex-humeral-artery__BP6342",
+      "entityId": "anterior-circumflex-humeral-artery",
+      "name": "Right anterior circumflex humeral artery",
+      "system": "artery",
+      "region": "Shoulder",
+      "bounds": [
+        [
+          -1.9123198986053467,
+          1.6555005311965942,
+          0.709954023361206
+        ],
+        [
+          -1.432569980621338,
+          2.329399347305298,
+          1.064579963684082
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP6342",
+      "sourceConceptId": "FMA22682",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ2264.obj",
+      "sourceSha256": "a7aaef0dc149e6b481057266ee1b9a41720e0400a70697fbb5c15e7f8dd06187",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "anterior-circumflex-humeral-artery__BP6342"
+      ],
+      "url": "/models/shoulder-artery.glb",
+      "format": "glb",
+      "triangles": 3238
+    },
+    {
+      "id": "circumflex-scapular-artery__BP6244",
+      "entityId": "circumflex-scapular-artery",
+      "name": "Right circumflex scapular artery",
+      "system": "artery",
+      "region": "Shoulder",
+      "bounds": [
+        [
+          -1.4422999620437622,
+          1.805600643157959,
+          0.5111579895019531
+        ],
+        [
+          -1.3413499593734741,
+          1.9392004013061523,
+          0.867127001285553
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP6244",
+      "sourceConceptId": "FMA23180",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ2273.obj",
+      "sourceSha256": "37154eff6530ba3cb17412723850f45c3ee5be9d0d9b78e737c7a1f356c87b3c",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "circumflex-scapular-artery__BP6244"
+      ],
+      "url": "/models/shoulder-artery.glb",
+      "format": "glb",
+      "triangles": 778
+    },
+    {
+      "id": "posterior-circumflex-humeral-artery__BP6237",
+      "entityId": "posterior-circumflex-humeral-artery",
+      "name": "Right posterior circumflex humeral artery",
+      "system": "artery",
+      "region": "Shoulder",
+      "bounds": [
+        [
+          -1.9127200841903687,
+          1.8721996545791626,
+          0.633139967918396
+        ],
+        [
+          -1.401319980621338,
+          1.971099853515625,
+          0.8793250322341919
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP6237",
+      "sourceConceptId": "FMA22685",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ2291.obj",
+      "sourceSha256": "72f4c8d4e8465447611464bfa74df78924ffeaa9fc9829af32a4082518b6c02b",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "posterior-circumflex-humeral-artery__BP6237"
+      ],
+      "url": "/models/shoulder-artery.glb",
+      "format": "glb",
+      "triangles": 984
+    },
+    {
+      "id": "subscapular-artery__BP6290",
+      "entityId": "subscapular-artery",
+      "name": "Right subscapular artery",
+      "system": "artery",
+      "region": "Shoulder",
+      "bounds": [
+        [
+          -1.419819951057434,
+          1.794000267982483,
+          0.8365160226821899
+        ],
+        [
+          -1.2893999814987183,
+          1.9489001035690308,
+          0.9222390055656433
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP6290",
+      "sourceConceptId": "FMA22678",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ2298.obj",
+      "sourceSha256": "41050856a7c2cbb79984a78346a0e3dc13e271758a04012f2283fee2182a2f29",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "subscapular-artery__BP6290"
+      ],
+      "url": "/models/shoulder-artery.glb",
+      "format": "glb",
+      "triangles": 786
+    },
+    {
+      "id": "suprascapular-artery__BP6201",
+      "entityId": "suprascapular-artery",
+      "name": "Right suprascapular artery",
+      "system": "artery",
+      "region": "Shoulder",
+      "bounds": [
+        [
+          -1.381119966506958,
+          1.9148999452590942,
+          0.36837300658226013
+        ],
+        [
+          -0.4103670120239258,
+          2.548199415206909,
+          1.0230499505996704
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP6201",
+      "sourceConceptId": "FMA10698",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ2303.obj",
+      "sourceSha256": "7f065a02471a2664b8d258786de9eaa0a5923bdb3c346cc818908ba07faf243d",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "suprascapular-artery__BP6201"
+      ],
+      "url": "/models/shoulder-artery.glb",
+      "format": "glb",
+      "triangles": 1912
+    },
+    {
+      "id": "extensor-carpi-ulnaris__BP4829",
+      "entityId": "extensor-carpi-ulnaris",
+      "name": "Right extensor carpi ulnaris",
+      "system": "muscle",
+      "region": "Forearm",
+      "bounds": [
+        [
+          -2.374300003051758,
+          -3.288339853286743,
+          0.4968479871749878
+        ],
+        [
+          -2.1947600841522217,
+          -0.41130006313323975,
+          1.2679799795150757
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4829",
+      "sourceConceptId": "FMA38507",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1472.obj",
+      "sourceSha256": "f6aadd5b1df9440ec0c4fabf21641f72447d5190bcaf58f357e8b5a76b3f5889",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "extensor-carpi-ulnaris__BP4829"
+      ],
+      "url": "/models/forearm-muscle.glb",
+      "format": "glb",
+      "triangles": 2186
+    },
+    {
+      "id": "flexor-carpi-ulnaris-humeral-head__BP5570",
+      "entityId": "flexor-carpi-ulnaris-humeral-head",
+      "name": "Humeral head of right flexor carpi ulnaris",
+      "system": "muscle",
+      "region": "Forearm",
+      "bounds": [
+        [
+          -2.46451997756958,
+          -3.184459924697876,
+          0.6116930246353149
+        ],
+        [
+          -1.7782899141311646,
+          -0.5166003704071045,
+          1.3657400608062744
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP5570",
+      "sourceConceptId": "FMA38617",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1473.obj",
+      "sourceSha256": "ccab7efb32e7b3cfc21039a138811f2972df5f2d91d23bbdbe63f13354774795",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "flexor-carpi-ulnaris-humeral-head__BP5570"
+      ],
+      "url": "/models/forearm-muscle.glb",
+      "format": "glb",
+      "triangles": 2656
+    },
+    {
+      "id": "pronator-teres-humeral-head__BP5568",
+      "entityId": "pronator-teres-humeral-head",
+      "name": "Humeral head of right pronator teres",
+      "system": "muscle",
+      "region": "Forearm",
+      "bounds": [
+        [
+          -2.5732102394104004,
+          -1.8334802389144897,
+          0.6768869757652283
+        ],
+        [
+          -1.8741799592971802,
+          -0.34619995951652527,
+          1.0255299806594849
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP5568",
+      "sourceConceptId": "FMA38560",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1474.obj",
+      "sourceSha256": "589e18d8dd9eac471404fae1035b01476ed0021af1cb2822c8c759164a2a45ba",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "pronator-teres-humeral-head__BP5568"
+      ],
+      "url": "/models/forearm-muscle.glb",
+      "format": "glb",
+      "triangles": 1846
+    },
+    {
+      "id": "flexor-digitorum-superficialis__BP4837",
+      "entityId": "flexor-digitorum-superficialis",
+      "name": "Right flexor digitorum superficialis",
+      "system": "muscle",
+      "region": "Forearm",
+      "bounds": [
+        [
+          -3.058689832687378,
+          -4.2418599128723145,
+          0.675790011882782
+        ],
+        [
+          -1.781130075454712,
+          -0.4692004323005676,
+          1.6784800291061401
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4837",
+      "sourceConceptId": "FMA38470",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1475.obj",
+      "sourceSha256": "9b3877dcb9838ac4e37f2a1fbf0542fca888a32650285bb07278d6ba9fa968e1",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "flexor-digitorum-superficialis__BP4837"
+      ],
+      "url": "/models/forearm-muscle.glb",
+      "format": "glb",
+      "triangles": 8698
+    },
+    {
+      "id": "abductor-pollicis-longus__BP4820",
+      "entityId": "abductor-pollicis-longus",
+      "name": "Right abductor pollicis longus",
+      "system": "muscle",
+      "region": "Forearm",
+      "bounds": [
+        [
+          -2.894289970397949,
+          -3.1125097274780273,
+          0.7004939913749695
+        ],
+        [
+          -2.2754499912261963,
+          -1.2922497987747192,
+          1.3177698850631714
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4820",
+      "sourceConceptId": "FMA38516",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1484.obj",
+      "sourceSha256": "35a1077de93e2bdcaaa68e688f4f31a371c3c61e35d629314507e549e5241d14",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "abductor-pollicis-longus__BP4820"
+      ],
+      "url": "/models/forearm-muscle.glb",
+      "format": "glb",
+      "triangles": 1874
+    },
+    {
+      "id": "brachioradialis__BP4833",
+      "entityId": "brachioradialis",
+      "name": "Right brachioradialis",
+      "system": "muscle",
+      "region": "Forearm",
+      "bounds": [
+        [
+          -2.8058600425720215,
+          -2.9028801918029785,
+          0.558243989944458
+        ],
+        [
+          -2.081589937210083,
+          0.4760998487472534,
+          1.2287800312042236
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4833",
+      "sourceConceptId": "FMA38486",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1487.obj",
+      "sourceSha256": "0ff651a5417f240c6a5205bef5218336a61fe3474752cca1b483d02aae0b92ad",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "brachioradialis__BP4833"
+      ],
+      "url": "/models/forearm-muscle.glb",
+      "format": "glb",
+      "triangles": 4874
+    },
+    {
+      "id": "extensor-carpi-radialis-brevis__BP4823",
+      "entityId": "extensor-carpi-radialis-brevis",
+      "name": "Right extensor carpi radialis brevis",
+      "system": "muscle",
+      "region": "Forearm",
+      "bounds": [
+        [
+          -2.7263801097869873,
+          -3.239449977874756,
+          0.5026090145111084
+        ],
+        [
+          -2.283639907836914,
+          -0.21290038526058197,
+          1.1574299335479736
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4823",
+      "sourceConceptId": "FMA38498",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1489.obj",
+      "sourceSha256": "31ccd9ec738252ec2eae88cf68068679d0663425c98b8d90dcbca18b3cbd1988",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "extensor-carpi-radialis-brevis__BP4823"
+      ],
+      "url": "/models/forearm-muscle.glb",
+      "format": "glb",
+      "triangles": 2098
+    },
+    {
+      "id": "extensor-carpi-radialis-longus__BP4831",
+      "entityId": "extensor-carpi-radialis-longus",
+      "name": "Right extensor carpi radialis longus",
+      "system": "muscle",
+      "region": "Forearm",
+      "bounds": [
+        [
+          -2.778630018234253,
+          -3.2085602283477783,
+          0.5320589542388916
+        ],
+        [
+          -2.200860023498535,
+          0.016099853441119194,
+          1.2097899913787842
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4831",
+      "sourceConceptId": "FMA38495",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1490.obj",
+      "sourceSha256": "8b6ec821491a2eafaee8c813cfad4532beae94c354595cc3e922d8cdbb36fb32",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "extensor-carpi-radialis-longus__BP4831"
+      ],
+      "url": "/models/forearm-muscle.glb",
+      "format": "glb",
+      "triangles": 2474
+    },
+    {
+      "id": "extensor-digiti-minimi__BP4825",
+      "entityId": "extensor-digiti-minimi",
+      "name": "Right extensor digiti minimi",
+      "system": "muscle",
+      "region": "Forearm",
+      "bounds": [
+        [
+          -2.432219982147217,
+          -3.75331974029541,
+          0.5392490029335022
+        ],
+        [
+          -2.2698800563812256,
+          -0.5038000345230103,
+          1.432539939880371
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4825",
+      "sourceConceptId": "FMA38504",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1491.obj",
+      "sourceSha256": "2717a761854ba7fe50d12f5ec4eca0f0728795777ae9a7ec87e019f01e3b8267",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "extensor-digiti-minimi__BP4825"
+      ],
+      "url": "/models/forearm-muscle.glb",
+      "format": "glb",
+      "triangles": 1434
+    },
+    {
+      "id": "extensor-digitorum__BP4827",
+      "entityId": "extensor-digitorum",
+      "name": "Right extensor digitorum",
+      "system": "muscle",
+      "region": "Forearm",
+      "bounds": [
+        [
+          -3.050539970397949,
+          -4.220190048217773,
+          0.4531269967556
+        ],
+        [
+          -2.224760055541992,
+          -0.40040040016174316,
+          1.625290036201477
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4827",
+      "sourceConceptId": "FMA38501",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1492.obj",
+      "sourceSha256": "31f528b3ba6a8fb26177c9f1455692be3acfbb173b4c4cbf9dc3d597acb5c5ff",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "extensor-digitorum__BP4827"
+      ],
+      "url": "/models/forearm-muscle.glb",
+      "format": "glb",
+      "triangles": 4294
+    },
+    {
+      "id": "extensor-indicis__BP4812",
+      "entityId": "extensor-indicis",
+      "name": "Right extensor indicis",
+      "system": "muscle",
+      "region": "Forearm",
+      "bounds": [
+        [
+          -3.076470136642456,
+          -4.312920093536377,
+          0.9528629779815674
+        ],
+        [
+          -2.29502010345459,
+          -2.317429780960083,
+          1.735949993133545
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4812",
+      "sourceConceptId": "FMA38525",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1493.obj",
+      "sourceSha256": "b23d7087dbe581fa03e316dfed18f73ba4ccb54b16091d442ac057f9aa9c7b60",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "extensor-indicis__BP4812"
+      ],
+      "url": "/models/forearm-muscle.glb",
+      "format": "glb",
+      "triangles": 720
+    },
+    {
+      "id": "extensor-pollicis-brevis__BP4818",
+      "entityId": "extensor-pollicis-brevis",
+      "name": "Right extensor pollicis brevis",
+      "system": "muscle",
+      "region": "Forearm",
+      "bounds": [
+        [
+          -3.1140201091766357,
+          -3.4156200885772705,
+          0.90904700756073
+        ],
+        [
+          -2.3492300510406494,
+          -2.0600500106811523,
+          1.4765299558639526
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4818",
+      "sourceConceptId": "FMA38519",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1494.obj",
+      "sourceSha256": "61cfb7481e1f7dea291cf59208719b08c27191156e38ffd25e744918836d957b",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "extensor-pollicis-brevis__BP4818"
+      ],
+      "url": "/models/forearm-muscle.glb",
+      "format": "glb",
+      "triangles": 998
+    },
+    {
+      "id": "extensor-pollicis-longus__BP4816",
+      "entityId": "extensor-pollicis-longus",
+      "name": "Right extensor pollicis longus",
+      "system": "muscle",
+      "region": "Forearm",
+      "bounds": [
+        [
+          -3.1937899589538574,
+          -3.6696300506591797,
+          0.7568990588188171
+        ],
+        [
+          -2.2462799549102783,
+          -1.6491100788116455,
+          1.6337499618530273
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4816",
+      "sourceConceptId": "FMA38522",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1495.obj",
+      "sourceSha256": "99a201417061edb3b2adc54fcd2b41eefa81c0e9e31027b43c41c328d1ade4f5",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "extensor-pollicis-longus__BP4816"
+      ],
+      "url": "/models/forearm-muscle.glb",
+      "format": "glb",
+      "triangles": 1326
+    },
+    {
+      "id": "flexor-carpi-radialis__BP4841",
+      "entityId": "flexor-carpi-radialis",
+      "name": "Right flexor carpi radialis",
+      "system": "muscle",
+      "region": "Forearm",
+      "bounds": [
+        [
+          -2.7211098670959473,
+          -3.1930298805236816,
+          0.7086769938468933
+        ],
+        [
+          -1.8436000347137451,
+          -0.4252001941204071,
+          1.3640600442886353
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4841",
+      "sourceConceptId": "FMA38460",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1496.obj",
+      "sourceSha256": "8e83c638e2353bb8ba65547f4b846d89a1f393c4761806faf8e09970c9b6b6bf",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "flexor-carpi-radialis__BP4841"
+      ],
+      "url": "/models/forearm-muscle.glb",
+      "format": "glb",
+      "triangles": 1148
+    },
+    {
+      "id": "flexor-digitorum-profundus__BP4848",
+      "entityId": "flexor-digitorum-profundus",
+      "name": "Right flexor digitorum profundus",
+      "system": "muscle",
+      "region": "Forearm",
+      "bounds": [
+        [
+          -3.0693199634552,
+          -4.344639778137207,
+          0.6872779726982117
+        ],
+        [
+          -2.0387699604034424,
+          -0.8114001750946045,
+          1.8687800168991089
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4848",
+      "sourceConceptId": "FMA38479",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1497.obj",
+      "sourceSha256": "e62f8adfa454bee523974952500aa32a16f086b249a434b4bbeabc333878ac39",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "flexor-digitorum-profundus__BP4848"
+      ],
+      "url": "/models/forearm-muscle.glb",
+      "format": "glb",
+      "triangles": 4838
+    },
+    {
+      "id": "flexor-pollicis-longus__BP4844",
+      "entityId": "flexor-pollicis-longus",
+      "name": "Right flexor pollicis longus",
+      "system": "muscle",
+      "region": "Forearm",
+      "bounds": [
+        [
+          -3.140509843826294,
+          -3.6478400230407715,
+          0.8763179779052734
+        ],
+        [
+          -2.3849499225616455,
+          -1.3409100770950317,
+          1.658829927444458
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4844",
+      "sourceConceptId": "FMA38482",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1498.obj",
+      "sourceSha256": "e0fc87382350f38acb2a5197e83dabb450ba6d823222388c8e169e30c0bbfb94",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "flexor-pollicis-longus__BP4844"
+      ],
+      "url": "/models/forearm-muscle.glb",
+      "format": "glb",
+      "triangles": 1442
+    },
+    {
+      "id": "palmaris-longus__BP4839",
+      "entityId": "palmaris-longus",
+      "name": "Right palmaris longus",
+      "system": "muscle",
+      "region": "Forearm",
+      "bounds": [
+        [
+          -2.9061999320983887,
+          -3.6699297428131104,
+          0.7160939574241638
+        ],
+        [
+          -1.794279932975769,
+          -0.4619995057582855,
+          1.4969199895858765
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4839",
+      "sourceConceptId": "FMA38463",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1502.obj",
+      "sourceSha256": "2e033c8fbc77aa1922179eeae6d90075df9360d00882beb9b45b148074f91f8a",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "palmaris-longus__BP4839"
+      ],
+      "url": "/models/forearm-muscle.glb",
+      "format": "glb",
+      "triangles": 4968
+    },
+    {
+      "id": "pronator-quadratus__BP4846",
+      "entityId": "pronator-quadratus",
+      "name": "Right pronator quadratus",
+      "system": "muscle",
+      "region": "Forearm",
+      "bounds": [
+        [
+          -2.717679977416992,
+          -2.795449733734131,
+          1.0255199670791626
+        ],
+        [
+          -2.2609500885009766,
+          -2.294290065765381,
+          1.2618099451065063
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4846",
+      "sourceConceptId": "FMA38454",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1503.obj",
+      "sourceSha256": "04adea4b7060a08c9d734ea78156525b3d3983fc1da0601ac151198985e78cfd",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "pronator-quadratus__BP4846"
+      ],
+      "url": "/models/forearm-muscle.glb",
+      "format": "glb",
+      "triangles": 1838
+    },
+    {
+      "id": "supinator__BP4814",
+      "entityId": "supinator",
+      "name": "Right supinator",
+      "system": "muscle",
+      "region": "Forearm",
+      "bounds": [
+        [
+          -2.540940046310425,
+          -1.674660086631775,
+          0.5626060366630554
+        ],
+        [
+          -2.2236099243164062,
+          -0.43619996309280396,
+          0.9054879546165466
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4814",
+      "sourceConceptId": "FMA38513",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1505.obj",
+      "sourceSha256": "83c5940f2c6516ecf5b0eb69de5dc0a056177b29f7bc046b94cc20c85460ae46",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "supinator__BP4814"
+      ],
+      "url": "/models/forearm-muscle.glb",
+      "format": "glb",
+      "triangles": 3110
+    },
+    {
+      "id": "pronator-teres-ulnar-head__BP5552",
+      "entityId": "pronator-teres-ulnar-head",
+      "name": "Ulnar head of right pronator teres",
+      "system": "muscle",
+      "region": "Forearm",
+      "bounds": [
+        [
+          -2.5631399154663086,
+          -1.7225701808929443,
+          0.7405909895896912
+        ],
+        [
+          -2.042649984359741,
+          -0.765700101852417,
+          0.9838230013847351
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP5552",
+      "sourceConceptId": "FMA38562",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1516.obj",
+      "sourceSha256": "62058afdb37b3637c21f7ad15fe681acced1e36c986190a692f1733cb0a79760",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "pronator-teres-ulnar-head__BP5552"
+      ],
+      "url": "/models/forearm-muscle.glb",
+      "format": "glb",
+      "triangles": 1040
+    },
+    {
+      "id": "flexor-carpi-ulnaris-ulnar-head__BP5554",
+      "entityId": "flexor-carpi-ulnaris-ulnar-head",
+      "name": "Ulnar head of right flexor carpi ulnaris",
+      "system": "muscle",
+      "region": "Forearm",
+      "bounds": [
+        [
+          -2.295140027999878,
+          -2.695239782333374,
+          0.47398102283477783
+        ],
+        [
+          -1.8938000202178955,
+          -0.5664001703262329,
+          1.1620200872421265
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP5554",
+      "sourceConceptId": "FMA38619",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1518.obj",
+      "sourceSha256": "22abf242ce9d43dd9c6e02ef297b8e5982227a7ec1c7ead965674b92b476bad2",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "flexor-carpi-ulnaris-ulnar-head__BP5554"
+      ],
+      "url": "/models/forearm-muscle.glb",
+      "format": "glb",
+      "triangles": 1538
+    },
+    {
+      "id": "pectoralis-major__BP5615",
+      "entityId": "pectoralis-major",
+      "name": "Abdominal part of right pectoralis major",
+      "system": "muscle",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -1.8089599609375,
+          0.04780029132962227,
+          0.8175640106201172
+        ],
+        [
+          -0.47999998927116394,
+          1.7793993949890137,
+          2.136280059814453
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP5615",
+      "sourceConceptId": "FMA45874",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1446.obj",
+      "sourceSha256": "7a0d77a63b06d4212998bec86f84853287c3a21696ec7afc92c7767c987a726d",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "pectoralis-major__BP5615"
+      ],
+      "url": "/models/shoulder-girdle-muscle.glb",
+      "format": "glb",
+      "triangles": 1536
+    },
+    {
+      "id": "pectoralis-major-clavicular-head__BP5582",
+      "entityId": "pectoralis-major-clavicular-head",
+      "name": "Clavicular part of right pectoralis major",
+      "system": "muscle",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -1.9426199197769165,
+          1.3451000452041626,
+          0.8199999928474426
+        ],
+        [
+          -0.26413899660110474,
+          2.3590002059936523,
+          1.4509599208831787
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP5582",
+      "sourceConceptId": "FMA34690",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1447.obj",
+      "sourceSha256": "e239a63adf99dfc094ece7efcd91ec7cd9ac802e9d7581141b311a7842fbbbe6",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "pectoralis-major-clavicular-head__BP5582"
+      ],
+      "url": "/models/shoulder-girdle-muscle.glb",
+      "format": "glb",
+      "triangles": 1846
+    },
+    {
+      "id": "pectoralis-minor__BP4775",
+      "entityId": "pectoralis-minor",
+      "name": "Right pectoralis minor",
+      "system": "muscle",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -1.301759958267212,
+          0.8166003227233887,
+          0.8034919500350952
+        ],
+        [
+          -0.697359025478363,
+          2.266700506210327,
+          1.7304699420928955
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4775",
+      "sourceConceptId": "FMA13375",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1456.obj",
+      "sourceSha256": "65831afdc2f80bf5fca581f196de727aa30c3adcc682ac4506a4a5d6cc71db05",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "pectoralis-minor__BP4775"
+      ],
+      "url": "/models/shoulder-girdle-muscle.glb",
+      "format": "glb",
+      "triangles": 9468
+    },
+    {
+      "id": "serratus-anterior__BP4782",
+      "entityId": "serratus-anterior",
+      "name": "Right serratus anterior",
+      "system": "muscle",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -1.4439200162887573,
+          -0.21839965879917145,
+          -0.05264060199260712
+        ],
+        [
+          -0.5772969722747803,
+          2.483799934387207,
+          1.5759199857711792
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4782",
+      "sourceConceptId": "FMA13398",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1459.obj",
+      "sourceSha256": "33f4ae8c7a84785e2bc5f4f21432d13de0805e485a29f3e6762bac6f85cb61d5",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "serratus-anterior__BP4782"
+      ],
+      "url": "/models/shoulder-girdle-muscle.glb",
+      "format": "glb",
+      "triangles": 49212
+    },
+    {
+      "id": "subclavius__BP4773",
+      "entityId": "subclavius",
+      "name": "Right subclavius",
+      "system": "muscle",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -1.0467699766159058,
+          2.1145997047424316,
+          0.7409929633140564
+        ],
+        [
+          -0.342879980802536,
+          2.4285998344421387,
+          1.3487399816513062
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4773",
+      "sourceConceptId": "FMA13412",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1460.obj",
+      "sourceSha256": "39c2b495c92f2603b5df5cf4ae18e25ef9a34bf583c6e8657b667596d238c28e",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "subclavius__BP4773"
+      ],
+      "url": "/models/shoulder-girdle-muscle.glb",
+      "format": "glb",
+      "triangles": 1640
+    },
+    {
+      "id": "pectoralis-major-sternocostal-head__BP5613",
+      "entityId": "pectoralis-major-sternocostal-head",
+      "name": "Sternocostal part of right pectoralis major",
+      "system": "muscle",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -1.878480076789856,
+          0.4060998558998108,
+          0.8100000023841858
+        ],
+        [
+          -0.04815569892525673,
+          2.13800048828125,
+          2.1935300827026367
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP5613",
+      "sourceConceptId": "FMA79979",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1464.obj",
+      "sourceSha256": "f446df845d19385cdbd5b86457c8690981cbc914f8f9595b50bdc4a44505aab7",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "pectoralis-major-sternocostal-head__BP5613"
+      ],
+      "url": "/models/shoulder-girdle-muscle.glb",
+      "format": "glb",
+      "triangles": 7114
+    },
+    {
+      "id": "trapezius__BP5638",
+      "entityId": "trapezius",
+      "name": "Ascending part of right trapezius",
+      "system": "muscle",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -1.485859990119934,
+          -0.45989990234375,
+          -0.24546699225902557
+        ],
+        [
+          0.0325435996055603,
+          2.429699659347534,
+          0.469637006521225
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP5638",
+      "sourceConceptId": "FMA33581",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1520.obj",
+      "sourceSha256": "6bb3d13198991bda4d0aae27561976b9ba53b0d21d817f180098307c7b99deb1",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "trapezius__BP5638"
+      ],
+      "url": "/models/shoulder-girdle-muscle.glb",
+      "format": "glb",
+      "triangles": 10530
+    },
+    {
+      "id": "trapezius__BP5636",
+      "entityId": "trapezius",
+      "name": "Descending part of right trapezius",
+      "system": "muscle",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -1.3083999156951904,
+          2.4058997631073,
+          0.07613480091094971
+        ],
+        [
+          0.03488419950008392,
+          4.062399864196777,
+          1.006600022315979
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP5636",
+      "sourceConceptId": "FMA33586",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1521.obj",
+      "sourceSha256": "19bd9d1cbbb84e10826eb770068f6e271cd79dde960bca62ac71da24120fc354",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "trapezius__BP5636"
+      ],
+      "url": "/models/shoulder-girdle-muscle.glb",
+      "format": "glb",
+      "triangles": 7108
+    },
+    {
+      "id": "levator-scapulae__BP4786",
+      "entityId": "levator-scapulae",
+      "name": "Right levator scapulae",
+      "system": "muscle",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -0.8107860088348389,
+          2.0931994915008545,
+          0.12087300419807434
+        ],
+        [
+          -0.21074800193309784,
+          3.685600519180298,
+          0.8245350122451782
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4786",
+      "sourceConceptId": "FMA32540",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1532.obj",
+      "sourceSha256": "ee7897cbc5cde540e9cc29b03617d90f1b3caaebee4489f6590ee9c4632dcd42",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "levator-scapulae__BP4786"
+      ],
+      "url": "/models/shoulder-girdle-muscle.glb",
+      "format": "glb",
+      "triangles": 4718
+    },
+    {
+      "id": "rhomboid-major__BP4780",
+      "entityId": "rhomboid-major",
+      "name": "Right rhomboid major",
+      "system": "muscle",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -0.895035982131958,
+          0.8818994164466858,
+          -0.06092209741473198
+        ],
+        [
+          0.0077675702050328255,
+          2.616600275039673,
+          0.22098100185394287
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4780",
+      "sourceConceptId": "FMA13381",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1536.obj",
+      "sourceSha256": "81b84d6d2e7c859004ee2d71f8fef2768ec422fbace3967d54e3f3b2965bdb89",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "rhomboid-major__BP4780"
+      ],
+      "url": "/models/shoulder-girdle-muscle.glb",
+      "format": "glb",
+      "triangles": 7202
+    },
+    {
+      "id": "rhomboid-minor__BP4784",
+      "entityId": "rhomboid-minor",
+      "name": "Right rhomboid minor",
+      "system": "muscle",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -0.6170539855957031,
+          1.8080004453659058,
+          0.04816019907593727
+        ],
+        [
+          0.009160500019788742,
+          2.8751001358032227,
+          0.3607639968395233
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4784",
+      "sourceConceptId": "FMA13383",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1537.obj",
+      "sourceSha256": "acbd2dcd51879085bb2ec7d12b45c0ba2514ce3a2a1bb680bcf78732a1f688ff",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "rhomboid-minor__BP4784"
+      ],
+      "url": "/models/shoulder-girdle-muscle.glb",
+      "format": "glb",
+      "triangles": 2206
+    },
+    {
+      "id": "trapezius__BP5610",
+      "entityId": "trapezius",
+      "name": "Transverse part of right trapezius",
+      "system": "muscle",
+      "region": "Shoulder girdle",
+      "bounds": [
+        [
+          -1.6324200630187988,
+          2.0362000465393066,
+          -0.10700900107622147
+        ],
+        [
+          0.03872710093855858,
+          2.8210997581481934,
+          0.6965389847755432
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP5610",
+      "sourceConceptId": "FMA33584",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1554.obj",
+      "sourceSha256": "f7683d77a5bfe9ac6d07fdc913c46cf41db20298c087e71df73fab18192e90a4",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "trapezius__BP5610"
+      ],
+      "url": "/models/shoulder-girdle-muscle.glb",
+      "format": "glb",
+      "triangles": 4460
+    },
+    {
+      "id": "anconeus__BP4802",
+      "entityId": "anconeus",
+      "name": "Right anconeus",
+      "system": "muscle",
+      "region": "Elbow",
+      "bounds": [
+        [
+          -2.2930800914764404,
+          -1.4046697616577148,
+          0.41822102665901184
+        ],
+        [
+          -2.0633599758148193,
+          -0.39109984040260315,
+          0.6701799631118774
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4802",
+      "sourceConceptId": "FMA37705",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1485.obj",
+      "sourceSha256": "5c2e838a39547c4cdbb799cd5a54258d4ff76ab54b2859aecbfae2ba4588c5d4",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "anconeus__BP4802"
+      ],
+      "url": "/models/elbow-muscle.glb",
+      "format": "glb",
+      "triangles": 1278
+    },
+    {
+      "id": "triceps-brachii-lateral-head__BP5550",
+      "entityId": "triceps-brachii-lateral-head",
+      "name": "Lateral head of right triceps brachii",
+      "system": "muscle",
+      "region": "Arm",
+      "bounds": [
+        [
+          -2.280050039291382,
+          -0.6403002738952637,
+          0.2008419930934906
+        ],
+        [
+          -1.74455988407135,
+          1.9213000535964966,
+          0.6879680156707764
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP5550",
+      "sourceConceptId": "FMA37697",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1477.obj",
+      "sourceSha256": "1d1c3b42eec0dffe696bd25cffa81784c87c15f16c9605050fdf1cb2f47698dd",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "triceps-brachii-lateral-head__BP5550"
+      ],
+      "url": "/models/arm-muscle.glb",
+      "format": "glb",
+      "triangles": 2606
+    },
+    {
+      "id": "biceps-brachii-long-head__BP5566",
+      "entityId": "biceps-brachii-long-head",
+      "name": "Long head of right biceps brachii",
+      "system": "muscle",
+      "region": "Arm",
+      "bounds": [
+        [
+          -2.2985999584198,
+          -1.0592797994613647,
+          0.6780889630317688
+        ],
+        [
+          -1.3526800870895386,
+          2.394200325012207,
+          1.092919945716858
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP5566",
+      "sourceConceptId": "FMA37686",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1478.obj",
+      "sourceSha256": "2442d2b5ac30c5da42e72eeff83d143df51c7617001cbc6552096a504f29bc07",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "biceps-brachii-long-head__BP5566"
+      ],
+      "url": "/models/arm-muscle.glb",
+      "format": "glb",
+      "triangles": 1426
+    },
+    {
+      "id": "triceps-brachii-long-head__BP5564",
+      "entityId": "triceps-brachii-long-head",
+      "name": "Long head of right triceps brachii",
+      "system": "muscle",
+      "region": "Arm",
+      "bounds": [
+        [
+          -2.1646201610565186,
+          -0.6476001143455505,
+          0.18759500980377197
+        ],
+        [
+          -1.346909999847412,
+          2.007499933242798,
+          0.6410209536552429
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP5564",
+      "sourceConceptId": "FMA37699",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1479.obj",
+      "sourceSha256": "acc48f746bd07a117357a9c49a1a9850c96b85d7c63cf90a662a45717875a315",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "triceps-brachii-long-head__BP5564"
+      ],
+      "url": "/models/arm-muscle.glb",
+      "format": "glb",
+      "triangles": 1588
+    },
+    {
+      "id": "triceps-brachii-medial-head__BP5562",
+      "entityId": "triceps-brachii-medial-head",
+      "name": "Medial head of right triceps brachii",
+      "system": "muscle",
+      "region": "Arm",
+      "bounds": [
+        [
+          -2.269629955291748,
+          -0.706500232219696,
+          0.46317198872566223
+        ],
+        [
+          -1.6737300157546997,
+          1.560400366783142,
+          0.7187989950180054
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP5562",
+      "sourceConceptId": "FMA37695",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1480.obj",
+      "sourceSha256": "1ea653667afa5ff0bf0e01d71ac648819655241c130e8dd1778ed2f9561c34c5",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "triceps-brachii-medial-head__BP5562"
+      ],
+      "url": "/models/arm-muscle.glb",
+      "format": "glb",
+      "triangles": 832
+    },
+    {
+      "id": "brachialis__BP4807",
+      "entityId": "brachialis",
+      "name": "Right brachialis",
+      "system": "muscle",
+      "region": "Arm",
+      "bounds": [
+        [
+          -2.351210117340088,
+          -1.0463898181915283,
+          0.605696976184845
+        ],
+        [
+          -1.7638499736785889,
+          1.201999545097351,
+          0.8639600276947021
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4807",
+      "sourceConceptId": "FMA37668",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1486.obj",
+      "sourceSha256": "be5f40b153fd6ce0c8c274eb4c26be8d1a29b4bbe75dd0e4a0dfe5c4d251fa03",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "brachialis__BP4807"
+      ],
+      "url": "/models/arm-muscle.glb",
+      "format": "glb",
+      "triangles": 1746
+    },
+    {
+      "id": "coracobrachialis__BP4805",
+      "entityId": "coracobrachialis",
+      "name": "Right coracobrachialis",
+      "system": "muscle",
+      "region": "Arm",
+      "bounds": [
+        [
+          -1.8942599296569824,
+          0.7013000249862671,
+          0.6686049699783325
+        ],
+        [
+          -1.301509976387024,
+          2.2786998748779297,
+          1.061750054359436
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4805",
+      "sourceConceptId": "FMA37665",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1488.obj",
+      "sourceSha256": "7eb9835056883a0e35954d39ff930c4c8c32d41db000e9f0d656e3c663401e56",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "coracobrachialis__BP4805"
+      ],
+      "url": "/models/arm-muscle.glb",
+      "format": "glb",
+      "triangles": 444
+    },
+    {
+      "id": "biceps-brachii-short-head__BP5558",
+      "entityId": "biceps-brachii-short-head",
+      "name": "Short head of right biceps brachii",
+      "system": "muscle",
+      "region": "Arm",
+      "bounds": [
+        [
+          -2.1238999366760254,
+          -0.34780028462409973,
+          0.7595809698104858
+        ],
+        [
+          -1.352370023727417,
+          2.277600049972534,
+          1.0910099744796753
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP5558",
+      "sourceConceptId": "FMA37684",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1512.obj",
+      "sourceSha256": "2173b7cce29f11036907b80e068e9bd6c16f22359d6e7994af9684454b99b4d5",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "biceps-brachii-short-head__BP5558"
+      ],
+      "url": "/models/arm-muscle.glb",
+      "format": "glb",
+      "triangles": 1856
+    },
+    {
+      "id": "abductor-digiti-minimi__BP7569",
+      "entityId": "abductor-digiti-minimi",
+      "name": "Abductor digiti minimi of right hand",
+      "system": "muscle",
+      "region": "Hand",
+      "bounds": [
+        [
+          -2.381809949874878,
+          -3.7036402225494385,
+          1.3062399625778198
+        ],
+        [
+          -2.208169937133789,
+          -3.053179979324341,
+          1.4890600442886353
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP7569",
+      "sourceConceptId": "FMA37396",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1466.obj",
+      "sourceSha256": "f43244169de921a1209484246543bec594bc3b282c647eaf6249f2320f10bfc0",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "abductor-digiti-minimi__BP7569"
+      ],
+      "url": "/models/hand-muscle.glb",
+      "format": "glb",
+      "triangles": 508
+    },
+    {
+      "id": "flexor-pollicis-brevis__BP8958",
+      "entityId": "flexor-pollicis-brevis",
+      "name": "Right flexor pollicis brevis",
+      "system": "muscle",
+      "region": "Hand",
+      "bounds": [
+        [
+          2.5601401329040527,
+          -3.3344500064849854,
+          1.2525299787521362
+        ],
+        [
+          3.012500047683716,
+          -3.0594701766967773,
+          1.5312100648880005
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP8958",
+      "sourceConceptId": "FMA37388",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1469M.obj",
+      "sourceSha256": "dbab9fdb424e8370bed0229f47af76209ab5f61613fc1c910d427a73e6ee8bd7",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "flexor-pollicis-brevis__BP8958"
+      ],
+      "url": "/models/hand-muscle.glb",
+      "format": "glb",
+      "triangles": 714
+    },
+    {
+      "id": "flexor-digiti-minimi-brevis__BP4858",
+      "entityId": "flexor-digiti-minimi-brevis",
+      "name": "Flexor digiti minimi brevis of right hand",
+      "system": "muscle",
+      "region": "Hand",
+      "bounds": [
+        [
+          -2.440079927444458,
+          -3.682110071182251,
+          1.3071099519729614
+        ],
+        [
+          -2.2606301307678223,
+          -3.080159902572632,
+          1.4801700115203857
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4858",
+      "sourceConceptId": "FMA37398",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1470.obj",
+      "sourceSha256": "a0320cbafea76dae73ef8b8e44bd716507e496fd07adacdb9c3f7530e3e10f0f",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "flexor-digiti-minimi-brevis__BP4858"
+      ],
+      "url": "/models/hand-muscle.glb",
+      "format": "glb",
+      "triangles": 328
+    },
+    {
+      "id": "adductor-pollicis-oblique-head__BP5560",
+      "entityId": "adductor-pollicis-oblique-head",
+      "name": "Oblique head of right adductor pollicis",
+      "system": "muscle",
+      "region": "Hand",
+      "bounds": [
+        [
+          -2.9933600425720215,
+          -3.4025096893310547,
+          1.2316200733184814
+        ],
+        [
+          -2.565340042114258,
+          -3.1021599769592285,
+          1.4707000255584717
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP5560",
+      "sourceConceptId": "FMA46121",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1481.obj",
+      "sourceSha256": "7f95a0d24a061eefc13bbef6c842b7e685798dfd16e767b955015dafde1f858d",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "adductor-pollicis-oblique-head__BP5560"
+      ],
+      "url": "/models/hand-muscle.glb",
+      "format": "glb",
+      "triangles": 658
+    },
+    {
+      "id": "opponens-digiti-minimi__BP4860",
+      "entityId": "opponens-digiti-minimi",
+      "name": "Opponens digiti minimi of right hand",
+      "system": "muscle",
+      "region": "Hand",
+      "bounds": [
+        [
+          -2.4541900157928467,
+          -3.563699960708618,
+          1.2763500213623047
+        ],
+        [
+          -2.2746400833129883,
+          -3.0955798625946045,
+          1.4257299900054932
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4860",
+      "sourceConceptId": "FMA37400",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1482.obj",
+      "sourceSha256": "ac36154c8b29c5037e853509c15ecdb0ce778f83b8956b615a57a15b6897eff5",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "opponens-digiti-minimi__BP4860"
+      ],
+      "url": "/models/hand-muscle.glb",
+      "format": "glb",
+      "triangles": 484
+    },
+    {
+      "id": "abductor-pollicis-brevis__BP4855",
+      "entityId": "abductor-pollicis-brevis",
+      "name": "Right abductor pollicis brevis",
+      "system": "muscle",
+      "region": "Hand",
+      "bounds": [
+        [
+          -3.0253899097442627,
+          -3.3008899688720703,
+          1.2302299737930298
+        ],
+        [
+          -2.6335198879241943,
+          -2.919130325317383,
+          1.5274299383163452
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4855",
+      "sourceConceptId": "FMA37386",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1483.obj",
+      "sourceSha256": "e8fae19efda4874793724ff541efd7d9ead31b50fbb343254e3f8effd8aa734d",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "abductor-pollicis-brevis__BP4855"
+      ],
+      "url": "/models/hand-muscle.glb",
+      "format": "glb",
+      "triangles": 744
+    },
+    {
+      "id": "opponens-pollicis__BP4853",
+      "entityId": "opponens-pollicis",
+      "name": "Right opponens pollicis",
+      "system": "muscle",
+      "region": "Hand",
+      "bounds": [
+        [
+          -3.0585999488830566,
+          -3.261699914932251,
+          1.3037899732589722
+        ],
+        [
+          -2.5804097652435303,
+          -2.939970016479492,
+          1.4896899461746216
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4853",
+      "sourceConceptId": "FMA37390",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1501.obj",
+      "sourceSha256": "abbd7e3223c7aae817ecd4e613e24c7dcd2aff20d56ea35a1517c73f6bae7a9e",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "opponens-pollicis__BP4853"
+      ],
+      "url": "/models/hand-muscle.glb",
+      "format": "glb",
+      "triangles": 956
+    },
+    {
+      "id": "dorsal-interossei-group__BP6629",
+      "entityId": "dorsal-interossei-group",
+      "name": "Set of dorsal interossei of right hand",
+      "system": "muscle",
+      "region": "Hand",
+      "bounds": [
+        [
+          -2.9695098400115967,
+          -3.8331897258758545,
+          1.1912399530410767
+        ],
+        [
+          -2.3525099754333496,
+          -3.1444501876831055,
+          1.4486199617385864
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP6629",
+      "sourceConceptId": "FMA42404",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1509.obj",
+      "sourceSha256": "9317e87149b2346714b59513c07d9d7bf36585f9866d3facc16f958e5411fcbd",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "dorsal-interossei-group__BP6629"
+      ],
+      "url": "/models/hand-muscle.glb",
+      "format": "glb",
+      "triangles": 2618
+    },
+    {
+      "id": "lumbricals-group__BP6633",
+      "entityId": "lumbricals-group",
+      "name": "Set of lumbricals of right hand",
+      "system": "muscle",
+      "region": "Hand",
+      "bounds": [
+        [
+          -3.000380039215088,
+          -4.151179790496826,
+          1.2689399719238281
+        ],
+        [
+          -2.2416999340057373,
+          -3.250919818878174,
+          1.5827800035476685
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP6633",
+      "sourceConceptId": "FMA42398",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1510.obj",
+      "sourceSha256": "d3ce59c7785168a78c152a202480c2ed05b2c0b2798d70d89e3b9bd42fc2f9de",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "lumbricals-group__BP6633"
+      ],
+      "url": "/models/hand-muscle.glb",
+      "format": "glb",
+      "triangles": 2668
+    },
+    {
+      "id": "palmar-interossei-group__BP6631",
+      "entityId": "palmar-interossei-group",
+      "name": "Set of palmar interossei of right hand",
+      "system": "muscle",
+      "region": "Hand",
+      "bounds": [
+        [
+          -2.814689874649048,
+          -3.843939781188965,
+          1.2432199716567993
+        ],
+        [
+          -2.342050075531006,
+          -3.329240083694458,
+          1.4647300243377686
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP6631",
+      "sourceConceptId": "FMA42402",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1511.obj",
+      "sourceSha256": "85929597b60bd904b7dcc17c56f72dc3d607534bbf11149589f88b9158060bc8",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "palmar-interossei-group__BP6631"
+      ],
+      "url": "/models/hand-muscle.glb",
+      "format": "glb",
+      "triangles": 966
+    },
+    {
+      "id": "flexor-pollicis-brevis__BP5556",
+      "entityId": "flexor-pollicis-brevis",
+      "name": "Superficial head of right flexor pollicis brevis",
+      "system": "muscle",
+      "region": "Hand",
+      "bounds": [
+        [
+          -3.0199499130249023,
+          -3.331209659576416,
+          1.3663699626922607
+        ],
+        [
+          -2.597829818725586,
+          -3.031870126724243,
+          1.5420199632644653
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP5556",
+      "sourceConceptId": "FMA65198",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1514.obj",
+      "sourceSha256": "af5d19e0450559eaeacd54e6d332c507acc9b0dc4675311094c6c3b9c9715a71",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "flexor-pollicis-brevis__BP5556"
+      ],
+      "url": "/models/hand-muscle.glb",
+      "format": "glb",
+      "triangles": 726
+    },
+    {
+      "id": "adductor-pollicis-transverse-head__BP5543",
+      "entityId": "adductor-pollicis-transverse-head",
+      "name": "Transverse head of right adductor pollicis",
+      "system": "muscle",
+      "region": "Hand",
+      "bounds": [
+        [
+          -2.997650146484375,
+          -3.6136603355407715,
+          1.2420799732208252
+        ],
+        [
+          -2.5863900184631348,
+          -3.2329399585723877,
+          1.4672099351882935
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP5543",
+      "sourceConceptId": "FMA46123",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1515.obj",
+      "sourceSha256": "75f0a7b8130a70da1efb175638927868a2eb8d1f79916916666d100ec92190f2",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "adductor-pollicis-transverse-head__BP5543"
+      ],
+      "url": "/models/hand-muscle.glb",
+      "format": "glb",
+      "triangles": 754
+    },
+    {
+      "id": "deltoid-middle-fibers__BP7571",
+      "entityId": "deltoid-middle-fibers",
+      "name": "Acromial part of right deltoid",
+      "system": "muscle",
+      "region": "Shoulder",
+      "bounds": [
+        [
+          -2.272279977798462,
+          1.050899624824524,
+          0.4083710014820099
+        ],
+        [
+          -1.4658600091934204,
+          2.492199659347534,
+          1.0333800315856934
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP7571",
+      "sourceConceptId": "FMA34682",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1467.obj",
+      "sourceSha256": "2f69f1a13c836539abca85d9b77f55f96319ad3fdd75c62f498eabe49b266bfe",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "deltoid-middle-fibers__BP7571"
+      ],
+      "url": "/models/shoulder-muscle.glb",
+      "format": "glb",
+      "triangles": 1300
+    },
+    {
+      "id": "deltoid-anterior-fibers__BP7573",
+      "entityId": "deltoid-anterior-fibers",
+      "name": "Clavicular part of right deltoid",
+      "system": "muscle",
+      "region": "Shoulder",
+      "bounds": [
+        [
+          -2.0361900329589844,
+          1.0384997129440308,
+          0.7512519955635071
+        ],
+        [
+          -0.8855500221252441,
+          2.5539002418518066,
+          1.2133100032806396
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP7573",
+      "sourceConceptId": "FMA34680",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1468.obj",
+      "sourceSha256": "09eebb4a8d72c91936b0bfde7f35829a58f56103ac158f559186698458bcc616",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "deltoid-anterior-fibers__BP7573"
+      ],
+      "url": "/models/shoulder-muscle.glb",
+      "format": "glb",
+      "triangles": 2206
+    },
+    {
+      "id": "infraspinatus__BP4797",
+      "entityId": "infraspinatus",
+      "name": "Right infraspinatus muscle",
+      "system": "muscle",
+      "region": "Shoulder",
+      "bounds": [
+        [
+          -1.8905000686645508,
+          1.0653003454208374,
+          -0.0366613008081913
+        ],
+        [
+          -0.6025840044021606,
+          2.309699773788452,
+          0.7708699703216553
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4797",
+      "sourceConceptId": "FMA32547",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1500.obj",
+      "sourceSha256": "28f61376a3a88a28d14c44e1c20e9b7a34129772c130afa003daceac801455b1",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "infraspinatus__BP4797"
+      ],
+      "url": "/models/shoulder-muscle.glb",
+      "format": "glb",
+      "triangles": 866
+    },
+    {
+      "id": "subscapularis__BP4795",
+      "entityId": "subscapularis",
+      "name": "Right subscapularis",
+      "system": "muscle",
+      "region": "Shoulder",
+      "bounds": [
+        [
+          -1.6611700057983398,
+          0.9516003131866455,
+          0.02757829986512661
+        ],
+        [
+          -0.6318219900131226,
+          2.248000383377075,
+          0.9995469450950623
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4795",
+      "sourceConceptId": "FMA13414",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1504.obj",
+      "sourceSha256": "fdcbfd01f93e2d24bd73f5cb259a311c9f9e90de08c41573439844eef5f605dd",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "subscapularis__BP4795"
+      ],
+      "url": "/models/shoulder-muscle.glb",
+      "format": "glb",
+      "triangles": 2092
+    },
+    {
+      "id": "supraspinatus__BP4791",
+      "entityId": "supraspinatus",
+      "name": "Right supraspinatus",
+      "system": "muscle",
+      "region": "Shoulder",
+      "bounds": [
+        [
+          -1.884429931640625,
+          2.073399543762207,
+          0.129612997174263
+        ],
+        [
+          -0.638759970664978,
+          2.4235999584198,
+          0.9190129637718201
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4791",
+      "sourceConceptId": "FMA32544",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1506.obj",
+      "sourceSha256": "793771eceb64385269ddeeb09245e8c53b67499194f6fa98049b5e17aafa8e0c",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "supraspinatus__BP4791"
+      ],
+      "url": "/models/shoulder-muscle.glb",
+      "format": "glb",
+      "triangles": 878
+    },
+    {
+      "id": "teres-major__BP4789",
+      "entityId": "teres-major",
+      "name": "Right teres major",
+      "system": "muscle",
+      "region": "Shoulder",
+      "bounds": [
+        [
+          -1.7220900058746338,
+          0.8965002298355103,
+          -0.015556500293314457
+        ],
+        [
+          -0.8614250421524048,
+          1.8534997701644897,
+          0.7955690026283264
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4789",
+      "sourceConceptId": "FMA32551",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1507.obj",
+      "sourceSha256": "217aa2d39fdaa682998c8a1a1ffe9c8b37fed881edbbeb8ed5c633fa1541eaac",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "teres-major__BP4789"
+      ],
+      "url": "/models/shoulder-muscle.glb",
+      "format": "glb",
+      "triangles": 1042
+    },
+    {
+      "id": "teres-minor__BP4793",
+      "entityId": "teres-minor",
+      "name": "Right teres minor",
+      "system": "muscle",
+      "region": "Shoulder",
+      "bounds": [
+        [
+          -1.9055399894714355,
+          1.205600619316101,
+          0.12406200170516968
+        ],
+        [
+          -1.0540900230407715,
+          2.1692004203796387,
+          0.8031060099601746
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP4793",
+      "sourceConceptId": "FMA32553",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1508.obj",
+      "sourceSha256": "f56e595b86cea659891664706cd4443acddd8dc69e4e5bb3855445eef302641a",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "teres-minor__BP4793"
+      ],
+      "url": "/models/shoulder-muscle.glb",
+      "format": "glb",
+      "triangles": 506
+    },
+    {
+      "id": "deltoid-posterior-fibers__BP5607",
+      "entityId": "deltoid-posterior-fibers",
+      "name": "Spinal part of right deltoid",
+      "system": "muscle",
+      "region": "Shoulder",
+      "bounds": [
+        [
+          -2.1917099952697754,
+          0.8774999976158142,
+          0.02725120075047016
+        ],
+        [
+          -0.828341007232666,
+          2.398399591445923,
+          0.7925300002098083
+        ]
+      ],
+      "sourceId": "bp3d",
+      "sourceRepresentationId": "BP5607",
+      "sourceConceptId": "FMA34684",
+      "sourceFile": "isa_BP3D_4.0_obj_99/FJ1513.obj",
+      "sourceSha256": "ef8308c92fd0d01d8c0d7ffd9238305eefc2f28710d7bb58f451512abdc08e99",
+      "review": "source-mapped",
+      "side": "right",
+      "meshIds": [
+        "deltoid-posterior-fibers__BP5607"
+      ],
+      "url": "/models/shoulder-muscle.glb",
+      "format": "glb",
+      "triangles": 1900
+    }
+  ]
+}

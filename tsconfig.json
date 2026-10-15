@@ -1,5 +1,4 @@
 {
-  "extends": "../../tsconfig.base.json",
   "include": ["src/**/*"],
   "exclude": ["node_modules", "build", "dist", "**/*.test.ts"],
   "compilerOptions": {
@@ -7,21 +6,19 @@
     "tsBuildInfoFile": ".tsbuildinfo",
     "noEmit": true,
     "jsx": "preserve",
+    "target": "ES2022",
+    "module": "ESNext",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
     "lib": ["esnext", "dom", "dom.iterable"],
     "resolveJsonModule": true,
     "allowImportingTsExtensions": true,
     "moduleResolution": "bundler",
     "types": ["node", "vite/client"],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@atlas/*": ["./atlas/*"],
+      "@workspace/api-client-react": ["./src/lib/api-client.ts"]
     }
-  },
-  "references": [
-    {
-      "path": "../../lib/api-client-react"
-    },
-    {
-      "path": "../../lib/object-storage-web"
-    }
-  ]
+  }
 }

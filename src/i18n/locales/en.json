@@ -1,0 +1,174 @@
+{
+  "nav": {
+    "brand": "MedNotes",
+    "universities": "Universities",
+    "modules": "Modules",
+    "browse": "Browse Notes",
+    "upload": "Upload Note"
+  },
+  "footer": {
+    "tagline": "The open medical notes library for students, by students.",
+    "links": "Quick Links",
+    "contribute": "Start Contributing",
+    "contributeDesc": "Share your notes and help fellow students succeed.",
+    "uploadCta": "Upload a Note",
+    "copyright": "MedNotes © {{year}} — Premium Medical Resources."
+  },
+  "home": {
+    "filter": {
+      "all":   "All Notes",
+      "pdf":   "PDF",
+      "doc":   "Word",
+      "year1": "Year 1",
+      "year2": "Year 2",
+      "year3": "Year 3"
+    },
+    "hero": {
+      "tag": "Saudi Medical Students Platform",
+      "headline": "The medical notes library built for students, by students.",
+      "subline": "Find, share, and organize high-quality medical notes from Saudi universities.",
+      "searchPlaceholder": "Search notes, subjects, or modules...",
+      "searchBtn": "Search",
+      "uploadCta": "Upload a Note",
+      "statNotes": "Notes",
+      "statUniversities": "Universities",
+      "statModules": "Modules"
+    },
+    "universities": {
+      "heading": "Browse by University",
+      "viewAll": "View all universities",
+      "notesAvailable": "{{count}} notes available"
+    },
+    "modules": {
+      "heading": "Explore by Module",
+      "subjects": "{{count}} subjects",
+      "notes": "{{count}} notes"
+    },
+    "subjects": {
+      "heading": "Browse Subjects",
+      "notes": "{{count}} notes"
+    },
+    "featured": {
+      "heading": "Featured Notes",
+      "browseAll": "Browse all notes"
+    },
+    "contributors": {
+      "heading": "Top Contributors",
+      "rank": "Rank",
+      "contributor": "Contributor",
+      "contributions": "Contributions",
+      "upvotes": "Upvotes",
+      "downloads": "Downloads",
+      "notesCount": "{{count}} notes"
+    },
+    "howItWorks": {
+      "heading": "How MedNotes works",
+      "step1Title": "Choose your university",
+      "step1Desc": "Find your medical school to access tailored curriculums and specific modules.",
+      "step2Title": "Find your module",
+      "step2Desc": "Navigate to the exact subject you're currently studying or revising for.",
+      "step3Title": "Download or share",
+      "step3Desc": "Access peer-reviewed notes instantly, or upload your own to help others."
+    }
+  },
+  "universities": {
+    "title": "Saudi Medical Universities",
+    "subtitle": "Access study notes and materials from medical colleges across the Kingdom of Saudi Arabia.",
+    "searchPlaceholder": "Search universities or cities...",
+    "notesAvailable": "{{count}} notes available",
+    "featured": "Featured University",
+    "featuredBadge": "Featured",
+    "notFound": {
+      "title": "No universities found",
+      "desc": "Try adjusting your search terms or checking back later."
+    }
+  },
+  "modules": {
+    "title": "Study Modules",
+    "subtitle": "Browse specialized medical courses, modules, and subject areas.",
+    "searchPlaceholder": "Search modules...",
+    "allUniversities": "All Universities",
+    "notes": "{{count}} Notes",
+    "notFound": {
+      "title": "No modules found",
+      "desc": "Try a different search term or clear the university filter."
+    }
+  },
+  "notes": {
+    "title": "Browse Notes",
+    "subtitle": "Find the exact study materials you need. Use the filters below to narrow down by university, module, and subject.",
+    "searchPlaceholder": "Search titles, tags...",
+    "allUniversities": "All Universities",
+    "allModules": "All Modules",
+    "allSubjects": "All Subjects",
+    "loading": "Loading notes...",
+    "found": "{{count}} notes found",
+    "sortRecent": "Recent",
+    "sortTop": "Top Rated",
+    "empty": {
+      "title": "No notes found",
+      "desc": "We couldn't find any notes matching your criteria. Be the first to upload one for this subject!",
+      "uploadCta": "Upload a Note"
+    }
+  },
+  "noteDetail": {
+    "backToNotes": "Back to Home",
+    "year": "Year {{year}}",
+    "description": "Description",
+    "noDescription": "No description provided for this note.",
+    "tags": "Tags",
+    "context": "Context",
+    "university": "University",
+    "module": "Module",
+    "subject": "Subject",
+    "download": "Download Note ({{count}})",
+    "upvote": "Upvote ({{count}})",
+    "upvoted": "Note upvoted",
+    "upvotedDesc": "Thanks for contributing!",
+    "linkCopied": "Link copied",
+    "linkCopiedDesc": "Link copied to clipboard",
+    "loading": "Loading note details...",
+    "notFound": "Note not found."
+  },
+  "upload": {
+    "title": "Upload a Note",
+    "subtitle": "Share your knowledge with the medical student community.",
+    "guidelines": "Note Guidelines",
+    "guidelinesDesc": "Ensure your notes are accurate, well-formatted, and do not contain patient-identifiable information (PII).",
+    "section1": "1. Academic Context",
+    "section2": "2. Note Details",
+    "section3": "3. File Information",
+    "university": "University",
+    "selectUniversity": "Select University",
+    "module": "Module",
+    "selectModule": "Select Module",
+    "subject": "Subject",
+    "selectSubject": "Select Subject",
+    "title_field": "Title",
+    "titlePlaceholder": "e.g. Comprehensive Cardiology Study Guide",
+    "description": "Description (Optional)",
+    "descPlaceholder": "Briefly describe what this note covers...",
+    "tags": "Tags",
+    "tagsPlaceholder": "e.g. anatomy, year1, finals (comma separated)",
+    "batchNumber": "Batch Number",
+    "batchPlaceholder": "e.g. 45",
+    "fileType": "File Type",
+    "selectFileType": "Select Type",
+    "authorName": "Author Name",
+    "authorPlaceholder": "How should you be credited?",
+    "fileUpload": "Upload File",
+    "fileUploadPlaceholder": "Choose a file from your device",
+    "fileUploadDesc": "Accepted: PDF, Word, PowerPoint, images, audio, video",
+    "submit": "Publish Note",
+    "submitting": "Uploading...",
+    "successTitle": "Note uploaded successfully!",
+    "successDesc": "Thank you for contributing to MedNotes.",
+    "errorTitle": "Upload failed",
+    "errorDesc": "There was a problem uploading your note. Please try again.",
+    "loading": "Loading..."
+  },
+  "common": {
+    "language": "العربية",
+    "languageToggle": "AR"
+  }
+}

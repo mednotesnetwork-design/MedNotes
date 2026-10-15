@@ -1,0 +1,35 @@
+{
+  "sourceId": "nih-000387",
+  "sourceUrl": "https://3d.nih.gov/entries/3DPX-000387",
+  "sourceFileUrl": "https://persist-3d-media.s3.amazonaws.com/6802/ombro%2520normal%2520%2528limpo%2529_NIH3D.glb",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "sourceSha256": "ec313699e0a52ae0f667e663eb4b676ee32d09bc0de58e2986f5f36ee7ab4adc",
+  "releaseSha256": "0eb0ec8ef03b360fe98bb4e2a2e7129a4b077988485ededfe56668f033f4876e",
+  "creator": "bgobbato",
+  "sourceVersion": 2,
+  "verifiedAt": "2026-09-09",
+  "licenseEvidence": "Entry Licensing section links to CC0 1.0 and labels this model Public Domain. Entry metadata sourceRemix=[] and externalDerivativeSource=[].",
+  "conversion": "Three largest connected components retained; small disconnected scan fragments excluded. Existing triangles preserved. Rotate 180 degrees about X, center, uniformly scale by 0.018. No hole filling, remeshing, invented surface zones or soft tissues.",
+  "limitations": [
+    "Laterality undocumented",
+    "Proximal humerus only",
+    "Source scan artifacts and holes remain",
+    "Independent anatomical review pending",
+    "No source attachment or landmark segmentation"
+  ],
+  "components": [
+    {
+      "entityId": "scapula",
+      "triangles": 126054
+    },
+    {
+      "entityId": "humerus",
+      "triangles": 59456
+    },
+    {
+      "entityId": "clavicle",
+      "triangles": 32210
+    }
+  ],
+  "excludedDisconnectedComponents": 622
+}

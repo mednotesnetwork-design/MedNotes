@@ -1,0 +1,34 @@
+[
+  {
+    "sourceId": "nih-000343",
+    "sourceUrl": "https://3d.nih.gov/entries/3DPX-000343",
+    "sourceSha256": "1375ecc47a585cc74fb4123ee26e97d7715cdd9fed8a256de3467142e41efee4",
+    "releaseSha256": "ff87e2f4be69e4f68e8e7abbaedbbe0136edbe19ccf2f735939d15b19985bf4d",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "creator": "bgobbato",
+    "licenseEvidence": "Model-specific Licensing block Public Domain / CC0; sourceRemix and externalDerivativeSource empty.",
+    "conversion": "Rigid X rotation 180 degrees, centering, uniform scaling 0.018; all source triangles retained, no new geometry.",
+    "triangles": 201146,
+    "limitations": [
+      "This specimen illustrates bony sequelae of shoulder instability, not an actively dislocated humeral head.",
+      "Reference and pathological examples come from different source models. They are not paired scans of one patient and are not a measured displacement comparison.",
+      "Independent review pending; laterality undocumented."
+    ]
+  },
+  {
+    "sourceId": "nih-000353",
+    "sourceUrl": "https://3d.nih.gov/entries/3DPX-000353",
+    "sourceSha256": "19f5c9229b55d8c7efaba9072686d2f7e16edcf25e11d0682c5de68704e0bd4b",
+    "releaseSha256": "e9e59b2a8d194e437d1351c46425c51d7943648d1916793cbd7b6bc085211163",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "creator": "bgobbato",
+    "licenseEvidence": "Model-specific Licensing block Public Domain / CC0; sourceRemix and externalDerivativeSource empty.",
+    "conversion": "Rigid X rotation 180 degrees, centering, uniform scaling 0.018; all source triangles retained, no new geometry.",
+    "triangles": 98028,
+    "limitations": [
+      "Fracture morphology is preserved from the source. Neurovascular risk depends on the actual pattern; this is not a diagnosis or treatment simulation.",
+      "Reference and pathological examples come from different source models. They are not paired scans of one patient and are not a measured displacement comparison.",
+      "Independent review pending; laterality undocumented."
+    ]
+  }
+]

@@ -1,0 +1,3761 @@
+[
+  {
+    "id": "scapular-elevation",
+    "name": "Scapular elevation",
+    "aliases": [],
+    "system": "movement",
+    "region": "Shoulder girdle",
+    "description": "Superior translation of scapula and clavicular elevation.",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "prime mover",
+        "targetId": "trapezius"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "levator-scapulae"
+      },
+      {
+        "type": "assisted by",
+        "targetId": "rhomboid-major"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "pectoralis-minor"
+      },
+      {
+        "type": "at joint",
+        "targetId": "scapulothoracic-articulation"
+      },
+      {
+        "type": "at joint",
+        "targetId": "sternoclavicular-joint"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Movement": "Superior translation of scapula and clavicular elevation."
+    },
+    "jointIds": [
+      "scapulothoracic-articulation",
+      "sternoclavicular-joint"
+    ],
+    "primeMoverIds": [
+      "trapezius",
+      "levator-scapulae"
+    ],
+    "assistantIds": [
+      "rhomboid-major"
+    ],
+    "antagonistIds": [
+      "pectoralis-minor"
+    ],
+    "nerveIds": [],
+    "demonstration": {
+      "status": "awaiting-validated-rig",
+      "clipId": null
+    }
+  },
+  {
+    "id": "scapular-depression",
+    "name": "Scapular depression",
+    "aliases": [],
+    "system": "movement",
+    "region": "Shoulder girdle",
+    "description": "Inferior scapular movement; active muscle contribution depends on task and fixation.",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "prime mover",
+        "targetId": "trapezius"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "pectoralis-minor"
+      },
+      {
+        "type": "assisted by",
+        "targetId": "subclavius"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "levator-scapulae"
+      },
+      {
+        "type": "at joint",
+        "targetId": "scapulothoracic-articulation"
+      },
+      {
+        "type": "at joint",
+        "targetId": "sternoclavicular-joint"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Movement": "Inferior scapular movement; active muscle contribution depends on task and fixation."
+    },
+    "jointIds": [
+      "scapulothoracic-articulation",
+      "sternoclavicular-joint"
+    ],
+    "primeMoverIds": [
+      "trapezius",
+      "pectoralis-minor"
+    ],
+    "assistantIds": [
+      "subclavius"
+    ],
+    "antagonistIds": [
+      "levator-scapulae"
+    ],
+    "nerveIds": [],
+    "demonstration": {
+      "status": "awaiting-validated-rig",
+      "clipId": null
+    }
+  },
+  {
+    "id": "scapular-protraction",
+    "name": "Scapular protraction",
+    "aliases": [],
+    "system": "movement",
+    "region": "Shoulder girdle",
+    "description": "Scapula travels anterolaterally around the thoracic wall.",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "prime mover",
+        "targetId": "serratus-anterior"
+      },
+      {
+        "type": "assisted by",
+        "targetId": "pectoralis-minor"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "rhomboid-major"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "rhomboid-minor"
+      },
+      {
+        "type": "at joint",
+        "targetId": "scapulothoracic-articulation"
+      },
+      {
+        "type": "at joint",
+        "targetId": "sternoclavicular-joint"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Movement": "Scapula travels anterolaterally around the thoracic wall."
+    },
+    "jointIds": [
+      "scapulothoracic-articulation",
+      "sternoclavicular-joint"
+    ],
+    "primeMoverIds": [
+      "serratus-anterior"
+    ],
+    "assistantIds": [
+      "pectoralis-minor"
+    ],
+    "antagonistIds": [
+      "rhomboid-major",
+      "rhomboid-minor"
+    ],
+    "nerveIds": [],
+    "demonstration": {
+      "status": "awaiting-validated-rig",
+      "clipId": null
+    }
+  },
+  {
+    "id": "scapular-retraction",
+    "name": "Scapular retraction",
+    "aliases": [],
+    "system": "movement",
+    "region": "Shoulder girdle",
+    "description": "Scapula travels posteromedially toward the vertebral column.",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "prime mover",
+        "targetId": "trapezius"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "rhomboid-major"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "rhomboid-minor"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "serratus-anterior"
+      },
+      {
+        "type": "at joint",
+        "targetId": "scapulothoracic-articulation"
+      },
+      {
+        "type": "at joint",
+        "targetId": "sternoclavicular-joint"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Movement": "Scapula travels posteromedially toward the vertebral column."
+    },
+    "jointIds": [
+      "scapulothoracic-articulation",
+      "sternoclavicular-joint"
+    ],
+    "primeMoverIds": [
+      "trapezius",
+      "rhomboid-major",
+      "rhomboid-minor"
+    ],
+    "assistantIds": [],
+    "antagonistIds": [
+      "serratus-anterior"
+    ],
+    "nerveIds": [],
+    "demonstration": {
+      "status": "awaiting-validated-rig",
+      "clipId": null
+    }
+  },
+  {
+    "id": "scapular-upward-rotation",
+    "name": "Scapular upward rotation",
+    "aliases": [],
+    "system": "movement",
+    "region": "Shoulder girdle",
+    "description": "Glenoid turns superiorly; inferior angle moves laterally. Upper/lower trapezius and lower serratus form a force couple.",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "prime mover",
+        "targetId": "serratus-anterior"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "trapezius"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "rhomboid-major"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "levator-scapulae"
+      },
+      {
+        "type": "at joint",
+        "targetId": "scapulothoracic-articulation"
+      },
+      {
+        "type": "at joint",
+        "targetId": "acromioclavicular-joint"
+      },
+      {
+        "type": "at joint",
+        "targetId": "sternoclavicular-joint"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Movement": "Glenoid turns superiorly; inferior angle moves laterally. Upper/lower trapezius and lower serratus form a force couple."
+    },
+    "jointIds": [
+      "scapulothoracic-articulation",
+      "acromioclavicular-joint",
+      "sternoclavicular-joint"
+    ],
+    "primeMoverIds": [
+      "serratus-anterior",
+      "trapezius"
+    ],
+    "assistantIds": [],
+    "antagonistIds": [
+      "rhomboid-major",
+      "levator-scapulae"
+    ],
+    "nerveIds": [],
+    "demonstration": {
+      "status": "awaiting-validated-rig",
+      "clipId": null
+    }
+  },
+  {
+    "id": "scapular-downward-rotation",
+    "name": "Scapular downward rotation",
+    "aliases": [],
+    "system": "movement",
+    "region": "Shoulder girdle",
+    "description": "Glenoid turns inferiorly as the arm is lowered.",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "prime mover",
+        "targetId": "rhomboid-major"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "rhomboid-minor"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "levator-scapulae"
+      },
+      {
+        "type": "assisted by",
+        "targetId": "pectoralis-minor"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "serratus-anterior"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "trapezius"
+      },
+      {
+        "type": "at joint",
+        "targetId": "scapulothoracic-articulation"
+      },
+      {
+        "type": "at joint",
+        "targetId": "acromioclavicular-joint"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Movement": "Glenoid turns inferiorly as the arm is lowered."
+    },
+    "jointIds": [
+      "scapulothoracic-articulation",
+      "acromioclavicular-joint"
+    ],
+    "primeMoverIds": [
+      "rhomboid-major",
+      "rhomboid-minor",
+      "levator-scapulae"
+    ],
+    "assistantIds": [
+      "pectoralis-minor"
+    ],
+    "antagonistIds": [
+      "serratus-anterior",
+      "trapezius"
+    ],
+    "nerveIds": [],
+    "demonstration": {
+      "status": "awaiting-validated-rig",
+      "clipId": null
+    }
+  },
+  {
+    "id": "shoulder-flexion",
+    "name": "Shoulder flexion",
+    "aliases": [],
+    "system": "movement",
+    "region": "Shoulder",
+    "description": "Arm moves anteriorly; predominantly a transverse axis.",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "prime mover",
+        "targetId": "deltoid-anterior-fibers"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "pectoralis-major-clavicular-head"
+      },
+      {
+        "type": "assisted by",
+        "targetId": "coracobrachialis"
+      },
+      {
+        "type": "assisted by",
+        "targetId": "biceps-brachii"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "latissimus-dorsi"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "deltoid-posterior-fibers"
+      },
+      {
+        "type": "at joint",
+        "targetId": "glenohumeral-joint"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Movement": "Arm moves anteriorly; predominantly a transverse axis."
+    },
+    "jointIds": [
+      "glenohumeral-joint"
+    ],
+    "primeMoverIds": [
+      "deltoid-anterior-fibers",
+      "pectoralis-major-clavicular-head"
+    ],
+    "assistantIds": [
+      "coracobrachialis",
+      "biceps-brachii"
+    ],
+    "antagonistIds": [
+      "latissimus-dorsi",
+      "deltoid-posterior-fibers"
+    ],
+    "nerveIds": [],
+    "demonstration": {
+      "status": "awaiting-validated-rig",
+      "clipId": null
+    }
+  },
+  {
+    "id": "shoulder-extension",
+    "name": "Shoulder extension",
+    "aliases": [],
+    "system": "movement",
+    "region": "Shoulder",
+    "description": "Arm moves posteriorly. Sternocostal pectoralis major can extend a flexed arm.",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "prime mover",
+        "targetId": "deltoid-posterior-fibers"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "latissimus-dorsi"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "teres-major"
+      },
+      {
+        "type": "assisted by",
+        "targetId": "triceps-brachii-long-head"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "deltoid-anterior-fibers"
+      },
+      {
+        "type": "at joint",
+        "targetId": "glenohumeral-joint"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Movement": "Arm moves posteriorly. Sternocostal pectoralis major can extend a flexed arm."
+    },
+    "jointIds": [
+      "glenohumeral-joint"
+    ],
+    "primeMoverIds": [
+      "deltoid-posterior-fibers",
+      "latissimus-dorsi",
+      "teres-major"
+    ],
+    "assistantIds": [
+      "triceps-brachii-long-head"
+    ],
+    "antagonistIds": [
+      "deltoid-anterior-fibers"
+    ],
+    "nerveIds": [],
+    "demonstration": {
+      "status": "awaiting-validated-rig",
+      "clipId": null
+    }
+  },
+  {
+    "id": "shoulder-abduction",
+    "name": "Shoulder abduction",
+    "aliases": [],
+    "system": "movement",
+    "region": "Shoulder",
+    "description": "Supraspinatus contributes early and throughout elevation. Deltoid provides increasing torque; full elevation requires scapular upward rotation.",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "prime mover",
+        "targetId": "deltoid-middle-fibers"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "supraspinatus"
+      },
+      {
+        "type": "assisted by",
+        "targetId": "serratus-anterior"
+      },
+      {
+        "type": "assisted by",
+        "targetId": "trapezius"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "latissimus-dorsi"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "pectoralis-major"
+      },
+      {
+        "type": "at joint",
+        "targetId": "glenohumeral-joint"
+      },
+      {
+        "type": "at joint",
+        "targetId": "scapulothoracic-articulation"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Movement": "Supraspinatus contributes early and throughout elevation. Deltoid provides increasing torque; full elevation requires scapular upward rotation."
+    },
+    "jointIds": [
+      "glenohumeral-joint",
+      "scapulothoracic-articulation"
+    ],
+    "primeMoverIds": [
+      "deltoid-middle-fibers",
+      "supraspinatus"
+    ],
+    "assistantIds": [
+      "serratus-anterior",
+      "trapezius"
+    ],
+    "antagonistIds": [
+      "latissimus-dorsi",
+      "pectoralis-major"
+    ],
+    "nerveIds": [],
+    "demonstration": {
+      "status": "awaiting-validated-rig",
+      "clipId": null
+    }
+  },
+  {
+    "id": "shoulder-adduction",
+    "name": "Shoulder adduction",
+    "aliases": [],
+    "system": "movement",
+    "region": "Shoulder",
+    "description": "Arm moves toward the trunk from an abducted position.",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "prime mover",
+        "targetId": "pectoralis-major"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "latissimus-dorsi"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "teres-major"
+      },
+      {
+        "type": "assisted by",
+        "targetId": "coracobrachialis"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "deltoid-middle-fibers"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "supraspinatus"
+      },
+      {
+        "type": "at joint",
+        "targetId": "glenohumeral-joint"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Movement": "Arm moves toward the trunk from an abducted position."
+    },
+    "jointIds": [
+      "glenohumeral-joint"
+    ],
+    "primeMoverIds": [
+      "pectoralis-major",
+      "latissimus-dorsi",
+      "teres-major"
+    ],
+    "assistantIds": [
+      "coracobrachialis"
+    ],
+    "antagonistIds": [
+      "deltoid-middle-fibers",
+      "supraspinatus"
+    ],
+    "nerveIds": [],
+    "demonstration": {
+      "status": "awaiting-validated-rig",
+      "clipId": null
+    }
+  },
+  {
+    "id": "shoulder-medial-rotation",
+    "name": "Shoulder medial rotation",
+    "aliases": [],
+    "system": "movement",
+    "region": "Shoulder",
+    "description": "Humerus rotates inward about its longitudinal axis.",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "prime mover",
+        "targetId": "subscapularis"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "pectoralis-major"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "latissimus-dorsi"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "teres-major"
+      },
+      {
+        "type": "assisted by",
+        "targetId": "deltoid-anterior-fibers"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "infraspinatus"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "teres-minor"
+      },
+      {
+        "type": "at joint",
+        "targetId": "glenohumeral-joint"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Movement": "Humerus rotates inward about its longitudinal axis."
+    },
+    "jointIds": [
+      "glenohumeral-joint"
+    ],
+    "primeMoverIds": [
+      "subscapularis",
+      "pectoralis-major",
+      "latissimus-dorsi",
+      "teres-major"
+    ],
+    "assistantIds": [
+      "deltoid-anterior-fibers"
+    ],
+    "antagonistIds": [
+      "infraspinatus",
+      "teres-minor"
+    ],
+    "nerveIds": [],
+    "demonstration": {
+      "status": "awaiting-validated-rig",
+      "clipId": null
+    }
+  },
+  {
+    "id": "shoulder-lateral-rotation",
+    "name": "Shoulder lateral rotation",
+    "aliases": [],
+    "system": "movement",
+    "region": "Shoulder",
+    "description": "Humerus rotates outward about its longitudinal axis.",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "prime mover",
+        "targetId": "infraspinatus"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "teres-minor"
+      },
+      {
+        "type": "assisted by",
+        "targetId": "deltoid-posterior-fibers"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "subscapularis"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "pectoralis-major"
+      },
+      {
+        "type": "at joint",
+        "targetId": "glenohumeral-joint"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Movement": "Humerus rotates outward about its longitudinal axis."
+    },
+    "jointIds": [
+      "glenohumeral-joint"
+    ],
+    "primeMoverIds": [
+      "infraspinatus",
+      "teres-minor"
+    ],
+    "assistantIds": [
+      "deltoid-posterior-fibers"
+    ],
+    "antagonistIds": [
+      "subscapularis",
+      "pectoralis-major"
+    ],
+    "nerveIds": [],
+    "demonstration": {
+      "status": "awaiting-validated-rig",
+      "clipId": null
+    }
+  },
+  {
+    "id": "shoulder-circumduction",
+    "name": "Shoulder circumduction",
+    "aliases": [],
+    "system": "movement",
+    "region": "Shoulder",
+    "description": "Sequential flexion, abduction, extension and adduction; not a separate independent joint axis.",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "prime mover",
+        "targetId": "deltoid"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "pectoralis-major"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "latissimus-dorsi"
+      },
+      {
+        "type": "assisted by",
+        "targetId": "supraspinatus"
+      },
+      {
+        "type": "at joint",
+        "targetId": "glenohumeral-joint"
+      },
+      {
+        "type": "at joint",
+        "targetId": "scapulothoracic-articulation"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Movement": "Sequential flexion, abduction, extension and adduction; not a separate independent joint axis."
+    },
+    "jointIds": [
+      "glenohumeral-joint",
+      "scapulothoracic-articulation"
+    ],
+    "primeMoverIds": [
+      "deltoid",
+      "pectoralis-major",
+      "latissimus-dorsi"
+    ],
+    "assistantIds": [
+      "supraspinatus"
+    ],
+    "antagonistIds": [],
+    "nerveIds": [],
+    "demonstration": {
+      "status": "awaiting-validated-rig",
+      "clipId": null
+    }
+  },
+  {
+    "id": "elbow-flexion",
+    "name": "Elbow flexion",
+    "aliases": [],
+    "system": "movement",
+    "region": "Elbow",
+    "description": "Forearm approaches the arm around the elbow flexion axis; biceps contribution depends on forearm position.",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "prime mover",
+        "targetId": "brachialis"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "biceps-brachii"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "brachioradialis"
+      },
+      {
+        "type": "assisted by",
+        "targetId": "pronator-teres"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "triceps-brachii"
+      },
+      {
+        "type": "at joint",
+        "targetId": "humeroulnar-joint"
+      },
+      {
+        "type": "at joint",
+        "targetId": "humeroradial-joint"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Movement": "Forearm approaches the arm around the elbow flexion axis; biceps contribution depends on forearm position."
+    },
+    "jointIds": [
+      "humeroulnar-joint",
+      "humeroradial-joint"
+    ],
+    "primeMoverIds": [
+      "brachialis",
+      "biceps-brachii",
+      "brachioradialis"
+    ],
+    "assistantIds": [
+      "pronator-teres"
+    ],
+    "antagonistIds": [
+      "triceps-brachii"
+    ],
+    "nerveIds": [],
+    "demonstration": {
+      "status": "awaiting-validated-rig",
+      "clipId": null
+    }
+  },
+  {
+    "id": "elbow-extension",
+    "name": "Elbow extension",
+    "aliases": [],
+    "system": "movement",
+    "region": "Elbow",
+    "description": "Forearm straightens at the elbow.",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "prime mover",
+        "targetId": "triceps-brachii"
+      },
+      {
+        "type": "assisted by",
+        "targetId": "anconeus"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "brachialis"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "biceps-brachii"
+      },
+      {
+        "type": "at joint",
+        "targetId": "humeroulnar-joint"
+      },
+      {
+        "type": "at joint",
+        "targetId": "humeroradial-joint"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Movement": "Forearm straightens at the elbow."
+    },
+    "jointIds": [
+      "humeroulnar-joint",
+      "humeroradial-joint"
+    ],
+    "primeMoverIds": [
+      "triceps-brachii"
+    ],
+    "assistantIds": [
+      "anconeus"
+    ],
+    "antagonistIds": [
+      "brachialis",
+      "biceps-brachii"
+    ],
+    "nerveIds": [],
+    "demonstration": {
+      "status": "awaiting-validated-rig",
+      "clipId": null
+    }
+  },
+  {
+    "id": "pronation",
+    "name": "Pronation",
+    "aliases": [],
+    "system": "movement",
+    "region": "Forearm",
+    "description": "Radius crosses anterior to ulna as the palm turns posteriorly from anatomical position. Distal radius and hand rotate around the ulnar head; ulna is relatively stable.",
+    "sourceIds": [
+      "forearm"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "prime mover",
+        "targetId": "pronator-quadratus"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "pronator-teres"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "supinator"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "biceps-brachii"
+      },
+      {
+        "type": "at joint",
+        "targetId": "proximal-radioulnar-joint"
+      },
+      {
+        "type": "at joint",
+        "targetId": "distal-radioulnar-joint"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Movement": "Radius crosses anterior to ulna as the palm turns posteriorly from anatomical position. Distal radius and hand rotate around the ulnar head; ulna is relatively stable."
+    },
+    "jointIds": [
+      "proximal-radioulnar-joint",
+      "distal-radioulnar-joint"
+    ],
+    "primeMoverIds": [
+      "pronator-quadratus",
+      "pronator-teres"
+    ],
+    "assistantIds": [],
+    "antagonistIds": [
+      "supinator",
+      "biceps-brachii"
+    ],
+    "nerveIds": [],
+    "demonstration": {
+      "status": "awaiting-validated-rig",
+      "clipId": null
+    }
+  },
+  {
+    "id": "supination",
+    "name": "Supination",
+    "aliases": [],
+    "system": "movement",
+    "region": "Forearm",
+    "description": "Radius and ulna become parallel. Palm faces anteriorly in anatomical position; with flexed elbow, palm faces upward.",
+    "sourceIds": [
+      "forearm"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "prime mover",
+        "targetId": "supinator"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "biceps-brachii"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "pronator-quadratus"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "pronator-teres"
+      },
+      {
+        "type": "at joint",
+        "targetId": "proximal-radioulnar-joint"
+      },
+      {
+        "type": "at joint",
+        "targetId": "distal-radioulnar-joint"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Movement": "Radius and ulna become parallel. Palm faces anteriorly in anatomical position; with flexed elbow, palm faces upward."
+    },
+    "jointIds": [
+      "proximal-radioulnar-joint",
+      "distal-radioulnar-joint"
+    ],
+    "primeMoverIds": [
+      "supinator",
+      "biceps-brachii"
+    ],
+    "assistantIds": [],
+    "antagonistIds": [
+      "pronator-quadratus",
+      "pronator-teres"
+    ],
+    "nerveIds": [],
+    "demonstration": {
+      "status": "awaiting-validated-rig",
+      "clipId": null
+    }
+  },
+  {
+    "id": "wrist-flexion",
+    "name": "Wrist flexion",
+    "aliases": [],
+    "system": "movement",
+    "region": "Wrist",
+    "description": "Palm approaches anterior forearm.",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "prime mover",
+        "targetId": "flexor-carpi-radialis"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "flexor-carpi-ulnaris"
+      },
+      {
+        "type": "assisted by",
+        "targetId": "palmaris-longus"
+      },
+      {
+        "type": "assisted by",
+        "targetId": "flexor-digitorum-superficialis"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "extensor-carpi-radialis-longus"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "extensor-carpi-ulnaris"
+      },
+      {
+        "type": "at joint",
+        "targetId": "radiocarpal-joint"
+      },
+      {
+        "type": "at joint",
+        "targetId": "midcarpal-joints"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Movement": "Palm approaches anterior forearm."
+    },
+    "jointIds": [
+      "radiocarpal-joint",
+      "midcarpal-joints"
+    ],
+    "primeMoverIds": [
+      "flexor-carpi-radialis",
+      "flexor-carpi-ulnaris"
+    ],
+    "assistantIds": [
+      "palmaris-longus",
+      "flexor-digitorum-superficialis"
+    ],
+    "antagonistIds": [
+      "extensor-carpi-radialis-longus",
+      "extensor-carpi-ulnaris"
+    ],
+    "nerveIds": [],
+    "demonstration": {
+      "status": "awaiting-validated-rig",
+      "clipId": null
+    }
+  },
+  {
+    "id": "wrist-extension",
+    "name": "Wrist extension",
+    "aliases": [],
+    "system": "movement",
+    "region": "Wrist",
+    "description": "Dorsum approaches posterior forearm.",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "prime mover",
+        "targetId": "extensor-carpi-radialis-longus"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "extensor-carpi-radialis-brevis"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "extensor-carpi-ulnaris"
+      },
+      {
+        "type": "assisted by",
+        "targetId": "extensor-digitorum"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "flexor-carpi-radialis"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "flexor-carpi-ulnaris"
+      },
+      {
+        "type": "at joint",
+        "targetId": "radiocarpal-joint"
+      },
+      {
+        "type": "at joint",
+        "targetId": "midcarpal-joints"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Movement": "Dorsum approaches posterior forearm."
+    },
+    "jointIds": [
+      "radiocarpal-joint",
+      "midcarpal-joints"
+    ],
+    "primeMoverIds": [
+      "extensor-carpi-radialis-longus",
+      "extensor-carpi-radialis-brevis",
+      "extensor-carpi-ulnaris"
+    ],
+    "assistantIds": [
+      "extensor-digitorum"
+    ],
+    "antagonistIds": [
+      "flexor-carpi-radialis",
+      "flexor-carpi-ulnaris"
+    ],
+    "nerveIds": [],
+    "demonstration": {
+      "status": "awaiting-validated-rig",
+      "clipId": null
+    }
+  },
+  {
+    "id": "radial-deviation",
+    "name": "Radial deviation",
+    "aliases": [],
+    "system": "movement",
+    "region": "Wrist",
+    "description": "Hand moves toward the radial / thumb side.",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "prime mover",
+        "targetId": "flexor-carpi-radialis"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "extensor-carpi-radialis-longus"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "extensor-carpi-radialis-brevis"
+      },
+      {
+        "type": "assisted by",
+        "targetId": "abductor-pollicis-longus"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "flexor-carpi-ulnaris"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "extensor-carpi-ulnaris"
+      },
+      {
+        "type": "at joint",
+        "targetId": "radiocarpal-joint"
+      },
+      {
+        "type": "at joint",
+        "targetId": "midcarpal-joints"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Movement": "Hand moves toward the radial / thumb side."
+    },
+    "jointIds": [
+      "radiocarpal-joint",
+      "midcarpal-joints"
+    ],
+    "primeMoverIds": [
+      "flexor-carpi-radialis",
+      "extensor-carpi-radialis-longus",
+      "extensor-carpi-radialis-brevis"
+    ],
+    "assistantIds": [
+      "abductor-pollicis-longus"
+    ],
+    "antagonistIds": [
+      "flexor-carpi-ulnaris",
+      "extensor-carpi-ulnaris"
+    ],
+    "nerveIds": [],
+    "demonstration": {
+      "status": "awaiting-validated-rig",
+      "clipId": null
+    }
+  },
+  {
+    "id": "ulnar-deviation",
+    "name": "Ulnar deviation",
+    "aliases": [],
+    "system": "movement",
+    "region": "Wrist",
+    "description": "Hand moves toward the ulnar / little-finger side.",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "prime mover",
+        "targetId": "flexor-carpi-ulnaris"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "extensor-carpi-ulnaris"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "flexor-carpi-radialis"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "extensor-carpi-radialis-longus"
+      },
+      {
+        "type": "at joint",
+        "targetId": "radiocarpal-joint"
+      },
+      {
+        "type": "at joint",
+        "targetId": "midcarpal-joints"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Movement": "Hand moves toward the ulnar / little-finger side."
+    },
+    "jointIds": [
+      "radiocarpal-joint",
+      "midcarpal-joints"
+    ],
+    "primeMoverIds": [
+      "flexor-carpi-ulnaris",
+      "extensor-carpi-ulnaris"
+    ],
+    "assistantIds": [],
+    "antagonistIds": [
+      "flexor-carpi-radialis",
+      "extensor-carpi-radialis-longus"
+    ],
+    "nerveIds": [],
+    "demonstration": {
+      "status": "awaiting-validated-rig",
+      "clipId": null
+    }
+  },
+  {
+    "id": "finger-mcp-flexion",
+    "name": "Finger MCP flexion",
+    "aliases": [],
+    "system": "movement",
+    "region": "Hand",
+    "description": "Intrinsic muscles flex MCP joints while the extensor expansion permits simultaneous IP extension.",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "prime mover",
+        "targetId": "lumbrical-1"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "lumbrical-2"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "lumbrical-3"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "lumbrical-4"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "dorsal-interosseous-1"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "palmar-interosseous-1"
+      },
+      {
+        "type": "assisted by",
+        "targetId": "flexor-digitorum-superficialis"
+      },
+      {
+        "type": "assisted by",
+        "targetId": "flexor-digitorum-profundus"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "extensor-digitorum"
+      },
+      {
+        "type": "at joint",
+        "targetId": "metacarpophalangeal-joints"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Movement": "Intrinsic muscles flex MCP joints while the extensor expansion permits simultaneous IP extension."
+    },
+    "jointIds": [
+      "metacarpophalangeal-joints"
+    ],
+    "primeMoverIds": [
+      "lumbrical-1",
+      "lumbrical-2",
+      "lumbrical-3",
+      "lumbrical-4",
+      "dorsal-interosseous-1",
+      "palmar-interosseous-1"
+    ],
+    "assistantIds": [
+      "flexor-digitorum-superficialis",
+      "flexor-digitorum-profundus"
+    ],
+    "antagonistIds": [
+      "extensor-digitorum"
+    ],
+    "nerveIds": [],
+    "demonstration": {
+      "status": "awaiting-validated-rig",
+      "clipId": null
+    }
+  },
+  {
+    "id": "finger-mcp-extension",
+    "name": "Finger MCP extension",
+    "aliases": [],
+    "system": "movement",
+    "region": "Hand",
+    "description": "Long extensors extend MCP joints.",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "prime mover",
+        "targetId": "extensor-digitorum"
+      },
+      {
+        "type": "assisted by",
+        "targetId": "extensor-indicis"
+      },
+      {
+        "type": "assisted by",
+        "targetId": "extensor-digiti-minimi"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "lumbrical-1"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "flexor-digitorum-superficialis"
+      },
+      {
+        "type": "at joint",
+        "targetId": "metacarpophalangeal-joints"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Movement": "Long extensors extend MCP joints."
+    },
+    "jointIds": [
+      "metacarpophalangeal-joints"
+    ],
+    "primeMoverIds": [
+      "extensor-digitorum"
+    ],
+    "assistantIds": [
+      "extensor-indicis",
+      "extensor-digiti-minimi"
+    ],
+    "antagonistIds": [
+      "lumbrical-1",
+      "flexor-digitorum-superficialis"
+    ],
+    "nerveIds": [],
+    "demonstration": {
+      "status": "awaiting-validated-rig",
+      "clipId": null
+    }
+  },
+  {
+    "id": "finger-ip-flexion",
+    "name": "Finger IP flexion",
+    "aliases": [],
+    "system": "movement",
+    "region": "Hand",
+    "description": "FDS flexes PIP; FDP flexes DIP. Both can assist more proximal flexion.",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "prime mover",
+        "targetId": "flexor-digitorum-superficialis"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "flexor-digitorum-profundus"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "extensor-digitorum"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "lumbrical-1"
+      },
+      {
+        "type": "at joint",
+        "targetId": "proximal-interphalangeal-joints"
+      },
+      {
+        "type": "at joint",
+        "targetId": "distal-interphalangeal-joints"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Movement": "FDS flexes PIP; FDP flexes DIP. Both can assist more proximal flexion."
+    },
+    "jointIds": [
+      "proximal-interphalangeal-joints",
+      "distal-interphalangeal-joints"
+    ],
+    "primeMoverIds": [
+      "flexor-digitorum-superficialis",
+      "flexor-digitorum-profundus"
+    ],
+    "assistantIds": [],
+    "antagonistIds": [
+      "extensor-digitorum",
+      "lumbrical-1"
+    ],
+    "nerveIds": [],
+    "demonstration": {
+      "status": "awaiting-validated-rig",
+      "clipId": null
+    }
+  },
+  {
+    "id": "finger-ip-extension",
+    "name": "Finger IP extension",
+    "aliases": [],
+    "system": "movement",
+    "region": "Hand",
+    "description": "Lumbricals and interossei act through the extensor expansion; function depends on MCP posture and tendon balance.",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "prime mover",
+        "targetId": "lumbrical-1"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "lumbrical-2"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "lumbrical-3"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "lumbrical-4"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "dorsal-interosseous-1"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "palmar-interosseous-1"
+      },
+      {
+        "type": "assisted by",
+        "targetId": "extensor-digitorum"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "flexor-digitorum-superficialis"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "flexor-digitorum-profundus"
+      },
+      {
+        "type": "at joint",
+        "targetId": "proximal-interphalangeal-joints"
+      },
+      {
+        "type": "at joint",
+        "targetId": "distal-interphalangeal-joints"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Movement": "Lumbricals and interossei act through the extensor expansion; function depends on MCP posture and tendon balance."
+    },
+    "jointIds": [
+      "proximal-interphalangeal-joints",
+      "distal-interphalangeal-joints"
+    ],
+    "primeMoverIds": [
+      "lumbrical-1",
+      "lumbrical-2",
+      "lumbrical-3",
+      "lumbrical-4",
+      "dorsal-interosseous-1",
+      "palmar-interosseous-1"
+    ],
+    "assistantIds": [
+      "extensor-digitorum"
+    ],
+    "antagonistIds": [
+      "flexor-digitorum-superficialis",
+      "flexor-digitorum-profundus"
+    ],
+    "nerveIds": [],
+    "demonstration": {
+      "status": "awaiting-validated-rig",
+      "clipId": null
+    }
+  },
+  {
+    "id": "finger-abduction",
+    "name": "Finger abduction",
+    "aliases": [],
+    "system": "movement",
+    "region": "Hand",
+    "description": "DAB: dorsal interossei abduct digits from the middle-finger axis.",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "prime mover",
+        "targetId": "dorsal-interosseous-1"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "dorsal-interosseous-2"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "dorsal-interosseous-3"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "dorsal-interosseous-4"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "abductor-digiti-minimi"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "palmar-interosseous-1"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "palmar-interosseous-2"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "palmar-interosseous-3"
+      },
+      {
+        "type": "at joint",
+        "targetId": "metacarpophalangeal-joints"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Movement": "DAB: dorsal interossei abduct digits from the middle-finger axis."
+    },
+    "jointIds": [
+      "metacarpophalangeal-joints"
+    ],
+    "primeMoverIds": [
+      "dorsal-interosseous-1",
+      "dorsal-interosseous-2",
+      "dorsal-interosseous-3",
+      "dorsal-interosseous-4",
+      "abductor-digiti-minimi"
+    ],
+    "assistantIds": [],
+    "antagonistIds": [
+      "palmar-interosseous-1",
+      "palmar-interosseous-2",
+      "palmar-interosseous-3"
+    ],
+    "nerveIds": [],
+    "demonstration": {
+      "status": "awaiting-validated-rig",
+      "clipId": null
+    }
+  },
+  {
+    "id": "finger-adduction",
+    "name": "Finger adduction",
+    "aliases": [],
+    "system": "movement",
+    "region": "Hand",
+    "description": "PAD: palmar interossei adduct digits toward the middle-finger axis.",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "prime mover",
+        "targetId": "palmar-interosseous-1"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "palmar-interosseous-2"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "palmar-interosseous-3"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "dorsal-interosseous-1"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "dorsal-interosseous-2"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "dorsal-interosseous-3"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "dorsal-interosseous-4"
+      },
+      {
+        "type": "at joint",
+        "targetId": "metacarpophalangeal-joints"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Movement": "PAD: palmar interossei adduct digits toward the middle-finger axis."
+    },
+    "jointIds": [
+      "metacarpophalangeal-joints"
+    ],
+    "primeMoverIds": [
+      "palmar-interosseous-1",
+      "palmar-interosseous-2",
+      "palmar-interosseous-3"
+    ],
+    "assistantIds": [],
+    "antagonistIds": [
+      "dorsal-interosseous-1",
+      "dorsal-interosseous-2",
+      "dorsal-interosseous-3",
+      "dorsal-interosseous-4"
+    ],
+    "nerveIds": [],
+    "demonstration": {
+      "status": "awaiting-validated-rig",
+      "clipId": null
+    }
+  },
+  {
+    "id": "thumb-flexion",
+    "name": "Thumb flexion",
+    "aliases": [],
+    "system": "movement",
+    "region": "Hand",
+    "description": "CMC flexion moves thumb across the palm; FPL flexes IP, FPB mainly MCP.",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "prime mover",
+        "targetId": "flexor-pollicis-longus"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "flexor-pollicis-brevis"
+      },
+      {
+        "type": "assisted by",
+        "targetId": "opponens-pollicis"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "extensor-pollicis-longus"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "extensor-pollicis-brevis"
+      },
+      {
+        "type": "at joint",
+        "targetId": "thumb-carpometacarpal-joint"
+      },
+      {
+        "type": "at joint",
+        "targetId": "metacarpophalangeal-joints"
+      },
+      {
+        "type": "at joint",
+        "targetId": "thumb-interphalangeal-joint"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Movement": "CMC flexion moves thumb across the palm; FPL flexes IP, FPB mainly MCP."
+    },
+    "jointIds": [
+      "thumb-carpometacarpal-joint",
+      "metacarpophalangeal-joints",
+      "thumb-interphalangeal-joint"
+    ],
+    "primeMoverIds": [
+      "flexor-pollicis-longus",
+      "flexor-pollicis-brevis"
+    ],
+    "assistantIds": [
+      "opponens-pollicis"
+    ],
+    "antagonistIds": [
+      "extensor-pollicis-longus",
+      "extensor-pollicis-brevis"
+    ],
+    "nerveIds": [],
+    "demonstration": {
+      "status": "awaiting-validated-rig",
+      "clipId": null
+    }
+  },
+  {
+    "id": "thumb-extension",
+    "name": "Thumb extension",
+    "aliases": [],
+    "system": "movement",
+    "region": "Hand",
+    "description": "Thumb moves away from the palm in its plane; EPL extends IP, EPB mainly MCP.",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "prime mover",
+        "targetId": "extensor-pollicis-longus"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "extensor-pollicis-brevis"
+      },
+      {
+        "type": "assisted by",
+        "targetId": "abductor-pollicis-longus"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "flexor-pollicis-longus"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "flexor-pollicis-brevis"
+      },
+      {
+        "type": "at joint",
+        "targetId": "thumb-carpometacarpal-joint"
+      },
+      {
+        "type": "at joint",
+        "targetId": "metacarpophalangeal-joints"
+      },
+      {
+        "type": "at joint",
+        "targetId": "thumb-interphalangeal-joint"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Movement": "Thumb moves away from the palm in its plane; EPL extends IP, EPB mainly MCP."
+    },
+    "jointIds": [
+      "thumb-carpometacarpal-joint",
+      "metacarpophalangeal-joints",
+      "thumb-interphalangeal-joint"
+    ],
+    "primeMoverIds": [
+      "extensor-pollicis-longus",
+      "extensor-pollicis-brevis"
+    ],
+    "assistantIds": [
+      "abductor-pollicis-longus"
+    ],
+    "antagonistIds": [
+      "flexor-pollicis-longus",
+      "flexor-pollicis-brevis"
+    ],
+    "nerveIds": [],
+    "demonstration": {
+      "status": "awaiting-validated-rig",
+      "clipId": null
+    }
+  },
+  {
+    "id": "thumb-abduction",
+    "name": "Thumb abduction",
+    "aliases": [],
+    "system": "movement",
+    "region": "Hand",
+    "description": "Palmar abduction moves perpendicular to palm; radial abduction is in the palm plane. These should not be confused.",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "prime mover",
+        "targetId": "abductor-pollicis-brevis"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "abductor-pollicis-longus"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "adductor-pollicis"
+      },
+      {
+        "type": "at joint",
+        "targetId": "thumb-carpometacarpal-joint"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Movement": "Palmar abduction moves perpendicular to palm; radial abduction is in the palm plane. These should not be confused."
+    },
+    "jointIds": [
+      "thumb-carpometacarpal-joint"
+    ],
+    "primeMoverIds": [
+      "abductor-pollicis-brevis",
+      "abductor-pollicis-longus"
+    ],
+    "assistantIds": [],
+    "antagonistIds": [
+      "adductor-pollicis"
+    ],
+    "nerveIds": [],
+    "demonstration": {
+      "status": "awaiting-validated-rig",
+      "clipId": null
+    }
+  },
+  {
+    "id": "thumb-adduction",
+    "name": "Thumb adduction",
+    "aliases": [],
+    "system": "movement",
+    "region": "Hand",
+    "description": "Returns thumb toward plane and side of the palm.",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "prime mover",
+        "targetId": "adductor-pollicis"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "abductor-pollicis-brevis"
+      },
+      {
+        "type": "at joint",
+        "targetId": "thumb-carpometacarpal-joint"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Movement": "Returns thumb toward plane and side of the palm."
+    },
+    "jointIds": [
+      "thumb-carpometacarpal-joint"
+    ],
+    "primeMoverIds": [
+      "adductor-pollicis"
+    ],
+    "assistantIds": [],
+    "antagonistIds": [
+      "abductor-pollicis-brevis"
+    ],
+    "nerveIds": [],
+    "demonstration": {
+      "status": "awaiting-validated-rig",
+      "clipId": null
+    }
+  },
+  {
+    "id": "thumb-opposition",
+    "name": "Thumb opposition",
+    "aliases": [],
+    "system": "movement",
+    "region": "Hand",
+    "description": "Combined abduction, flexion and medial rotation of first metacarpal; fingertip pads face one another.",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "prime mover",
+        "targetId": "opponens-pollicis"
+      },
+      {
+        "type": "assisted by",
+        "targetId": "abductor-pollicis-brevis"
+      },
+      {
+        "type": "assisted by",
+        "targetId": "flexor-pollicis-brevis"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "extensor-pollicis-longus"
+      },
+      {
+        "type": "at joint",
+        "targetId": "thumb-carpometacarpal-joint"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Movement": "Combined abduction, flexion and medial rotation of first metacarpal; fingertip pads face one another."
+    },
+    "jointIds": [
+      "thumb-carpometacarpal-joint"
+    ],
+    "primeMoverIds": [
+      "opponens-pollicis"
+    ],
+    "assistantIds": [
+      "abductor-pollicis-brevis",
+      "flexor-pollicis-brevis"
+    ],
+    "antagonistIds": [
+      "extensor-pollicis-longus"
+    ],
+    "nerveIds": [],
+    "demonstration": {
+      "status": "awaiting-validated-rig",
+      "clipId": null
+    }
+  },
+  {
+    "id": "thumb-reposition",
+    "name": "Thumb reposition",
+    "aliases": [],
+    "system": "movement",
+    "region": "Hand",
+    "description": "Reverse coupled movement returning the thumb from opposition.",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "prime mover",
+        "targetId": "abductor-pollicis-longus"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "extensor-pollicis-longus"
+      },
+      {
+        "type": "prime mover",
+        "targetId": "extensor-pollicis-brevis"
+      },
+      {
+        "type": "opposed by",
+        "targetId": "opponens-pollicis"
+      },
+      {
+        "type": "at joint",
+        "targetId": "thumb-carpometacarpal-joint"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Movement": "Reverse coupled movement returning the thumb from opposition."
+    },
+    "jointIds": [
+      "thumb-carpometacarpal-joint"
+    ],
+    "primeMoverIds": [
+      "abductor-pollicis-longus",
+      "extensor-pollicis-longus",
+      "extensor-pollicis-brevis"
+    ],
+    "assistantIds": [],
+    "antagonistIds": [
+      "opponens-pollicis"
+    ],
+    "nerveIds": [],
+    "demonstration": {
+      "status": "awaiting-validated-rig",
+      "clipId": null
+    }
+  },
+  {
+    "id": "winged-scapula",
+    "name": "Winged scapula",
+    "aliases": [],
+    "system": "clinical",
+    "region": "Shoulder girdle",
+    "description": "Medial border prominence, accentuated during a wall push; impaired scapular upward rotation limits overhead elevation.",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "lesion / nerve at risk",
+        "targetId": "long-thoracic-nerve"
+      },
+      {
+        "type": "involves",
+        "targetId": "serratus-anterior"
+      },
+      {
+        "type": "involves",
+        "targetId": "scapula"
+      },
+      {
+        "type": "involves",
+        "targetId": "scapular-upward-rotation"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Mechanism": "Long thoracic neuropathy weakens serratus anterior; the medial border lifts from the thorax.",
+      "Clinical presentation": "Medial border prominence, accentuated during a wall push; impaired scapular upward rotation limits overhead elevation.",
+      "Distinguish from": "Normal serratus holds scapula against thorax. Trapezius palsy can produce a different winging pattern."
+    },
+    "mechanism": "Long thoracic neuropathy weakens serratus anterior; the medial border lifts from the thorax.",
+    "presentation": "Medial border prominence, accentuated during a wall push; impaired scapular upward rotation limits overhead elevation.",
+    "lesionIds": [
+      "long-thoracic-nerve"
+    ],
+    "affectedIds": [
+      "serratus-anterior",
+      "scapula",
+      "scapular-upward-rotation"
+    ],
+    "comparison": "Normal serratus holds scapula against thorax. Trapezius palsy can produce a different winging pattern.",
+    "visual": {
+      "status": "awaiting-validated-asset",
+      "poseId": null
+    }
+  },
+  {
+    "id": "wrist-drop",
+    "name": "Wrist drop",
+    "aliases": [],
+    "system": "clinical",
+    "region": "Forearm",
+    "description": "Wrist and finger extension weakness; sensory and triceps deficits depend on lesion level.",
+    "sourceIds": [
+      "radial"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "lesion / nerve at risk",
+        "targetId": "radial-nerve"
+      },
+      {
+        "type": "involves",
+        "targetId": "extensor-carpi-radialis-longus"
+      },
+      {
+        "type": "involves",
+        "targetId": "extensor-carpi-radialis-brevis"
+      },
+      {
+        "type": "involves",
+        "targetId": "extensor-carpi-ulnaris"
+      },
+      {
+        "type": "involves",
+        "targetId": "wrist-extension"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Mechanism": "Radial lesion proximal enough to denervate wrist extensors leaves unopposed wrist flexion.",
+      "Clinical presentation": "Wrist and finger extension weakness; sensory and triceps deficits depend on lesion level.",
+      "Distinguish from": "Axilla: triceps may be weak. Radial groove: triceps usually spared. PIN: finger/thumb drop with preserved, often radially deviated wrist extension and no cutaneous deficit."
+    },
+    "mechanism": "Radial lesion proximal enough to denervate wrist extensors leaves unopposed wrist flexion.",
+    "presentation": "Wrist and finger extension weakness; sensory and triceps deficits depend on lesion level.",
+    "lesionIds": [
+      "radial-nerve"
+    ],
+    "affectedIds": [
+      "extensor-carpi-radialis-longus",
+      "extensor-carpi-radialis-brevis",
+      "extensor-carpi-ulnaris",
+      "wrist-extension"
+    ],
+    "comparison": "Axilla: triceps may be weak. Radial groove: triceps usually spared. PIN: finger/thumb drop with preserved, often radially deviated wrist extension and no cutaneous deficit.",
+    "visual": {
+      "status": "awaiting-validated-asset",
+      "poseId": null
+    }
+  },
+  {
+    "id": "ulnar-claw",
+    "name": "Ulnar claw",
+    "aliases": [],
+    "system": "clinical",
+    "region": "Hand",
+    "description": "MCP hyperextension with PIP and DIP flexion in ring and little fingers.",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "lesion / nerve at risk",
+        "targetId": "ulnar-nerve"
+      },
+      {
+        "type": "involves",
+        "targetId": "lumbrical-3"
+      },
+      {
+        "type": "involves",
+        "targetId": "lumbrical-4"
+      },
+      {
+        "type": "involves",
+        "targetId": "dorsal-interosseous-1"
+      },
+      {
+        "type": "involves",
+        "targetId": "palmar-interosseous-1"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Mechanism": "Loss of intrinsic MCP flexion and IP extension in digits 4–5 allows extensor/flexor imbalance.",
+      "Clinical presentation": "MCP hyperextension with PIP and DIP flexion in ring and little fingers.",
+      "Distinguish from": "Distal lesions may claw more. Proximal lesions also weaken medial FDP, reducing DIP flexion: the ulnar paradox."
+    },
+    "mechanism": "Loss of intrinsic MCP flexion and IP extension in digits 4–5 allows extensor/flexor imbalance.",
+    "presentation": "MCP hyperextension with PIP and DIP flexion in ring and little fingers.",
+    "lesionIds": [
+      "ulnar-nerve"
+    ],
+    "affectedIds": [
+      "lumbrical-3",
+      "lumbrical-4",
+      "dorsal-interosseous-1",
+      "palmar-interosseous-1"
+    ],
+    "comparison": "Distal lesions may claw more. Proximal lesions also weaken medial FDP, reducing DIP flexion: the ulnar paradox.",
+    "visual": {
+      "status": "awaiting-validated-asset",
+      "poseId": null
+    }
+  },
+  {
+    "id": "thenar-wasting-and-loss-of-opposition",
+    "name": "Thenar wasting and loss of opposition",
+    "aliases": [],
+    "system": "clinical",
+    "region": "Hand",
+    "description": "Thenar flattening and thumb lying more in the plane of the palm; sometimes called an ape-thumb appearance.",
+    "sourceIds": [
+      "median"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "lesion / nerve at risk",
+        "targetId": "median-nerve"
+      },
+      {
+        "type": "lesion / nerve at risk",
+        "targetId": "recurrent-median-nerve"
+      },
+      {
+        "type": "involves",
+        "targetId": "opponens-pollicis"
+      },
+      {
+        "type": "involves",
+        "targetId": "abductor-pollicis-brevis"
+      },
+      {
+        "type": "involves",
+        "targetId": "flexor-pollicis-brevis"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Mechanism": "Denervation of median-innervated thenar muscles weakens palmar abduction and opposition.",
+      "Clinical presentation": "Thenar flattening and thumb lying more in the plane of the palm; sometimes called an ape-thumb appearance.",
+      "Distinguish from": "Isolated recurrent branch injury can spare sensation. Adductor pollicis remains ulnar-innervated."
+    },
+    "mechanism": "Denervation of median-innervated thenar muscles weakens palmar abduction and opposition.",
+    "presentation": "Thenar flattening and thumb lying more in the plane of the palm; sometimes called an ape-thumb appearance.",
+    "lesionIds": [
+      "median-nerve",
+      "recurrent-median-nerve"
+    ],
+    "affectedIds": [
+      "opponens-pollicis",
+      "abductor-pollicis-brevis",
+      "flexor-pollicis-brevis"
+    ],
+    "comparison": "Isolated recurrent branch injury can spare sensation. Adductor pollicis remains ulnar-innervated.",
+    "visual": {
+      "status": "awaiting-validated-asset",
+      "poseId": null
+    }
+  },
+  {
+    "id": "carpal-tunnel-syndrome",
+    "name": "Carpal tunnel syndrome",
+    "aliases": [],
+    "system": "clinical",
+    "region": "Wrist",
+    "description": "Paresthesia in lateral 3½ digits; advanced motor involvement can weaken thenar muscles.",
+    "sourceIds": [
+      "median"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "lesion / nerve at risk",
+        "targetId": "median-nerve"
+      },
+      {
+        "type": "involves",
+        "targetId": "carpal-tunnel"
+      },
+      {
+        "type": "involves",
+        "targetId": "flexor-retinaculum"
+      },
+      {
+        "type": "involves",
+        "targetId": "opponens-pollicis"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Mechanism": "Median nerve compression beneath flexor retinaculum.",
+      "Clinical presentation": "Paresthesia in lateral 3½ digits; advanced motor involvement can weaken thenar muscles.",
+      "Distinguish from": "Thenar-eminence skin sensation is usually spared because palmar cutaneous branch travels superficial to retinaculum."
+    },
+    "mechanism": "Median nerve compression beneath flexor retinaculum.",
+    "presentation": "Paresthesia in lateral 3½ digits; advanced motor involvement can weaken thenar muscles.",
+    "lesionIds": [
+      "median-nerve"
+    ],
+    "affectedIds": [
+      "carpal-tunnel",
+      "flexor-retinaculum",
+      "opponens-pollicis"
+    ],
+    "comparison": "Thenar-eminence skin sensation is usually spared because palmar cutaneous branch travels superficial to retinaculum.",
+    "visual": {
+      "status": "awaiting-validated-asset",
+      "poseId": null
+    }
+  },
+  {
+    "id": "anterior-interosseous-syndrome",
+    "name": "Anterior interosseous syndrome",
+    "aliases": [],
+    "system": "clinical",
+    "region": "Forearm",
+    "description": "Abnormal tip-to-tip OK pinch, using flattened finger pads.",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "lesion / nerve at risk",
+        "targetId": "anterior-interosseous-nerve"
+      },
+      {
+        "type": "involves",
+        "targetId": "flexor-pollicis-longus"
+      },
+      {
+        "type": "involves",
+        "targetId": "flexor-digitorum-profundus"
+      },
+      {
+        "type": "involves",
+        "targetId": "pronator-quadratus"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Mechanism": "AIN motor dysfunction impairs thumb IP and index DIP flexion.",
+      "Clinical presentation": "Abnormal tip-to-tip OK pinch, using flattened finger pads.",
+      "Distinguish from": "No cutaneous sensory loss. Distinguish from carpal tunnel and isolated tendon rupture."
+    },
+    "mechanism": "AIN motor dysfunction impairs thumb IP and index DIP flexion.",
+    "presentation": "Abnormal tip-to-tip OK pinch, using flattened finger pads.",
+    "lesionIds": [
+      "anterior-interosseous-nerve"
+    ],
+    "affectedIds": [
+      "flexor-pollicis-longus",
+      "flexor-digitorum-profundus",
+      "pronator-quadratus"
+    ],
+    "comparison": "No cutaneous sensory loss. Distinguish from carpal tunnel and isolated tendon rupture.",
+    "visual": {
+      "status": "awaiting-validated-asset",
+      "poseId": null
+    }
+  },
+  {
+    "id": "hand-of-benediction",
+    "name": "Hand of benediction",
+    "aliases": [],
+    "system": "clinical",
+    "region": "Hand",
+    "description": "Index and middle fingers fail to flex normally while ring/little fingers can flex via ulnar-innervated FDP.",
+    "sourceIds": [
+      "median"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "lesion / nerve at risk",
+        "targetId": "median-nerve"
+      },
+      {
+        "type": "involves",
+        "targetId": "flexor-digitorum-superficialis"
+      },
+      {
+        "type": "involves",
+        "targetId": "flexor-digitorum-profundus"
+      },
+      {
+        "type": "involves",
+        "targetId": "flexor-pollicis-longus"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Mechanism": "Proximal median lesion impairs flexion of thumb and especially index/middle fingers during an attempted fist.",
+      "Clinical presentation": "Index and middle fingers fail to flex normally while ring/little fingers can flex via ulnar-innervated FDP.",
+      "Distinguish from": "An examination sign during attempted flexion, not a resting posture. Pattern varies with incomplete lesions and tendon interconnections."
+    },
+    "mechanism": "Proximal median lesion impairs flexion of thumb and especially index/middle fingers during an attempted fist.",
+    "presentation": "Index and middle fingers fail to flex normally while ring/little fingers can flex via ulnar-innervated FDP.",
+    "lesionIds": [
+      "median-nerve"
+    ],
+    "affectedIds": [
+      "flexor-digitorum-superficialis",
+      "flexor-digitorum-profundus",
+      "flexor-pollicis-longus"
+    ],
+    "comparison": "An examination sign during attempted flexion, not a resting posture. Pattern varies with incomplete lesions and tendon interconnections.",
+    "visual": {
+      "status": "awaiting-validated-asset",
+      "poseId": null
+    }
+  },
+  {
+    "id": "erb-duchenne-palsy",
+    "name": "Erb-Duchenne palsy",
+    "aliases": [],
+    "system": "clinical",
+    "region": "Shoulder",
+    "description": "Classical posture: adducted, medially rotated shoulder with extended elbow and pronated forearm.",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "lesion / nerve at risk",
+        "targetId": "upper-trunk"
+      },
+      {
+        "type": "involves",
+        "targetId": "axillary-nerve"
+      },
+      {
+        "type": "involves",
+        "targetId": "musculocutaneous-nerve"
+      },
+      {
+        "type": "involves",
+        "targetId": "suprascapular-nerve"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Mechanism": "Upper-trunk injury chiefly involving C5–C6 weakens abductors, lateral rotators, elbow flexors and supinators.",
+      "Clinical presentation": "Classical posture: adducted, medially rotated shoulder with extended elbow and pronated forearm.",
+      "Distinguish from": "Severity and hand posture vary with the extent of plexus injury."
+    },
+    "mechanism": "Upper-trunk injury chiefly involving C5–C6 weakens abductors, lateral rotators, elbow flexors and supinators.",
+    "presentation": "Classical posture: adducted, medially rotated shoulder with extended elbow and pronated forearm.",
+    "lesionIds": [
+      "upper-trunk"
+    ],
+    "affectedIds": [
+      "axillary-nerve",
+      "musculocutaneous-nerve",
+      "suprascapular-nerve"
+    ],
+    "comparison": "Severity and hand posture vary with the extent of plexus injury.",
+    "visual": {
+      "status": "awaiting-validated-asset",
+      "poseId": null
+    }
+  },
+  {
+    "id": "klumpke-palsy",
+    "name": "Klumpke palsy",
+    "aliases": [],
+    "system": "clinical",
+    "region": "Hand",
+    "description": "Intrinsic hand weakness with possible clawing involving more digits than an isolated ulnar lesion.",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "lesion / nerve at risk",
+        "targetId": "lower-trunk"
+      },
+      {
+        "type": "involves",
+        "targetId": "ulnar-nerve"
+      },
+      {
+        "type": "involves",
+        "targetId": "median-nerve"
+      },
+      {
+        "type": "involves",
+        "targetId": "lumbrical-1"
+      },
+      {
+        "type": "involves",
+        "targetId": "lumbrical-4"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Mechanism": "Lower-trunk C8–T1 injury weakens intrinsic hand muscles and selected long flexors.",
+      "Clinical presentation": "Intrinsic hand weakness with possible clawing involving more digits than an isolated ulnar lesion.",
+      "Distinguish from": "Horner syndrome suggests associated proximal T1 sympathetic involvement; it is not obligatory."
+    },
+    "mechanism": "Lower-trunk C8–T1 injury weakens intrinsic hand muscles and selected long flexors.",
+    "presentation": "Intrinsic hand weakness with possible clawing involving more digits than an isolated ulnar lesion.",
+    "lesionIds": [
+      "lower-trunk"
+    ],
+    "affectedIds": [
+      "ulnar-nerve",
+      "median-nerve",
+      "lumbrical-1",
+      "lumbrical-4"
+    ],
+    "comparison": "Horner syndrome suggests associated proximal T1 sympathetic involvement; it is not obligatory.",
+    "visual": {
+      "status": "awaiting-validated-asset",
+      "poseId": null
+    }
+  },
+  {
+    "id": "anterior-shoulder-dislocation",
+    "name": "Anterior shoulder dislocation",
+    "aliases": [],
+    "system": "clinical",
+    "region": "Shoulder",
+    "description": "Loss of normal shoulder contour and restricted movement; possible lateral-shoulder sensory deficit.",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "lesion / nerve at risk",
+        "targetId": "axillary-nerve"
+      },
+      {
+        "type": "involves",
+        "targetId": "glenohumeral-joint"
+      },
+      {
+        "type": "involves",
+        "targetId": "humerus"
+      },
+      {
+        "type": "involves",
+        "targetId": "scapula"
+      },
+      {
+        "type": "involves",
+        "targetId": "posterior-circumflex-humeral-artery"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Mechanism": "Humeral head moves anteroinferiorly relative to glenoid, commonly after abduction and external rotation.",
+      "Clinical presentation": "Loss of normal shoulder contour and restricted movement; possible lateral-shoulder sensory deficit.",
+      "Distinguish from": "Axillary nerve is at risk; neurovascular findings depend on displacement and associated injury."
+    },
+    "mechanism": "Humeral head moves anteroinferiorly relative to glenoid, commonly after abduction and external rotation.",
+    "presentation": "Loss of normal shoulder contour and restricted movement; possible lateral-shoulder sensory deficit.",
+    "lesionIds": [
+      "axillary-nerve"
+    ],
+    "affectedIds": [
+      "glenohumeral-joint",
+      "humerus",
+      "scapula",
+      "posterior-circumflex-humeral-artery"
+    ],
+    "comparison": "Axillary nerve is at risk; neurovascular findings depend on displacement and associated injury.",
+    "visual": {
+      "status": "awaiting-validated-asset",
+      "poseId": null
+    }
+  },
+  {
+    "id": "supraspinatus-tendinopathy",
+    "name": "Supraspinatus tendinopathy",
+    "aliases": [],
+    "system": "clinical",
+    "region": "Shoulder",
+    "description": "Pain with resisted abduction and an often-described mid-range painful arc.",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "involves",
+        "targetId": "supraspinatus"
+      },
+      {
+        "type": "involves",
+        "targetId": "humerus"
+      },
+      {
+        "type": "involves",
+        "targetId": "scapula-acromion"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Mechanism": "Degenerative and load-related change in supraspinatus tendon may cause pain on elevation.",
+      "Clinical presentation": "Pain with resisted abduction and an often-described mid-range painful arc.",
+      "Distinguish from": "Painful arc is not specific to one diagnosis; mechanisms can involve tendon and subacromial bursa."
+    },
+    "mechanism": "Degenerative and load-related change in supraspinatus tendon may cause pain on elevation.",
+    "presentation": "Pain with resisted abduction and an often-described mid-range painful arc.",
+    "lesionIds": [],
+    "affectedIds": [
+      "supraspinatus",
+      "humerus",
+      "scapula-acromion"
+    ],
+    "comparison": "Painful arc is not specific to one diagnosis; mechanisms can involve tendon and subacromial bursa.",
+    "visual": {
+      "status": "awaiting-validated-asset",
+      "poseId": null
+    }
+  },
+  {
+    "id": "rotator-cuff-tear",
+    "name": "Rotator cuff tear",
+    "aliases": [],
+    "system": "clinical",
+    "region": "Shoulder",
+    "description": "Pain and weakness; larger tears may impair active elevation despite better passive range.",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "involves",
+        "targetId": "supraspinatus"
+      },
+      {
+        "type": "involves",
+        "targetId": "infraspinatus"
+      },
+      {
+        "type": "involves",
+        "targetId": "subscapularis"
+      },
+      {
+        "type": "involves",
+        "targetId": "teres-minor"
+      },
+      {
+        "type": "involves",
+        "targetId": "glenohumeral-joint"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Mechanism": "Partial or full-thickness disruption of one or more cuff tendons compromises force transmission and dynamic stability.",
+      "Clinical presentation": "Pain and weakness; larger tears may impair active elevation despite better passive range.",
+      "Distinguish from": "Not every tear produces the same movement deficit; location and extent matter."
+    },
+    "mechanism": "Partial or full-thickness disruption of one or more cuff tendons compromises force transmission and dynamic stability.",
+    "presentation": "Pain and weakness; larger tears may impair active elevation despite better passive range.",
+    "lesionIds": [],
+    "affectedIds": [
+      "supraspinatus",
+      "infraspinatus",
+      "subscapularis",
+      "teres-minor",
+      "glenohumeral-joint"
+    ],
+    "comparison": "Not every tear produces the same movement deficit; location and extent matter.",
+    "visual": {
+      "status": "awaiting-validated-asset",
+      "poseId": null
+    }
+  },
+  {
+    "id": "subacromial-pain-impingement",
+    "name": "Subacromial pain / impingement",
+    "aliases": [],
+    "system": "clinical",
+    "region": "Shoulder",
+    "description": "Pain during elevation, often approximately 60–120° but highly variable.",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "involves",
+        "targetId": "supraspinatus"
+      },
+      {
+        "type": "involves",
+        "targetId": "scapula-acromion"
+      },
+      {
+        "type": "involves",
+        "targetId": "coracoacromial-ligament"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Mechanism": "Pain associated with the subacromial region can involve rotator cuff and bursa, with multiple contributing mechanisms.",
+      "Clinical presentation": "Pain during elevation, often approximately 60–120° but highly variable.",
+      "Distinguish from": "Do not model all cases as a bone mechanically crushing a normal tendon."
+    },
+    "mechanism": "Pain associated with the subacromial region can involve rotator cuff and bursa, with multiple contributing mechanisms.",
+    "presentation": "Pain during elevation, often approximately 60–120° but highly variable.",
+    "lesionIds": [],
+    "affectedIds": [
+      "supraspinatus",
+      "scapula-acromion",
+      "coracoacromial-ligament"
+    ],
+    "comparison": "Do not model all cases as a bone mechanically crushing a normal tendon.",
+    "visual": {
+      "status": "awaiting-validated-asset",
+      "poseId": null
+    }
+  },
+  {
+    "id": "proximal-biceps-tendon-rupture",
+    "name": "Proximal biceps tendon rupture",
+    "aliases": [],
+    "system": "clinical",
+    "region": "Arm",
+    "description": "Possible Popeye bulge with pain, bruising and reduced supination endurance.",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "involves",
+        "targetId": "biceps-brachii-long-head"
+      },
+      {
+        "type": "involves",
+        "targetId": "humerus-intertubercular-sulcus"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Mechanism": "Long-head tendon rupture releases proximal tension and may permit distal displacement of muscle belly.",
+      "Clinical presentation": "Possible Popeye bulge with pain, bruising and reduced supination endurance.",
+      "Distinguish from": "A distal biceps rupture has different anatomy and functional consequences. No fabricated bulge geometry is supplied."
+    },
+    "mechanism": "Long-head tendon rupture releases proximal tension and may permit distal displacement of muscle belly.",
+    "presentation": "Possible Popeye bulge with pain, bruising and reduced supination endurance.",
+    "lesionIds": [],
+    "affectedIds": [
+      "biceps-brachii-long-head",
+      "humerus-intertubercular-sulcus"
+    ],
+    "comparison": "A distal biceps rupture has different anatomy and functional consequences. No fabricated bulge geometry is supplied.",
+    "visual": {
+      "status": "awaiting-validated-asset",
+      "poseId": null
+    }
+  },
+  {
+    "id": "lateral-epicondylitis",
+    "name": "Lateral epicondylitis",
+    "aliases": [],
+    "system": "clinical",
+    "region": "Elbow",
+    "description": "Lateral elbow pain provoked by gripping or resisted wrist extension.",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "involves",
+        "targetId": "humerus-lateral-epicondyle"
+      },
+      {
+        "type": "involves",
+        "targetId": "extensor-carpi-radialis-brevis"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Mechanism": "Common extensor tendinopathy, often centered on ECRB origin.",
+      "Clinical presentation": "Lateral elbow pain provoked by gripping or resisted wrist extension.",
+      "Distinguish from": "Usually a tendinopathy rather than purely acute inflammation."
+    },
+    "mechanism": "Common extensor tendinopathy, often centered on ECRB origin.",
+    "presentation": "Lateral elbow pain provoked by gripping or resisted wrist extension.",
+    "lesionIds": [],
+    "affectedIds": [
+      "humerus-lateral-epicondyle",
+      "extensor-carpi-radialis-brevis"
+    ],
+    "comparison": "Usually a tendinopathy rather than purely acute inflammation.",
+    "visual": {
+      "status": "awaiting-validated-asset",
+      "poseId": null
+    }
+  },
+  {
+    "id": "medial-epicondylitis",
+    "name": "Medial epicondylitis",
+    "aliases": [],
+    "system": "clinical",
+    "region": "Elbow",
+    "description": "Medial elbow pain with resisted wrist flexion or pronation.",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "involves",
+        "targetId": "humerus-medial-epicondyle"
+      },
+      {
+        "type": "involves",
+        "targetId": "flexor-carpi-radialis"
+      },
+      {
+        "type": "involves",
+        "targetId": "pronator-teres"
+      },
+      {
+        "type": "involves",
+        "targetId": "ulnar-nerve"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Mechanism": "Flexor-pronator origin tendinopathy at medial epicondyle.",
+      "Clinical presentation": "Medial elbow pain with resisted wrist flexion or pronation.",
+      "Distinguish from": "Ulnar nerve lies nearby posterior to medial epicondyle; paresthesia suggests additional nerve involvement."
+    },
+    "mechanism": "Flexor-pronator origin tendinopathy at medial epicondyle.",
+    "presentation": "Medial elbow pain with resisted wrist flexion or pronation.",
+    "lesionIds": [],
+    "affectedIds": [
+      "humerus-medial-epicondyle",
+      "flexor-carpi-radialis",
+      "pronator-teres",
+      "ulnar-nerve"
+    ],
+    "comparison": "Ulnar nerve lies nearby posterior to medial epicondyle; paresthesia suggests additional nerve involvement.",
+    "visual": {
+      "status": "awaiting-validated-asset",
+      "poseId": null
+    }
+  },
+  {
+    "id": "de-quervain-tenosynovitis",
+    "name": "De Quervain tenosynovitis",
+    "aliases": [],
+    "system": "clinical",
+    "region": "Wrist",
+    "description": "Radial styloid pain associated with thumb movement.",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "involves",
+        "targetId": "abductor-pollicis-longus"
+      },
+      {
+        "type": "involves",
+        "targetId": "extensor-pollicis-brevis"
+      },
+      {
+        "type": "involves",
+        "targetId": "extensor-retinaculum"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Mechanism": "Stenosing tendon-sheath disorder in first dorsal extensor compartment.",
+      "Clinical presentation": "Radial styloid pain associated with thumb movement.",
+      "Distinguish from": "APL and EPB are implicated; EPL runs in the third compartment."
+    },
+    "mechanism": "Stenosing tendon-sheath disorder in first dorsal extensor compartment.",
+    "presentation": "Radial styloid pain associated with thumb movement.",
+    "lesionIds": [],
+    "affectedIds": [
+      "abductor-pollicis-longus",
+      "extensor-pollicis-brevis",
+      "extensor-retinaculum"
+    ],
+    "comparison": "APL and EPB are implicated; EPL runs in the third compartment.",
+    "visual": {
+      "status": "awaiting-validated-asset",
+      "poseId": null
+    }
+  },
+  {
+    "id": "mallet-finger",
+    "name": "Mallet finger",
+    "aliases": [],
+    "system": "clinical",
+    "region": "Hand",
+    "description": "DIP flexion with loss of active DIP extension.",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "involves",
+        "targetId": "extensor-expansion"
+      },
+      {
+        "type": "involves",
+        "targetId": "distal-interphalangeal-joints"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Mechanism": "Terminal extensor mechanism disruption, sometimes with avulsion fracture.",
+      "Clinical presentation": "DIP flexion with loss of active DIP extension.",
+      "Distinguish from": "PIP posture is not the defining primary feature."
+    },
+    "mechanism": "Terminal extensor mechanism disruption, sometimes with avulsion fracture.",
+    "presentation": "DIP flexion with loss of active DIP extension.",
+    "lesionIds": [],
+    "affectedIds": [
+      "extensor-expansion",
+      "distal-interphalangeal-joints"
+    ],
+    "comparison": "PIP posture is not the defining primary feature.",
+    "visual": {
+      "status": "awaiting-validated-asset",
+      "poseId": null
+    }
+  },
+  {
+    "id": "boutonniere-deformity",
+    "name": "Boutonniere deformity",
+    "aliases": [],
+    "system": "clinical",
+    "region": "Hand",
+    "description": "PIP flexion with DIP hyperextension.",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "involves",
+        "targetId": "extensor-expansion"
+      },
+      {
+        "type": "involves",
+        "targetId": "proximal-interphalangeal-joints"
+      },
+      {
+        "type": "involves",
+        "targetId": "distal-interphalangeal-joints"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Mechanism": "Central slip disruption permits volar migration of lateral bands over time.",
+      "Clinical presentation": "PIP flexion with DIP hyperextension.",
+      "Distinguish from": "Distinguish from swan-neck: the PIP/DIP directions are reversed."
+    },
+    "mechanism": "Central slip disruption permits volar migration of lateral bands over time.",
+    "presentation": "PIP flexion with DIP hyperextension.",
+    "lesionIds": [],
+    "affectedIds": [
+      "extensor-expansion",
+      "proximal-interphalangeal-joints",
+      "distal-interphalangeal-joints"
+    ],
+    "comparison": "Distinguish from swan-neck: the PIP/DIP directions are reversed.",
+    "visual": {
+      "status": "awaiting-validated-asset",
+      "poseId": null
+    }
+  },
+  {
+    "id": "swan-neck-deformity",
+    "name": "Swan-neck deformity",
+    "aliases": [],
+    "system": "clinical",
+    "region": "Hand",
+    "description": "PIP hyperextension with DIP flexion.",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "involves",
+        "targetId": "palmar-plates"
+      },
+      {
+        "type": "involves",
+        "targetId": "proximal-interphalangeal-joints"
+      },
+      {
+        "type": "involves",
+        "targetId": "distal-interphalangeal-joints"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Mechanism": "Extensor-flexor imbalance and PIP volar restraint insufficiency; multiple causes.",
+      "Clinical presentation": "PIP hyperextension with DIP flexion.",
+      "Distinguish from": "This is a pattern, not one unique lesion."
+    },
+    "mechanism": "Extensor-flexor imbalance and PIP volar restraint insufficiency; multiple causes.",
+    "presentation": "PIP hyperextension with DIP flexion.",
+    "lesionIds": [],
+    "affectedIds": [
+      "palmar-plates",
+      "proximal-interphalangeal-joints",
+      "distal-interphalangeal-joints"
+    ],
+    "comparison": "This is a pattern, not one unique lesion.",
+    "visual": {
+      "status": "awaiting-validated-asset",
+      "poseId": null
+    }
+  },
+  {
+    "id": "surgical-neck-fracture",
+    "name": "Surgical neck fracture",
+    "aliases": [],
+    "system": "clinical",
+    "region": "Shoulder",
+    "description": "Possible deltoid weakness and sensory loss over lateral shoulder.",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "lesion / nerve at risk",
+        "targetId": "axillary-nerve"
+      },
+      {
+        "type": "involves",
+        "targetId": "humerus-surgical-neck"
+      },
+      {
+        "type": "involves",
+        "targetId": "posterior-circumflex-humeral-artery"
+      },
+      {
+        "type": "involves",
+        "targetId": "deltoid"
+      },
+      {
+        "type": "involves",
+        "targetId": "teres-minor"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Mechanism": "Fracture near structures winding around the surgical neck.",
+      "Clinical presentation": "Possible deltoid weakness and sensory loss over lateral shoulder.",
+      "Distinguish from": "Neurovascular injury is a risk, not an inevitable consequence."
+    },
+    "mechanism": "Fracture near structures winding around the surgical neck.",
+    "presentation": "Possible deltoid weakness and sensory loss over lateral shoulder.",
+    "lesionIds": [
+      "axillary-nerve"
+    ],
+    "affectedIds": [
+      "humerus-surgical-neck",
+      "posterior-circumflex-humeral-artery",
+      "deltoid",
+      "teres-minor"
+    ],
+    "comparison": "Neurovascular injury is a risk, not an inevitable consequence.",
+    "visual": {
+      "status": "awaiting-validated-asset",
+      "poseId": null
+    }
+  },
+  {
+    "id": "midshaft-humeral-fracture",
+    "name": "Midshaft humeral fracture",
+    "aliases": [],
+    "system": "clinical",
+    "region": "Arm",
+    "description": "Possible wrist/finger extension weakness; triceps is commonly spared.",
+    "sourceIds": [
+      "radial"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "lesion / nerve at risk",
+        "targetId": "radial-nerve"
+      },
+      {
+        "type": "involves",
+        "targetId": "humerus-shaft"
+      },
+      {
+        "type": "involves",
+        "targetId": "humerus-radial-groove"
+      },
+      {
+        "type": "involves",
+        "targetId": "profunda-brachii-artery"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Mechanism": "Radial nerve and profunda brachii lie close to the humeral shaft in the radial groove.",
+      "Clinical presentation": "Possible wrist/finger extension weakness; triceps is commonly spared.",
+      "Distinguish from": "Deficit depends on fracture and nerve injury level."
+    },
+    "mechanism": "Radial nerve and profunda brachii lie close to the humeral shaft in the radial groove.",
+    "presentation": "Possible wrist/finger extension weakness; triceps is commonly spared.",
+    "lesionIds": [
+      "radial-nerve"
+    ],
+    "affectedIds": [
+      "humerus-shaft",
+      "humerus-radial-groove",
+      "profunda-brachii-artery"
+    ],
+    "comparison": "Deficit depends on fracture and nerve injury level.",
+    "visual": {
+      "status": "awaiting-validated-asset",
+      "poseId": null
+    }
+  },
+  {
+    "id": "supracondylar-humeral-fracture",
+    "name": "Supracondylar humeral fracture",
+    "aliases": [],
+    "system": "clinical",
+    "region": "Elbow",
+    "description": "Possible brachial artery compromise and median/AIN dysfunction.",
+    "sourceIds": [
+      "median"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "lesion / nerve at risk",
+        "targetId": "median-nerve"
+      },
+      {
+        "type": "lesion / nerve at risk",
+        "targetId": "anterior-interosseous-nerve"
+      },
+      {
+        "type": "involves",
+        "targetId": "humerus"
+      },
+      {
+        "type": "involves",
+        "targetId": "brachial-artery"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Mechanism": "Distal humeral fracture, commonly extension type, can threaten anterior neurovascular structures.",
+      "Clinical presentation": "Possible brachial artery compromise and median/AIN dysfunction.",
+      "Distinguish from": "Different displacement patterns can injure radial or ulnar nerve; do not assign one nerve to every pattern."
+    },
+    "mechanism": "Distal humeral fracture, commonly extension type, can threaten anterior neurovascular structures.",
+    "presentation": "Possible brachial artery compromise and median/AIN dysfunction.",
+    "lesionIds": [
+      "median-nerve",
+      "anterior-interosseous-nerve"
+    ],
+    "affectedIds": [
+      "humerus",
+      "brachial-artery"
+    ],
+    "comparison": "Different displacement patterns can injure radial or ulnar nerve; do not assign one nerve to every pattern.",
+    "visual": {
+      "status": "awaiting-validated-asset",
+      "poseId": null
+    }
+  },
+  {
+    "id": "medial-epicondyle-fracture",
+    "name": "Medial epicondyle fracture",
+    "aliases": [],
+    "system": "clinical",
+    "region": "Elbow",
+    "description": "Possible medial-digit paresthesia and intrinsic weakness.",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "lesion / nerve at risk",
+        "targetId": "ulnar-nerve"
+      },
+      {
+        "type": "involves",
+        "targetId": "humerus-medial-epicondyle"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Mechanism": "Ulnar nerve passes posterior to the epicondyle and may be stretched or entrapped.",
+      "Clinical presentation": "Possible medial-digit paresthesia and intrinsic weakness.",
+      "Distinguish from": "Association depends on displacement and elbow injury."
+    },
+    "mechanism": "Ulnar nerve passes posterior to the epicondyle and may be stretched or entrapped.",
+    "presentation": "Possible medial-digit paresthesia and intrinsic weakness.",
+    "lesionIds": [
+      "ulnar-nerve"
+    ],
+    "affectedIds": [
+      "humerus-medial-epicondyle"
+    ],
+    "comparison": "Association depends on displacement and elbow injury.",
+    "visual": {
+      "status": "awaiting-validated-asset",
+      "poseId": null
+    }
+  },
+  {
+    "id": "scaphoid-fracture",
+    "name": "Scaphoid fracture",
+    "aliases": [],
+    "system": "clinical",
+    "region": "Wrist",
+    "description": "Snuffbox tenderness; proximal fragment has risk of nonunion and avascular necrosis.",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "involves",
+        "targetId": "scaphoid"
+      },
+      {
+        "type": "involves",
+        "targetId": "anatomical-snuffbox"
+      },
+      {
+        "type": "involves",
+        "targetId": "radial-artery"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Mechanism": "Waist fracture can interrupt retrograde intraosseous supply to proximal pole.",
+      "Clinical presentation": "Snuffbox tenderness; proximal fragment has risk of nonunion and avascular necrosis.",
+      "Distinguish from": "Initial radiographs can be unrevealing. Risk varies with fracture location and displacement."
+    },
+    "mechanism": "Waist fracture can interrupt retrograde intraosseous supply to proximal pole.",
+    "presentation": "Snuffbox tenderness; proximal fragment has risk of nonunion and avascular necrosis.",
+    "lesionIds": [],
+    "affectedIds": [
+      "scaphoid",
+      "anatomical-snuffbox",
+      "radial-artery"
+    ],
+    "comparison": "Initial radiographs can be unrevealing. Risk varies with fracture location and displacement.",
+    "visual": {
+      "status": "awaiting-validated-asset",
+      "poseId": null
+    }
+  },
+  {
+    "id": "colles-fracture",
+    "name": "Colles fracture",
+    "aliases": [],
+    "system": "clinical",
+    "region": "Wrist",
+    "description": "Dorsal dinner-fork profile in a displaced classic pattern.",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "involves",
+        "targetId": "radius"
+      },
+      {
+        "type": "involves",
+        "targetId": "distal-radioulnar-joint"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Mechanism": "Classic distal radial fracture with dorsal displacement/angulation of distal fragment.",
+      "Clinical presentation": "Dorsal dinner-fork profile in a displaced classic pattern.",
+      "Distinguish from": "Compare with volar displacement of Smith fracture. A bone fracture line requires a segmented asset."
+    },
+    "mechanism": "Classic distal radial fracture with dorsal displacement/angulation of distal fragment.",
+    "presentation": "Dorsal dinner-fork profile in a displaced classic pattern.",
+    "lesionIds": [],
+    "affectedIds": [
+      "radius",
+      "distal-radioulnar-joint"
+    ],
+    "comparison": "Compare with volar displacement of Smith fracture. A bone fracture line requires a segmented asset.",
+    "visual": {
+      "status": "awaiting-validated-asset",
+      "poseId": null
+    }
+  },
+  {
+    "id": "smith-fracture",
+    "name": "Smith fracture",
+    "aliases": [],
+    "system": "clinical",
+    "region": "Wrist",
+    "description": "Volar deformity in the displaced classic pattern.",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "involves",
+        "targetId": "radius"
+      },
+      {
+        "type": "involves",
+        "targetId": "distal-radioulnar-joint"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Mechanism": "Classic distal radial fracture with volar displacement/angulation of distal fragment.",
+      "Clinical presentation": "Volar deformity in the displaced classic pattern.",
+      "Distinguish from": "Opposite displacement direction to classic Colles."
+    },
+    "mechanism": "Classic distal radial fracture with volar displacement/angulation of distal fragment.",
+    "presentation": "Volar deformity in the displaced classic pattern.",
+    "lesionIds": [],
+    "affectedIds": [
+      "radius",
+      "distal-radioulnar-joint"
+    ],
+    "comparison": "Opposite displacement direction to classic Colles.",
+    "visual": {
+      "status": "awaiting-validated-asset",
+      "poseId": null
+    }
+  },
+  {
+    "id": "monteggia-fracture-dislocation",
+    "name": "Monteggia fracture-dislocation",
+    "aliases": [],
+    "system": "clinical",
+    "region": "Elbow",
+    "description": "Loss of normal proximal radioulnar/radiocapitellar alignment.",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "involves",
+        "targetId": "ulna"
+      },
+      {
+        "type": "involves",
+        "targetId": "radius-head"
+      },
+      {
+        "type": "involves",
+        "targetId": "proximal-radioulnar-joint"
+      },
+      {
+        "type": "involves",
+        "targetId": "posterior-interosseous-nerve"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Mechanism": "Ulnar fracture with radial-head dislocation; direction varies by injury type.",
+      "Clinical presentation": "Loss of normal proximal radioulnar/radiocapitellar alignment.",
+      "Distinguish from": "Classic anterior radial-head dislocation is one type, not all Monteggia injuries."
+    },
+    "mechanism": "Ulnar fracture with radial-head dislocation; direction varies by injury type.",
+    "presentation": "Loss of normal proximal radioulnar/radiocapitellar alignment.",
+    "lesionIds": [],
+    "affectedIds": [
+      "ulna",
+      "radius-head",
+      "proximal-radioulnar-joint",
+      "posterior-interosseous-nerve"
+    ],
+    "comparison": "Classic anterior radial-head dislocation is one type, not all Monteggia injuries.",
+    "visual": {
+      "status": "awaiting-validated-asset",
+      "poseId": null
+    }
+  },
+  {
+    "id": "galeazzi-fracture-dislocation",
+    "name": "Galeazzi fracture-dislocation",
+    "aliases": [],
+    "system": "clinical",
+    "region": "Forearm",
+    "description": "Distal forearm pain with disturbed distal radioulnar alignment.",
+    "sourceIds": [
+      "hand"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "involves",
+        "targetId": "radius-shaft"
+      },
+      {
+        "type": "involves",
+        "targetId": "distal-radioulnar-joint"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Mechanism": "Radial shaft fracture with DRUJ disruption.",
+      "Clinical presentation": "Distal forearm pain with disturbed distal radioulnar alignment.",
+      "Distinguish from": "Distinguish from Monteggia, which involves ulna and radial-head dislocation."
+    },
+    "mechanism": "Radial shaft fracture with DRUJ disruption.",
+    "presentation": "Distal forearm pain with disturbed distal radioulnar alignment.",
+    "lesionIds": [],
+    "affectedIds": [
+      "radius-shaft",
+      "distal-radioulnar-joint"
+    ],
+    "comparison": "Distinguish from Monteggia, which involves ulna and radial-head dislocation.",
+    "visual": {
+      "status": "awaiting-validated-asset",
+      "poseId": null
+    }
+  },
+  {
+    "id": "clavicle-fracture",
+    "name": "Clavicle fracture",
+    "aliases": [],
+    "system": "clinical",
+    "region": "Shoulder girdle",
+    "description": "Shoulder droop and local deformity; medial fragment may elevate and lateral fragment drop.",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "involves",
+        "targetId": "clavicle-shaft"
+      },
+      {
+        "type": "involves",
+        "targetId": "subclavian-artery"
+      },
+      {
+        "type": "involves",
+        "targetId": "subclavian-vein"
+      },
+      {
+        "type": "involves",
+        "targetId": "upper-trunk"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Mechanism": "Midshaft is a common site; forces from muscle and limb weight may displace fragments.",
+      "Clinical presentation": "Shoulder droop and local deformity; medial fragment may elevate and lateral fragment drop.",
+      "Distinguish from": "Underlying vessels and plexus are nearby; serious neurovascular injury is uncommon but possible."
+    },
+    "mechanism": "Midshaft is a common site; forces from muscle and limb weight may displace fragments.",
+    "presentation": "Shoulder droop and local deformity; medial fragment may elevate and lateral fragment drop.",
+    "lesionIds": [],
+    "affectedIds": [
+      "clavicle-shaft",
+      "subclavian-artery",
+      "subclavian-vein",
+      "upper-trunk"
+    ],
+    "comparison": "Underlying vessels and plexus are nearby; serious neurovascular injury is uncommon but possible.",
+    "visual": {
+      "status": "awaiting-validated-asset",
+      "poseId": null
+    }
+  },
+  {
+    "id": "ac-joint-separation",
+    "name": "AC joint separation",
+    "aliases": [],
+    "system": "clinical",
+    "region": "Shoulder girdle",
+    "description": "Shoulder/scapula descend relative to clavicle, creating apparent distal clavicle prominence.",
+    "sourceIds": [
+      "shoulder"
+    ],
+    "review": "awaiting-review",
+    "relations": [
+      {
+        "type": "involves",
+        "targetId": "acromioclavicular-joint"
+      },
+      {
+        "type": "involves",
+        "targetId": "acromioclavicular-ligament"
+      },
+      {
+        "type": "involves",
+        "targetId": "conoid-ligament"
+      },
+      {
+        "type": "involves",
+        "targetId": "trapezoid-ligament"
+      },
+      {
+        "type": "involves",
+        "targetId": "clavicle"
+      },
+      {
+        "type": "involves",
+        "targetId": "scapula"
+      }
+    ],
+    "assetIds": [],
+    "fields": {
+      "Mechanism": "AC and, in more severe injuries, coracoclavicular ligament disruption separates clavicle from scapular support.",
+      "Clinical presentation": "Shoulder/scapula descend relative to clavicle, creating apparent distal clavicle prominence.",
+      "Distinguish from": "Displacement varies by grade; not every AC sprain has a step deformity."
+    },
+    "mechanism": "AC and, in more severe injuries, coracoclavicular ligament disruption separates clavicle from scapular support.",
+    "presentation": "Shoulder/scapula descend relative to clavicle, creating apparent distal clavicle prominence.",
+    "lesionIds": [],
+    "affectedIds": [
+      "acromioclavicular-joint",
+      "acromioclavicular-ligament",
+      "conoid-ligament",
+      "trapezoid-ligament",
+      "clavicle",
+      "scapula"
+    ],
+    "comparison": "Displacement varies by grade; not every AC sprain has a step deformity.",
+    "visual": {
+      "status": "awaiting-validated-asset",
+      "poseId": null
+    }
+  },
+  {
+    "id": "dermatome-c5",
+    "name": "C5 dermatome",
+    "aliases": [],
+    "system": "surface",
+    "region": "Arm",
+    "description": "Representative clinical territory; dermatomal borders overlap and differ between maps.",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Map type": "Dermatome (spinal root)",
+      "Representative area": "Lateral upper arm around the deltoid region",
+      "3D territory": "Awaiting a reviewed surface annotation. A dermatome is not a peripheral nerve territory."
+    }
+  },
+  {
+    "id": "dermatome-c6",
+    "name": "C6 dermatome",
+    "aliases": [],
+    "system": "surface",
+    "region": "Hand",
+    "description": "Representative clinical territory; dermatomal borders overlap and differ between maps.",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Map type": "Dermatome (spinal root)",
+      "Representative area": "Lateral forearm and thumb",
+      "3D territory": "Awaiting a reviewed surface annotation. A dermatome is not a peripheral nerve territory."
+    }
+  },
+  {
+    "id": "dermatome-c7",
+    "name": "C7 dermatome",
+    "aliases": [],
+    "system": "surface",
+    "region": "Hand",
+    "description": "Representative clinical territory; dermatomal borders overlap and differ between maps.",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Map type": "Dermatome (spinal root)",
+      "Representative area": "Central hand, particularly middle finger",
+      "3D territory": "Awaiting a reviewed surface annotation. A dermatome is not a peripheral nerve territory."
+    }
+  },
+  {
+    "id": "dermatome-c8",
+    "name": "C8 dermatome",
+    "aliases": [],
+    "system": "surface",
+    "region": "Hand",
+    "description": "Representative clinical territory; dermatomal borders overlap and differ between maps.",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Map type": "Dermatome (spinal root)",
+      "Representative area": "Little finger and ulnar hand",
+      "3D territory": "Awaiting a reviewed surface annotation. A dermatome is not a peripheral nerve territory."
+    }
+  },
+  {
+    "id": "dermatome-t1",
+    "name": "T1 dermatome",
+    "aliases": [],
+    "system": "surface",
+    "region": "Arm",
+    "description": "Representative clinical territory; dermatomal borders overlap and differ between maps.",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Map type": "Dermatome (spinal root)",
+      "Representative area": "Medial forearm",
+      "3D territory": "Awaiting a reviewed surface annotation. A dermatome is not a peripheral nerve territory."
+    }
+  },
+  {
+    "id": "dermatome-t2",
+    "name": "T2 dermatome",
+    "aliases": [],
+    "system": "surface",
+    "region": "Arm",
+    "description": "Representative clinical territory; dermatomal borders overlap and differ between maps.",
+    "sourceIds": [
+      "plexus"
+    ],
+    "review": "awaiting-review",
+    "relations": [],
+    "assetIds": [],
+    "fields": {
+      "Map type": "Dermatome (spinal root)",
+      "Representative area": "Axilla and proximal medial arm",
+      "3D territory": "Awaiting a reviewed surface annotation. A dermatome is not a peripheral nerve territory."
+    }
+  }
+]

@@ -1,0 +1,30 @@
+/* Shared foundation: the existing MedNote anatomy atlas palette. */
+:root {
+  color-scheme: dark;
+  --mn-background: #0d1f20;
+  --mn-background-hsl: 183.15789 42.22222% 8.82353%;
+  --mn-chrome: #102323;
+  --mn-chrome-hsl: 180.00000 37.25490% 10.00000%;
+  --mn-surface: #132829;
+  --mn-surface-hsl: 182.72727 36.66667% 11.76471%;
+  --mn-surface-raised: #193334;
+  --mn-surface-raised-hsl: 182.22222 35.06494% 15.09804%;
+  --mn-selection: #24463e;
+  --mn-selection-hsl: 165.88235 32.07547% 20.78431%;
+  --mn-border: #2b4240;
+  --mn-border-hsl: 174.78261 21.10092% 21.37255%;
+  --mn-border-strong: #3c5d4c;
+  --mn-border-strong-hsl: 149.09091 21.56863% 30.00000%;
+  --mn-text: #ecf3f0;
+  --mn-text-hsl: 154.28571 22.58065% 93.92157%;
+  --mn-muted: #a0b8b3;
+  --mn-muted-hsl: 167.50000 14.45783% 67.45098%;
+  --mn-mint: #8dd3b3;
+  --mn-mint-hsl: 152.57143 44.30380% 69.01961%;
+  --mn-sand: #e6cfb7;
+  --mn-sand-hsl: 30.63830 48.45361% 80.98039%;
+  --mn-rose: #d7aeb3;
+  --mn-rose-hsl: 352.68293 33.88430% 76.27451%;
+  --mn-radius: 7px;
+  --mn-font: Inter, Cairo, Arial, Helvetica, sans-serif;
+}
