@@ -1,6 +1,8 @@
 import {lazy,Suspense,useState} from 'react';
 import {Activity,ArrowLeftRight,BrainCircuit,FlaskConical} from 'lucide-react';
 import type {Source,TeachingChapter} from './studio-types';
+import {directVisual,type VisualKind} from './visual-director';
+export {visualKindFor} from './visual-director';
 const Axon3D=lazy(()=>import('./Axon3D').then(mod=>({default:mod.Axon3D})));
 
 type MicroStep=TeachingChapter['mechanism'][number];
@@ -25,13 +27,6 @@ function visualPhase(text:string,kind:VisualKind){
 }
 
 
-export type VisualKind='axon'|'action-potential'|'nmj'|'source';
-export function visualKindFor(text:string):VisualKind{
- if(/axonal transport|النقل المحوري|النقل الأمامي|النقل العكسي|kinesin|dynein/i.test(text))return 'axon';
- if(/neuromuscular junction|neuromuscular transmission|الوصلة العصبية العضلية|neuromuscular synapse/i.test(text))return 'nmj';
- if(/action potential|جهد الفعل|depolariz|repolariz|إزالة الاستقطاب|إعادة الاستقطاب/i.test(text))return 'action-potential';
- return 'source';
-}
 function AxonVisual({step}:{step?:MicroStep}){
  const [chosen,setChosen]=useState<'forward'|'back'>('forward');
  const forced=step?visualPhase([step.title,step.visual_focus,step.motion].join(' '),'axon'):undefined;
@@ -80,7 +75,7 @@ function NmjVisual({step}:{step?:MicroStep}){
    <path d="M64 247 Q105 233 147 247 T230 247 T313 247 T396 247 T479 247 T562 247 T650 247 L691 248" fill="none" stroke="#dfadab" strokeWidth="7"/>
    {Array.from({length:6},(_,i)=><g key={i} transform={'translate('+(155+i*89)+' 240)'}><path d="M-16 5V30Q0 41 16 30V5" fill="#c59298" stroke="#f0c4c4" strokeWidth="2"/>{phase>=4&&<circle cy="18" r="5" fill="#f4e0ae"/>}</g>)}
    {phase===0&&<path d="M385 22v40m-12-10 12 11 12-11" stroke="#e6cfb7" strokeWidth="5" strokeLinecap="round" fill="none"/>}
-   {phase===1&&<g><path d="M300 159v60m-12-14 12 14 12-14M450 159v60m-12-14 12 14 12-14" stroke="#8dd3b3" strokeWidth="4" fill="none" strokeLinecap="round"/><text x="385" y="225" textAnchor="middle" fontSize="19" fill="#e6cfb7">Ca²⁺</text></g>}
+   {phase===1&&<g><path d="M300 219v-60m-12 14 12-14 12 14M450 219v-60m-12 14 12-14 12 14" stroke="#8dd3b3" strokeWidth="4" fill="none" strokeLinecap="round"/><text x="385" y="225" textAnchor="middle" fontSize="19" fill="#e6cfb7">Ca²⁺</text></g>}
    {phase===2&&<g><circle cx="375" cy="164" r="20" fill="#d7b983" stroke="#f4dfba" strokeWidth="4"/><path d="M344 181h62" stroke="#e6cfb7" strokeWidth="5" strokeLinecap="round"/></g>}
    {phase===5&&<g><path d="M90 276H245l18-14 21 29 22-15H670" stroke="#e6cfb7" strokeWidth="4" fill="none"/><text x="385" y="294" fill="#e6cfb7" textAnchor="middle" fontSize="14">Local depolarization</text></g>}
    <text x="380" y="45" textAnchor="middle" fill="#e6cfb7" fontSize="17">Motor neuron terminal</text><text x="380" y="231" textAnchor="middle" fill="#c2d8cd" fontSize="16">Synaptic cleft</text><text x="380" y="313" textAnchor="middle" fill="#e6cfb7" fontSize="18">Muscle membrane · ACh receptors</text>
@@ -88,13 +83,13 @@ function NmjVisual({step}:{step?:MicroStep}){
  </div>;
 }
 export function MedicalVisual({context,sources,step}:{context:string;sources:Source[];step?:MicroStep}){
- const sourceText=sources.map(s=>s.text+' '+(s.observations||[]).map(o=>o.text).join(' ')).join(' ');
- // The current micro-step drives the figure, not a global lecture keyword.
- const kind=visualKindFor(context)!=='source'?visualKindFor(context):visualKindFor(sourceText.slice(0,2000));
- const display=kind==='axon'?<Suspense fallback={<p className="mn8-axon-caption">يجري تجهيز المجسم ثلاثي الأبعاد…</p>}><Axon3D mode={step&&visualPhase([step.title,step.visual_focus,step.motion].join(' '),'axon')===1?'retrograde':'anterograde'}/></Suspense>:kind==='nmj'?<NmjVisual step={step}/>:kind==='action-potential'?<ActionPotentialVisual step={step}/>:null;
+ const [flat,setFlat]=useState(true);
+ const decision=directVisual(context,sources),kind=decision.kind;
+ const display=kind==='axon'?flat?<AxonVisual step={step}/>:<Suspense fallback={<p className="mn8-axon-caption">يجري تجهيز المجسم ثلاثي الأبعاد…</p>}><Axon3D mode={step&&visualPhase([step.title,step.visual_focus,step.motion].join(' '),'axon')===1?'retrograde':'anterograde'}/></Suspense>:kind==='nmj'?<NmjVisual step={step}/>:kind==='action-potential'?<ActionPotentialVisual step={step}/>:null;
  const p=sources.find(s=>s.image&&s.observations?.some(o=>o.kind==='diagram'||o.kind==='table'))||sources.find(s=>s.image);
  if(!display&&!p)return step?<div className="mn4-mechanism-brief" aria-label="تعليمات الحركة العلمية"><strong>المشهد العلمي لهذا الجزء</strong><p>{step.detail}</p></div>:null;
- return <div className="mn4-visual-stack">
+ return <div className="mn4-visual-stack" data-visual-kind={kind}>
+  {display&&<><small className="mn10-visual-basis">توضيح إضافي خارج محتوى المحاضرة · نموذج تعليمي قابل لإعادة الاستخدام</small>{kind==='axon'&&<button className="mn4-secondary" onClick={()=>setFlat(v=>!v)}>{flat?'استكشاف في 3D':'عرض 2D خفيف'}</button>}</>}
   {display??<figure className="mn4-original-diagram"><img src={p!.image} alt={'شكل أصلي من المحاضرة، صفحة '+p!.page} loading="lazy"/><figcaption>مرجع بصري من المحاضرة الأصلية · صفحة {p!.page}</figcaption></figure>}
   {step&&(step.visual_focus||step.motion)&&<div className="mn4-visual-direction" aria-label="إخراج الخطوة في الرسوم العلمية">
     {step.visual_focus&&<div><span>FOCUS · التركيب المهم</span><strong>{step.visual_focus}</strong></div>}

@@ -9,16 +9,17 @@ export function MechanismCinema({lesson,sources,start=0}:{lesson:TeachingChapter
  useEffect(()=>{setActive(start);setPlaying(false)},[lesson,start]);
  useEffect(()=>{
   if(!playing||steps.length<2)return;
-  const id=window.setInterval(()=>setActive(i=>(i+1)%steps.length),4800/speed);
+  const id=window.setInterval(()=>setActive(i=>{if(i>=steps.length-1){setPlaying(false);return i;}return i+1;}),4800/speed);
   return()=>window.clearInterval(id);
  },[playing,speed,steps.length]);
+ useEffect(()=>{const pause=()=>{if(document.hidden)setPlaying(false)};document.addEventListener('visibilitychange',pause);return()=>document.removeEventListener('visibilitychange',pause)},[]);
  if(!steps.length)return null;
  const current=steps[Math.min(active,steps.length-1)];
  const local=sources.filter(p=>current.source_ids.includes(p.id));
  function move(n:number){setActive((n+steps.length)%steps.length);setPlaying(false)}
  return <section className="mn7-cinema" dir="rtl" aria-label="مشاهد ميكانيزم تفاعلية">
-  <div className="mn7-top"><span><Clapperboard size={17}/> MEDICAL MOTION STUDIO</span><small>{active+1} / {steps.length} · 2D SCIENTIFIC STORYBOARD</small></div>
-  <div className="mn7-screen"><MedicalVisual key={active} context={lesson.headline+' '+current.title+' '+current.detail} sources={local.length?local:sources} step={current}/>
+  <div className="mn7-top"><span><Clapperboard size={17}/> MEDICAL MOTION STUDIO</span><small>{active+1} / {steps.length} · INTERACTIVE MECHANISM</small></div>
+  <div className="mn7-screen"><MedicalVisual key={active} context={current.title+' '+current.detail+' '+(current.visual_focus||'')} sources={local} step={current}/>
    <div className="mn7-screen-bottom"><span>{current.visual_focus||current.title}</span><span>{playing?'● AUTO PLAY':'Ⅱ MANUAL'}</span></div>
   </div>
   <div className="mn7-controls"><button type="button" onClick={()=>setPlaying(v=>!v)}>{playing?<Pause size={17}/>:<Play size={17}/>} {playing?'إيقاف':'تشغيل التسلسل'}</button>

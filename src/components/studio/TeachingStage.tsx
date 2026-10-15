@@ -5,6 +5,7 @@ import {ClinicalFilmStage} from './ClinicalFilmStage';
 import type {SharedMedia} from '../../lib/shared-learning';
 import {MedicalVisual} from './MedicalVisual';
 import {MechanismCinema} from './MechanismCinema';
+import {ReusableMedia} from './ReusableMedia';
 import {QuizPanel} from './ClinicalPanels';
 
 export type SceneView={kind:'intro'|'foundation'|'anatomy'|'concept'|'mechanism-overview'|'mechanism'|'clinical-overview'|'clinical'|'quiz';title:string;body:string;source_ids:string[];section:string;index:number};
@@ -69,14 +70,10 @@ export function TeachingStage({lesson,sources,clinicalFilm,media=[],followups=[]
   {lesson.clinical_trust&&<div className="mn4-evidence-banner" role="status"><span>{lesson.clinical_trust.clinical_approval?'تم تسجيل مراجعة طبية بشرية':'محتوى تعليمي · بانتظار مراجعة طبية بشرية'}</span><small>{lesson.clinical_trust.external_reference_status==='retrieved'?'مراجع خارجية موثقة متاحة':'التحقق بالمراجع الخارجية غير متاح أو لم يجد نتيجة'} · تدقيق المصدر آلي</small></div>}
   <div className="mn4-progress">{all.map((s,i)=><button key={i} title={s.title} aria-label={'افتحي '+s.title} className={i===frame?'current':i<frame?'past':''} onClick={()=>{setFrame(i);setShowFull(false);setSourceOpen(false)}}/>)}</div>
   <div className="mn4-scene-heading"><span>{item.section}</span><h2>{item.title}</h2></div>
-  {(item.kind==='clinical'||item.kind==='mechanism')&&media.length>0&&<section className="mn6-shared-media" aria-label="مكتبة الوسائط الطبية"><h3>وسائط طبية معتمدة من مكتبة MedNote</h3>
-   {media.filter(m=>m.kind==='video'||m.kind==='image'||(item.kind==='mechanism'&&m.kind==='interactive3d')).map(m=><article key={m.id}><strong>{m.title}</strong>
-    {m.kind==='video'?<video src={m.url} controls playsInline preload="metadata" aria-label={m.title}/>:m.kind==='image'?<img src={m.url} loading="lazy" alt={m.title}/>:<a href={m.url} target="_blank" rel="noopener noreferrer">افتحي نموذج 3D المعتمد</a>}
-    {m.description&&<p>{m.description}</p>}<small>مادة مشتركة معتمدة · الإصدار {m.version}</small>
-   </article>)}</section>}
+  {item.kind!=='quiz'&&<ReusableMedia key={frame} media={media}/>}
   {item.kind==='quiz'?<QuizPanel lesson={lesson}/>:
   <>
-   {item.kind!=='clinical'&&item.kind!=='intro'&&(lesson.mechanism.length&&(item.kind==='mechanism'||item.kind==='mechanism-overview')?<MechanismCinema lesson={lesson} sources={sources} start={item.kind==='mechanism'?item.index:0}/>:<MedicalVisual context={item.title+' '+item.body} sources={item.source_ids.length?sources.filter(p=>item.source_ids.includes(p.id)):sources} step={undefined}/>)}
+   {item.kind!=='clinical'&&item.kind!=='intro'&&(lesson.mechanism.length&&(item.kind==='mechanism'||item.kind==='mechanism-overview')?<MechanismCinema lesson={lesson} sources={sources} start={item.kind==='mechanism'?item.index:0}/>:<MedicalVisual context={item.title+' '+item.body} sources={sources.filter(p=>item.source_ids.includes(p.id))} step={undefined}/>)}
    {item.kind==='clinical'&&(clinicalFilm?<ClinicalFilmStage film={clinicalFilm}/>:<section className="mn5-prepare"><span>CLINICAL SIMULATION DIRECTOR</span><h3>إنتاج سيناريو تصوير طبي لهذا المفهوم</h3><p>سيتحقق المحرك من أعراض الحالة في صفحات محاضرتك، ثم ينشئ أربع مراحل تصويرية مع توجيه الكاميرا ومؤشرات حيوية موثقة، ويُراجع المحتوى قبل عرضه. لا يتم إنشاء فيديو فعلي في هذه المرحلة.</p><button type="button" disabled={busy||!onSimulate} onClick={onSimulate}>{busy?'تجري المعالجة…':'إنشاء سيناريو المحاكاة السريرية'}</button></section>)}
    {item.kind==='intro'&&<div className="mn9-start-note">الآن نعرّف المصطلحات الأساسية. الرسوم والخطوات التفصيلية تبدأ بعد هذا التمهيد، ولا يُفترض أنكِ درستِ الموضوع مسبقًا.</div>}
    {item.kind!=='clinical'&&<div className="mn4-teaching-copy">

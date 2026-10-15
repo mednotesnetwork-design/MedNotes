@@ -38,12 +38,27 @@ export function clinicalConceptKey(text:string):string|null{
  if(/neuromuscular junction|الوصلة العصبية العضلية/.test(s))return 'neuromuscular-junction';
  return null;
 }
+const mediaCache=new Map<string,{expires:number;media:SharedMedia[]}>();
+const mediaPending=new Map<string,Promise<SharedMedia[]>>();
 export async function findSharedMedia(key:string,signal?:AbortSignal):Promise<SharedMedia[]>{
  if(!/^[a-z0-9_-]{2,80}$/.test(key))return [];
- try{
-  const r=await fetch('/api/shared_learning?'+new URLSearchParams({action:'media',concept:key}),{credentials:'same-origin',signal});
-  if(!r.ok)return [];
-  const result=await r.json() as {media?:SharedMedia[]};
-  return Array.isArray(result.media)?result.media.filter(m=>m&&['video','image','interactive3d'].includes(m.kind)&&/^https:\/\//.test(m.url)):[];
- }catch(e){if(signal?.aborted)throw e;return [];}
+ if(signal?.aborted)throw signal.reason;
+ const cached=mediaCache.get(key);
+ if(cached&&cached.expires>Date.now())return cached.media;
+ // Coalesce navigation requests. A component abort never cancels another reader.
+ let task=mediaPending.get(key);
+ if(!task){task=(async()=>{
+  try{
+   const r=await fetch('/api/shared_learning?'+new URLSearchParams({action:'media',concept:key}),{credentials:'same-origin',signal:AbortSignal.timeout(10000)});
+   if(!r.ok)return [];
+   const result=await r.json() as {media?:SharedMedia[]};
+   const media=Array.isArray(result.media)?result.media.filter(m=>{
+    if(!m||!['video','image','interactive3d'].includes(m.kind)||typeof m.url!=='string')return false;
+    try{const u=new URL(m.url);return u.protocol==='https:'&&!u.username&&!u.password}catch{return false}
+   }):[];
+   if(mediaCache.size>=64)mediaCache.delete(mediaCache.keys().next().value!);
+   mediaCache.set(key,{media,expires:Date.now()+5*60*1000});return media;
+  }catch{return []}finally{mediaPending.delete(key)}
+ })();mediaPending.set(key,task)}
+ const result=await task;if(signal?.aborted)throw signal.reason;return result;
 }

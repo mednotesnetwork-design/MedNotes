@@ -10,6 +10,7 @@ import './studio.css';
 import './studio-layout.css';
 import './studio-editorial.css';
 import './studio-media.css';
+import './visual-director.css';
 import './studio-atlas.css';
 import './studio-stage.css';
 import './studio-visual.css';
